@@ -1,0 +1,12 @@
+<div>
+  <h3>Culture</h3>
+
+  <div>
+    <mat-form-field>
+      <mat-label>Langues</mat-label>
+      <mat-select multiple>
+        <mat-option *ngFor="let lang of languages" [value]="lang.code">{{lang.title}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+</div>

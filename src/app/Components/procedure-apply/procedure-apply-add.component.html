@@ -1,0 +1,16 @@
+<div class="fontSize-18 fontWeight-semiBold p-3">Ajouter une application</div>
+
+<div>
+  <mat-label>Procédure</mat-label>
+  <div class="fontWeight-semiBold">{{procedure.name}}</div>
+</div>
+
+<div>
+  <mat-label>Client</mat-label>
+  <div class="fontWeight-semiBold">{{customer.firstName}} {{customer.lastName}}</div>
+</div>
+
+<div class="align-end p-3">
+  <button mat-flat-button class="me-4">Annuler</button>
+  <button mat-flat-button color="primary" (click)="add()">Ajouter</button>
+</div>

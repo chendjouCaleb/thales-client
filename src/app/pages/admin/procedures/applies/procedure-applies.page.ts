@@ -4,10 +4,10 @@ import {ProcedureService} from "../../../../services/procedure.service";
 import {Procedure, ProcedureStep} from "../../../../../entities";
 
 @Component({
-  templateUrl: 'procedure-home.page.html',
+  templateUrl: 'procedure-applications.page.html',
   selector: 'procedure-home'
 })
-export class ProcedureHomePage implements OnInit {
+export class ProcedureApplicationsPage implements OnInit {
   @Input()
   procedure: Procedure;
 

@@ -1,0 +1,13 @@
+<div class="fontSize-18 fontWeight-semiBold p-3">Choisir un client</div>
+
+
+<mat-selection-list [multiple]="false" [(ngModel)]="selected" #selectionList>
+  <mat-list-option *ngFor="let customer of customers" togglePosition="before" [value]="customer">
+    {{customer.firstName}}
+  </mat-list-option>
+</mat-selection-list>
+
+<div class="align-end p-3">
+  <button mat-flat-button class="me-4">Annuler</button>
+  <button mat-flat-button color="primary" [disabled]="!selectionList.selectedOptions.hasValue()" (click)="close()">Choisir</button>
+</div>

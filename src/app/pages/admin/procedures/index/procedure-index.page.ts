@@ -1,22 +1,21 @@
-import {Component, Input, OnInit} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
 import {ProcedureService} from "../../../../services/procedure.service";
 import {Procedure, ProcedureStep} from "../../../../../entities";
 
 @Component({
-  templateUrl: 'procedure-home.page.html',
-  selector: 'procedure-home'
+  templateUrl: 'procedure-home.page.html'
 })
 export class ProcedureHomePage implements OnInit {
-  @Input()
   procedure: Procedure;
-
+  activeLink: string = '';
+  steps: ProcedureStep[] = [];
 
   constructor(private route: ActivatedRoute, private _service: ProcedureService) {}
 
   async ngOnInit() {
-    // const procedureId = +this.route.snapshot.params['procedureId'];
-    // this.procedure = await this._service.getByIdAsync(procedureId);
-    // this.procedure.steps = await this._service.getStepsAsync(this.procedure);
+    const procedureId = +this.route.snapshot.params['procedureId'];
+    this.procedure = await this._service.getByIdAsync(procedureId);
+    this.procedure.steps = await this._service.getStepsAsync(this.procedure);
   }
 }

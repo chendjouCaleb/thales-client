@@ -1,5 +1,12 @@
-
 <div class="p-3" *ngIf="procedure">
+
+  <nav mat-tab-nav-bar  [tabPanel]="tabPanel">
+    <a mat-tab-link >Détails</a>
+    <a mat-tab-link>Applications</a>
+    <a mat-tab-link disabled>Disabled Link</a>
+  </nav>
+
+  <mat-tab-nav-panel #tabPanel></mat-tab-nav-panel>
 
   <div class="fontWeight-semiBold fontSize-20">{{procedure.name}}</div>
 

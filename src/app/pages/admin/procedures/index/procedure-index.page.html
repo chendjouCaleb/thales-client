@@ -1,6 +1,6 @@
 <div class="p-3 m-3 bg-color-0" *ngIf="procedure">
 
-  <mat-tab-group mat-stretch-tabs="false">
+  <mat-tab-group #tabGroup mat-stretch-tabs="false" [selectedIndex]="tabGroupRemember.selectedIndex">
     <mat-tab label="Accueil">
       <procedure-home [procedure]="procedure"></procedure-home>
     </mat-tab>

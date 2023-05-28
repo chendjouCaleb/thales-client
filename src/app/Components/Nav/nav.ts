@@ -3,6 +3,7 @@ import {ChangeDetectionStrategy, Component, ViewEncapsulation} from "@angular/co
 @Component({
   templateUrl: 'nav.html',
   selector: 'th-nav',
+  styleUrls: [ 'nav.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {

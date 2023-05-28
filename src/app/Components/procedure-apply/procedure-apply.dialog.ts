@@ -1,16 +1,20 @@
-import {Inject, Injectable} from "@angular/core";
-import {MatDialog, MatDialogRef} from "@angular/material/dialog";
-import {Customer} from "../../../entities";
+import {Injectable} from "@angular/core";
+import {MatDialog} from "@angular/material/dialog";
 import {Observable} from "rxjs";
-import {CustomerPicker} from "./customer-picker";
+import {ProcedureApplyAdd} from "./procedure-apply-add.component";
+import {Customer, Procedure} from "../../../entities";
 
 @Injectable()
-export class CustomerPickerDialog {
+export class ProcedureApplyDialog {
   constructor(private matDialog: MatDialog) {
   }
 
-  open(): Observable<Customer> {
-    const dialogRef = this.matDialog.open(CustomerPicker);
+  open(procedure: Procedure, customer: Customer): Observable<ProcedureApplyAdd> {
+    const data = {
+      procedure, customer
+    };
+
+    const dialogRef = this.matDialog.open(ProcedureApplyAdd, {data});
     return dialogRef.afterClosed();
   }
 }

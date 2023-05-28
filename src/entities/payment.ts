@@ -1,21 +1,10 @@
 import {BaseEntity} from "./base-entity";
+import {Customer} from "./customer";
 
-export class Procedure extends BaseEntity<number>  {
-  name: string = '';
-  normalizedName: string = '';
-
-  steps: ProcedureStep[]=[];
-  price: number = 0;
+export class Payment extends BaseEntity<number>  {
+  amount: number = 0;
+  reason: string = '';
+  customer: Customer;
+  customerId: number;
 }
 
-
-export class ProcedureStep extends BaseEntity<number>{
-  name: string = '';
-  normalizedName: string = '';
-
-  price: number = 0;
-  index: number = 0;
-
-  procedure: Procedure;
-  procedureId: number;
-}

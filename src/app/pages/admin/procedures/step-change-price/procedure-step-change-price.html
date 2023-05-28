@@ -1,14 +1,15 @@
-<div class="fontWeight-semiBold fontSize-20 p-4">Changer le nom</div>
+<div class="fontWeight-semiBold fontSize-20 p-4">Changer le prix</div>
 
 
 
 <div class="px-4">
     <mat-form-field style="width: 100%">
+      <mat-label>Prix de l'étape</mat-label>
       <input type="text" matInput [formControl]="formControl">
     </mat-form-field>
 </div>
 
 <div class="p-4 align-end">
   <button mat-stroked-button mat-dialog-close="" class="me-4">Annuler</button>
-  <button mat-flat-button color="primary" (click)="changeName()">Modifier</button>
+  <button mat-flat-button color="primary" (click)="changePrice()">Modifier</button>
 </div>

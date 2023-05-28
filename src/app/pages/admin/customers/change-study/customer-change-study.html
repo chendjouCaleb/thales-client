@@ -4,12 +4,24 @@
 
   <div class="mt-2">
     <mat-form-field>
-      <mat-label>Métier</mat-label>
-      <input type="text" matInput formControlName="jobTitle" >
+      <mat-label>Année de fin d'étude</mat-label>
+      <input type="number" matInput formControlName="studyEndYear">
     </mat-form-field>
   </div>
 
-  <div mat-dialog-actions>
+  <div>
+    <mat-form-field>
+      <mat-label>Niveau d'étude</mat-label>
+      <mat-select formControlName="studyLevel">
+        <mat-option value="0">Bac + 0</mat-option>
+        <mat-option value="1">Bac + 1</mat-option>
+        <mat-option value="2">Bac + 2</mat-option>
+        <mat-option value="3">Licence</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div mat-dialog-actions align="end">
     <button mat-button mat-dialog-close="" class="mr-3">Annuler</button>
     <button mat-flat-button  color="primary" (click)="changeInfo()" [disabled]="formGroup.invalid">Mettre à jour</button>
   </div>

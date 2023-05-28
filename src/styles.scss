@@ -1,1 +1,150 @@
+@use '@angular/material' as mat;
+
+
+@import "../node_modules/bootstrap/scss/functions";
+@import "../node_modules/bootstrap/scss/variables";
+@import "../node_modules/bootstrap/scss/variables-dark";
+@import "../node_modules/bootstrap/scss/maps";
+@import "../node_modules/bootstrap/scss/mixins";
+@import "../node_modules/bootstrap/scss/root";
+
+@import "../node_modules/bootstrap/scss/utilities";
+@import "../node_modules/bootstrap/scss/reboot";
+@import "../node_modules/bootstrap/scss/containers";
+@import "../node_modules/bootstrap/scss/grid";
+@import "../node_modules/bootstrap/scss/helpers";
+@import "../node_modules/bootstrap/scss/utilities/api";
+
+@import "styles/reset.css";
+@import "styles/text";
+@import "styles/color";
+
 /* You can add global styles to this file, and also import other style files */
+
+
+html, body { height: 100%; }
+body { margin: 0; font-family: "Noto Sans", "Helvetica Neue", sans-serif; }
+
+$button-typo-level: mat.define-typography-level(
+  $font-weight: 500,
+  $font-size: 14px,
+  $line-height: 1,
+  $letter-spacing: normal,
+);
+
+$body-typo-level: mat.define-typography-level(
+  $font-size: 14px,
+  $line-height: 1.25rem,
+  $letter-spacing: normal,
+);
+
+$input-typo-level: mat.define-typography-level(
+  $font-family: 'Noto Sans',
+  $font-weight: 500,
+  $font-size: 14px,
+  $line-height: 1,
+  $letter-spacing: normal,
+);
+
+
+$my-typography: mat.define-typography-config(
+  // Specify "Comic Sans" as the default font family for all levels.
+  $font-family: 'Noto Sans',
+  $button: $button-typo-level,
+  $body-1: $body-typo-level,
+  $body-2: $body-typo-level
+
+);
+
+$button-typography: mat.define-typography-config(
+  // Specify "Comic Sans" as the default font family for all levels.
+  $font-family: 'Noto Sans',
+  $button: $button-typo-level,
+  $body-1: $button-typo-level,
+  $body-2: $button-typo-level,
+);
+
+
+
+
+
+@include mat.typography-hierarchy($my-typography);
+.the-dense-zone {
+  @include mat.all-component-densities(-3.0);
+  @include mat.button-density(0);
+  @include mat.all-component-typographies($my-typography);
+  @include mat.checkbox-typography($button-typography);
+}
+
+.mat-mdc-snack-bar-container {
+  &.error-snackbar {
+    background-color: #d13438 !important;
+    color: #FFF;
+
+    .mdc-snackbar__surface {
+      background-color: #d13438 !important;
+    }
+  }
+}
+
+.mat-mdc-row .mat-mdc-cell {
+  border-bottom: 1px solid transparent;
+  border-top: 1px solid transparent;
+  cursor: pointer;
+}
+
+.description-list {
+  & dt {
+    font-size: 14px;
+    font-weight: 400;
+    opacity: .9;
+    margin-top: 16px;
+  }
+
+  & dd {
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  & dd.empty{
+    opacity: .7;
+    font-weight: 400;
+    font-size: 13px;
+  }
+}
+
+.th-form-page {
+  width: 100%; height: 100%; display: flex; align-items: center; justify-content: center
+}
+
+.th-dialog-form, .th-form {
+  & mat-form-field {
+    width: 100%;
+  }
+}
+
+.th-form {
+  width: 400px;
+  padding: 32px;
+  box-sizing: border-box;
+  border: 1px solid $ms-color-gray20;
+  border-radius: 4px;
+}
+
+.align-end {
+  text-align: right;
+}
+
+.align-start {
+  text-align: left;
+}
+
+.divLink {
+  color: inherit !important;
+  text-decoration: none;
+  display: block;
+}
+
+.dialog-panel {
+  width: 400px;
+}

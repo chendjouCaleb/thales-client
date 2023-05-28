@@ -6,13 +6,15 @@ import {MatDialog} from "@angular/material/dialog";
 import {ProcedureChangeName} from "../change-name/procedure-change-name";
 import {ProcedureDelete} from "../delete/procedure-delete";
 import {ProcedureChangeDescription} from "../change-description/procedure-change-description";
+import {ProcedureStepChangeName} from "../step-change-name/procedure-step-change-name";
+import {ProcedureStepChangeDescription} from "../step-change-description/procedure-step-change-description";
+import {ProcedureStepChangePrice} from "../step-change-price/procedure-step-change-price";
 
 @Component({
-  templateUrl: 'procedure-settings.page.html'
+  templateUrl: 'procedure-step-settings.page.html'
 })
-export class ProcedureSettingsPage {
-  procedure: Procedure;
-  steps: ProcedureStep[] = [];
+export class ProcedureStepSettingsPage {
+  procedureStep: ProcedureStep;
 
   constructor(private route: ActivatedRoute,
               private _dialog: MatDialog,
@@ -20,21 +22,26 @@ export class ProcedureSettingsPage {
               private _service: ProcedureService) {}
 
   async ngOnInit() {
-    const procedureId = +this.route.snapshot.params['procedureId'];
-    this.procedure = await this._service.getByIdAsync(procedureId);
-    this.procedure.steps = await this._service.getStepsAsync(this.procedure);
+    const procedureStepId = +this.route.snapshot.params['procedureStepId'];
+    this.procedureStep = await this._service.getStepAsync(procedureStepId);
   }
 
   editName() {
-    const dialogRef = this._dialog.open(ProcedureChangeName, {
+    const dialogRef = this._dialog.open(ProcedureStepChangeName, {
       panelClass: 'dialog-panel',
-      data: {procedure: this.procedure}})
+      data: {procedure: this.procedureStep}})
   }
 
   editDescription() {
-    const dialogRef = this._dialog.open(ProcedureChangeDescription, {
+    const dialogRef = this._dialog.open(ProcedureStepChangeDescription, {
       panelClass: 'dialog-panel',
-      data: {procedure: this.procedure}})
+      data: {procedure: this.procedureStep}})
+  }
+
+  editPrice() {
+    const dialogRef = this._dialog.open(ProcedureStepChangePrice, {
+      panelClass: 'dialog-panel',
+      data: {procedure: this.procedureStep}})
   }
 
   addStep() {}
@@ -42,7 +49,7 @@ export class ProcedureSettingsPage {
   delete() {
     const dialogRef = this._dialog.open(ProcedureDelete, {
       panelClass: 'dialog-panel',
-      data: {procedure: this.procedure}})
+      data: {procedure: this.procedureStep}})
 
     dialogRef.afterClosed().subscribe(deleted => {
       if(deleted) {

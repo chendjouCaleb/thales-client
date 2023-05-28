@@ -4,29 +4,37 @@ import {Customer} from "../../../../../entities";
 import {customerInfoForm} from "../customer-form";
 import {FormControl, FormGroup} from "@angular/forms";
 import {CustomerService} from "../../../../services";
-import {CustomerChangeInfoFormModel, CustomerChangeJobFormModel} from "../../../../models";
+import {
+  CustomerChangeInfoFormModel,
+  CustomerChangeJobFormModel,
+  CustomerChangePassportFormModel
+} from "../../../../models";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
-  templateUrl: 'customer-change-job.html'
+  templateUrl: 'customer-change-passport.html'
 })
-export class CustomerChangeJob {
+export class CustomerChangePassport {
   private readonly customer: Customer;
   public formGroup: FormGroup
 
   constructor(@Inject(MAT_DIALOG_DATA) private data,
-              private _dialogRef: MatDialogRef<CustomerChangeJob>,
+              private _dialogRef: MatDialogRef<CustomerChangePassport>,
+              private _snackbar: MatSnackBar,
               private _service: CustomerService) {
     this.customer = data.customer;
     this.formGroup = new FormGroup({
-      jobTitle: new FormControl(this.customer.jobTitle)
+      hasPassport: new FormControl(this.customer.hasPassport ? 'y': 'n')
     })
   }
 
   async changeInfo() {
-    const model = new CustomerChangeJobFormModel()
-    model.jobTitle = this.formGroup.value.jobTitle;
+    const model = new CustomerChangePassportFormModel();
+    model.hasPassport = this.formGroup.value.hasPassport == 'y';
 
-    await this._service.changeJob(this.customer, model)
+    await this._service.changePassport(this.customer, model);
+    this._snackbar.open("Informations mises à jour.", '', {duration: 5000});
+    this._dialogRef.close();
   }
 
   close() {

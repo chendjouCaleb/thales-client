@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
 import {ProcedureService} from "../../../../services/procedure.service";
-import {Procedure, ProcedureStep} from "../../../../../entities";
+import {Procedure} from "../../../../../entities";
 
 @Component({
   templateUrl: 'procedure-home.page.html',

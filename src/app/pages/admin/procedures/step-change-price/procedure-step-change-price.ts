@@ -6,27 +6,26 @@ import {Procedure, ProcedureStep} from "../../../../../entities";
 import {FormControl, FormGroup} from "@angular/forms";
 
 @Component({
-  templateUrl: 'procedure-step-change-name.html'
+  templateUrl: 'procedure-step-change-price.html'
 })
-export class ProcedureStepChangeName {
+export class ProcedureStepChangePrice {
   procedureStep: ProcedureStep;
 
-  formControl: FormControl<string>
+  formControl: FormControl<number>
 
   constructor(@Inject(MAT_DIALOG_DATA) data,
-              private _dialogRef: MatDialogRef<ProcedureStepChangeName>,
+              private _dialogRef: MatDialogRef<ProcedureStepChangePrice>,
               private _service: ProcedureService,
               private _snackbar: MatSnackBar) {
     this.procedureStep = data.procedure;
-    this.formControl = new FormControl<string>(this.procedureStep.name);
+    this.formControl = new FormControl(this.procedureStep.price);
   }
 
-  async changeName() {
-    const name = this.formControl.value;
+  async changePrice() {
+    const price = this.formControl.value;
 
-    await this._service.changeStepNameAsync(this.procedureStep, name);
-    this.procedureStep.name = name;
-    this._dialogRef.close(name);
-    this._snackbar.open(`Le nom de l'état procédure a été changé.`, '', {duration: 5000})
+    await this._service.changeStepPriceAsync(this.procedureStep, price);
+    this._dialogRef.close(price);
+    this._snackbar.open(`Le prix a été changé.`, '', {duration: 5000})
   }
 }

@@ -1,0 +1,49 @@
+<div>
+  <h1 class="mx-3">Clients ({{customers.length}})</h1>
+
+  <div class="mat-elevation-z1 p-3">
+    <a routerLink="/admin/customers/add" mat-flat-button>  <mat-icon>add</mat-icon>    Ajouter un client</a>
+  </div>
+
+
+
+  <div class="p-3">
+    <table mat-table [dataSource]="customers" >
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Nom & prénom </th>
+        <td mat-cell *matCellDef="let element">
+          <a [routerLink]="['/admin/customers', element.id, 'home']">
+          {{element.firstName}} {{element.lastName}}
+        </a>
+        </td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="sex">
+        <th mat-header-cell *matHeaderCellDef> Sexe </th>
+        <td mat-cell *matCellDef="let element"> {{element.sex}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="birthDate">
+        <th mat-header-cell *matHeaderCellDef> Date de naiss. </th>
+        <td mat-cell *matCellDef="let element"> {{element.birthDate}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef> Action </th>
+        <td mat-cell *matCellDef="let element">
+          <a mat-button [routerLink]="['/admin/customers', element.id, 'home']" class="text-uppercase">
+            Détails
+          </a>
+        </td>
+      </ng-container>
+
+
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row
+
+          *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+  </div>

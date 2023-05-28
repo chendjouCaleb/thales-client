@@ -1,6 +1,12 @@
 
 <div class="p-3" *ngIf="procedure">
 
+  <div class="py-3">
+    <a  [routerLink]="['/admin', 'procedures', procedure.id, 'settings']" mat-flat-button>
+      <mat-icon>settings</mat-icon> Paramètres
+    </a>
+  </div>
+
   <div class="fontWeight-semiBold fontSize-20">{{procedure.name}}</div>
 
 

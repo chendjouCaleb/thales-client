@@ -1,0 +1,131 @@
+<div *ngIf="customer" class="p-3">
+
+
+
+  <div>
+    <h2>Informations personelles</h2>
+    <div class="description-list">
+      <dl>
+        <dt>Nom</dt>
+        <dd>{{customer.firstName}}</dd>
+
+        <dt>Prénom</dt>
+        <dd>{{customer.lastName}}</dd>
+
+        <dt>Sexe</dt>
+        <dd>{{customer.sex == 'M' ? 'Homme' : 'Femme'}}</dd>
+
+        <dt>Date de naissance</dt>
+        <dd>{{customer.birthDate}}</dd>
+      </dl>
+    </div>
+    <div>
+      <button mat-flat-button color="primary" (click)="changePersonInfo()">Modifier</button>
+    </div>
+  </div>
+
+  <div class="mt-4">
+    <h2>Culture</h2>
+    <div class="description-list">
+      <dl>
+        <dt>Langues</dt>
+        <dd>{{languages.join(', ')}}</dd>
+      </dl>
+    </div>
+    <div>
+      <button mat-flat-button color="primary" (click)="changeCulture()">Modifier</button>
+    </div>
+  </div>
+
+
+
+  <div class="mt-4">
+    <h2>Vie professionelle</h2>
+    <div class="description-list">
+      <dl>
+        <dt>Métier</dt>
+        <dd>{{customer.jobTitle}}</dd>
+        <dd class="empty" *ngIf="!customer.jobTitle">Non renseigné.</dd>
+      </dl>
+    </div>
+    <div>
+      <button mat-flat-button color="primary" (click)="changeJob()">Modifier</button>
+    </div>
+  </div>
+
+
+  <div class="mt-4">
+    <h2>Passport</h2>
+    <div class="description-list">
+      <dl>
+        <dt>Possède un passport</dt>
+        <dd>{{hasPassport}}</dd>
+      </dl>
+    </div>
+    <div>
+      <button mat-flat-button color="primary" (click)="changePassport()">Modifier</button>
+    </div>
+  </div>
+
+  <div class="mt-4">
+    <h2>Études</h2>
+    <div class="description-list">
+      <dl>
+        <dt>Niveau d'étude</dt>
+        <dd>{{customer.studyLevel}}</dd>
+      </dl>
+
+      <dl>
+        <dt>Année de fin d'étude</dt>
+        <dd>{{customer.studyEndYear}}</dd>
+      </dl>
+    </div>
+    <div>
+      <button mat-flat-button color="primary" (click)="changeStudy()">Modifier</button>
+    </div>
+  </div>
+
+  <div class="mt-4">
+    <h2>Adresse</h2>
+    <div class="description-list">
+      <dl>
+        <dt>Pays</dt>
+        <dd>{{customer.country}}</dd>
+
+        <dt>Région</dt>
+        <dd>{{customer.region}}</dd>
+
+        <dt>Ville</dt>
+        <dd>{{customer.city}}</dd>
+
+        <dt>Quartier</dt>
+        <dd>{{customer.district}}</dd>
+
+        <dt>Adresse</dt>
+        <dd>{{customer.address}}</dd>
+      </dl>
+
+    </div>
+    <div>
+      <button mat-flat-button color="primary" (click)="changeAddress()">Modifier</button>
+    </div>
+  </div>
+
+  <div class="mt-4 mdc-theme--secondary-bg">
+    <h2>Contact</h2>
+    <div class="description-list">
+      <dl>
+        <dt>E-mail</dt>
+        <dd>{{customer.email}}</dd>
+
+
+        <dt>Téléphone</dt>
+        <dd>+237 {{customer.phoneNumber}}</dd>
+      </dl>
+
+    </div>
+    <div>
+      <button mat-flat-button color="primary" (click)="changeContact()">Modifier</button>
+    </div>
+  </div>
+</div>

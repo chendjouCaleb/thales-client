@@ -4,9 +4,9 @@ import {ProcedureService} from "../../../../services/procedure.service";
 import {Procedure, ProcedureStep} from "../../../../../entities";
 
 @Component({
-  templateUrl: 'procedure-home.page.html'
+  templateUrl: 'procedure-index.page.html'
 })
-export class ProcedureHomePage implements OnInit {
+export class ProcedureIndexPage implements OnInit {
   procedure: Procedure;
   activeLink: string = '';
   steps: ProcedureStep[] = [];

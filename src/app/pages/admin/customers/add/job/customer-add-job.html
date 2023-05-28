@@ -1,12 +1,12 @@
-<div>
-  <h3>Culture</h3>
-
+<form [formGroup]="formGroup" class="mt-3">
   <div>
     <mat-form-field>
-      <mat-label>Langues</mat-label>
-      <mat-select multiple>
-        <mat-option *ngFor="let lang of languages" [value]="lang.code">{{lang.title}}</mat-option>
-      </mat-select>
+      <mat-label>Métier</mat-label>
+      <input type="text" matInput formControlName="jobTitle" >
     </mat-form-field>
   </div>
-</div>
+
+  <div class="">
+    <button mat-flat-button color="accent" (click)="parent.stepper.next()">Suivant</button>
+  </div>
+</form>

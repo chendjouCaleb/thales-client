@@ -1,0 +1,22 @@
+<div class="p-3 m-3 bg-color-0 br-8">
+  <div class="d-flex align-items-center">
+    <div class="title-20">Procédures</div>
+
+    <div class="align-end flex-grow-1">
+      <a mat-stroked-button routerLink="/admin/procedures/add">
+        <mat-icon>add</mat-icon> Ajouter une procédure
+      </a>
+    </div>
+  </div>
+
+
+  <div class="mt-4">
+    <a class="mt-3 br-4 p-3 bg-color-10 borderColor-20 bg-color-20--hover divLink"
+       [routerLink]="['/admin', 'procedures', procedure.id]"
+         style="border: 1px solid" *ngFor="let procedure of procedures">
+      <div class="fontWeight-semiBold fontSize-16">{{procedure.name}}</div>
+
+      <div class="fontColor-140">{{procedure.description}}</div>
+    </a>
+  </div>
+</div>

@@ -1,42 +1,18 @@
-<div mat-dialog-title>Informations personelles</div>
+<div mat-dialog-title>Culture</div>
 
 <form class="th-dialog-form"  mat-dialog-content [formGroup]="formGroup">
 
   <div class="mt-2">
     <mat-form-field>
-      <mat-label>Nom</mat-label>
-      <input type="text" matInput placeholder="Nom" formControlName="firstName" required >
-    </mat-form-field>
-  </div>
-
-  <div>
-    <mat-form-field  style="width: 100%;">
-      <mat-label>Prénom</mat-label>
-      <input type="text" matInput formControlName="lastName" placeholder="Entrez le prénom" required>
-    </mat-form-field>
-  </div>
-
-  <mat-form-field>
-    <mat-label>Date de naissance</mat-label>
-    <input type="text" matInput formControlName="birthDate" required
-           (click)="birthDatePicker.open()"
-           [matDatepicker]="birthDatePicker">
-    <mat-datepicker-toggle matIconSuffix [for]="birthDatePicker"></mat-datepicker-toggle>
-    <mat-datepicker #birthDatePicker></mat-datepicker>
-  </mat-form-field>
-
-  <div>
-    <mat-form-field>
-      <mat-label>Sexe</mat-label>
-      <mat-select formControlName="sex" required>
-        <mat-option value="M">Homme</mat-option>
-        <mat-option value="F">Femme</mat-option>
+      <mat-label>Langues</mat-label>
+      <mat-select multiple formControlName="languages">
+        <mat-option *ngFor="let lang of languages" [value]="lang.code">{{lang.title}}</mat-option>
       </mat-select>
     </mat-form-field>
   </div>
 
   <div mat-dialog-actions>
-    <button mat-button class="mr-3">Annuler</button>
+    <button mat-button class="mr-3" mat-dialog-close="">Annuler</button>
     <button mat-flat-button  color="primary" (click)="changeInfo()" [disabled]="formGroup.invalid">Mettre à jour</button>
   </div>
 </form>

@@ -5,16 +5,18 @@ import {customerInfoForm} from "../customer-form";
 import {FormControl, FormGroup} from "@angular/forms";
 import {CustomerService} from "../../../../services";
 import {CustomerChangeInfoFormModel, CustomerChangeJobFormModel} from "../../../../models";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
-  templateUrl: 'customer-change-address.html'
+  templateUrl: 'customer-change-job.html'
 })
-export class CustomerChangeAddress {
+export class CustomerChangeJob {
   private readonly customer: Customer;
   public formGroup: FormGroup
 
   constructor(@Inject(MAT_DIALOG_DATA) private data,
-              private _dialogRef: MatDialogRef<CustomerChangeAddress>,
+              private _dialogRef: MatDialogRef<CustomerChangeJob>,
+              private _snackbar: MatSnackBar,
               private _service: CustomerService) {
     this.customer = data.customer;
     this.formGroup = new FormGroup({
@@ -26,7 +28,9 @@ export class CustomerChangeAddress {
     const model = new CustomerChangeJobFormModel()
     model.jobTitle = this.formGroup.value.jobTitle;
 
-    await this._service.changeJob(this.customer, model)
+    await this._service.changeJob(this.customer, model);
+    this._snackbar.open("Informations mises à jour.", '', {duration: 5000});
+    this._dialogRef.close();
   }
 
   close() {

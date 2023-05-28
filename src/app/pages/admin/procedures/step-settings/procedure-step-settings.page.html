@@ -1,10 +1,10 @@
-<div class="p-3 m-3 bg-color-0" *ngIf="procedure">
-  <div class="fontWeight-semiBold fontSize-22">Paramètres</div>
+<div class="p-3 m-3 bg-color-0" *ngIf="procedureStep">
+  <div class="fontWeight-semiBold fontSize-22">Paramètres d'étape</div>
 
   <div class="mt-4 d-flex align-items-center">
     <div class="flex-grow-1">
-      <div>Nom</div>
-      <div class="fontWeight-semiBold">{{ procedure.name }}</div>
+      <div class="fontWeight-semiBold">Nom</div>
+      <div class="fontWeight-semiBold">{{ procedureStep.name }}</div>
     </div>
 
     <button mat-button color="primary" (click)="editName()">
@@ -17,8 +17,22 @@
 
   <div class=" d-flex align-items-center">
     <div class="flex-grow-1">
-      <div>Description</div>
-      <div class="fontColor-140">{{ procedure.description }}</div>
+      <div class="fontWeight-semiBold">Prix</div>
+      <div class="fontColor-140">{{ procedureStep.price | number }} FCFA</div>
+    </div>
+
+    <button mat-button color="primary" (click)="editPrice()">
+      <mat-icon>edit</mat-icon> Modifier
+    </button>
+  </div>
+
+
+  <div class="divider my-3"></div>
+
+  <div class=" d-flex align-items-center">
+    <div class="flex-grow-1">
+      <div  class="fontWeight-semiBold">Description</div>
+      <div class="fontColor-140">{{ procedureStep.description }}</div>
     </div>
 
     <button mat-button color="primary" (click)="editDescription()">
@@ -29,40 +43,6 @@
 
   <div class="divider my-3"></div>
 
-  <div>
-    <div class="d-flex">
-      <div class="flex-grow-1">
-        <div class="fontSize-16 fontWeight-semiBold">étapes</div>
-        <div class="fontColor-140">Cliquez sur une étape pour la modifier</div>
-      </div>
-
-      <button mat-flat-button color="primary" (click)="addStep()">
-        <mat-icon>add</mat-icon>
-        Ajouter une étape
-      </button>
-
-    </div>
-
-    <div class="mt-4">
-      <a class="mt-3 br-4 p-3 bg-color-10 borderColor-20 bg-color-20--hover divLink d-flex align-items-center"
-         [routerLink]="['/admin', 'procedures', procedure.id, 'home']"
-         style="border: 1px solid" *ngFor="let step of procedure.steps">
-
-
-        <div style="font-size: 32px; font-weight: 600">{{step.index + 1}}</div>
-
-        <div class="ms-3 flex-grow-1">
-          <div class="fontWeight-semiBold">{{step.name}}</div>
-          <div>{{step.price | number}} FCFA</div>
-        </div>
-
-      </a>
-    </div>
-
-  </div>
-
-
-  <div class="divider my-3"></div>
 
 
   <div class=" d-flex align-items-center">

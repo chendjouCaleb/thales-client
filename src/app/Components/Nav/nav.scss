@@ -1,0 +1,32 @@
+.th-nav {
+  display: block;
+  height: 100%;
+  width: 100%;
+  min-width: 256px;
+  min-height: 500px;
+  padding-top: 16px;
+}
+
+.th-nav-item {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  width: 100%;
+  color: inherit !important;
+  text-decoration: none;
+  font-weight: 500;
+
+  &:hover {
+    background-color: #EEE;
+  }
+}
+
+.th-nav-item-icon-container {
+  width: 36px;
+  margin-left: 8px;
+  margin-right: 8px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

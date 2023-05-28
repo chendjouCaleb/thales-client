@@ -4,29 +4,40 @@ import {Customer} from "../../../../../entities";
 import {customerInfoForm} from "../customer-form";
 import {FormControl, FormGroup} from "@angular/forms";
 import {CustomerService} from "../../../../services";
-import {CustomerChangeInfoFormModel, CustomerChangeJobFormModel} from "../../../../models";
+import {
+  CustomerChangeInfoFormModel,
+  CustomerChangeJobFormModel,
+  CustomerChangeStudyFormModel
+} from "../../../../models";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
-  templateUrl: 'customer-change-job.html'
+  templateUrl: 'customer-change-study.html'
 })
-export class CustomerChangeJob {
+export class CustomerChangeStudy {
   private readonly customer: Customer;
   public formGroup: FormGroup
 
   constructor(@Inject(MAT_DIALOG_DATA) private data,
-              private _dialogRef: MatDialogRef<CustomerChangeJob>,
+              private _dialogRef: MatDialogRef<CustomerChangeStudy>,
+              private _snackbar: MatSnackBar,
               private _service: CustomerService) {
     this.customer = data.customer;
-    this.formGroup = new FormGroup({
-      jobTitle: new FormControl(this.customer.jobTitle)
-    })
+    this.formGroup =new FormGroup({
+      studyEndYear: new FormControl<number>(this.customer.studyEndYear),
+      studyLevel: new FormControl(this.customer.studyLevel)
+    });
   }
 
   async changeInfo() {
-    const model = new CustomerChangeJobFormModel()
-    model.jobTitle = this.formGroup.value.jobTitle;
+    const model = new CustomerChangeStudyFormModel()
+    model.studyLevel = this.formGroup.value.studyLevel;
+    model.studyEndYear = this.formGroup.value.studyEndYear;
+    console.log(model)
 
-    await this._service.changeJob(this.customer, model)
+    await this._service.changeStudy(this.customer, model);
+    this._snackbar.open("Informations mises à jour.", '', {duration: 5000});
+    this._dialogRef.close();
   }
 
   close() {

@@ -1,8 +1,7 @@
-import {Component} from "@angular/core";
+import {Component, Directive} from "@angular/core";
 
-@Component({
-  template: '',
-  selector: 'th-nav-item-icon',
+@Directive({
+  selector: '[th-nav-item-icon]',
   host: {
     class: 'th-nav-item-icon'
   }

@@ -18,7 +18,7 @@ export class ProcedureDelete {
     this.procedure = data.procedure;
   }
 
-  async changeDescription() {
+  async delete() {
     await this._service.deleteAsync(this.procedure)
     this._dialogRef.close(true);
     this._snackbar.open(`La procédure a été supprimée.`, '', {duration: 5000})

@@ -1,4 +1,4 @@
-<div mat-dialog-title>Informations personelles</div>
+<div mat-dialog-title>Vie professionelle</div>
 
 <form class="th-dialog-form"  mat-dialog-content [formGroup]="formGroup">
 
@@ -9,7 +9,7 @@
     </mat-form-field>
   </div>
 
-  <div mat-dialog-actions>
+  <div mat-dialog-actions align="end">
     <button mat-button mat-dialog-close="" class="mr-3">Annuler</button>
     <button mat-flat-button  color="primary" (click)="changeInfo()" [disabled]="formGroup.invalid">Mettre à jour</button>
   </div>

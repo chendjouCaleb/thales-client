@@ -1,0 +1,52 @@
+<div class="p-3  ">
+  <div class="br-8 bg-color-0 h-100 p-3 d-flex align-items-center justify-content-center" style="box-sizing: border-box">
+    <form [formGroup]="formGroup" class="th-form">
+      <div class="title-20">Ajouter une procédure</div>
+
+      <div class="mt-4">
+        <mat-form-field>
+          <mat-label>Nom de la procédure</mat-label>
+          <input matInput type="text" formControlName="name">
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Description</mat-label>
+          <textarea matInput type="text" formControlName="description"></textarea>
+        </mat-form-field>
+      </div>
+
+
+      <div class="mt-2">
+        <div class="title-16">Étapes</div>
+
+        <div style="opacity: .8" class="mt-2">Ajouter des étapes à la procédure.</div>
+
+        <div *ngFor="let stepModel of model.stepModels" class="bg-color-10 mt-2 p-2 br-4 d-flex">
+          <div class="flex-grow-1">
+            <div class="fontWeight-semiBold">{{stepModel.name}} ({{stepModel.index + 1}})</div>
+            <div>{{stepModel.price | number}} FCFA</div>
+            <div style="opacity: .7">{{stepModel.description}}</div>
+          </div>
+
+          <div>
+            <button mat-icon-button color="primary" (click)="editStepModel(stepModel)"><mat-icon>edit</mat-icon></button>
+            <button mat-icon-button color="warn" (click)="removeStepModel(stepModel)"><mat-icon>cancel</mat-icon></button>
+          </div>
+
+        </div>
+
+        <div class="align-end mt-2">
+          <button (click)="addStepModel()" mat-stroked-button color="primary">
+            <mat-icon>add</mat-icon>Ajouter un étape</button>
+        </div>
+      </div>
+
+
+      <div class="mt-4 py-4 borderColor-20 align-end" style="border-top: 1px solid #e1dfdd">
+        <button mat-flat-button color="primary" (click)="addStep()">
+          <mat-icon>add</mat-icon>Ajouter la procédure</button>
+      </div>
+    </form>
+  </div>
+
+</div>

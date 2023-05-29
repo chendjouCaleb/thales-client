@@ -13,6 +13,7 @@ import {SERVER_URL} from "../http";
 import {Customer} from "../../entities";
 import {HttpClient} from "@angular/common/http";
 import {firstValueFrom} from "rxjs";
+import {DateTime} from "luxon";
 
 @Injectable({
   providedIn: 'root'
@@ -32,7 +33,7 @@ export class CustomerService {
 
    customer.firstName = model.firstName
    customer.lastName = model.lastName
-   customer.birthDate = model.birthDate
+   customer.birthDate = DateTime.fromJSDate(model.birthDate)
    customer.sex = model.sex
   }
 

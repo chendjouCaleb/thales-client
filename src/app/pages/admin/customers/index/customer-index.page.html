@@ -1,0 +1,18 @@
+<div class="p-3 m-3 bg-color-0">
+
+  <mat-tab-group #tabGroup mat-stretch-tabs="false" [selectedIndex]="tabGroupRemember.selectedIndex">
+    <mat-tab label="Accueil">
+      <CustomerHomePage *ngIf="customer" [customer]="customer"></CustomerHomePage>
+    </mat-tab>
+    <mat-tab label="Procédures">
+      procédures
+    </mat-tab>
+
+    <mat-tab label="Paiements">
+      <div class="mt-4" *ngIf="customer">
+        <customer-payments [customer]="customer"></customer-payments>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+
+</div>

@@ -31,13 +31,18 @@ import {CustomerChangeContact} from "./change-contact/customer-change-contact";
 import {CustomerChangePassport} from "./change-passport/customer-change-passport";
 import {CustomerChangeStudy} from "./change-study/customer-change-study";
 import {CustomerChangeJob} from "./change-job/customer-change-job";
+import {CustomerIndexPage} from "./index/customer-index.page";
+import {MatTabsModule} from "@angular/material/tabs";
+import {PaymentModule} from "../../../Components/payments";
+import {CustomerPayments} from "./payments/customer-payments";
 
 const routes: Routes = [
   {
     path: '', component: CustomerPage, children: [
       {path: 'list', component: CustomerListPage},
       {path: 'add', component: CustomerAddPage},
-      {path: ':customerId/home', component: CustomerHomePage},
+      {path: ':customerId/home', redirectTo: ':customerId', pathMatch: 'full'},
+      {path: ':customerId', component: CustomerIndexPage},
       {path: '', redirectTo: 'list', pathMatch: 'full'}
     ]
   }
@@ -46,13 +51,13 @@ const routes: Routes = [
 @NgModule({
   imports: [CommonModule, RouterModule.forChild(routes), FormsModule, MatButtonModule, MatIconModule,
     MatInputModule, MatFormFieldModule, MatDialogModule, MatCheckboxModule, MatRadioModule, MatSelectModule,
-    MatStepperModule, ReactiveFormsModule, MatDatepickerModule, MatTableModule],
+    MatStepperModule, ReactiveFormsModule, MatDatepickerModule, MatTableModule, MatTabsModule, PaymentModule],
 
   declarations: [
     CustomerPage, CustomerListPage, CustomerAddPage, CustomerAddAddress, CustomerAddContact,
     CustomerAddCulture, CustomerAddJob, CustomerAddPassport, CustomerAddPerson, CustomerAddStudy, CustomerHomePage,
     CustomerChangeInfo, CustomerChangeCulture, CustomerChangeAddress, CustomerChangeContact, CustomerChangePassport,
-    CustomerChangeStudy, CustomerChangeJob
+    CustomerChangeStudy, CustomerChangeJob, CustomerIndexPage, CustomerPayments
   ]
 })
 export class CustomerPageModule {

@@ -1,0 +1,9 @@
+<div class="align-end">
+  <button mat-stroked-button color="primary" (click)="addPayment()">
+    <mat-icon>add</mat-icon>
+    Ajouter un paiement</button>
+</div>
+
+<div class="divider my-3"></div>
+
+<PaymentList  [params]="{customerId: customer.id}"></PaymentList>

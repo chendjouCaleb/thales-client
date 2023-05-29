@@ -17,14 +17,18 @@ const routes: Routes = [
     path: '', component: AdminPage, children: [
       { path: 'customers', loadChildren: () => import('./customers/customer.page.module').then(m => m.CustomerPageModule) },
       { path: 'procedures', loadChildren: () => import('./procedures/procedures.page.module').then(m => m.ProceduresPageModule) },
+      { path: 'payments', loadChildren: () => import('./payments/payments.page.module').then(m => m.PaymentsPageModule) },
+      { path: 'procedure-applies',loadChildren: () => import('./procedure-applies/procedure-apply.page.module').then(m => m.ProcedureApplyPageModule)},
       { path: 'users', loadChildren: () => import('./users/users.page.module').then(m => m.UsersPageModule ) }
     ]
   }
 ]
 
 @NgModule({
-    imports: [CommonModule, MatButtonModule, MatToolbarModule, RouterModule.forChild(routes), MatIconModule,
-        MatSidenavModule, NavModule, ScaffoldModule, MatFormFieldModule, MatInputModule, MatTooltipModule,],
+    imports: [
+      CommonModule, MatButtonModule, MatToolbarModule, RouterModule.forChild(routes), MatIconModule,
+      MatSidenavModule, NavModule, ScaffoldModule, MatFormFieldModule, MatInputModule, MatTooltipModule
+    ],
   declarations: [AdminPage]
 })
 export class AdminPageModule {

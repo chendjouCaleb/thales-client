@@ -72,6 +72,7 @@ $button-typography: mat.define-typography-config(
 .the-dense-zone {
   @include mat.all-component-densities(-3.0);
   @include mat.button-density(0);
+  @include mat.menu-density(3);
   @include mat.all-component-typographies($my-typography);
   @include mat.checkbox-typography($button-typography);
 }
@@ -147,4 +148,17 @@ $button-typography: mat.define-typography-config(
 
 .dialog-panel {
   width: 400px;
+}
+
+.page-card {
+  display: block;
+  background-color: #FFFFFF;
+  border-radius: 8px;
+  padding: 1.5rem !important;
+  margin: 1rem !important;
+}
+
+.page-title {
+  font-size: 20px;
+  font-weight: 500;
 }

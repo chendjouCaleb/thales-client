@@ -1,28 +1,28 @@
 import {Injectable} from "@angular/core";
-import {SessionStore} from "../../../../utils";
-import {ProcedureStepFormModel} from "../../../../models";
-
-export interface IResetPasswordData {
-  email: string,
-  code: string,
-  password: string
-}
+import {MatToolbar} from "@angular/material/toolbar";
+import {SessionStore} from "./session-store";
+import {MatTabGroup} from "@angular/material/tabs";
 
 
-export class ProcedureAddRemember {
-  store = new SessionStore('procedure-add');
 
-  constructor() {}
+export class MatTabGroupRemember {
+  store: SessionStore;
+  private tab: MatTabGroup;
 
-  get name(): string { return this.store.getItem('name'); }
-  set name(value: string) { this.store.setItem('name', value); }
+  constructor(private key: string) {
+    this.store = new SessionStore(this.key);
+  }
 
-  get description(): string { return this.store.getItem('description'); }
-  set description(value: string) { this.store.setItem('description', value); }
+  attach(tab: MatTabGroup) {
+    this.tab = tab;
+    this.tab.selectedIndexChange.subscribe(index => {
+      this.selectedIndex = index;
+    });
+  }
 
+  get selectedIndex(): number { return this.store.getItem('selectedIndex') ?? 0; }
+  set selectedIndex(value: number) { this.store.setItem('selectedIndex', value); }
 
-  get stepModels(): ProcedureStepFormModel[] { return this.store.getItem('stepModels'); }
-  set stepModels(value: ProcedureStepFormModel[] ) { this.store.setItem('stepModels', value); }
 
   clear() {
     this.store.clear();

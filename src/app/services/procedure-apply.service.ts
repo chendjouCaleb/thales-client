@@ -28,26 +28,28 @@ export class ProcedureApplyService {
     return items;
   }
 
-  getByIdAsync(id: number): Promise<ProcedureApply> {
+  async getByIdAsync(id: number): Promise<ProcedureApply> {
     const call = this._httpClient.get<ProcedureApply>(`${this.url}/${id}`);
-    return firstValueFrom(call);
+    const value = await firstValueFrom(call);
+    return new ProcedureApply(value);
   }
 
-  addAsync(customer: Customer, procedure: Procedure): Promise<Procedure> {
+  async addAsync(customer: Customer, procedure: Procedure): Promise<Procedure> {
     const params = {customerId: customer.id, procedureId: procedure.id};
     const call = this._httpClient.post<Procedure>(`${this.url}`, {}, {params});
     return firstValueFrom(call);
   }
 
-  getApplyStepByIdAsync(id: number): Promise<ProcedureApplyStep> {
+  async getApplyStepByIdAsync(id: number): Promise<ProcedureApplyStep> {
     const call = this._httpClient.get<ProcedureApplyStep>(`${this.stepUrl}/${id}`);
-    return firstValueFrom(call);
+    return new ProcedureApplyStep(await firstValueFrom(call));
   }
 
-  getApplyStepsAsync(procedureApply: ProcedureApply): Promise<ProcedureApplyStep> {
+  async getApplyStepsAsync(procedureApply: ProcedureApply): Promise<ProcedureApplyStep[]> {
     const procedureApplyId = procedureApply.id;
-    const call = this._httpClient.get<ProcedureApplyStep>(`${this.stepUrl}`,{params: {procedureApplyId}});
-    return firstValueFrom(call);
+    const call = this._httpClient.get<ProcedureApplyStep[]>(`${this.stepUrl}`,{params: {procedureApplyId}});
+    const values = await firstValueFrom(call);
+    return values.map(v => new ProcedureApplyStep(v));
   }
 
   getStepAsync(id: number): Promise<ProcedureStep> {
@@ -67,9 +69,13 @@ export class ProcedureApplyService {
     return firstValueFrom(call);
   }
 
-  validateStepAsync(procedureApplyStep: ProcedureApplyStep, model: ProcedureApplyStepValidateModel): Promise<Payment> {
-    const call = this._httpClient.put<Payment>(`${this.stepUrl}/${procedureApplyStep.id}/validate`, model);
-    return firstValueFrom(call);
+  async validateStepAsync(applyStep: ProcedureApplyStep, model: ProcedureApplyStepValidateModel): Promise<Payment> {
+    const call = this._httpClient.put<Payment>(`${this.stepUrl}/${applyStep.id}/validate`, model);
+    const payment = new Payment(await firstValueFrom(call));
+    applyStep.validated = true;
+    applyStep.payments.unshift(payment);
+
+    return payment;
   }
 
   invalidateStepAsync(procedureApplyStep: ProcedureApplyStep): Promise<void> {
@@ -77,9 +83,11 @@ export class ProcedureApplyService {
     return firstValueFrom(call);
   }
 
-  addPaymentAsync(procedureApplyStep: ProcedureApplyStep, amount: number): Promise<Payment> {
-    const call = this._httpClient.put<Payment>(`${this.stepUrl}/${procedureApplyStep.id}/payment`, {}, {params: {amount}});
-    return firstValueFrom(call);
+  async addPaymentAsync(procedureApplyStep: ProcedureApplyStep, amount: number): Promise<Payment> {
+    const call = this._httpClient.post<Payment>(`${this.stepUrl}/${procedureApplyStep.id}/payment`, {}, {params: {amount}});
+    const payment = new Payment(await firstValueFrom(call));
+    procedureApplyStep.payments.unshift(payment);
+    return payment;
   }
 
   deletePaymentAsync(procedureApplyStep: ProcedureApplyStep, payment: Payment): Promise<Payment> {

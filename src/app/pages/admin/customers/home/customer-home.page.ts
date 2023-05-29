@@ -1,4 +1,4 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, Input, OnInit} from "@angular/core";
 import {Customer} from "../../../../../entities";
 import {CustomerService} from "../../../../services";
 import {ActivatedRoute, Route} from "@angular/router";
@@ -13,9 +13,12 @@ import {CustomerChangeStudy} from "../change-study/customer-change-study";
 import {CustomerChangeJob} from "../change-job/customer-change-job";
 
 @Component({
-  templateUrl: 'customer-home.page.html'
+  templateUrl: 'customer-home.page.html',
+  selector: 'CustomerHomePage'
 })
 export class CustomerHomePage implements OnInit {
+
+  @Input()
   customer: Customer;
 
   languages: string[] = [];
@@ -26,10 +29,7 @@ export class CustomerHomePage implements OnInit {
               private _dialog: MatDialog) {
   }
 
-  async ngOnInit() {
-    const id = this._route.snapshot.params['customerId'];
-    this.customer = await this._customerService.getAsync(id);
-
+  ngOnInit() {
     this.languages = this.customer.languages.map(l => LANGUAGES.find(l1 => l1.code == l).title);
     this.hasPassport = this.customer.hasPassport ? 'Oui' : 'Non';
   }

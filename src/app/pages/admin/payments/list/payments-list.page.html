@@ -1,0 +1,13 @@
+<div class="page-card">
+  <div class="d-flex">
+    <div class="page-title flex-grow-1">Paiements</div>
+
+    <div>
+      <button mat-stroked-button color="primary" (click)="addPayment()">
+        <mat-icon>add</mat-icon> Ajouter un paiement </button>
+    </div>
+  </div>
+  <div class="divider my-3"></div>
+
+  <PaymentList [params]="{}"></PaymentList>
+</div>

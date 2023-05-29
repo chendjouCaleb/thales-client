@@ -1,0 +1,31 @@
+<div class="m-2 p-4 bg-color-0 br-8" *ngIf="apply">
+  <div class="fontSize-22 fontWeight-semiBold mb-3">Procédure en cours</div>
+
+  <div class="divider"></div>
+
+  <dl class="description-list">
+    <dt>Procédure</dt>
+    <dd>{{apply.procedure.name}}</dd>
+
+    <dt>Client</dt>
+    <dd>{{apply.customer.fullName}}</dd>
+
+    <dt>Date d'engagement</dt>
+    <dd>{{apply.createdAt.toFormat('ff')}}</dd>
+
+
+  </dl>
+
+  <div *ngIf="apply?.steps" class="mt-4">
+    <div class="fontSize-18 fontWeight-semiBold">Étapes</div>
+
+    <a class="mt-3 br-4 p-3 bg-color-10 borderColor-20 bg-color-20--hover divLink d-flex align-items-center"
+       [routerLink]="['/admin', 'procedure-applies', apply.id, 'steps', applyStep.id]"
+       *ngFor="let applyStep of apply.steps">
+      {{applyStep.procedureStep.name}}
+
+    </a>
+
+  </div>
+
+</div>

@@ -11,18 +11,24 @@ $ms-color-gray20: #f3f2f1;
 $ms-color-gray10: #faf9f8;
 $ms-color-gray0: #FFF;
 
+$ms-color-tealDark: #004b50;
+$ms-color-teal: #008272;
+$ms-color-tealLight: #00B294;
+$ms-color-greenDark: #004b1c;
+$ms-color-green: #107c10;
+$ms-color-greenLight: #bad80a;
+
 .bg-color-0 { background-color: $ms-color-gray0; }
 .bg-color-20 { background-color: $ms-color-gray20; }
 .bg-color-10 { background-color: $ms-color-gray10; }
 
 .bg-color-20--hover:hover {background-color: $ms-color-gray20;}
-.borderColor-20 {
-  border-color: $ms-color-gray20 !important;
-}
 
-.fontColor-140 {
-  color: $ms-color-gray140;
-}
+.borderColor-20 {border-color: $ms-color-gray20 !important;}
+.borderColor-green {border-color: $ms-color-green !important;}
+
+.fontColor-140 { color: $ms-color-gray140;}
+.fontColor-green { color: $ms-color-green;}
 
 .divider {
   width: 100%;

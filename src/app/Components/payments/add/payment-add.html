@@ -1,0 +1,19 @@
+<div class="fontWeight-semiBold fontSize-20 p-4">Ajouter un paiement</div>
+
+
+<div class="px-4" [formGroup]="formGroup">
+    <mat-form-field style="width: 100%">
+      <mat-label>Montant versé</mat-label>
+      <input type="number"  matInput formControlName="amount">
+    </mat-form-field>
+
+  <mat-form-field style="width: 100%">
+    <mat-label>Raison du paiement</mat-label>
+    <textarea  matInput formControlName="reason"></textarea>
+  </mat-form-field>
+</div>
+
+<div class="p-4 align-end">
+  <button mat-stroked-button mat-dialog-close="" class="me-4">Annuler</button>
+  <button mat-flat-button color="primary" (click)="validate()">Ajouter</button>
+</div>

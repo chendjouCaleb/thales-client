@@ -1,0 +1,14 @@
+<div class="fontWeight-semiBold fontSize-20 p-4">Changer le nom</div>
+
+
+<div class="px-4" >
+  <mat-form-field class="w-100">
+    <mat-label>Nouveau nom</mat-label>
+    <input type="text" matInput  placeholder="Choisir un client" [formControl]="formControl">
+  </mat-form-field>
+</div>
+
+<div class="p-4 align-end">
+  <button mat-button mat-dialog-close="" class="me-4">Annuler</button>
+  <button mat-flat-button color="primary" [disabled]="formControl.invalid" (click)="changeName()">Changer</button>
+</div>

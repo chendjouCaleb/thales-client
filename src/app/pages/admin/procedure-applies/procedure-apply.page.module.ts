@@ -13,16 +13,25 @@ import {MatDialogModule} from "@angular/material/dialog";
 import {MatInputModule} from "@angular/material/input";
 import {MatMenuModule} from "@angular/material/menu";
 import {ProcedureApplyStepPaymentAdd} from "./add-payment/procedure-apply-step-payment-add";
+import {ProcedureAppliesListPage} from "@app/pages/admin/procedure-applies/list/procedure-applies-list.page";
+import {CustomerPickerModule, ProcedureApplyModule} from "@app/Components";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 const routes: Routes = [
+  {path: '', component: ProcedureAppliesListPage },
   {path: ':procedureApplyId', component: ProcedureApplyHomePage },
   {path: ':procedureApplyId/steps/:procedureApplyStepId', component: ProcedureApplyStepHomePage }
 ]
 
 @NgModule({
-  imports: [CommonModule, RouterModule.forChild(routes), MatButtonModule, MatIconModule, ReactiveFormsModule, MatFormFieldModule, MatDialogModule, MatInputModule, MatMenuModule],
-  declarations: [ ProcedureApplyPage, ProcedureApplyHomePage, ProcedureApplyStepHomePage, ProcedureApplyStepValidate,
-    ProcedureApplyStepPaymentAdd]
+  imports: [CommonModule, RouterModule.forChild(routes), MatButtonModule, MatIconModule,
+    ReactiveFormsModule, MatFormFieldModule, MatDialogModule, MatInputModule, MatMenuModule,
+    CustomerPickerModule, ProcedureApplyModule, MatProgressSpinnerModule],
+  exports: [
+    ProcedureAppliesListPage
+  ],
+  declarations: [ProcedureApplyPage, ProcedureApplyHomePage, ProcedureApplyStepHomePage, ProcedureApplyStepValidate,
+    ProcedureApplyStepPaymentAdd, ProcedureAppliesListPage]
 })
 export class ProcedureApplyPageModule {
 

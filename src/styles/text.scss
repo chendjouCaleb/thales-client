@@ -9,9 +9,8 @@
   font-size: 22px;
 }
 
-.fontWeight-semiBold {
-  font-weight: 500;
-}
+.fontWeight-semiBold { font-weight: 500; }
+.fontWeight-bold { font-weight: 600; }
 
 .title-20 {
   font-size: 20px;
@@ -30,3 +29,17 @@
 
 .br-8 { border-radius: 8px; }
 .br-4 { border-radius: 4px; }
+
+
+.font-color-white {
+  color: #FFF;
+}
+
+.inline-badge {
+  color: #FFF;
+  text-decoration: none;
+  font-size: 12px;
+  padding: 2px 4px;
+  border-radius: 2px;
+  white-space: nowrap;
+}

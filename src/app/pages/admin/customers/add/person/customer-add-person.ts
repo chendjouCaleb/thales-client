@@ -14,8 +14,7 @@ export class CustomerAddPerson {
     sex: new FormControl('')
   });
 
-  constructor(public parent: CustomerAddPage) {
-  }
+  constructor(public parent: CustomerAddPage) {}
 
   next() {
     const model = this.parent.model;

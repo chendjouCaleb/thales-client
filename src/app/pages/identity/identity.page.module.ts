@@ -7,14 +7,20 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatButtonModule} from "@angular/material/button";
 import {MatInputModule} from "@angular/material/input";
+import {IsAuthGuardFunc, IsNotAuthGuardFunc} from "@app/identity";
 
 const routes: Routes = [
-  {path: 'login', component: LoginPage},
-  {path: 'logout', component: LogoutPage},
-  {path: 'profile', loadChildren: () => import('./profile/profile.page.module').then(m => m.ProfilePageModule)},
+  {path: 'login', component: LoginPage, canActivate: [IsNotAuthGuardFunc]},
+  {path: 'logout', component: LogoutPage, canActivate: [IsAuthGuardFunc]},
+  {
+    path: 'profile',
+    loadChildren: () => import('./profile/profile.page.module').then(m => m.ProfilePageModule),
+    canActivate: [IsAuthGuardFunc]
+  },
   {
     path: 'reset-password',
-    loadChildren: () => import('./reset-password/reset-password.page.module').then(m => m.ResetPasswordPageModule)
+    loadChildren: () => import('./reset-password/reset-password.page.module').then(m => m.ResetPasswordPageModule),
+    canActivate: [IsNotAuthGuardFunc]
   }
 ]
 

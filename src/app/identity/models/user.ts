@@ -10,7 +10,7 @@ export class User {
       this.email = value.email;
       this.normalizedEmail = value.normalizedEmail;
 
-      this.createdAt = DateTime.fromJSDate(value.createdAt)
+      this.createdAt = DateTime.fromISO(value.createdAt)
     }
   }
 

@@ -1,7 +1,7 @@
 import {Component} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
-import {UserService} from "../../../../identity/user.service";
-import {User} from "../../../../identity";
+import {UserService} from "@app/identity";
+import {User} from "@app/identity";
 
 @Component({
   templateUrl: 'user-home.page.html'
@@ -12,7 +12,7 @@ export class UserHomePage {
   constructor(route: ActivatedRoute, private userService: UserService) {
     const userName = route.snapshot.params['userName'];
 
-    userService.getByUserName(userName).subscribe(user => {
+    userService.getByUserNameAsync(userName).then(user => {
       this.user = user;
     })
   }

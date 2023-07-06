@@ -1,0 +1,42 @@
+<th-scaffold>
+  <div class="d-flex justify-content-center p-4">
+    <div class="settings-page-container">
+      <div class="fontSize-22 fontWeight-bold my-4">Paramètres du compte</div>
+      <div class="divider my-3"></div>
+      <div class="d-flex">
+        <div class="flex-grow-1">
+          <div class="fw-semibold">Nom & prénom</div>
+          <div>{{user.fullName}}</div>
+        </div>
+
+        <button mat-flat-button color="primary" (click)="changeName()">Modifier</button>
+      </div>
+
+      <div class="divider my-3"></div>
+
+
+      <div class="d-flex">
+        <div class="flex-grow-1">
+          <div class="fw-semibold">Email</div>
+          <div>{{user.email}}</div>
+        </div>
+
+        <button mat-flat-button color="primary" disabled >Modifier</button>
+      </div>
+
+      <div class="divider my-3"></div>
+
+      <div class="d-flex">
+        <div class="flex-grow-1">
+          <div class="fw-semibold">Mot de passe</div>
+          <div style="font-size: 22px"> •••••••• </div>
+        </div>
+
+        <button mat-flat-button color="primary">Modifier</button>
+      </div>
+
+      <div class="divider my-3"></div>
+
+    </div>
+  </div>
+</th-scaffold>

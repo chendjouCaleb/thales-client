@@ -10,7 +10,7 @@
     <button mat-button color="warn" class="ms-3" *ngIf="applyStep.validated" (click)="invalidateStep()">
       <mat-icon>unpublished</mat-icon>Invalider l'étape
     </button>
-    <button mat-button color="primary"  class="ms-3" (click)="addPayment()">
+    <button mat-button color="primary"  class="ms-3" (click)="addPayment()" *ngIf="applyStep.validated">
       <mat-icon>paid</mat-icon>Ajouter un paiement
     </button>
   </div>

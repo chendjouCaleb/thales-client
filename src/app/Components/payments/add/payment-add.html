@@ -2,9 +2,15 @@
 
 
 <div class="px-4" [formGroup]="formGroup">
+  <mat-form-field class="w-100">
+    <mat-label>Client</mat-label>
+    <input type="text" matInput [value]="customer?.fullName" placeholder="Choisir un client" (click)="selectCustomer($event)">
+  </mat-form-field>
+
+
     <mat-form-field style="width: 100%">
       <mat-label>Montant versé</mat-label>
-      <input type="number"  matInput formControlName="amount">
+      <input type="number"  matInput formControlName="amount" required>
     </mat-form-field>
 
   <mat-form-field style="width: 100%">
@@ -14,6 +20,6 @@
 </div>
 
 <div class="p-4 align-end">
-  <button mat-stroked-button mat-dialog-close="" class="me-4">Annuler</button>
-  <button mat-flat-button color="primary" (click)="validate()">Ajouter</button>
+  <button mat-button mat-dialog-close="" class="me-4">Annuler</button>
+  <button mat-flat-button color="primary" [disabled]="formGroup.invalid" (click)="validate()">Ajouter</button>
 </div>

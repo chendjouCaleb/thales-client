@@ -4,14 +4,14 @@ import {DialogModule} from "@angular/cdk/dialog";
 import {MatSelectModule} from "@angular/material/select";
 import {CustomerPicker} from "./customer-picker";
 import {MatListModule} from "@angular/material/list";
-import {CustomerApplyDialog} from "./customer-apply.dialog";
+import {CustomerPickerDialog} from "./customer-picker-dialog.service";
 import {MatButtonModule} from "@angular/material/button";
 import {FormsModule} from "@angular/forms";
 
 @NgModule({
   imports: [CommonModule, DialogModule, MatSelectModule, MatListModule, MatButtonModule, FormsModule],
   declarations: [ CustomerPicker ],
-  providers: [ CustomerApplyDialog]
+  providers: [ CustomerPickerDialog]
 })
 export class CustomerPickerModule {
 

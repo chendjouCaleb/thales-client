@@ -24,7 +24,7 @@ export class CustomerService {
 
   async addAsync(model: CustomerAddFormModel): Promise<Customer> {
     const call = this._httpClient.post<Customer>(`${this.url}`, model);
-    return await firstValueFrom(call);
+    return new Customer(await firstValueFrom(call));
   }
 
   async changeInfoAsync(customer: Customer, model: CustomerChangeInfoFormModel): Promise<void> {
@@ -85,11 +85,12 @@ export class CustomerService {
 
   async listAsync(): Promise<Customer[]> {
     const call = this._httpClient.get<Customer[]>(`${this.url}`);
-    return await firstValueFrom(call);
+    const customers = await firstValueFrom(call);
+    return customers.map(c => new Customer(c));
   }
 
   async getAsync(id: number): Promise<Customer> {
     const call = this._httpClient.get<Customer>(`${this.url}/${id}`);
-    return await firstValueFrom(call);
+    return new Customer(await firstValueFrom(call));
   }
 }

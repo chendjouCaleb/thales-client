@@ -18,6 +18,15 @@ $ms-color-greenDark: #004b1c;
 $ms-color-green: #107c10;
 $ms-color-greenLight: #bad80a;
 
+$ms-color-cyanBlue-10: #0078d4;
+$ms-color-cyanBlue-20: #004e8c;
+
+$ms-color-magentaPink-10: #e3008c;
+$ms-color-magentaPink-20: #9b0062;
+
+$ms-color-cyan-10: #00b7c3;
+$ms-color-cyan-20: #038387;
+
 .bg-color-0 { background-color: $ms-color-gray0; }
 .bg-color-20 { background-color: $ms-color-gray20; }
 .bg-color-10 { background-color: $ms-color-gray10; }
@@ -27,12 +36,38 @@ $ms-color-greenLight: #bad80a;
 .borderColor-20 {border-color: $ms-color-gray20 !important;}
 .borderColor-green {border-color: $ms-color-green !important;}
 
-.fontColor-140 { color: $ms-color-gray140;}
-.fontColor-green { color: $ms-color-green;}
+.fontColor-140 { color: $ms-color-gray140; }
+.fontColor-green { color: $ms-color-green; }
+
+.ms-bgColor-cyanBlue-10 { background-color: $ms-color-cyanBlue-10}
+.ms-bgColor-cyanBlue-20 { background-color: $ms-color-cyanBlue-20}
+
+.ms-bgColor-cyan-10 { background-color: $ms-color-cyan-10}
+.ms-bgColor-cyan-20 { background-color: $ms-color-cyan-20}
+
+.ms-bgColor-magentaPink-10 { background-color: $ms-color-magentaPink-10}
+.ms-bgColor-magentaPink-20 { background-color: $ms-color-magentaPink-20}
+
+
+.ms-bgColor-cyanBlue-10--hover:hover { background-color: $ms-color-cyanBlue-10}
+.ms-bgColor-cyanBlue-20--hover:hover { background-color: $ms-color-cyanBlue-20}
+.ms-bgColor-cyan-10--hover:hover { background-color: $ms-color-cyan-10}
+.ms-bgColor-cyan-20--hover:hover { background-color: $ms-color-cyan-20}
+.ms-bgColor-magentaPink-10--hover:hover { background-color: $ms-color-magentaPink-10}
+.ms-bgColor-magentaPink-20--hover:hover { background-color: $ms-color-magentaPink-20}
 
 .divider {
   width: 100%;
   background-color: $ms-color-gray40;
   height: 1px !important;
+  padding: 0 !important;
+}
+
+.vertical-divider {
+  height: 100%;
+  display: inline-block;
+  content: '';
+  background-color: $ms-color-gray40;
+  width: 1px !important;
   padding: 0 !important;
 }

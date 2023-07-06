@@ -1,6 +1,6 @@
 import {Component} from "@angular/core";
-import {UserService} from "../../../../identity/user.service";
-import {User} from "../../../../identity";
+import {UserService} from "@app/identity";
+import {User} from "@app/identity";
 
 @Component({
   templateUrl: 'users-list.page.html'

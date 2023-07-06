@@ -1,11 +1,11 @@
 import {Component} from "@angular/core";
-import {ProcedureFormModel, ProcedureStepFormModel} from "../../../../models";
+import {ProcedureFormModel, ProcedureStepFormModel} from "@app/models";
 import {MatDialog, MatDialogRef} from "@angular/material/dialog";
 import {ProcedureAddStep} from "./procedure-add-step";
 import {ProcedureAddRemember} from "./procedure-add-remember";
 import {FormControl, FormGroup} from "@angular/forms";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {ProcedureService} from "../../../../services/procedure.service";
+import {ProcedureService} from "@app/services";
 import {Router} from "@angular/router";
 
 @Component({

@@ -1,1 +1,3 @@
-export const SERVER_URL = `http://localhost:5063/api`;
+import {environment} from "../../environments/environment";
+
+export const SERVER_URL = environment.serverUrl;

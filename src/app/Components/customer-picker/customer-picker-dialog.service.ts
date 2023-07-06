@@ -5,7 +5,7 @@ import {Observable} from "rxjs";
 import {CustomerPicker} from "./customer-picker";
 
 @Injectable()
-export class CustomerApplyDialog {
+export class CustomerPickerDialog {
   constructor(private matDialog: MatDialog) {}
 
   open(): Observable<Customer> {

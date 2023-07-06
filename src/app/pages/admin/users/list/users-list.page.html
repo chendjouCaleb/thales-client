@@ -1,46 +1,52 @@
-<h1 class="px-3 mt-3 mat-headline-1">Utilisateurs</h1>
+<div class="m-3 p-3 bg-color-0 br-8">
 
-<div>
-  <div class="p-3">
-    <a routerLink="/admin/users/add" mat-flat-button>  <mat-icon>add</mat-icon> Ajouter un utilisateur</a>
+
+  <div class="d-flex align-items-center justify-content-between">
+    <div class="px-3 mt-3 fontSize-22 fontWeight-semiBold">Utilisateurs</div>
+    <div >
+      <a routerLink="/admin/users/add" mat-flat-button color="primary">
+        <mat-icon>add</mat-icon> Ajouter un utilisateur
+      </a>
+    </div>
   </div>
-</div>
 
-<div class="p-3">
-  <table mat-table [dataSource]="users" >
-    <ng-container matColumnDef="fullName">
-      <th mat-header-cell *matHeaderCellDef> Nom & prénom </th>
-      <td mat-cell *matCellDef="let element">
-        <a [routerLink]="['/admin/users', element.userName, 'home']">
-          {{element.fullName}}
-        </a>
-      </td>
-    </ng-container>
-
-
-    <ng-container matColumnDef="userName">
-      <th mat-header-cell *matHeaderCellDef>Nom d'utilisateur</th>
-      <td mat-cell *matCellDef="let element"> @{{element.userName}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="email">
-      <th mat-header-cell *matHeaderCellDef> E-mail </th>
-      <td mat-cell *matCellDef="let element"> {{element.email}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="action">
-      <th mat-header-cell *matHeaderCellDef> Action </th>
-      <td mat-cell *matCellDef="let element">
-        <a mat-flat-button [routerLink]="['/admin/users', element.userName, 'home']" class="text-uppercase">
-          Détails
-        </a>
-      </td>
-    </ng-container>
+  <div class="p-3 mt-4">
+    <table mat-table [dataSource]="users" >
+      <ng-container matColumnDef="fullName">
+        <th mat-header-cell *matHeaderCellDef> Nom & prénom </th>
+        <td mat-cell *matCellDef="let element">
+          <a [routerLink]="['/admin/users', element.userName, 'home']">
+            {{element.fullName}}
+          </a>
+        </td>
+      </ng-container>
 
 
+      <ng-container matColumnDef="userName">
+        <th mat-header-cell *matHeaderCellDef>Nom d'utilisateur</th>
+        <td mat-cell *matCellDef="let element"> @{{element.userName}} </td>
+      </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row
-        *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef> E-mail </th>
+        <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef> Action </th>
+        <td mat-cell *matCellDef="let element">
+          <a mat-button [routerLink]="['/admin/users', element.userName, 'home']" color="primary">
+            Détails
+          </a>
+        </td>
+      </ng-container>
+
+
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row
+          *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+
 </div>

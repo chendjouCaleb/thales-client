@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
 import {Procedure, ProcedureApply} from "../../../../../entities";
-import {CustomerApplyDialog, ProcedureApplyDialog} from "../../../../Components";
+import {CustomerPickerDialog, ProcedureApplyDialog} from "../../../../Components";
 import {ProcedureApplyService} from "../../../../services";
 
 
@@ -16,7 +16,7 @@ export class ProcedureAppliesPage implements OnInit {
   applies: ProcedureApply[] = [];
 
   constructor(private route: ActivatedRoute,
-              private _picker: CustomerApplyDialog,
+              private _picker: CustomerPickerDialog,
               private _apply: ProcedureApplyDialog,
               private _service: ProcedureApplyService) {}
 

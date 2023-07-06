@@ -1,9 +1,12 @@
-import {Component, Input, OnInit} from "@angular/core";
-import {DateTime} from "luxon";
+import {Component, Inject, Input, OnInit} from "@angular/core";
+
 import {Payment} from "../../../../entities";
 import {PaymentService} from "../../../services";
 import {MatTableDataSource} from "@angular/material/table";
 import {PaymentUIService} from "../payment-u-i.service";
+import {Router} from "@angular/router";
+import {DOCUMENT} from "@angular/common";
+import {environment} from "../../../../environments/environment";
 
 @Component({
   templateUrl: 'payments-list.html',
@@ -13,16 +16,23 @@ export class PaymentsList implements OnInit {
   @Input()
   params: any = {}
   dataSource = new MatTableDataSource<Payment>();
+  isLoading = true;
 
   displayedColumns: string[] = ['id', 'amount', 'createdAt', 'reason', 'customer', 'action'];
 
-  constructor(private _service: PaymentService, private _uiService: PaymentUIService) {
+  constructor(private _service: PaymentService,
+              private _router: Router,
+              private _uiService: PaymentUIService,
+              @Inject(DOCUMENT) private _document: Document) {
   }
 
-  ngOnInit() {
-    this._service.listAsync(this.params).then(items => {
-      this.dataSource = new MatTableDataSource<Payment>(items);
-    })
+  async ngOnInit() {
+    let payments = await this._service.listAsync(this.params);
+    payments = payments.sort((p1, p2) => p1.id - p2.id).reverse();
+    this.dataSource = new MatTableDataSource<Payment>(payments);
+
+    this.isLoading = false;
+
   }
 
   unshift(payment: Payment) {
@@ -41,6 +51,10 @@ export class PaymentsList implements OnInit {
         this.remove(payment);
       }
     })
+  }
+
+  printPDF(payment: Payment) {
+   this._document.defaultView.open(`${environment.serverUrl}/payments/${payment.id}/pdf`, '_blank')
   }
 
   onClick(row) {

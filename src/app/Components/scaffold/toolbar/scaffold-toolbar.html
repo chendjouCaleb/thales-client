@@ -1,0 +1,33 @@
+<mat-toolbar class="mat-elevation-z8" style="padding-left: 0">
+  <button style="margin-left: 8px; margin-right: 8px" mat-icon-button aria-label="Open menu icon" #sidebarToggleBtn>
+    <mat-icon>menu</mat-icon>
+  </button>
+
+  <span>FAST App</span>
+
+  <div style="flex: 1 1 auto;"></div>
+
+  <div style="display: flex; align-items: center">
+    <ng-container *ngIf="!session">
+      <a routerLink="/identity/login" mat-flat-button color="primary">Se connecter</a>
+    </ng-container>
+
+    <ng-container *ngIf="session">
+      <button style="border-radius: 50%; border: none;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+    overflow: hidden; height: 36px; width: 36px; margin-left: 8px"
+              [matTooltip]="session.user.fullName" [matMenuTriggerFor]="menu">
+        <img src="/assets/dimples-child.jpg" alt="profile image" height="48" width="48">
+      </button>
+
+      <mat-menu #menu>
+        <a mat-menu-item routerLink="/identity/profile">
+          <mat-icon>manage_accounts</mat-icon>Profile</a>
+        <a mat-menu-item routerLink="/identity/logout">
+          <mat-icon>logout</mat-icon> Se déconnecter
+        </a>
+      </mat-menu>
+    </ng-container>
+  </div>
+</mat-toolbar>

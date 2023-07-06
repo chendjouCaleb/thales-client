@@ -24,4 +24,9 @@ export class ProfileService {
     const call = this._httpClient.post<void>(`${this.url}/userName`, {userName});
     return firstValueFrom(call)
   }
+
+  public async changeNameAsync(name: string): Promise<void> {
+    const call = this._httpClient.post<void>(`${this.url}/name`, {name});
+    return firstValueFrom(call)
+  }
 }

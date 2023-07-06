@@ -1,13 +1,15 @@
-<div>
-  <h1 class="mx-3">Clients ({{customers.length}})</h1>
+<div class="m-3 p-3 bg-color-0 mat-elevation-z1">
+  <div class="mb-3 fontWeight-semiBold fontSize-22">Clients ({{customers.length}})</div>
 
-  <div class="mat-elevation-z1 p-3">
-    <a routerLink="/admin/customers/add" mat-flat-button>  <mat-icon>add</mat-icon>    Ajouter un client</a>
+  <div class="divider my-3"></div>
+  <div class="">
+    <a routerLink="/admin/customers/add" mat-flat-button color="primary"> <mat-icon>add</mat-icon> Ajouter un client</a>
   </div>
+  <div class="divider my-3"></div>
 
 
 
-  <div class="p-3">
+  <div class="mt-4">
     <table mat-table [dataSource]="customers" >
       <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef> Nom & prénom </th>
@@ -26,13 +28,13 @@
 
       <ng-container matColumnDef="birthDate">
         <th mat-header-cell *matHeaderCellDef> Date de naiss. </th>
-        <td mat-cell *matCellDef="let element"> {{element.birthDate}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.birthDate?.toFormat('DDD')}} </td>
       </ng-container>
 
       <ng-container matColumnDef="action">
         <th mat-header-cell *matHeaderCellDef> Action </th>
         <td mat-cell *matCellDef="let element">
-          <a mat-button [routerLink]="['/admin/customers', element.id, 'home']" class="text-uppercase">
+          <a mat-button [routerLink]="['/admin/customers', element.id, 'home']" color="primary">
             Détails
           </a>
         </td>

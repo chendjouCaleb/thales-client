@@ -26,7 +26,7 @@ export class ResetPasswordCodePage {
     if(!isValid) {
       return;
     }
-    this.router.navigate(['password'], {relativeTo: this.route.parent}).then()
+    this.router.navigate(['password'], {relativeTo: this.route.parent}).then();
   }
 
   async checkCodeAsync(): Promise<boolean> {

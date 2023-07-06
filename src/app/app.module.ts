@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import {BrowserModule, DomSanitizer} from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -10,6 +10,8 @@ import {ApplicationHttpModule} from "./http";
 import {ApplicationServiceModule} from "./services";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {AuthenticationService} from "./identity";
+import {CustomerPickerModule} from "@app/Components";
+import {MatIconRegistry} from "@angular/material/icon";
 
 @NgModule({
   declarations: [
@@ -22,13 +24,14 @@ import {AuthenticationService} from "./identity";
     MatNativeDateModule,
     ApplicationHttpModule,
     ApplicationServiceModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    CustomerPickerModule
   ],
   providers: [{provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'outline'}}],
   bootstrap: [AppComponent]
 })
 export class AppModule {
   constructor(private _authenticationService: AuthenticationService) {
-    this._authenticationService.init()
+    this._authenticationService.init().then();
   }
 }

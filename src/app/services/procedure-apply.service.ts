@@ -28,6 +28,12 @@ export class ProcedureApplyService {
     return items;
   }
 
+  async listAsync(params: any): Promise<ProcedureApply[]> {
+    const call = this._httpClient.get<ProcedureApply[]>(`${this.url}`, {params});
+    const items = await firstValueFrom(call);
+    return items.map(p => new ProcedureApply(p));
+  }
+
   async getByIdAsync(id: number): Promise<ProcedureApply> {
     const call = this._httpClient.get<ProcedureApply>(`${this.url}/${id}`);
     const value = await firstValueFrom(call);

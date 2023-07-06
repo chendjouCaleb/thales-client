@@ -1,4 +1,8 @@
-<div >
+<div class="d-flex justify-content-center p-5" *ngIf="isLoading">
+  <mat-spinner></mat-spinner>
+</div>
+
+<div *ngIf="!isLoading">
   <table mat-table [dataSource]="dataSource" >
     <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef>Id</th>
@@ -17,7 +21,20 @@
 
     <ng-container matColumnDef="reason">
       <th mat-header-cell *matHeaderCellDef> Raison </th>
-      <td mat-cell *matCellDef="let element"> {{element.reason}} </td>
+      <td mat-cell *matCellDef="let element">
+        <a *ngIf="element.planeTicket" routerLink="/admin/plane-tickets/{{element.planeTicket.id}}"
+           class="inline-badge ms-bgColor-cyan-10 ms-bgColor-cyan-20--hover">
+          Billet d'avion N°{{element.planeTicket.id}}
+        </a>
+
+        <a *ngIf="element.procedureApplyStep" routerLink="/admin/procedure-applies/{{element.procedureApplyStep.procedureApplyId}}"
+           class="inline-badge ms-bgColor-magentaPink-10 ms-bgColor-magentaPink-20--hover">
+          Procédure N°{{element.procedureApplyStep.id}}
+        </a>
+
+        {{element.reason}}
+
+      </td>
     </ng-container>
 
     <ng-container matColumnDef="customer">
@@ -42,7 +59,10 @@
             <mat-icon>more_vert</mat-icon>
           </a>
           <mat-menu #menu="matMenu">
-            <button mat-menu-item (click)="delete(element)">Supprimer</button>
+            <a mat-menu-item (click)="printPDF(element)"> <mat-icon svgIcon="pdf-svg-repos"></mat-icon>  Imprimer</a>
+            <button mat-menu-item (click)="delete(element)">
+              <mat-icon>delete</mat-icon>
+              Supprimer</button>
           </mat-menu>
         </div>
       </td>

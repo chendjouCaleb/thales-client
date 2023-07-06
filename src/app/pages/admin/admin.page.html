@@ -1,60 +1,32 @@
 <th-scaffold>
 
-  <mat-toolbar class="mat-elevation-z8" style="padding-left: 0">
-    <button style="margin-left: 8px; margin-right: 8px" mat-icon-button aria-label="Open menu icon" #sidebarToggleBtn>
-      <mat-icon>menu</mat-icon>
-    </button>
 
-    <span>MyApp</span>
-
-    <div style="flex: 1 1 auto;"></div>
-
-    <div style="display: flex; align-items: center">
-      <ng-container *ngIf="!session">
-      <a routerLink="/identity/login" mat-flat-button color="primary">Se connecter</a>
-      </ng-container>
-
-      <ng-container *ngIf="session">
-        <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-          <mat-icon>notifications</mat-icon>
-        </button>
-
-        <button style="border-radius: 50%; border: none;
-      display: flex; align-items: center; justify-content: center;
-      cursor: pointer;
-    overflow: hidden; height: 36px; width: 36px; margin-left: 8px"
-        [matTooltip]="session.user.fullName">
-          <img src="/assets/dimples-child.jpg" alt="profile image" height="48" width="48">
-        </button>
-      </ng-container>
-    </div>
-  </mat-toolbar>
 
 
   <mat-sidenav-container>
     <mat-sidenav mode="side">
       <th-nav>
-        <th-nav-item>
-          <mat-icon th-nav-item-icon>home</mat-icon>
-          Accueil
-        </th-nav-item>
+
         <a th-nav-item routerLink="users">
           <mat-icon th-nav-item-icon>person</mat-icon>
           Utilisateurs</a>
         <a href="#" th-nav-item routerLink="customers">
           <mat-icon th-nav-item-icon>groups</mat-icon>
           <span>Clients</span>
-          </a>
-        <a href="#" th-nav-item>
-          <mat-icon th-nav-item-icon>school</mat-icon>
-          Bourses</a>
+        </a>
 
         <a href="#" th-nav-item routerLink="procedures">
-          <mat-icon th-nav-item-icon>route</mat-icon>
-          <span>Procédures</span>
-          </a>
-        <a href="#" th-nav-item>Commandes</a>
-        <a routerLink="payments" th-nav-item >
+          <mat-icon th-nav-item-icon>route</mat-icon>Procédures
+        </a>
+
+        <a href="#" th-nav-item routerLink="procedure-applies">
+          <mat-icon th-nav-item-icon>route</mat-icon>Procédures en cours
+        </a>
+
+        <a routerLink="plane-tickets" th-nav-item>
+          <mat-icon th-nav-item-icon>airplane_ticket</mat-icon>
+          Billets d'avion</a>
+        <a routerLink="payments" th-nav-item>
           <mat-icon th-nav-item-icon>payments</mat-icon>
           Paiements</a>
       </th-nav>

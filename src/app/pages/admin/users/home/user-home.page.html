@@ -1,3 +1,19 @@
-<div *ngIf="user">
-  {{user.fullName}}
+<div *ngIf="user" class="p-3 m-3 br-8 bg-color-0">
+  <div class="description-list">
+    <dl>
+      <dt>Nom d'utilisateur </dt>
+      <dd>@{{user.userName}}</dd>
+
+      <dt>E-mail</dt>
+      <dd>
+        <a href="mailto:{{user.email}}">{{user.email}}</a>
+      </dd>
+      <dt>Nom & prénom</dt>
+      <dd>{{user.fullName}}</dd>
+
+      <dt>Ajouté le</dt>
+      <dd>{{user.createdAt.toFormat('ff')}}</dd>
+    </dl>
+  </div>
+
 </div>

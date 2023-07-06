@@ -1,11 +1,19 @@
-<div class="p-3 m-3 bg-color-0">
+<div class="p-3 m-3 bg-color-0 mat-elevation-z1">
 
   <mat-tab-group #tabGroup mat-stretch-tabs="false" [selectedIndex]="tabGroupRemember.selectedIndex">
     <mat-tab label="Accueil">
       <CustomerHomePage *ngIf="customer" [customer]="customer"></CustomerHomePage>
     </mat-tab>
     <mat-tab label="Procédures">
-      procédures
+      <div class="mt-4" *ngIf="customer">
+        <procedure-apply-list [params]="{customerId: customer.id}"></procedure-apply-list>
+      </div>
+    </mat-tab>
+
+    <mat-tab label="Billets d'avions">
+      <div class="mt-4" *ngIf="customer">
+        <PlaneTicketList *ngIf="customer" [params]="{customerId: customer.id}"></PlaneTicketList>
+      </div>
     </mat-tab>
 
     <mat-tab label="Paiements">

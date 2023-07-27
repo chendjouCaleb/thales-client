@@ -1,4 +1,5 @@
-import {ChangeDetectionStrategy, Component, ViewEncapsulation} from "@angular/core";
+import {ChangeDetectionStrategy, Component, ContentChild, ViewChild, ViewEncapsulation} from "@angular/core";
+import {MatSidenav} from "@angular/material/sidenav";
 
 @Component({
   templateUrl: 'scaffold.html',
@@ -12,4 +13,6 @@ import {ChangeDetectionStrategy, Component, ViewEncapsulation} from "@angular/co
 })
 export class Scaffold {
 
+  @ContentChild(MatSidenav)
+  sidenav: MatSidenav
 }

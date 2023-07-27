@@ -1,5 +1,5 @@
 <div class="m-2 p-4 bg-color-0 br-8" *ngIf="applyStep">
-  <div class="fontSize-22 fontWeight-semiBold mb-3">Procédure en cours / {{applyStep.procedureStep.name}}</div>
+  <div class="fontSize-16 fontWeight-semiBold mb-3">Procédure en cours / {{applyStep.procedureStep.name}}</div>
 
   <div class="divider"></div>
   <div class="my-2">
@@ -29,7 +29,7 @@
   </dl>
 
   <div *ngIf="applyStep.payments" class="mt-4">
-    <div class="fontSize-18 fontWeight-semiBold">Paiments</div>
+    <div class="fontSize-18 fontWeight-semiBold">Paiements</div>
 
     <a class="mt-3 br-4 p-3 bg-color-10 borderColor-20 bg-color-20--hover divLink d-flex align-items-center"
        *ngFor="let payment of applyStep.payments">

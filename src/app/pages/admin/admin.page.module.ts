@@ -20,7 +20,8 @@ const routes: Routes = [
       { path: 'payments', loadChildren: () => import('./payments/payments.page.module').then(m => m.PaymentsPageModule) },
       { path: 'procedure-applies',loadChildren: () => import('./procedure-applies/procedure-apply.page.module').then(m => m.ProcedureApplyPageModule)},
       { path: 'plane-tickets',loadChildren: () => import('./plane-ticket/plane-ticket.page.module').then(m => m.PlaneTicketPageModule)},
-      { path: 'users', loadChildren: () => import('./users/users.page.module').then(m => m.UsersPageModule ) }
+      { path: 'users', loadChildren: () => import('./users/users.page.module').then(m => m.UsersPageModule ) },
+      { path: '', redirectTo: 'payments', pathMatch: 'full'}
     ]
   }
 ]

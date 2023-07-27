@@ -24,8 +24,6 @@ export class AdminPage implements AfterViewInit {
 
 
   ngAfterViewInit() {
-    Promise.resolve().then(() => {
-      this.sideNav?.toggle()
-    })
+
   }
 }

@@ -31,9 +31,16 @@ const PDF_SVG = `<?xml version="1.0" encoding="iso-8859-1"?>
 export class AppComponent {
   title = 'thales';
 
-  constructor( iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
+  isAuthLoading = true;
+
+  constructor( iconRegistry: MatIconRegistry, sanitizer: DomSanitizer,
+               private _authService: AuthenticationService) {
 
     const pdf_url = 'assets/icons/pdf-svgrepo-com.svg'
-    iconRegistry.addSvgIconLiteral('pdf-svg-repos', sanitizer.bypassSecurityTrustHtml(PDF_SVG))
+    iconRegistry.addSvgIconLiteral('pdf-svg-repos', sanitizer.bypassSecurityTrustHtml(PDF_SVG));
+
+    _authService.stateChange.subscribe(state => {
+      this.isAuthLoading = false;
+    })
   }
 }

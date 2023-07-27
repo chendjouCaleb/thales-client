@@ -28,9 +28,9 @@ export class AuthenticationService {
 
   public async init() {
     const accessToken = localStorage.getItem("AUTH_ACCESS_TOKEN");
-    const sessionId = localStorage.getItem("AUTH_SESSION_ID");
 
     if(!accessToken) {
+      this._stateChange.next(false);
       return
     }
     const headers = new HttpHeaders().set('Authorization', `Bearer ${accessToken}`)

@@ -2,6 +2,8 @@ import {BaseEntity} from "./base-entity";
 import {Customer} from "./customer";
 import {DateTime} from "luxon";
 import {Payment} from "./payment";
+import {Agency} from "@entities/agency";
+import {Employee} from "@entities/employee";
 
 export class PlaneTicket extends BaseEntity<number> {
   placeCount: number = 0;
@@ -18,6 +20,12 @@ export class PlaneTicket extends BaseEntity<number> {
 
   customer: Customer;
   customerId: number;
+
+  agency:Agency;
+  agencyId: number;
+
+  employee: Employee;
+  employeeId: number;
 
   payments: Payment[] = [];
   paymentAmount: number;
@@ -42,6 +50,12 @@ export class PlaneTicket extends BaseEntity<number> {
       this.customer = value.customer ? new Customer(value.customer) : null;
       this.payments = value.payments ? value.payments.map(p => new Payment(p)) : null;
       this.paymentAmount = value.paymentAmount;
+
+      this.agencyId = value.agencyId;
+      this.agency = value.agency ? new Agency(value.agency) : undefined;
+
+      this.employeeId = value.employeeId;
+      this.employee = value.employee ? new Employee(value.employee) : undefined;
     }
   }
 }

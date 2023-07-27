@@ -1,5 +1,6 @@
 import {Component, ViewEncapsulation} from "@angular/core";
 import {AuthenticationService, Session} from "@app/identity";
+import {Scaffold} from "@app/Components";
 
 @Component({
   templateUrl: 'scaffold-toolbar.html',
@@ -7,7 +8,8 @@ import {AuthenticationService, Session} from "@app/identity";
   encapsulation: ViewEncapsulation.None
 })
 export class ScaffoldToolbar {
-  constructor(private _authenticationService: AuthenticationService) {
+  constructor(private _authenticationService: AuthenticationService,
+              public scaffold: Scaffold) {
 
   }
 

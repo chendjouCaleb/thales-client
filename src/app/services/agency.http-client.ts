@@ -8,7 +8,7 @@ import {AgencyAddModel} from "@app/models";
 @Injectable({
   providedIn: 'root'
 })
-export class AgencyService {
+export class AgencyHttpClient {
   private url = `${SERVER_URL}/agencies`;
 
   constructor(private _httpClient: HttpClient) {}

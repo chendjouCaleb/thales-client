@@ -1,0 +1,16 @@
+<div class="fontWeight-semiBold fontSize-20 p-4">Ajouter unze agence</div>
+
+
+<div class="px-4" [formGroup]="formGroup">
+
+    <mat-form-field style="width: 100%">
+      <mat-label>Nom de l'agence</mat-label>
+      <input matInput formControlName="name" required>
+    </mat-form-field>
+
+</div>
+
+<div class="p-4 align-end">
+  <button mat-button mat-dialog-close="" class="me-4">Annuler</button>
+  <button mat-flat-button color="primary" [disabled]="formGroup.invalid" (click)="add()">Ajouter</button>
+</div>

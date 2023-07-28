@@ -3,20 +3,23 @@ import {MatSidenav} from "@angular/material/sidenav";
 import {AuthenticationService, Session} from "../../identity";
 import {Agency} from "@entities/agency";
 import {AgencyHttpClient} from "@app/services/agency.http-client";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
-  templateUrl: 'admin.page.html'
+  templateUrl: 'agency.page.html'
 })
-export class AdminPage implements AfterViewInit, OnInit {
+export class AgencyPage implements AfterViewInit, OnInit {
   // @ts-ignore
   @ViewChild(MatSidenav)
   sideNav: MatSidenav | undefined;
 
   session: Session;
 
-  agencies: Agency[];
+  agency: Agency;
 
-  constructor(private authService: AuthenticationService, private agencyService: AgencyHttpClient) {
+  constructor(private authService: AuthenticationService,
+              private agencyService: AgencyHttpClient,
+              private activeRoute: ActivatedRoute) {
     this.authService.stateChange.subscribe(isAuth => {
       if (isAuth) {
         this.session = this.authService.session;
@@ -26,10 +29,9 @@ export class AdminPage implements AfterViewInit, OnInit {
     })
   }
 
-  ngOnInit() {
-    this.agencyService.listAsync().then(items => {
-      this.agencies = items;
-    })
+  async ngOnInit() {
+    const agencyId = +this.activeRoute.snapshot.params['agencyId'];
+    this.agency = await this.agencyService.getByIdAsync(agencyId);
   }
 
 

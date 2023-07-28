@@ -5,7 +5,10 @@ import {IsAuthGuardFunc} from "@app/identity";
 const routes: Routes = [
   {path: 'admin', canActivate: [ IsAuthGuardFunc ],
     loadChildren: () => import('./pages/admin/admin.page.module').then(m => m.AdminPageModule)},
+
+  { path: 'agencies/:agencyId', loadChildren: () => import('./pages/agency/agency.page.module').then(m => m.AgencyPageModule) },
   {path: 'identity', loadChildren: () => import('./pages/identity/identity.page.module').then(m => m.IdentityPageModule)},
+
   {path: '', redirectTo: 'admin', pathMatch: 'full'}
 ];
 

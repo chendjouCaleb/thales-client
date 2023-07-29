@@ -16,10 +16,11 @@ import {RouterModule} from "@angular/router";
 import {MatSelectModule} from "@angular/material/select";
 import {CustomerPickerModule} from "@app/Components";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {CleaveModule} from "@app/cleave";
 
 @NgModule({
-  imports: [CommonModule, MatButtonModule, MatDialogModule, MatTableModule, MatFormFieldModule, MatInputModule,
-    MatIconModule, MatMenuModule, ReactiveFormsModule, RouterModule, MatSelectModule, FormsModule, CustomerPickerModule, MatProgressSpinnerModule],
+    imports: [CommonModule, MatButtonModule, MatDialogModule, MatTableModule, MatFormFieldModule, MatInputModule,
+        MatIconModule, MatMenuModule, ReactiveFormsModule, RouterModule, MatSelectModule, FormsModule, CustomerPickerModule, MatProgressSpinnerModule, CleaveModule],
   declarations: [ PaymentAdd, PaymentsList, PaymentDelete ],
   exports: [ PaymentAdd, PaymentsList, PaymentDelete ],
   providers: [ PaymentUIService]

@@ -1,0 +1,19 @@
+<div class="p-4">
+  <div class="d-flex align-items-center mb-3 ">
+    <div class="dialog-title flex-grow-1">Ajouter un membre</div>
+
+    <button mat-icon-button mat-dialog-close><mat-icon>close</mat-icon></button>
+  </div>
+
+  <nav-host startUrl="user">
+    <ng-template nav-route="user" nav-routeName="user">
+      <employee-add-user></employee-add-user>
+    </ng-template>
+
+    <ng-template nav-route="info" nav-routeName="info">
+      <employee-add-info ></employee-add-info>
+    </ng-template>
+  </nav-host>
+
+
+</div>

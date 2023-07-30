@@ -40,13 +40,13 @@
     <dd>{{planeTicket.departureCountry}}, {{planeTicket.departureCity}}</dd>
 
     <dt>Date de départ</dt>
-    <dd>{{planeTicket.departureDate.toFormat('ff')}}</dd>
+    <dd>{{planeTicket.departureDate.toFormat('DDD')}}</dd>
 
     <dt>Pays & ville de d'arrivée</dt>
     <dd>{{planeTicket.arrivalCountry}}, {{planeTicket.arrivalCity}}</dd>
 
     <dt class="mt-3">Date de retour</dt>
-    <dd>{{planeTicket.returnDate.toFormat('ff')}}</dd>
+    <dd>{{planeTicket.returnDate.toFormat('DDD')}}</dd>
 
     <dt>Montant versé</dt>
     <dd>{{planeTicket.paymentAmount | number}} FCFA</dd>

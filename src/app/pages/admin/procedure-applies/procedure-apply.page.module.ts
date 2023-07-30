@@ -16,6 +16,7 @@ import {ProcedureApplyStepPaymentAdd} from "./add-payment/procedure-apply-step-p
 import {ProcedureAppliesListPage} from "@app/pages/admin/procedure-applies/list/procedure-applies-list.page";
 import {CustomerPickerModule, ProcedureApplyModule} from "@app/Components";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {CleaveModule} from "@app/cleave";
 
 const routes: Routes = [
   {path: '', component: ProcedureAppliesListPage },
@@ -24,9 +25,9 @@ const routes: Routes = [
 ]
 
 @NgModule({
-  imports: [CommonModule, RouterModule.forChild(routes), MatButtonModule, MatIconModule,
-    ReactiveFormsModule, MatFormFieldModule, MatDialogModule, MatInputModule, MatMenuModule,
-    CustomerPickerModule, ProcedureApplyModule, MatProgressSpinnerModule],
+    imports: [CommonModule, RouterModule.forChild(routes), MatButtonModule, MatIconModule,
+        ReactiveFormsModule, MatFormFieldModule, MatDialogModule, MatInputModule, MatMenuModule,
+        CustomerPickerModule, ProcedureApplyModule, MatProgressSpinnerModule, CleaveModule],
   exports: [
     ProcedureAppliesListPage
   ],

@@ -19,6 +19,7 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
 import {CustomerPickerModule} from "../../../Components";
 import {PlaneTicketEditPage} from "./edit/plane-ticket-edit.page";
 import {PaymentModule} from "../../../Components/payments";
+import {CleaveModule} from "@app/cleave";
 
 const routes: Routes = [
   {path: 'add', component: PlaneTicketAddPage },
@@ -28,9 +29,9 @@ const routes: Routes = [
 ]
 
 @NgModule({
-  imports: [CommonModule, RouterModule.forChild(routes), MatButtonModule, MatIconModule, ReactiveFormsModule,
-    MatFormFieldModule, MatDialogModule, MatInputModule, MatMenuModule, MatRadioModule, PlaneTicketModule, MatCheckboxModule,
-    CustomerPickerModule, PaymentModule],
+    imports: [CommonModule, RouterModule.forChild(routes), MatButtonModule, MatIconModule, ReactiveFormsModule,
+        MatFormFieldModule, MatDialogModule, MatInputModule, MatMenuModule, MatRadioModule, PlaneTicketModule, MatCheckboxModule,
+        CustomerPickerModule, PaymentModule, CleaveModule],
   declarations: [ PlaneTicketPage, PlaneTicketHomePage, PlaneTicketPaymentAdd, PlaneTicketListPage, PlaneTicketAddPage,
   PlaneTicketEditPage ]
 })

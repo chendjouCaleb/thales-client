@@ -31,8 +31,8 @@ export class CleaveDateInputDirective implements ControlValueAccessor, OnInit, O
 
       onValueChanged: (event: any): void => {
         const time: string = event.target.value;
-
-        const date = DateTime.fromFormat(time, 'DD-MM-YYYY');
+        const date = DateTime.fromFormat(time, 'dd/MM/yyyy');
+        console.log(date.toString(), time)
         this._onChange(date.toJSDate())
       }
     });
@@ -58,6 +58,7 @@ export class CleaveDateInputDirective implements ControlValueAccessor, OnInit, O
 
   writeValue(obj: Date): void {
     if (obj) {
+      console.log(typeof obj)
       const value = obj.toLocaleDateString();
       this._mask.setRawValue(value);
     }

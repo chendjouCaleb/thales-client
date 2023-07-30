@@ -24,7 +24,10 @@ export class PlaneTicketAddRemember {
   get departureCity(): string { return this.store.getItem('departureCity'); }
   set departureCity(value: string) { this.store.setItem('departureCity', value); }
 
-  get departureDate(): Date { return this.store.getItem('departureDate'); }
+  get departureDate(): Date {
+   const str = this.store.getItem('departureDate');
+   return new Date(Date.parse(str.toString()))
+  }
   set departureDate(value: Date) { this.store.setItem('departureDate', value); }
 
   get arrivalCountry(): string { return this.store.getItem('arrivalCountry'); }
@@ -33,8 +36,11 @@ export class PlaneTicketAddRemember {
   get arrivalCity(): string { return this.store.getItem('arrivalCity'); }
   set arrivalCity(value: string) { this.store.setItem('arrivalCity', value); }
 
-  get returnDate(): Date { return this.store.getItem('returnDate'); }
-  set returnDate(value: Date) { this.store.setItem('returnDate', value); }
+  get returnDate(): Date {
+    const str = this.store.getItem('returnDate');
+    return new Date(Date.parse(str.toString()))
+  }
+  set returnDate(value: Date) {this.store.setItem('returnDate', value); }
 
   set value(value: any) {
     this.placeCount = value.placeCount;

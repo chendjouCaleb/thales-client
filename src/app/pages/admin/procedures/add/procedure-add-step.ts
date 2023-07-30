@@ -18,7 +18,7 @@ import {ProcedureAddRemember} from "./procedure-add-remember";
           <div>
             <mat-form-field style="width: 100%;">
               <mat-label>Prix</mat-label>
-              <input type="text" matInput formControlName="price">
+              <input CleaveNumberInput matInput formControlName="price">
             </mat-form-field>
           </div>
 

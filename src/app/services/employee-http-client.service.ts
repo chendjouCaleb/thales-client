@@ -4,17 +4,18 @@ import {SERVER_URL} from "@app/http";
 import {Employee} from "@entities/employee";
 import {firstValueFrom} from "rxjs";
 import {EmployeeAddModel} from "@app/models";
+import {Agency} from "@entities/agency";
 
 @Injectable({
   providedIn: 'root'
 })
-export class EmployeeService {
+export class EmployeeHttpClient {
   private url = `${SERVER_URL}/employees`;
 
   constructor(private _httpClient: HttpClient) {}
 
-  async listAsync(): Promise<Employee[]> {
-    const call = this._httpClient.get<Employee[]>(`${this.url}`);
+  async listAsync(params: any = {}): Promise<Employee[]> {
+    const call = this._httpClient.get<Employee[]>(`${this.url}`, {params});
     const items = await firstValueFrom(call);
     return items.map(i => new Employee(i));
   }
@@ -30,8 +31,9 @@ export class EmployeeService {
     return firstValueFrom(call);
   }
 
-  async addAsync(model: EmployeeAddModel): Promise<Employee> {
-    const call = this._httpClient.post<Employee>(`${this.url}`, model);
+  async addAsync(agency:Agency, model: EmployeeAddModel): Promise<Employee> {
+    const params = { agencyId: agency.id };
+    const call = this._httpClient.post<Employee>(`${this.url}`, model, {params});
     const value = await firstValueFrom(call);
     return new Employee(value);
   }

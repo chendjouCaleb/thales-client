@@ -27,6 +27,14 @@
 
         <a routerLink="settings" th-nav-item>
           <mat-icon th-nav-item-icon>settings</mat-icon> Paramètres</a>
+
+        <DIV class="divider"></DIV>
+
+        <div>
+          <div>Agences</div>
+          <a [routerLink]="['/agencies', agency.id]" th-nav-item *ngFor="let agency of agencies">
+             {{agency.name}}</a>
+        </div>
       </th-nav>
     </mat-sidenav>
     <mat-sidenav-content>

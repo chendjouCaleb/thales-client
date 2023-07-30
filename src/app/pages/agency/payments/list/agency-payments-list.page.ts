@@ -3,6 +3,7 @@ import {PaymentService} from "../../../../services";
 import {Agency, Payment} from "../../../../../entities";
 import {PaymentUIService} from "../../../../Components/payments";
 import {PaymentsList} from "../../../../Components/payments/list/payments-list";
+import {AgencyPage} from "@app/pages/agency/agency.page";
 
 @Component({
   templateUrl: 'agency-payments-list.page.html'
@@ -17,7 +18,9 @@ export class AgencyPaymentsListPage implements OnInit {
   agency: Agency;
 
   constructor(private _service: PaymentService,
+              private _parent: AgencyPage,
               private _uiService: PaymentUIService) {
+    this.agency = _parent.agency;
   }
 
   ngOnInit() {

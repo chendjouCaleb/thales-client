@@ -26,6 +26,7 @@ export class PlaneTicketAddPage implements OnInit {
               private _service: PlaneTicketService) {
 
     this.remember = new PlaneTicketAddRemember();
+
     this.formGroup = new FormGroup({
       placeCount : new FormControl(this.remember.placeCount),
       backAndForth: new FormControl(this.remember.backAndForth),
@@ -54,7 +55,7 @@ export class PlaneTicketAddPage implements OnInit {
 
   async addPlaneTicket() {
     const model = this.formGroup.value;
-    const planeTicket = await this._service.addAsync(this.customer, model);
+   const planeTicket = await this._service.addAsync(this.customer, model);
 
     this._snackbar.open(`La commande de billet d'avion a été ajoutée.`, 'VOIR', {})
         .onAction().subscribe(() => {

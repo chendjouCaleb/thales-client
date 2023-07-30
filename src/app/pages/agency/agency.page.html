@@ -1,10 +1,16 @@
-<th-scaffold>
+<th-scaffold *ngIf="agency">
   <mat-sidenav-container style="height: 100%">
     <mat-sidenav mode="side" [opened]="true">
       <th-nav>
+        <div>{{agency.name}}</div>
+        <div class="divider"></div>
+        <a routerLink="employees" th-nav-item>
+          <mat-icon th-nav-item-icon>person</mat-icon>Employées
+        </a>
         <a routerLink="plane-tickets" th-nav-item>
           <mat-icon th-nav-item-icon>airplane_ticket</mat-icon>
           Billets d'avion</a>
+
         <a routerLink="payments" th-nav-item>
           <mat-icon th-nav-item-icon>payments</mat-icon>
           Paiements</a>

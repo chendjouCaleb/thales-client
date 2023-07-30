@@ -1,0 +1,15 @@
+<div class="page-card">
+  <div class="d-flex align-items-center">
+    <div class="page-title flex-grow-1">Employés de l'agence </div>
+
+    <div>
+      <button mat-flat-button color="primary" (click)="addEmployee()">
+        <mat-icon>add</mat-icon> Ajouter un employee </button>
+    </div>
+  </div>
+  <div class="divider my-3"></div>
+
+  <div *ngFor="let employee of employees">
+    {{employee.user.fullName}}
+  </div>
+</div>

@@ -29,7 +29,7 @@ export class CleaveNumberInputDirective implements ControlValueAccessor, OnInit,
 
       onValueChanged: (event: any): void => {
         let value: string = event.target.value;
-        let number = parseInt(value);
+        let number = parseInt(value.replaceAll(' ', ''));
         this._onChange(number);
       }
     });

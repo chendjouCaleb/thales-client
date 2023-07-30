@@ -44,8 +44,8 @@ export class PaymentAdd {
 
   async validate() {
     const model = new PaymentAddFormModel(this.formGroup.value);
-    const payment = await this._service.addAsync(this.customer, model)
+    const payment = await this._service.addAsync(this.customer, model);
     this._dialogRef.close(payment);
-    this._snackbar.open(`Le paiement a été ajouté`, '', {duration: 5000})
+    this._snackbar.open(`Le paiement a été ajouté`, '', {duration: 5000});
   }
 }

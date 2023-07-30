@@ -9,11 +9,11 @@ import {SnackbarLoader} from "@app/Components/snackbar-loader";
   selector: 'employee-add-user',
   template: `
     <div class="fontSize-16">
-      Renseignez l'E-mail que vous souhaitez ajouter comme employé
+      Renseignez l'E-mail de l'utilisateur que vous souhaitez ajouter comme employé
     </div>
     <div class="mt-2">
       <mat-form-field class="w-100">
-        <input matInput type="text" required [formControl]="formControl" placeholder="E-mail d'utilisateur">
+        <input matInput type="text" required [formControl]="formControl" placeholder="E-mail de l'utilisateur">
       </mat-form-field>
     </div>
 
@@ -38,10 +38,10 @@ export class EmployeeAddUser {
   async next() {
     this.isLoading = true;
     const loaderRef = this._loader.open("Recherche de l'utilisateur...");
-    const contains = await this._userService.containsByUserNameAsync(this.formControl.value);
+    const contains = await this._userService.containsByEmailAsync(this.formControl.value);
 
     if (contains) {
-      this.parent.user = await this._userService.getByUserNameAsync(this.formControl.value);
+      this.parent.user = await this._userService.getByEmailAsync(this.formControl.value);
       console.log(this.parent.user);
       this._navHost.navigateByUrl('info');
     } else {

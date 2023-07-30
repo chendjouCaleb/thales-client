@@ -9,7 +9,5 @@
   </div>
   <div class="divider my-3"></div>
 
-  <div *ngFor="let employee of employees">
-    {{employee.user.fullName}}
-  </div>
+  <div [employee-list]="{agencyId: agency.id}"></div>
 </div>

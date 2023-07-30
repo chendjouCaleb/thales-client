@@ -5,3 +5,4 @@ export * from './profile.service';
 export * from './user.service';
 
 export * from './auth-guard';
+export * from './interceptors';

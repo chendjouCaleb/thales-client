@@ -17,14 +17,17 @@ import {PaymentModule} from "@app/Components/payments";
 import {PlaneTicketModule} from "@app/Components/plane-tickets";
 import {AgencyEmployeesPage} from "@app/pages/agency/employees/agency-employees.page";
 import {EmployeeModule} from "@app/Components/employees";
+import {AgencySettingsPage} from "@app/pages/agency/settings/agency-settings.page";
+import {AgencyModule} from "@app/Components/agencies";
 
 const routes: Routes = [
   {
     path: '', component: AgencyPage, children: [
-      { path: 'payments', component: AgencyPaymentsListPage },
-      { path: 'employees', component: AgencyEmployeesPage },
-      { path: 'plane-tickets', component: AgencyPaymentsListPage },
-      { path: '', redirectTo: 'payments', pathMatch: 'full'}
+      {path: 'payments', component: AgencyPaymentsListPage},
+      {path: 'employees', component: AgencyEmployeesPage},
+      {path: 'plane-tickets', component: AgencyPaymentsListPage},
+      {path: 'settings', component: AgencySettingsPage},
+      {path: '', redirectTo: 'payments', pathMatch: 'full'}
     ]
   }
 ]
@@ -33,9 +36,10 @@ const routes: Routes = [
   imports: [
     CommonModule, MatButtonModule, MatToolbarModule, RouterModule.forChild(routes), MatIconModule,
     MatSidenavModule, NavModule, ScaffoldModule, MatFormFieldModule, MatInputModule, MatTooltipModule,
-    PaymentModule, PlaneTicketModule, EmployeeModule
+    PaymentModule, PlaneTicketModule, EmployeeModule, AgencyModule
   ],
-  declarations: [ AgencyPage, AgencyPaymentsListPage, AgencyPlaneTicketListPage, AgencyEmployeesPage ]
+  declarations: [AgencyPage, AgencyPaymentsListPage, AgencyPlaneTicketListPage, AgencyEmployeesPage,
+    AgencySettingsPage]
 })
 export class AgencyPageModule {
 

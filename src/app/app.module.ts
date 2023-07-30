@@ -9,7 +9,7 @@ import {MatNativeDateModule} from "@angular/material/core";
 import {ApplicationHttpModule} from "./http";
 import {ApplicationServiceModule} from "./services";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
-import {AuthenticationService} from "./identity";
+import {AuthenticationService, IdentityModule} from "./identity";
 import {CustomerPickerModule} from "@app/Components";
 import {MatIconRegistry} from "@angular/material/icon";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
@@ -32,7 +32,7 @@ registerLocaleData(localeFr, 'fr');
     ApplicationServiceModule,
     MatSnackBarModule,
     CustomerPickerModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule, IdentityModule
   ],
   providers: [
     {provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'outline'}},

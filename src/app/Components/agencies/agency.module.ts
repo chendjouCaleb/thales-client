@@ -15,14 +15,13 @@ import {RouterModule} from "@angular/router";
 import {MatSelectModule} from "@angular/material/select";
 import {CustomerPickerModule} from "@app/Components";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {AgencyChangeName} from "./change-name/agency-change-name";
 
 @NgModule({
   imports: [CommonModule, MatButtonModule, MatDialogModule, MatTableModule, MatFormFieldModule, MatInputModule,
     MatIconModule, MatMenuModule, ReactiveFormsModule, RouterModule, MatSelectModule, FormsModule, CustomerPickerModule, MatProgressSpinnerModule],
-  declarations: [ AgencyAdd, AgencyDelete ],
-  exports: [ AgencyAdd,  AgencyDelete ],
+  declarations: [ AgencyAdd, AgencyDelete, AgencyChangeName ],
+  exports: [ AgencyAdd, AgencyDelete, AgencyChangeName ],
   providers: [ AgencyService]
 })
-export class AgencyModule {
-
-}
+export class AgencyModule { }

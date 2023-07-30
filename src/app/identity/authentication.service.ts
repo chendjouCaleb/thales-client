@@ -14,6 +14,9 @@ export class AuthenticationService {
 
   private _session: Session = null;
   private _accessToken: string = '';
+  get accessToken(): string {
+    return this._accessToken;
+  }
 
   get isLogged(): boolean { return !!this._session; }
   get session(): Session {

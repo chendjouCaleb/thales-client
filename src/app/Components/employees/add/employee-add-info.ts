@@ -43,7 +43,6 @@ export class EmployeeAddInfo {
     this._navHost.back();
   }
 
-
   async next() {
     const value = this.parent.formGroup.value;
     const model: EmployeeAddModel = {

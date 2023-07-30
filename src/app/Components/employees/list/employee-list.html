@@ -23,8 +23,11 @@
       <div>
         <button mat-icon-button [mat-menu-trigger-for]="menu"><mat-icon>more_vert</mat-icon></button>
         <mat-menu #menu>
-          <button mat-menu-item (click)="setAdmin(employee)" *ngIf="employee.isAdmin">
+          <button mat-menu-item (click)="setAdmin(employee)" *ngIf="!employee.isAdmin">
             <mat-icon></mat-icon>  Mettre comme administrateur
+          </button>
+          <button mat-menu-item (click)="setAdmin(employee)" *ngIf="employee.isAdmin">
+            <mat-icon></mat-icon> Enlever comme administrateur
           </button>
           <button mat-menu-item >
             <mat-icon>delete</mat-icon>Supprimer</button>

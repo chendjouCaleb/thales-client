@@ -6,6 +6,7 @@ import {Employee} from "@entities/employee";
 import {Agency} from "@entities/agency";
 import {AgencyDelete} from "@app/Components/agencies/delete/agency-delete";
 import {EmployeeSetAdmin} from "@app/Components/employees/set-admin/employee-set-admin";
+import {EmployeeUnsetAdmin} from "@app/Components/employees/unset-admin/employee-unset-admin";
 
 @Injectable()
 export class EmployeeUIService {
@@ -24,6 +25,11 @@ export class EmployeeUIService {
 
   setAdmin(employee: Employee): Observable<boolean> {
     const dialogRef = this._dialog.open(EmployeeSetAdmin, {panelClass: 'dialog-panel', data: {employee}});
+    return dialogRef.afterClosed();
+  }
+
+  unsetAdmin(employee: Employee): Observable<boolean> {
+    const dialogRef = this._dialog.open(EmployeeUnsetAdmin, {panelClass: 'dialog-panel', data: {employee}});
     return dialogRef.afterClosed();
   }
 }

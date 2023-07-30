@@ -37,4 +37,8 @@ export class EmployeeList implements OnInit {
   setAdmin(employee: Employee) {
     this.uiService.setAdmin(employee);
   }
+
+  unsetAdmin(employee: Employee) {
+    this.uiService.setAdmin(employee);
+  }
 }

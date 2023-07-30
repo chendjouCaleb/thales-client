@@ -39,6 +39,6 @@ export class EmployeeList implements OnInit {
   }
 
   unsetAdmin(employee: Employee) {
-    this.uiService.setAdmin(employee);
+    this.uiService.unsetAdmin(employee);
   }
 }

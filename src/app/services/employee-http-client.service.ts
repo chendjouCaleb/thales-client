@@ -55,7 +55,7 @@ export class EmployeeHttpClient {
   }
 
   async unSetAdminAsync(employee: Employee): Promise<void> {
-    const call = this._httpClient.put(`${this.url}/${employee.id}/set-admin`, {});
+    const call = this._httpClient.put(`${this.url}/${employee.id}/unset-admin`, {});
     await firstValueFrom(call);
   }
 }

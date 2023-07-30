@@ -17,8 +17,9 @@ export class EmployeeUnsetAdmin {
     this.employee = data.employee;
   }
 
-  async setAdmin() {
+  async unsetAdmin() {
     await this._httpClient.unSetAdminAsync(this.employee);
+    this.employee.isAdmin = false;
     this._dialogRef.close(true);
     this._snackbar.open(`Cet employé n'est plus un administrateur.`, '', {duration: 5000})
   }

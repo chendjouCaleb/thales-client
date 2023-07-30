@@ -19,6 +19,7 @@ export class EmployeeSetAdmin {
 
   async setAdmin() {
     await this._httpClient.setAdminAsync(this.employee);
+    this.employee.isAdmin = true;
     this._dialogRef.close(true);
     this._snackbar.open(`Cet employé est maintenant un administrateur.`, '', {duration: 5000})
   }

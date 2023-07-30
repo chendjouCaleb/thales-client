@@ -48,4 +48,14 @@ export class EmployeeHttpClient {
     const call = this._httpClient.delete(`${this.url}/${employee.id}`);
     await firstValueFrom(call);
   }
+
+  async setAdminAsync(employee: Employee): Promise<void> {
+    const call = this._httpClient.put(`${this.url}/${employee.id}/set-admin`, {});
+    await firstValueFrom(call);
+  }
+
+  async unSetAdminAsync(employee: Employee): Promise<void> {
+    const call = this._httpClient.put(`${this.url}/${employee.id}/set-admin`, {});
+    await firstValueFrom(call);
+  }
 }

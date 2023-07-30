@@ -17,11 +17,12 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatMenuModule} from "@angular/material/menu";
 import {MatRippleModule} from "@angular/material/core";
 import {NavigationModule} from "@app/navigation";
+import {EmployeeSetAdmin} from "./set-admin/employee-set-admin";
 
 @NgModule({
   imports: [CommonModule, MatCheckboxModule, MatFormFieldModule, MatInputModule, MatDialogModule, MatCheckboxModule,
     MatProgressSpinnerModule, MatStepperModule, ReactiveFormsModule, MatButtonModule, FormsModule, NavigationModule, MatIconModule, MatMenuModule, MatRippleModule, NavigationModule],
-  declarations: [ EmployeeList, EmployeeAdd, EmployeeAddUser, EmployeeAddInfo ],
+  declarations: [ EmployeeList, EmployeeAdd, EmployeeAddUser, EmployeeAddInfo, EmployeeSetAdmin ],
   exports: [ EmployeeList ],
   providers: [ EmployeeUIService ]
 })

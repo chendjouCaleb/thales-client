@@ -38,6 +38,7 @@ import {CustomerPayments} from "./payments/customer-payments";
 import {PlaneTicketModule} from "../../../Components/plane-tickets";
 import {ProcedureApplyPageModule} from "@app/pages/admin/procedure-applies/procedure-apply.page.module";
 import {ProcedureApplyModule} from "@app/Components";
+import {CleaveModule} from "@app/cleave";
 
 const routes: Routes = [
   {
@@ -52,10 +53,10 @@ const routes: Routes = [
 ]
 
 @NgModule({
-  imports: [CommonModule, RouterModule.forChild(routes), FormsModule, MatButtonModule, MatIconModule,
-    MatInputModule, MatFormFieldModule, MatDialogModule, MatCheckboxModule, MatRadioModule, MatSelectModule,
-    MatStepperModule, ReactiveFormsModule, MatDatepickerModule, MatTableModule, MatTabsModule, PaymentModule, PlaneTicketModule,
-    ProcedureApplyModule],
+    imports: [CommonModule, RouterModule.forChild(routes), FormsModule, MatButtonModule, MatIconModule,
+        MatInputModule, MatFormFieldModule, MatDialogModule, MatCheckboxModule, MatRadioModule, MatSelectModule,
+        MatStepperModule, ReactiveFormsModule, MatDatepickerModule, MatTableModule, MatTabsModule, PaymentModule, PlaneTicketModule,
+        ProcedureApplyModule, CleaveModule],
 
   declarations: [
     CustomerPage, CustomerListPage, CustomerAddPage, CustomerAddAddress, CustomerAddContact,

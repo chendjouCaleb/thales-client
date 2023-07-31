@@ -6,6 +6,7 @@ import {FormGroup} from "@angular/forms";
 import {CustomerService} from "../../../../services";
 import {CustomerChangeInfoFormModel} from "../../../../models";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {DateTime} from "luxon";
 
 @Component({
   templateUrl: 'customer-change-info.html'
@@ -26,7 +27,7 @@ export class CustomerChangeInfo {
     const model = new CustomerChangeInfoFormModel();
     model.firstName   = this.formGroup.value.firstName;
     model.lastName    = this.formGroup.value.lastName;
-    model.birthDate   = this.formGroup.value.birthDate;
+    model.birthDate   = DateTime.fromJSDate(this.formGroup.value.birthDate).toFormat('yyyy-LL-dd')
     model.sex         = this.formGroup.value.sex;
 
     await this._service.changeInfoAsync(this.customer, model);

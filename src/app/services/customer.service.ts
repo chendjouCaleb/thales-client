@@ -33,7 +33,7 @@ export class CustomerService {
 
    customer.firstName = model.firstName
    customer.lastName = model.lastName
-   customer.birthDate = DateTime.fromJSDate(model.birthDate)
+   customer.birthDate = DateTime.fromFormat(model.birthDate, 'yyyy-LL-dd')
    customer.sex = model.sex
   }
 

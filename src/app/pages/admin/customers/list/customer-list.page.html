@@ -23,12 +23,17 @@
 
       <ng-container matColumnDef="sex">
         <th mat-header-cell *matHeaderCellDef> Sexe </th>
-        <td mat-cell *matCellDef="let element"> {{element.sex}} </td>
+        <td mat-cell *matCellDef="let element">
+          <span class="fontSize-12" *ngIf="element.sex == 'M'">Masc.</span>
+          <span class="fontSize-12" *ngIf="element.sex == 'F'">Fém.</span>
+        </td>
       </ng-container>
 
       <ng-container matColumnDef="birthDate">
         <th mat-header-cell *matHeaderCellDef> Date de naiss. </th>
-        <td mat-cell *matCellDef="let element"> {{element.birthDate?.toFormat('DDD')}} </td>
+        <td mat-cell *matCellDef="let element">
+          <span class="fontSize-12">{{element.birthDate?.toFormat('DD')}}</span>
+        </td>
       </ng-container>
 
       <ng-container matColumnDef="action">

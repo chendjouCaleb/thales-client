@@ -1,7 +1,7 @@
 export class CustomerAddFormModel {
   firstName: string = ""
   lastName: string = ""
-  birthDate: Date;
+  birthDate: string;
   sex: string = '';
   languages: string[] = [];
 
@@ -26,7 +26,7 @@ export class CustomerAddFormModel {
 export class CustomerChangeInfoFormModel {
   firstName: string = ""
   lastName: string = ""
-  birthDate: Date;
+  birthDate: string;
   sex: string = '';
 }
 

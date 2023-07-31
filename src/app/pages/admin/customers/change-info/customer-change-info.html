@@ -18,11 +18,7 @@
 
   <mat-form-field>
     <mat-label>Date de naissance</mat-label>
-    <input type="text" matInput formControlName="birthDate" required
-           (click)="birthDatePicker.open()"
-           [matDatepicker]="birthDatePicker">
-    <mat-datepicker-toggle matIconSuffix [for]="birthDatePicker"></mat-datepicker-toggle>
-    <mat-datepicker #birthDatePicker></mat-datepicker>
+    <input type="text" matInput formControlName="birthDate" required CleaveDateInput>
   </mat-form-field>
 
   <div>

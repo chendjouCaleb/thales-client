@@ -1,10 +1,9 @@
 import {Component, Inject} from "@angular/core";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {Customer} from "../../../../../entities";
-import {customerInfoForm} from "../customer-form";
+import {Customer} from "@entities/customer";
 import {FormControl, FormGroup} from "@angular/forms";
-import {CustomerService} from "../../../../services";
-import {CustomerChangeInfoFormModel, CustomerChangeJobFormModel} from "../../../../models";
+import {CustomerService} from "@app/services";
+import {CustomerChangeJobFormModel} from "@app/models";
 import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({

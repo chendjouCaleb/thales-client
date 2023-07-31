@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
-import {Customer, Payment, PlaneTicket } from "../../entities";
+import {Agency, Customer, Payment, PlaneTicket} from "../../entities";
 import {SERVER_URL} from "../http/http-config";
 import {firstValueFrom} from "rxjs";
 import {PlaneTicketAddModel} from "../models";
@@ -39,8 +39,8 @@ export class PlaneTicketService {
     return new PlaneTicket(value);
   }
 
-  async addAsync(customer: Customer, model: PlaneTicketAddModel): Promise<PlaneTicket> {
-    const params = {customerId: customer.id};
+  async addAsync(agency: Agency, customer: Customer, model: PlaneTicketAddModel): Promise<PlaneTicket> {
+    const params = {customerId: customer.id, agencyId: agency.id};
     const call = this._httpClient.post<any>(`${this.url}`, model, {params});
     const result =  await firstValueFrom(call);
     return new PlaneTicket(result);

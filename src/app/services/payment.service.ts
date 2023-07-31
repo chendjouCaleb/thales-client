@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {SERVER_URL} from "../http";
-import {Customer, Payment} from "../../entities";
+import {Agency, Customer, Payment} from "../../entities";
 import {HttpClient} from "@angular/common/http";
 import {firstValueFrom} from "rxjs";
 import {PaymentAddFormModel} from "../models/forms/payment.form-model";
@@ -12,8 +12,8 @@ export class PaymentService {
   private url = `${SERVER_URL}/payments`;
   constructor(private _httpClient: HttpClient) {}
 
-  async addAsync(customer: Customer, model: PaymentAddFormModel): Promise<Payment> {
-    const params = {customerId: customer.id }
+  async addAsync(agency: Agency, customer: Customer, model: PaymentAddFormModel): Promise<Payment> {
+    const params = {customerId: customer.id, agencyId: agency.id }
     const call = this._httpClient.post<Payment>(`${this.url}`, model, {params});
     return new Payment(await firstValueFrom(call));
   }

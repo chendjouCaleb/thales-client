@@ -1,8 +1,8 @@
 import {Component, OnInit, ViewChild} from "@angular/core";
-import {PaymentService} from "../../../../services";
-import {Payment} from "../../../../../entities";
-import {PaymentUIService} from "../../../../Components/payments";
-import {PaymentsList} from "../../../../Components/payments/list/payments-list";
+import {PaymentService} from "@app/services";
+import {Payment} from "@entities/payment";
+import {PaymentUIService} from "@app/Components/payments";
+import {PaymentsList} from "@app/Components/payments/list/payments-list";
 
 @Component({
   templateUrl: 'payments-list.page.html'
@@ -22,14 +22,6 @@ export class PaymentsListPage implements OnInit {
 
     this._service.listAsync().then(items => {
       this.payments = items;
-    })
-  }
-
-  addPayment() {
-    this._uiService.addPayment(null).subscribe(payment => {
-      if (payment) {
-        this.paymentList.unshift(payment);
-      }
     })
   }
 

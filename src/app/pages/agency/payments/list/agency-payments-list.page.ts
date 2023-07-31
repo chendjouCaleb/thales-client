@@ -1,8 +1,8 @@
 import {Component, OnInit, ViewChild} from "@angular/core";
-import {PaymentService} from "../../../../services";
+import {PaymentService} from "@app/services";
 import {Agency, Payment} from "../../../../../entities";
-import {PaymentUIService} from "../../../../Components/payments";
-import {PaymentsList} from "../../../../Components/payments/list/payments-list";
+import {PaymentUIService} from "@app/Components/payments";
+import {PaymentsList} from "@app/Components/payments/list/payments-list";
 import {AgencyPage} from "@app/pages/agency/agency.page";
 
 @Component({
@@ -30,7 +30,7 @@ export class AgencyPaymentsListPage implements OnInit {
   }
 
   addPayment() {
-    this._uiService.addPayment(null).subscribe(payment => {
+    this._uiService.addPayment(this.agency, null).subscribe(payment => {
       if (payment) {
         this.paymentList.unshift(payment);
       }

@@ -11,7 +11,6 @@ export class CustomerAddJob {
     jobTitle: new FormControl('')
   })
 
-
   constructor(public parent: CustomerAddPage) {}
 
   next() {

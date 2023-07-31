@@ -2,16 +2,18 @@ import {Component, Inject} from "@angular/core";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {FormControl, FormGroup} from "@angular/forms";
-import {Customer} from "../../../../entities";
-import {PaymentService} from "../../../services";
-import {PaymentAddFormModel} from "../../../models/forms/payment.form-model";
+import {Customer} from "@entities/customer";
+import {PaymentService} from "@app/services";
+import {PaymentAddFormModel} from "@app/models/forms/payment.form-model";
 import {CustomerPicker, CustomerPickerDialog} from "@app/Components";
+import {Agency} from "@entities/agency";
 
 @Component({
   templateUrl: 'payment-add.html'
 })
 export class PaymentAdd {
   customer: Customer;
+  agency: Agency;
 
   formGroup = new FormGroup({
     customer: new FormControl<number>(null),
@@ -26,7 +28,7 @@ export class PaymentAdd {
               private _service: PaymentService,
               private _snackbar: MatSnackBar) {
     this.customer = data.customer;
-
+    this.agency = data.agency;
   }
 
   selectCustomer(event) {
@@ -44,7 +46,7 @@ export class PaymentAdd {
 
   async validate() {
     const model = new PaymentAddFormModel(this.formGroup.value);
-    const payment = await this._service.addAsync(this.customer, model);
+    const payment = await this._service.addAsync(this.agency, this.customer, model);
     this._dialogRef.close(payment);
     this._snackbar.open(`Le paiement a été ajouté`, '', {duration: 5000});
   }

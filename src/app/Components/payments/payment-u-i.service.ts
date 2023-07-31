@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {MatDialog} from "@angular/material/dialog";
-import {Customer, Payment} from "../../../entities";
+import {Agency, Customer, Payment} from "../../../entities";
 import {Observable} from "rxjs";
 import {PaymentAdd} from "./add/payment-add";
 import {PaymentDelete} from "./delete/payment-delete";
@@ -11,8 +11,8 @@ import {PaymentDelete} from "./delete/payment-delete";
 export class PaymentUIService {
   constructor(private _dialog: MatDialog) {}
 
-  addPayment(customer: Customer): Observable<Payment> {
-    const dialogRef = this._dialog.open(PaymentAdd, {panelClass: 'dialog-panel', data: {customer}});
+  addPayment(agency: Agency, customer: Customer): Observable<Payment> {
+    const dialogRef = this._dialog.open(PaymentAdd, {panelClass: 'dialog-panel', data: {customer, agency}});
     return dialogRef.afterClosed();
   }
 

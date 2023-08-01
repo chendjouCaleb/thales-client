@@ -1,6 +1,6 @@
 import {AfterViewInit, Component, OnInit, ViewChild} from "@angular/core";
 import {MatSidenav} from "@angular/material/sidenav";
-import {AuthenticationService, Session} from "../../identity";
+import {AuthenticationService, Session} from "@app/identity";
 import {Agency} from "@entities/agency";
 import {AgencyHttpClient} from "@app/services/agency.http-client";
 import {ActivatedRoute} from "@angular/router";

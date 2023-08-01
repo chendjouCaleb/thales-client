@@ -11,13 +11,13 @@ import {ScaffoldModule} from "@app/Components";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MatTooltipModule} from "@angular/material/tooltip";
-import {AgencyPaymentsListPage} from "@app/pages/agency/payments/list/agency-payments-list.page";
-import {AgencyPlaneTicketListPage} from "@app/pages/agency/plane-ticket/list/agency-plane-ticket-list.page";
+import {AgencyPaymentsListPage} from "./payments/list/agency-payments-list.page";
+import {AgencyPlaneTicketListPage} from "./plane-ticket/list/agency-plane-ticket-list.page";
 import {PaymentModule} from "@app/Components/payments";
 import {PlaneTicketModule} from "@app/Components/plane-tickets";
-import {AgencyEmployeesPage} from "@app/pages/agency/employees/agency-employees.page";
+import {AgencyEmployeesPage} from "./employees/agency-employees.page";
 import {EmployeeModule} from "@app/Components/employees";
-import {AgencySettingsPage} from "@app/pages/agency/settings/agency-settings.page";
+import {AgencySettingsPage} from "./settings/agency-settings.page";
 import {AgencyModule} from "@app/Components/agencies";
 
 const routes: Routes = [

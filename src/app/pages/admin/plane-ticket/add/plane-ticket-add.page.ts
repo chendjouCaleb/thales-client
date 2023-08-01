@@ -1,13 +1,15 @@
 import {Component, OnInit} from "@angular/core";
-import {ProcedureFormModel} from "../../../../models";
+import {ProcedureFormModel} from "@app/models";
 import {MatDialog} from "@angular/material/dialog";
 import {PlaneTicketAddRemember} from "./plane-ticket-add-remember";
 import {FormControl, FormGroup} from "@angular/forms";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {Router} from "@angular/router";
-import {PlaneTicketService} from "../../../../services";
-import {CustomerPickerDialog} from "../../../../Components";
-import {Customer} from "../../../../../entities";
+import {ActivatedRoute, Router} from "@angular/router";
+import {PlaneTicketService} from "@app/services";
+import {CustomerPickerDialog} from "@app/Components";
+import {Customer} from "@entities/customer";
+import {AgencyHttpClient} from "@app/services/agency.http-client";
+import {Agency} from "@entities/agency";
 
 @Component({
   templateUrl: 'plane-ticket-add.page.html'
@@ -18,10 +20,13 @@ export class PlaneTicketAddPage implements OnInit {
   formGroup: FormGroup;
 
   customer: Customer;
+  agency: Agency;
 
   constructor(private _dialog: MatDialog,
               private _snackbar: MatSnackBar,
               private _router: Router,
+              private _route: ActivatedRoute,
+              private _agencyHttpClient: AgencyHttpClient,
               private _customerPicker: CustomerPickerDialog,
               private _service: PlaneTicketService) {
 
@@ -44,7 +49,9 @@ export class PlaneTicketAddPage implements OnInit {
     });
   }
 
-  ngOnInit() {
+  async ngOnInit() {
+    const agencyId = +this._route.snapshot.queryParams['agencyId'];
+    this.agency = await this._agencyHttpClient.getByIdAsync(agencyId);
     this._customerPicker.open().subscribe(customer => {
       if(customer) {
         this.customer = customer;
@@ -55,7 +62,7 @@ export class PlaneTicketAddPage implements OnInit {
 
   async addPlaneTicket() {
     const model = this.formGroup.value;
-   const planeTicket = await this._service.addAsync(this.customer, model);
+   const planeTicket = await this._service.addAsync(this.agency, this.customer, model);
 
     this._snackbar.open(`La commande de billet d'avion a été ajoutée.`, 'VOIR', {})
         .onAction().subscribe(() => {

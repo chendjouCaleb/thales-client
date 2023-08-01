@@ -9,5 +9,5 @@
   </div>
   <div class="divider my-3"></div>
 
-  <div [employee-list]="{agencyId: agency.id}"></div>
+  <EmployeeList [params]="{agencyId: agency.id}" #employeeList></EmployeeList>
 </div>

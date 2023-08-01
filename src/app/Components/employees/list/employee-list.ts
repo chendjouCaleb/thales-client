@@ -1,14 +1,14 @@
 import {Component, Input, OnInit} from "@angular/core";
 import {EmployeeHttpClient} from "@app/services/employee-http-client.service";
 import {Employee} from "@entities/employee";
-import {EmployeeUIService} from "@app/Components/employees";
+import {EmployeeUIService} from "../employee-UIService";
 
 @Component({
   templateUrl: 'employee-list.html',
-  selector: '[employee-list]'
+  selector: '[employee-list], EmployeeList'
 })
 export class EmployeeList implements OnInit {
-  @Input('employee-list')
+  @Input()
   params: any = {}
 
   employees: Employee[];
@@ -40,5 +40,13 @@ export class EmployeeList implements OnInit {
 
   unsetAdmin(employee: Employee) {
     this.uiService.unsetAdmin(employee);
+  }
+
+  delete(employee: Employee) {
+    this.uiService.delete(employee).subscribe(deleted => {
+      if(deleted) {
+        this.employees = this.employees.filter(e => e.id != employee.id);
+      }
+    });
   }
 }

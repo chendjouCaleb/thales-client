@@ -2,77 +2,96 @@
   <mat-spinner></mat-spinner>
 </div>
 
-<div *ngIf="!isLoading">
-  <table mat-table [dataSource]="dataSource" >
-    <ng-container matColumnDef="id">
-      <th mat-header-cell *matHeaderCellDef>Id</th>
-      <td mat-cell *matCellDef="let element">
-        {{element.id}}
-      </td>
-    </ng-container>
+<mat-drawer-container >
+  <mat-drawer-content>
+    <div *ngIf="!isLoading">
+    <table mat-table [dataSource]="dataSource" >
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>Id</th>
+        <td mat-cell *matCellDef="let element">
+          {{element.id}}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="code">
+        <th mat-header-cell *matHeaderCellDef>Code</th>
+        <td mat-cell *matCellDef="let element">
+          {{element.code}}
+        </td>
+      </ng-container>
 
 
-    <ng-container matColumnDef="amount">
-      <th mat-header-cell *matHeaderCellDef> Montant </th>
-      <td mat-cell *matCellDef="let element">
-        <span class="fontWeight-semiBold" >{{element.amount | number}} FCFA </span>
-      </td>
-    </ng-container>
+      <ng-container matColumnDef="amount">
+        <th mat-header-cell *matHeaderCellDef> Montant </th>
+        <td mat-cell *matCellDef="let element">
+          <span class="fontWeight-semiBold" >{{element.amount | number}} FCFA </span>
+        </td>
+      </ng-container>
 
-    <ng-container matColumnDef="reason">
-      <th mat-header-cell *matHeaderCellDef> Raison </th>
-      <td mat-cell *matCellDef="let element">
-        <a *ngIf="element.planeTicket" routerLink="/admin/plane-tickets/{{element.planeTicket.id}}"
-           class="inline-badge ms-bgColor-cyan-10 ms-bgColor-cyan-20--hover">
-          Billet d'avion N°{{element.planeTicket.id}}
-        </a>
-
-        <a *ngIf="element.procedureApplyStep" routerLink="/admin/procedure-applies/{{element.procedureApplyStep.procedureApplyId}}"
-           class="inline-badge ms-bgColor-magentaPink-10 ms-bgColor-magentaPink-20--hover">
-          Procédure N°{{element.procedureApplyStep.id}}
-        </a>
-
-        {{element.reason}}
-
-      </td>
-    </ng-container>
-
-    <ng-container matColumnDef="customer">
-      <th mat-header-cell *matHeaderCellDef>Client</th>
-      <td mat-cell *matCellDef="let element">
-        <a [routerLink]="['/admin/customers', element.id]">{{element.customer.fullName}}</a>
-      </td>
-    </ng-container>
-
-    <ng-container matColumnDef="createdAt">
-      <th mat-header-cell *matHeaderCellDef>Ajouté le</th>
-      <td mat-cell *matCellDef="let element">
-        <span class="fontSize-12">{{element.createdAt.toFormat('ff')}}</span>
-      </td>
-    </ng-container>
-
-    <ng-container matColumnDef="action">
-      <th mat-header-cell *matHeaderCellDef> </th>
-      <td mat-cell *matCellDef="let element" >
-        <div class="align-end">
-          <a mat-icon-button [matMenuTriggerFor]="menu" class="text-uppercase">
-            <mat-icon>more_vert</mat-icon>
+      <ng-container matColumnDef="reason">
+        <th mat-header-cell *matHeaderCellDef> Raison </th>
+        <td mat-cell *matCellDef="let element">
+          <a *ngIf="element.planeTicket" routerLink="/admin/plane-tickets/{{element.planeTicket.id}}"
+             class="inline-badge ms-bgColor-cyan-10 ms-bgColor-cyan-20--hover">
+            Billet d'avion N°{{element.planeTicket.id}}
           </a>
-          <mat-menu #menu="matMenu">
-            <a mat-menu-item (click)="printPDF(element)"> <mat-icon svgIcon="pdf-svg-repos"></mat-icon>  Imprimer</a>
-            <button mat-menu-item (click)="delete(element)">
-              <mat-icon>delete</mat-icon>
-              Supprimer</button>
-          </mat-menu>
-        </div>
-      </td>
-    </ng-container>
+
+          <a *ngIf="element.procedureApplyStep" routerLink="/admin/procedure-applies/{{element.procedureApplyStep.procedureApplyId}}"
+             class="inline-badge ms-bgColor-magentaPink-10 ms-bgColor-magentaPink-20--hover">
+            Procédure N°{{element.procedureApplyStep.id}}
+          </a>
+
+          {{element.reason}}
+
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="customer">
+        <th mat-header-cell *matHeaderCellDef>Client</th>
+        <td mat-cell *matCellDef="let element">
+          <a [routerLink]="['/admin/customers', element.id]">{{element.customer.fullName}}</a>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="createdAt">
+        <th mat-header-cell *matHeaderCellDef>Ajouté le</th>
+        <td mat-cell *matCellDef="let element">
+          <span class="fontSize-12">{{element.createdAt.toFormat('ff')}}</span>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef> </th>
+        <td mat-cell *matCellDef="let element" >
+          <div class="align-end">
+            <a mat-icon-button [matMenuTriggerFor]="menu" class="text-uppercase">
+              <mat-icon>more_vert</mat-icon>
+            </a>
+            <mat-menu #menu="matMenu">
+              <a mat-menu-item (click)="details(element)"> <mat-icon>file</mat-icon>  Détails</a>
+              <a mat-menu-item (click)="printPDF(element)"> <mat-icon svgIcon="pdf-svg-repos"></mat-icon>  Imprimer</a>
+              <button mat-menu-item (click)="delete(element)">
+                <mat-icon>delete</mat-icon>
+                Supprimer</button>
+            </mat-menu>
+          </div>
+        </td>
+      </ng-container>
 
 
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row
-        (click)="onClick(row)"
-        *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
-</div>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row
+          (click)="onClick(row)"
+          *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div></mat-drawer-content>
+  <mat-drawer position="end" [autoFocus]="false" style="width: 200px">
+    détails
+  </mat-drawer>
+
+</mat-drawer-container>
+
+
+
+

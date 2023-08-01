@@ -1,8 +1,8 @@
 import {Component, OnInit, ViewChild} from "@angular/core";
-import {PlaneTicketService} from "../../../../services";
-import {PlaneTicket} from "../../../../../entities";
-import {PlaneTicketList} from "../../../../Components/plane-tickets/list/plane-ticket-list";
-import {PlaneTicketUIService} from "../../../../Components/plane-tickets";
+import {PlaneTicketService} from "@app/services";
+import {PlaneTicket} from "@entities/plane-ticket";
+import {PlaneTicketList} from "@app/Components/plane-tickets/list/plane-ticket-list";
+import {PlaneTicketUIService} from "@app/Components/plane-tickets";
 
 @Component({
   templateUrl: 'plane-ticket-list.page.html'

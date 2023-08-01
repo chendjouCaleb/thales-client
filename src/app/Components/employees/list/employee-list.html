@@ -29,7 +29,7 @@
           <button mat-menu-item (click)="unsetAdmin(employee)" *ngIf="employee.isAdmin">
             <mat-icon></mat-icon> Enlever comme administrateur
           </button>
-          <button mat-menu-item >
+          <button mat-menu-item (click)="delete(employee)">
             <mat-icon>delete</mat-icon>Supprimer</button>
         </mat-menu>
       </div>

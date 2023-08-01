@@ -1,9 +1,11 @@
 <mat-toolbar class="mat-elevation-z8" style="padding-left: 0">
-  <button style="margin-left: 8px; margin-right: 8px" mat-icon-button aria-label="Open menu icon" #sidebarToggleBtn (click)="scaffold.sidenav.toggle()">
+  <button style="margin-left: 8px; margin-right: 8px" mat-icon-button aria-label="Open menu icon"
+
+          #sidebarToggleBtn (click)="scaffold.sidenav.toggle()">
     <mat-icon>menu</mat-icon>
   </button>
 
-  <span class="cursor-pointer" routerLink="/admin">FAST App</span>
+  <span class="cursor-pointer" routerLink="/admin" matTooltip="Accueil">FAST App</span>
 
   <div style="flex: 1 1 auto;"></div>
 

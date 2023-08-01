@@ -1,12 +1,13 @@
-import {Component, Inject, Input, OnInit} from "@angular/core";
+import {Component, Inject, Input, OnInit, ViewChild} from "@angular/core";
 
-import {Payment} from "../../../../entities";
-import {PaymentService} from "../../../services";
+import {Payment} from "@entities/payment";
+import {PaymentService} from "@app/services";
 import {MatTableDataSource} from "@angular/material/table";
 import {PaymentUIService} from "../payment-u-i.service";
 import {Router} from "@angular/router";
 import {DOCUMENT} from "@angular/common";
 import {environment} from "../../../../environments/environment";
+import {MatDrawer} from "@angular/material/sidenav";
 
 @Component({
   templateUrl: 'payments-list.html',
@@ -18,7 +19,11 @@ export class PaymentsList implements OnInit {
   dataSource = new MatTableDataSource<Payment>();
   isLoading = true;
 
-  displayedColumns: string[] = ['id', 'amount', 'createdAt', 'reason', 'customer', 'action'];
+  @ViewChild(MatDrawer)
+  drawer: MatDrawer
+
+
+  displayedColumns: string[] = ['id', 'code',  'amount', 'createdAt', 'reason', 'customer', 'action'];
 
   constructor(private _service: PaymentService,
               private _router: Router,
@@ -51,6 +56,10 @@ export class PaymentsList implements OnInit {
         this.remove(payment);
       }
     })
+  }
+
+  details(payment: Payment) {
+    this.drawer.open()
   }
 
   printPDF(payment: Payment) {

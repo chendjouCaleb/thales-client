@@ -4,6 +4,7 @@ export class BaseEntity<TID> {
   id: TID;
   createdAt: DateTime;
   deletedAt: DateTime;
+  code: string = '';
 
 
   constructor(value: any = {}) {
@@ -11,6 +12,7 @@ export class BaseEntity<TID> {
       this.createdAt = DateTime.fromISO(value.createdAt);
       this.deletedAt = DateTime.fromISO(value.deletedAt);
       this.id = value.id;
+      this.code = value.code;
     }
   }
 

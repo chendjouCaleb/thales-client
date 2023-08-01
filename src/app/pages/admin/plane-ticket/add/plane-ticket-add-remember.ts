@@ -25,8 +25,8 @@ export class PlaneTicketAddRemember {
   set departureCity(value: string) { this.store.setItem('departureCity', value); }
 
   get departureDate(): Date {
-   const str = this.store.getItem('departureDate');
-   return new Date(Date.parse(str.toString()))
+   const str = this.store.getItem<string>('departureDate');
+   return str ? new Date(Date.parse(str)) : null
   }
   set departureDate(value: Date) { this.store.setItem('departureDate', value); }
 
@@ -38,7 +38,7 @@ export class PlaneTicketAddRemember {
 
   get returnDate(): Date {
     const str = this.store.getItem('returnDate');
-    return new Date(Date.parse(str.toString()))
+    return str ? new Date(Date.parse(str.toString())) : null;
   }
   set returnDate(value: Date) {this.store.setItem('returnDate', value); }
 

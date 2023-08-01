@@ -3,8 +3,8 @@
     <div class="page-title flex-grow-1">Commandes de billet d'avion</div>
 
     <div>
-      <button mat-stroked-button color="primary" routerLink="/admin/plane-tickets/add">
-        <mat-icon>add</mat-icon> Ajouter un billet d'avion </button>
+      <a mat-stroked-button color="primary" routerLink="/admin/plane-tickets/add" [queryParams]="{agencyId:agency.id}">
+        <mat-icon>add</mat-icon> Ajouter un billet d'avion </a>
     </div>
   </div>
   <div class="divider my-3"></div>

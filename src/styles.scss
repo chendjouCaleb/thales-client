@@ -179,3 +179,12 @@ $button-typography: mat.define-typography-config(
 .cursor-pointer {
   cursor: pointer;
 }
+
+.label {
+  font-weight: 500;
+}
+
+.value {
+  font-weight: 400;
+  color: $ms-color-gray180;
+}

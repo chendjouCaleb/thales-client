@@ -5,9 +5,15 @@
       <div class="divider"></div>
 
       <div class="mt-4">
+        <div class="label">Client</div>
+        <div *ngIf="customer" class="value">{{customer.fullName}}</div>
+      </div>
+      <div class="mt-4">
       <div>
         <mat-checkbox formControlName="backAndForth" color="primary">Aller & retour</mat-checkbox>
       </div>
+
+
 
       <div class="mt-3">
         <mat-radio-group color="primary" formControlName="travelClass">

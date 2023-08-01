@@ -25,7 +25,7 @@ const routes: Routes = [
     path: '', component: AgencyPage, children: [
       {path: 'payments', component: AgencyPaymentsListPage},
       {path: 'employees', component: AgencyEmployeesPage},
-      {path: 'plane-tickets', component: AgencyPaymentsListPage},
+      {path: 'plane-tickets', component: AgencyPlaneTicketListPage},
       {path: 'settings', component: AgencySettingsPage},
       {path: '', redirectTo: 'payments', pathMatch: 'full'}
     ]

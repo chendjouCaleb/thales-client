@@ -3,7 +3,8 @@ import {Payment} from "@entities/payment";
 
 
 @Component({
-  templateUrl: 'payment-details.html'
+  templateUrl: 'payment-details.html',
+  selector: 'PaymentDetails'
 })
 export class PaymentDetails {
   @Input()

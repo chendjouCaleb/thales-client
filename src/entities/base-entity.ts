@@ -10,7 +10,7 @@ export class BaseEntity<TID> {
   constructor(value: any = {}) {
     if(value){
       this.createdAt = DateTime.fromISO(value.createdAt);
-      this.deletedAt = DateTime.fromISO(value.deletedAt);
+      this.deletedAt = value.deletedAt ? DateTime.fromISO(value.deletedAt) : null;
       this.id = value.id;
       this.code = value.code;
     }

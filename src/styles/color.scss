@@ -27,6 +27,10 @@ $ms-color-magentaPink-20: #9b0062;
 $ms-color-cyan-10: #00b7c3;
 $ms-color-cyan-20: #038387;
 
+$ms-color-red-10: #d13438;
+$ms-color-red-20: #a4262c;
+$ms-color-pinkRed-20: #750b1c;
+
 .bg-color-0 { background-color: $ms-color-gray0; }
 .bg-color-20 { background-color: $ms-color-gray20; }
 .bg-color-10 { background-color: $ms-color-gray10; }
@@ -47,6 +51,10 @@ $ms-color-cyan-20: #038387;
 
 .ms-bgColor-magentaPink-10 { background-color: $ms-color-magentaPink-10}
 .ms-bgColor-magentaPink-20 { background-color: $ms-color-magentaPink-20}
+
+.ms-bgColor-red-10 { background-color: $ms-color-red-10}
+.ms-bgColor-red-20 { background-color: $ms-color-red-20}
+.ms-bgColor-pinkRed-20 { background-color: $ms-color-pinkRed-20}
 
 
 .ms-bgColor-cyanBlue-10--hover:hover { background-color: $ms-color-cyanBlue-10}

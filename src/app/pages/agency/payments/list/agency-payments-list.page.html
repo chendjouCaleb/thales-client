@@ -9,5 +9,6 @@
   </div>
   <div class="divider my-3"></div>
 
-  <PaymentList [params]="{agencyId:agency.id}"></PaymentList>
+  <PaymentList [params]="{agencyId:agency.id}"
+  [displayedColumns]="[ 'code',  'amount',  'reason', 'customer', 'employee', 'createdAt', 'action']"></PaymentList>
 </div>

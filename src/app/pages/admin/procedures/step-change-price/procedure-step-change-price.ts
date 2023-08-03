@@ -1,8 +1,8 @@
 import {Component, Inject} from "@angular/core";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {ProcedureService} from "../../../../services";
+import {ProcedureService} from "@app/services";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {Procedure, ProcedureStep} from "../../../../../entities";
+import {Procedure, ProcedureStep} from "@entities/procedure";
 import {FormControl, FormGroup} from "@angular/forms";
 
 @Component({
@@ -18,7 +18,7 @@ export class ProcedureStepChangePrice {
               private _service: ProcedureService,
               private _snackbar: MatSnackBar) {
     this.procedureStep = data.procedure;
-    this.formControl = new FormControl(this.procedureStep.price);
+    this.formControl = new FormControl(this.procedureStep.price.amount);
   }
 
   async changePrice() {

@@ -97,14 +97,14 @@ $button-typography: mat.define-typography-config(
 .description-list {
   & dt {
     font-size: 14px;
-    font-weight: 400;
-    opacity: .9;
+    font-weight: 600;
     margin-top: 16px;
   }
 
   & dd {
     font-size: 14px;
-    font-weight: 600;
+    font-weight: 400;
+    opacity: .9;
   }
 
   & dd.empty{

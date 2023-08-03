@@ -34,7 +34,7 @@
     <a class="mt-3 br-4 p-3 bg-color-10 borderColor-20 bg-color-20--hover divLink d-flex align-items-center"
        *ngFor="let payment of applyStep.payments">
      <div class="flex-grow-1">
-       <div class="fontWeight-semiBold">{{payment.amount | number}} FCFA</div>
+       <div class="fontWeight-semiBold">{{payment.amount.amount | currency: payment.amount.currency}} </div>
        <div class="fontSize-12">{{payment.createdAt.toFormat('ff')}}</div>
      </div>
 

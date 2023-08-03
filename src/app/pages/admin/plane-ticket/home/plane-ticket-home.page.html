@@ -21,7 +21,7 @@
   <div class="divider"></div>
 
   <dl class="description-list">
-    <dt>client</dt>
+    <dt>Client</dt>
     <dd>
       <a routerLink="/admin/customers/{{planeTicket.customer.id}}/home">{{planeTicket.customer?.fullName}}</a>
     </dd>
@@ -55,7 +55,9 @@
   <div class="divider my-3"></div>
 
   <div class="fontSize-18 fontWeight-semiBold mb-3">Paiements effectués</div>
-  <PaymentList [params]="{planeTicketId: planeTicket.id}">
+  <PaymentList [params]="{planeTicketId: planeTicket.id}"
+               [displayedColumns]="[ 'code',  'amount',  'customer', 'agency', 'employee', 'createdAt', 'action']"
+  >
 
   </PaymentList>
 

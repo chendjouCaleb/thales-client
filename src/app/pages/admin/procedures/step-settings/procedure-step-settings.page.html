@@ -3,8 +3,8 @@
 
   <div class="mt-4 d-flex align-items-center">
     <div class="flex-grow-1">
-      <div class="fontWeight-semiBold">Nom</div>
-      <div class="fontWeight-semiBold">{{ procedureStep.name }}</div>
+      <div class="label">Nom</div>
+      <div class="value">{{ procedureStep.name }}</div>
     </div>
 
     <button mat-button color="primary" (click)="editName()">
@@ -18,7 +18,8 @@
   <div class=" d-flex align-items-center">
     <div class="flex-grow-1">
       <div class="fontWeight-semiBold">Prix</div>
-      <div class="fontColor-140">{{ procedureStep.price | number }} FCFA</div>
+      <div class="fontColor-140">
+        {{ procedureStep.price.amount | currency: procedureStep.price.currency }}</div>
     </div>
 
     <button mat-button color="primary" (click)="editPrice()">

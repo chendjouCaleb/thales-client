@@ -20,7 +20,7 @@
 
       <div class="ms-3 flex-grow-1">
         <div class="fontWeight-semiBold">{{step.name}}</div>
-        <div>{{step.price | number}} FCFA</div>
+        <div>{{step.price.amount | currency: step.price.currency}}</div>
       </div>
 
     </a>

@@ -1,8 +1,8 @@
 import {Component, Input, OnInit} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
 import {Procedure, ProcedureApply} from "../../../../../entities";
-import {CustomerPickerDialog, ProcedureApplyDialog} from "../../../../Components";
-import {ProcedureApplyService} from "../../../../services";
+import {CustomerPickerDialog} from "@app/Components";
+import {ProcedureApplyService} from "@app/services";
 
 
 @Component({
@@ -17,7 +17,6 @@ export class ProcedureAppliesPage implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private _picker: CustomerPickerDialog,
-              private _apply: ProcedureApplyDialog,
               private _service: ProcedureApplyService) {}
 
   async ngOnInit() {
@@ -27,11 +26,11 @@ export class ProcedureAppliesPage implements OnInit {
     this.applies = await this._service.listByProcedureAsync(this.procedure);
   }
 
-  apply() {
-    this._picker.open().subscribe(customer => {
-      if(customer) {
-        this._apply.open(this.procedure, customer);
-      }
-    });
-  }
+  // apply() {
+  //   this._picker.open().subscribe(customer => {
+  //     if(customer) {
+  //       this._apply.open(this.procedure, customer);
+  //     }
+  //   });
+  // }
 }

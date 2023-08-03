@@ -1,0 +1,16 @@
+<div class="p-4 m-3 br-8 bg-color-0">
+
+
+  <div class="d-flex align-items-center">
+    <div class="fontSize-20 fontWeight-semiBold">Procédures en cours</div>
+
+    <button mat-stroked-button (click)="apply()">
+      <mat-icon>add</mat-icon>
+      Ajouter une application
+    </button>
+  </div>
+
+  <div class="mt-4">
+    <procedure-apply-list [params]="{agencyId: agency.id}"></procedure-apply-list>
+  </div>
+</div>

@@ -1,0 +1,20 @@
+<div class="d-flex align-items-center justify-content-between px-4 my-3">
+  <div class="fontSize-20 fontWeight-semiBold">Ajouter une application</div>
+  <button mat-icon-button mat-dialog-close=""><mat-icon>close</mat-icon></button>
+</div>
+
+<div class="mx-4">
+  <nav-host startUrl="procedure">
+    <ng-template nav-route="procedure">
+      <procedure-apply-add-procedure></procedure-apply-add-procedure>
+    </ng-template>
+    <ng-template nav-route="customer">
+      <procedure-apply-add-customer></procedure-apply-add-customer>
+    </ng-template>
+
+    <ng-template nav-route="confirm">
+      <procedure-apply-add-confirm></procedure-apply-add-confirm>
+    </ng-template>
+  </nav-host>
+</div>
+

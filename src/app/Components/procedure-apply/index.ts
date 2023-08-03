@@ -1,3 +1,3 @@
-export * from './procedure-apply.dialog';
 export * from './procedure-apply.module';
-export * from './procedure-apply-add.component';
+export * from './add/procedure-apply-add';
+export * from './procedure-apply.controller'

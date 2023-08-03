@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
-import {Customer, Payment, Procedure, ProcedureApply, ProcedureApplyStep, ProcedureStep} from "../../entities";
+import {Agency, Customer, Payment, Procedure, ProcedureApply, ProcedureApplyStep, ProcedureStep} from "../../entities";
 import {SERVER_URL} from "../http/http-config";
 import {firstValueFrom} from "rxjs";
 import {ProcedureApplyStepValidateModel, ProcedureStepFormModel} from "../models";
@@ -40,8 +40,8 @@ export class ProcedureApplyService {
     return new ProcedureApply(value);
   }
 
-  async addAsync(customer: Customer, procedure: Procedure): Promise<Procedure> {
-    const params = {customerId: customer.id, procedureId: procedure.id};
+  async addAsync(agency: Agency, customer: Customer, procedure: Procedure): Promise<Procedure> {
+    const params = {customerId: customer.id, procedureId: procedure.id, agencyId: agency.id};
     const call = this._httpClient.post<Procedure>(`${this.url}`, {}, {params});
     return firstValueFrom(call);
   }

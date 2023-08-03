@@ -4,9 +4,10 @@ import {PlaneTicket} from "./plane-ticket";
 import {ProcedureApplyStep} from "./procedure-apply";
 import {Agency} from "@entities/agency";
 import {Employee} from "@entities/employee";
+import {Money} from "@entities/money";
 
 export class Payment extends BaseEntity<number> {
-  amount: number = 0;
+  amount: Money;
   reason: string = '';
   customer: Customer;
   customerId: number;
@@ -26,7 +27,7 @@ export class Payment extends BaseEntity<number> {
   constructor(value: any = {}) {
     super(value);
     if (value) {
-      this.amount = value.amount;
+      this.amount = Money.parse(value.amount);
       this.reason = value.reason;
 
       this.customerId = value.customerId;

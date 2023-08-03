@@ -1,11 +1,9 @@
 import {Component} from "@angular/core";
-import {Procedure, ProcedureStep} from "../../../../../entities";
+import {ProcedureStep} from "@entities/procedure";
 import {ActivatedRoute, Router} from "@angular/router";
-import {ProcedureService} from "../../../../services";
+import {ProcedureService} from "@app/services";
 import {MatDialog} from "@angular/material/dialog";
-import {ProcedureChangeName} from "../change-name/procedure-change-name";
 import {ProcedureDelete} from "../delete/procedure-delete";
-import {ProcedureChangeDescription} from "../change-description/procedure-change-description";
 import {ProcedureStepChangeName} from "../step-change-name/procedure-step-change-name";
 import {ProcedureStepChangeDescription} from "../step-change-description/procedure-step-change-description";
 import {ProcedureStepChangePrice} from "../step-change-price/procedure-step-change-price";

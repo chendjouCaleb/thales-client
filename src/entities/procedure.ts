@@ -1,4 +1,5 @@
 import {BaseEntity} from "./base-entity";
+import {Money} from "@entities/money";
 
 export class Procedure extends BaseEntity<number>  {
   name: string = '';
@@ -26,7 +27,7 @@ export class ProcedureStep extends BaseEntity<number>{
   normalizedName: string = '';
   description: string = '';
 
-  price: number = 0;
+  price: Money;
   index: number = 0;
 
   procedure: Procedure;
@@ -37,7 +38,7 @@ export class ProcedureStep extends BaseEntity<number>{
     if(value) {
       this.name = value.name;
       this.normalizedName = value.normalizedName;
-      this.price = value.price;
+      this.price = Money.parse(value.price);
       this.description = value.description;
 
       this.index = value.index;

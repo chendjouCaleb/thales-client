@@ -1,5 +1,5 @@
 import {Component, OnInit} from "@angular/core";
-import {ProcedureApplyService} from "../../../../services";
+import {ProcedureApplyService} from "@app/services";
 import {ActivatedRoute} from "@angular/router";
 import { ProcedureApplyStep} from "../../../../../entities";
 import {MatDialog} from "@angular/material/dialog";

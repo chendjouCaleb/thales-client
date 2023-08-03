@@ -6,7 +6,7 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatIconModule} from "@angular/material/icon";
 import {MatSidenavModule} from "@angular/material/sidenav";
-import {NavModule} from "@app/Components";
+import {NavModule, ProcedureApplyModule} from "@app/Components";
 import {ScaffoldModule} from "@app/Components";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
@@ -19,6 +19,7 @@ import {AgencyEmployeesPage} from "./employees/agency-employees.page";
 import {EmployeeModule} from "@app/Components/employees";
 import {AgencySettingsPage} from "./settings/agency-settings.page";
 import {AgencyModule} from "@app/Components/agencies";
+import {AgencyProcedureAppliesListPage} from "@app/pages/agency/procedure-apply/agency-procedure-applies-list.page";
 
 const routes: Routes = [
   {
@@ -26,6 +27,7 @@ const routes: Routes = [
       {path: 'payments', component: AgencyPaymentsListPage},
       {path: 'employees', component: AgencyEmployeesPage},
       {path: 'plane-tickets', component: AgencyPlaneTicketListPage},
+      {path: 'procedure-applies', component: AgencyProcedureAppliesListPage},
       {path: 'settings', component: AgencySettingsPage},
       {path: '', redirectTo: 'payments', pathMatch: 'full'}
     ]
@@ -36,10 +38,10 @@ const routes: Routes = [
   imports: [
     CommonModule, MatButtonModule, MatToolbarModule, RouterModule.forChild(routes), MatIconModule,
     MatSidenavModule, NavModule, ScaffoldModule, MatFormFieldModule, MatInputModule, MatTooltipModule,
-    PaymentModule, PlaneTicketModule, EmployeeModule, AgencyModule
+    PaymentModule, PlaneTicketModule, EmployeeModule, AgencyModule, ProcedureApplyModule
   ],
   declarations: [AgencyPage, AgencyPaymentsListPage, AgencyPlaneTicketListPage, AgencyEmployeesPage,
-    AgencySettingsPage]
+    AgencySettingsPage, AgencyProcedureAppliesListPage ]
 })
 export class AgencyPageModule {
 

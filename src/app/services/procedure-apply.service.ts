@@ -40,10 +40,10 @@ export class ProcedureApplyService {
     return new ProcedureApply(value);
   }
 
-  async addAsync(agency: Agency, customer: Customer, procedure: Procedure): Promise<Procedure> {
+  async addAsync(agency: Agency, customer: Customer, procedure: Procedure): Promise<ProcedureApply> {
     const params = {customerId: customer.id, procedureId: procedure.id, agencyId: agency.id};
     const call = this._httpClient.post<Procedure>(`${this.url}`, {}, {params});
-    return firstValueFrom(call);
+    return new ProcedureApply(await firstValueFrom(call));
   }
 
   async getApplyStepByIdAsync(id: number): Promise<ProcedureApplyStep> {

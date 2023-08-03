@@ -1,8 +1,9 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, OnInit, ViewChild} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
 import {ProcedureApplyController} from "@app/Components";
 import {Agency} from "@entities/agency";
 import {AgencyPage} from "../agency.page";
+import {ProcedureApplyList} from "@app/Components/procedure-apply/list/procedure-apply-list";
 
 
 @Component({
@@ -10,6 +11,9 @@ import {AgencyPage} from "../agency.page";
 })
 export class AgencyProcedureAppliesListPage implements OnInit {
   agency: Agency;
+
+  @ViewChild(ProcedureApplyList)
+  list: ProcedureApplyList
 
   constructor(private route: ActivatedRoute,
               private _parent: AgencyPage,
@@ -22,7 +26,11 @@ export class AgencyProcedureAppliesListPage implements OnInit {
   }
 
   apply() {
-    this._controller.addProcedureApply(this.agency, null, null)
+    this._controller.addProcedureApply(this.agency, null, null).subscribe(apply => {
+      if(apply) {
+        this.list.add(apply);
+      }
+    })
   }
 
 

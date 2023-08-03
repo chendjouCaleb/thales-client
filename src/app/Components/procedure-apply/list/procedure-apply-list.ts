@@ -32,4 +32,9 @@ export class ProcedureApplyList implements OnInit {
     this.isLoading = false;
     this._changeDetector.markForCheck();
   }
+
+  add(...items: ProcedureApply[]) {
+    this.applies.unshift(...items);
+    this._changeDetector.markForCheck()
+  }
 }

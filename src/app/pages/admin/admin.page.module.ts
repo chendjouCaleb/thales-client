@@ -18,6 +18,7 @@ const routes: Routes = [
       { path: 'customers', loadChildren: () => import('./customers/customer.page.module').then(m => m.CustomerPageModule) },
       { path: 'procedures', loadChildren: () => import('./procedures/procedures.page.module').then(m => m.ProceduresPageModule) },
       { path: 'payments', loadChildren: () => import('./payments/payments.page.module').then(m => m.PaymentsPageModule) },
+      { path: 'plane-tickets', loadChildren: () => import('./plane-ticket/plane-ticket.page.module').then(m => m.PlaneTicketPageModule) },
       { path: 'procedure-applies',loadChildren: () => import('./procedure-applies/procedure-apply.page.module').then(m => m.ProcedureApplyPageModule)},
       { path: 'users', loadChildren: () => import('./users/users.page.module').then(m => m.UsersPageModule ) },
       { path: 'settings', loadChildren: () => import('./settings/settings.page.module').then(m => m.SettingsPageModule ) },

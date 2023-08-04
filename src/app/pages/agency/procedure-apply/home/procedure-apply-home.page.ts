@@ -1,7 +1,7 @@
 import {Component, OnInit} from "@angular/core";
-import {ProcedureApplyService} from "../../../../services";
+import {ProcedureApplyService} from "@app/services";
 import {ActivatedRoute} from "@angular/router";
-import {ProcedureApply} from "../../../../../entities";
+import {ProcedureApply} from "@entities/index";
 
 @Component({
   templateUrl: 'procedure-apply-home.page.html'

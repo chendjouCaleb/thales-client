@@ -2,6 +2,7 @@ import {BaseEntity} from "./base-entity";
 import {Customer} from "./customer";
 import {Procedure, ProcedureStep} from "./procedure";
 import {Payment} from "./payment";
+import {Agency} from "./agency";
 
 export class ProcedureApply extends BaseEntity<number> {
   customer: Customer;
@@ -10,20 +11,24 @@ export class ProcedureApply extends BaseEntity<number> {
   procedure: Procedure;
   procedureId: number;
 
+  agency: Agency;
+  agencyId: number;
+
   steps: ProcedureApplyStep[] = [];
 
   constructor(value: any = {}) {
     super(value);
     if (value) {
       this.customerId = value.customerId;
-      if (value.customer) {
-        this.customer = new Customer(value.customer);
-      }
+      this.customer = value.customer ? new Customer(value.customer) : undefined;
 
       this.procedureId = value.procedureId;
-      if (value.procedure) {
-        this.procedure = new Procedure(value.procedure);
-      }
+      this.procedure = value.procedure ? new Procedure(value.procedure) : undefined;
+
+      this.agencyId = value.agencyId;
+      this.agency = value.agency ? new Procedure(value.agency) : undefined;
+
+      this.steps = value.steps ? value.steps.map(s => new ProcedureApply(s)) : undefined;
     }
   }
 }

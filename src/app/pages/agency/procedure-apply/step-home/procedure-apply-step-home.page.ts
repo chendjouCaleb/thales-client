@@ -1,10 +1,10 @@
 import {Component, OnInit} from "@angular/core";
 import {ProcedureApplyService} from "@app/services";
 import {ActivatedRoute} from "@angular/router";
-import { ProcedureApplyStep} from "../../../../../entities";
+import { ProcedureApplyStep} from "@entities/index";
 import {MatDialog} from "@angular/material/dialog";
-import {ProcedureApplyStepValidate} from "../validate/procedure-apply-step-validate";
-import {ProcedureApplyStepPaymentAdd} from "../add-payment/procedure-apply-step-payment-add";
+import {ProcedureApplyStepValidate} from "../../../../Components/procedure-apply/validate/procedure-apply-step-validate";
+import {ProcedureApplyStepPaymentAdd} from "../../../../Components/procedure-apply/add-payment/procedure-apply-step-payment-add";
 
 @Component({
   templateUrl: 'procedure-apply-step-home.page.html'

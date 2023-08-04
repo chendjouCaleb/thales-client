@@ -1,10 +1,10 @@
 import {Component, Inject} from "@angular/core";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {ProcedureApplyService, ProcedureService} from "../../../../services";
+import {ProcedureApplyService, ProcedureService} from "../../../services";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {Procedure, ProcedureApplyStep, ProcedureStep} from "../../../../../entities";
+import {Procedure, ProcedureApplyStep, ProcedureStep} from "@entities/index";
 import {FormControl, FormGroup} from "@angular/forms";
-import {ProcedureApplyStepValidateModel} from "../../../../models";
+import {ProcedureApplyStepValidateModel} from "../../../models";
 
 @Component({
   templateUrl: 'procedure-apply-step-validate.html'

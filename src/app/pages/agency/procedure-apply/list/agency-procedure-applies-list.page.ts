@@ -2,7 +2,7 @@ import {Component, OnInit, ViewChild} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
 import {ProcedureApplyController} from "@app/Components";
 import {Agency} from "@entities/agency";
-import {AgencyPage} from "../agency.page";
+import {AgencyPage} from "../../agency.page";
 import {ProcedureApplyList} from "@app/Components/procedure-apply/list/procedure-apply-list";
 
 

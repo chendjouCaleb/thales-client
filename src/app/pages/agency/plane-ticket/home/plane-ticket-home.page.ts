@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from "@angular/core";
 import {PlaneTicketService} from "../../../../services";
 import {ActivatedRoute, Router} from "@angular/router";
-import {PlaneTicket} from "../../../../../entities";
+import {PlaneTicket} from "@entities/index";
 import {PlaneTicketUIService} from "../../../../Components/plane-tickets";
 import {Location} from "@angular/common";
 import {MatDialog} from "@angular/material/dialog";

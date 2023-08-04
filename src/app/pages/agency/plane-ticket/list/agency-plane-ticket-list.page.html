@@ -1,9 +1,8 @@
-<div class="page-card">
-  <div class="d-flex">
+<div class="bg-color-0 p-4">
+  <div class="d-flex align-items-center">
     <div class="page-title flex-grow-1">Commandes de billet d'avion</div>
-
     <div>
-      <a mat-stroked-button color="primary" routerLink="/admin/plane-tickets/add" [queryParams]="{agencyId:agency.id}">
+      <a mat-flat-button color="primary" [routerLink]="['/agencies', agency.id, 'plane-tickets', 'add']" >
         <mat-icon>add</mat-icon> Ajouter un billet d'avion </a>
     </div>
   </div>

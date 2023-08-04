@@ -1,0 +1,6 @@
+<div>
+  <ng-container *ngFor="let item of items">
+    <span *ngIf="!item.url">{{item.title}}</span>
+    <a *ngIf="item.url" [routerLink]="item.url">{{item.title}}</a> /
+  </ng-container>
+</div>

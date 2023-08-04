@@ -1,8 +1,8 @@
 import {Component, Inject} from "@angular/core";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {PlaneTicketService} from "../../../../services";
+import {PlaneTicketService} from "@app/services";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {PlaneTicket} from "../../../../../entities";
+import {PlaneTicket} from "@entities/index";
 import {FormControl} from "@angular/forms";
 
 @Component({

@@ -10,6 +10,7 @@ import {CustomerPickerDialog} from "@app/Components";
 import {Customer} from "@entities/customer";
 import {AgencyHttpClient} from "@app/services/agency.http-client";
 import {Agency} from "@entities/agency";
+import {AgencyPage} from "@app/pages/agency/agency.page";
 
 @Component({
   templateUrl: 'plane-ticket-add.page.html'
@@ -25,6 +26,7 @@ export class PlaneTicketAddPage implements OnInit {
   constructor(private _dialog: MatDialog,
               private _snackbar: MatSnackBar,
               private _router: Router,
+              private _parent: AgencyPage,
               private _route: ActivatedRoute,
               private _agencyHttpClient: AgencyHttpClient,
               private _customerPicker: CustomerPickerDialog,
@@ -33,7 +35,7 @@ export class PlaneTicketAddPage implements OnInit {
     this.remember = new PlaneTicketAddRemember();
 
     this.formGroup = new FormGroup({
-      placeCount : new FormControl(this.remember.placeCount),
+      placeCount: new FormControl(this.remember.placeCount),
       backAndForth: new FormControl(this.remember.backAndForth),
       travelClass: new FormControl(this.remember.travelClass),
       departureCountry: new FormControl(this.remember.departureCountry),
@@ -50,10 +52,9 @@ export class PlaneTicketAddPage implements OnInit {
   }
 
   async ngOnInit() {
-    const agencyId = +this._route.snapshot.queryParams['agencyId'];
-    this.agency = await this._agencyHttpClient.getByIdAsync(agencyId);
+    this.agency = this._parent.agency;
     this._customerPicker.open().subscribe(customer => {
-      if(customer) {
+      if (customer) {
         this.customer = customer;
       }
     })
@@ -62,12 +63,13 @@ export class PlaneTicketAddPage implements OnInit {
 
   async addPlaneTicket() {
     const model = this.formGroup.value;
-   const planeTicket = await this._service.addAsync(this.agency, this.customer, model);
-
+    const planeTicket = await this._service.addAsync(this.agency, this.customer, model);
+    this.remember.clear()
     this._snackbar.open(`La commande de billet d'avion a été ajoutée.`, 'VOIR', {})
-        .onAction().subscribe(() => {
-          this._router.navigateByUrl(`/admin/plane-tickets/${planeTicket.id}`).then()
-      });
+      .onAction().subscribe(() => {
+
+    });
+    this._router.navigateByUrl(`/agencies/${this.agency.id}/plane-tickets/${planeTicket.id}`).then()
   }
 
 }

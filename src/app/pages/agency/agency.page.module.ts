@@ -19,16 +19,16 @@ import {AgencyEmployeesPage} from "./employees/agency-employees.page";
 import {EmployeeModule} from "@app/Components/employees";
 import {AgencySettingsPage} from "./settings/agency-settings.page";
 import {AgencyModule} from "@app/Components/agencies";
-import {
-  AgencyProcedureAppliesListPage
-} from "@app/pages/agency/procedure-apply/list/agency-procedure-applies-list.page";
 
 const routes: Routes = [
   {
     path: '', component: AgencyPage, children: [
       {path: 'payments', component: AgencyPaymentsListPage},
       {path: 'employees', component: AgencyEmployeesPage},
-      {path: 'plane-tickets', component: AgencyPlaneTicketListPage},
+      {
+        path: 'plane-tickets',
+        loadChildren: () => import('./plane-ticket/agency-plane-ticket.page.module').then(m => m.AgencyPlaneTicketPageModule)
+      },
       {
         path: 'procedure-applies',
         loadChildren: () => import('./procedure-apply/agency-procedure-apply.page.module').then(m => m.AgencyProcedureApplyPageModule)
@@ -45,8 +45,7 @@ const routes: Routes = [
     MatSidenavModule, NavModule, ScaffoldModule, MatFormFieldModule, MatInputModule, MatTooltipModule,
     PaymentModule, PlaneTicketModule, EmployeeModule, AgencyModule, ProcedureApplyModule
   ],
-  declarations: [AgencyPage, AgencyPaymentsListPage, AgencyPlaneTicketListPage, AgencyEmployeesPage,
-    AgencySettingsPage]
+  declarations: [AgencyPage, AgencyPaymentsListPage, AgencyEmployeesPage, AgencySettingsPage]
 })
 export class AgencyPageModule {
 

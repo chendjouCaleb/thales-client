@@ -4,7 +4,7 @@ import {FormControl, FormGroup} from "@angular/forms";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {ActivatedRoute, Router} from "@angular/router";
 import {PlaneTicketService} from "../../../../services";
-import {PlaneTicket} from "../../../../../entities";
+import {PlaneTicket} from "@entities/index";
 
 @Component({
   templateUrl: 'plane-ticket-edit.page.html'

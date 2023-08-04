@@ -1,15 +1,19 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, OnInit, ViewChild} from "@angular/core";
 import {ProcedureApplyService} from "@app/services";
 import {ActivatedRoute} from "@angular/router";
 import {ProcedureApplyStep} from "@entities/index";
 import {MatDialog} from "@angular/material/dialog";
 import {ProcedureApplyController} from "@app/Components";
+import {PaymentsList} from "@app/Components/payments/list/payments-list";
 
 @Component({
   templateUrl: 'procedure-apply-step-home.page.html'
 })
 export class ProcedureApplyStepHomePage implements OnInit {
   applyStep: ProcedureApplyStep;
+
+  @ViewChild(PaymentsList)
+  paymentList: PaymentsList;
 
   constructor(private _service: ProcedureApplyService,
               private _dialog: MatDialog,
@@ -23,10 +27,11 @@ export class ProcedureApplyStepHomePage implements OnInit {
   }
 
   addPayment() {
-    const modalRef = this._controller.addPayment(this.applyStep)
-      .subscribe(payment => {
-
-      });
+    const modalRef = this._controller.addPayment(this.applyStep).subscribe(payment => {
+      if (payment) {
+        this.paymentList.unshift(payment);
+      }
+    });
   }
 
   validateStep() {

@@ -1,8 +1,8 @@
 import {Component, Input, OnInit} from "@angular/core";
 import {PlaneTicket} from "../../../../entities";
-import {PlaneTicketService} from "../../../services";
+import {PlaneTicketService} from "@app/services";
 import {MatTableDataSource} from "@angular/material/table";
-import {PlaneTicketUIService} from "../plane-ticket-u-i.service";
+import {PlaneTicketUIService} from "@app/Components";
 
 @Component({
   templateUrl: 'plane-ticket-list.html',
@@ -13,7 +13,9 @@ export class PlaneTicketList implements OnInit {
   params: any = {}
   dataSource = new MatTableDataSource<PlaneTicket>();
 
-  displayedColumns: string[] = ['id', 'departureCountry', 'arrivalCountry', 'paymentAmount',  'customer','createdAt', 'action'];
+  @Input()
+  displayedColumns: string[] = [];
+  columns: string[] = [ 'id', 'departureCountry', 'arrivalCountry', 'customer', 'agency', 'employee', 'createdAt', 'action'];
 
   constructor(private _service: PlaneTicketService, private _uiService: PlaneTicketUIService) {
   }

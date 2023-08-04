@@ -7,6 +7,20 @@
       </td>
     </ng-container>
 
+    <ng-container matColumnDef="agency">
+      <th mat-header-cell *matHeaderCellDef>Agence</th>
+      <td mat-cell *matCellDef="let element">
+        {{element.agency.name}}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="employee">
+      <th mat-header-cell *matHeaderCellDef>Employé</th>
+      <td mat-cell *matCellDef="let element">
+        {{element.employee.user.fullName}}
+      </td>
+    </ng-container>
+
 
     <ng-container matColumnDef="departureCountry">
       <th mat-header-cell *matHeaderCellDef> Pays & ville de Départ </th>
@@ -49,7 +63,7 @@
       <th mat-header-cell *matHeaderCellDef> </th>
       <td mat-cell *matCellDef="let element" >
         <div class="align-end">
-          <a mat-button color="primary" routerLink="/admin/plane-tickets/{{element.id}}" class="my-2">
+          <a mat-button color="primary" [routerLink]="['/agencies', element.agencyId,  'plane-tickets', element.id]" class="my-2">
             Détails
           </a>
 

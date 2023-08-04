@@ -4,5 +4,7 @@
   </div>
   <div class="divider my-3"></div>
 
-  <PlaneTicketList [params]="{}"></PlaneTicketList>
+  <PlaneTicketList [params]="{}"
+    [displayedColumns]=" [ 'id', 'departureCountry', 'arrivalCountry', 'customer', 'agency', 'employee', 'createdAt', 'action']"
+  ></PlaneTicketList>
 </div>

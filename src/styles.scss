@@ -181,10 +181,14 @@ $button-typography: mat.define-typography-config(
 }
 
 .label {
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .value {
   font-weight: 400;
   color: $ms-color-gray180;
+}
+
+.mdc-data-table__header-cell {
+  padding: 16px !important;
 }

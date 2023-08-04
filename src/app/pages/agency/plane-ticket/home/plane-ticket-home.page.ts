@@ -1,12 +1,13 @@
 import {Component, OnInit, ViewChild} from "@angular/core";
-import {PlaneTicketService} from "../../../../services";
+import {PlaneTicketService} from "@app/services";
 import {ActivatedRoute, Router} from "@angular/router";
 import {PlaneTicket} from "@entities/index";
-import {PlaneTicketUIService} from "../../../../Components/plane-tickets";
+import {PlaneTicketUIService} from "@app/Components";
 import {Location} from "@angular/common";
 import {MatDialog} from "@angular/material/dialog";
 import {PlaneTicketPaymentAdd} from "../add-payment/plane-ticket-payment-add";
-import {PaymentsList} from "../../../../Components/payments/list/payments-list";
+import {PaymentsList} from "@app/Components/payments/list/payments-list";
+import {Money} from "@entities/money";
 
 @Component({
   templateUrl: 'plane-ticket-home.page.html'
@@ -46,6 +47,12 @@ export class PlaneTicketHomePage implements OnInit {
         this.paymentList.unshift(value);
       }
     })
-
   }
+
+  get total(): Money | null {
+    if(!this.paymentList?._payments)
+      return null;
+    return new Money(0, 'XAF').add(...this.paymentList._payments.map(p => p.amount));
+  }
+
 }

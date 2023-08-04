@@ -23,7 +23,8 @@ export class PaymentsList implements OnInit {
   dataSource = new MatTableDataSource<Payment>();
   isLoading = true;
 
-  selectedPayment: Payment
+  selectedPayment: Payment;
+  _payments: Payment[]
 
 
   columns: string[] = [ 'code',  'amount',  'reason', 'customer', 'agency', 'employee', 'createdAt', 'action'];
@@ -35,22 +36,26 @@ export class PaymentsList implements OnInit {
   }
 
   async ngOnInit() {
-    let payments = await this._service.listAsync(this.params);
-    payments = payments.sort((p1, p2) => p1.id - p2.id).reverse();
-    this.dataSource = new MatTableDataSource<Payment>(payments);
+    let items = await this._service.listAsync(this.params);
+    this._payments = items.sort((p1, p2) => p1.id - p2.id).reverse();
+    this.dataSource = new MatTableDataSource<Payment>(this._payments);
 
     this.isLoading = false;
 
   }
 
   unshift(payment: Payment) {
-    this.dataSource.data.unshift(payment);
-    this.dataSource = new MatTableDataSource<Payment>(this.dataSource.data);
+    this._payments.unshift(payment);
+    this.dataSource = new MatTableDataSource<Payment>(this._payments);
   }
 
   remove(payment: Payment) {
-    const data = this.dataSource.data.filter(p => p.id !== payment.id)
-    this.dataSource = new MatTableDataSource<Payment>(data);
+    this._payments = this._payments.filter(p => p.id !== payment.id)
+    this.dataSource = new MatTableDataSource<Payment>(this._payments);
+  }
+
+  get payments(): Payment[] {
+    return this._payments.map(p => p);
   }
 
   delete(payment: Payment) {

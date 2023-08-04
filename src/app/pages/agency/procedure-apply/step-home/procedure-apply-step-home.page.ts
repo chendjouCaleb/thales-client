@@ -5,6 +5,7 @@ import {ProcedureApplyStep} from "@entities/index";
 import {MatDialog} from "@angular/material/dialog";
 import {ProcedureApplyController} from "@app/Components";
 import {PaymentsList} from "@app/Components/payments/list/payments-list";
+import {Money} from "@entities/money";
 
 @Component({
   templateUrl: 'procedure-apply-step-home.page.html'
@@ -14,6 +15,12 @@ export class ProcedureApplyStepHomePage implements OnInit {
 
   @ViewChild(PaymentsList)
   paymentList: PaymentsList;
+
+  get total(): Money | null {
+    if(!this.paymentList?._payments)
+      return null;
+    return new Money(0, 'XAF').add(...this.paymentList._payments.map(p => p.amount));
+  }
 
   constructor(private _service: ProcedureApplyService,
               private _dialog: MatDialog,

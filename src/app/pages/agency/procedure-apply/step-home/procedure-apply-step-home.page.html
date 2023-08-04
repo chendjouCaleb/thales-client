@@ -25,7 +25,10 @@
       <span *ngIf="!applyStep.validated">En attente</span>
     </dd>
 
-
+    <dt>Montant versé</dt>
+    <dd>
+      <span *ngIf="total">{{total.amount | currency:total.currency}}</span>
+    </dd>
   </dl>
 
   <div class="divider my-2"></div>

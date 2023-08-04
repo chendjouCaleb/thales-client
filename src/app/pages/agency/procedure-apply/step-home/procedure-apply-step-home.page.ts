@@ -22,6 +22,12 @@ export class ProcedureApplyStepHomePage implements OnInit {
     return new Money(0, 'XAF').add(...this.paymentList._payments.map(p => p.amount));
   }
 
+  get remaining(): Money | null {
+    if(!this.paymentList?._payments)
+      return null;
+    return this.applyStep.procedureStep.price.subtract(...this.paymentList._payments.map(p => p.amount));
+  }
+
   constructor(private _service: ProcedureApplyService,
               private _dialog: MatDialog,
               private _controller: ProcedureApplyController,

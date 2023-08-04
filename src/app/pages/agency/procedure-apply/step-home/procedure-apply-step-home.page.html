@@ -29,6 +29,13 @@
     <dd>
       <span *ngIf="total">{{total.amount | currency:total.currency}}</span>
     </dd>
+
+    <dt>Montant restant</dt>
+    <dd>
+      <span *ngIf="total">{{remaining.amount | currency:remaining.currency}}
+        sur {{applyStep.procedureStep.price.amount  | currency:remaining.currency}}
+      </span>
+    </dd>
   </dl>
 
   <div class="divider my-2"></div>

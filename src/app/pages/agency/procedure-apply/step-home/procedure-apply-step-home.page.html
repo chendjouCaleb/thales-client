@@ -1,47 +1,60 @@
 <div class="m-2 p-4 bg-color-0 br-8" *ngIf="applyStep">
   <div class="fontSize-16 fontWeight-semiBold mb-3">Procédure en cours / {{applyStep.procedureStep.name}}</div>
 
-  <div class="divider"></div>
-  <div class="my-2">
-    <button mat-button color="primary" *ngIf="!applyStep.validated" (click)="validateStep()">
-      <mat-icon>done</mat-icon>
-      Valider l'étape
-    </button>
-    <button mat-button color="warn" class="ms-3" *ngIf="applyStep.validated" (click)="invalidateStep()">
-      <mat-icon>unpublished</mat-icon>Invalider l'étape
-    </button>
-    <button mat-button color="primary"  class="ms-3" (click)="addPayment()" *ngIf="applyStep.validated">
-      <mat-icon>paid</mat-icon>Ajouter un paiement
-    </button>
-  </div>
+
   <div class="divider"></div>
 
-  <dl class="description-list">
-    <dt>État</dt>
-    <dd>
+  <div class="mt-3">
+    <div class="d-flex justify-content-between">
+      <div>
+        <div class="label">État</div>
+        <div class="value">
       <span *ngIf="applyStep.validated" style="padding: 0px 4px; border: 1px solid; border-radius: 4px"
             class="borderColor-green fontColor-green fontSize-12">Validée</span>
 
-      <span *ngIf="!applyStep.validated">En attente</span>
-    </dd>
+          <span *ngIf="!applyStep.validated">En attente</span>
+        </div>
+      </div>
 
-    <dt>Montant versé</dt>
-    <dd>
-      <span *ngIf="total">{{total.amount | currency:total.currency}}</span>
-    </dd>
+      <button mat-button color="warn" class="ms-3" *ngIf="applyStep.validated" (click)="invalidateStep()">
+        <mat-icon>unpublished</mat-icon>
+        Invalider l'étape
+      </button>
 
-    <dt>Montant restant</dt>
-    <dd>
+      <button mat-button color="primary" *ngIf="!applyStep.validated" (click)="validateStep()">
+        <mat-icon>done</mat-icon>
+        Valider l'étape
+      </button>
+    </div>
+    <div class="divider my-3"></div>
+
+    <div class="d-flex justify-content-between">
+      <div>
+        <div class="label">Montant versé</div>
+        <div class="value">
+          <span *ngIf="total">{{total.amount | currency:total.currency}}</span>
+        </div>
+      </div>
+      <button mat-button color="primary" (click)="addPayment()" *ngIf="applyStep.validated">
+        <mat-icon>paid</mat-icon>
+        Ajouter un paiement
+      </button>
+    </div>
+  </div>
+  <div class="divider my-3"></div>
+  <div>
+    <div class="label">Montant restant</div>
+    <div class="value">
       <span *ngIf="total">{{remaining.amount | currency:remaining.currency}}
         sur {{applyStep.procedureStep.price.amount  | currency:remaining.currency}}
       </span>
-    </dd>
-  </dl>
+    </div>
+  </div>
 
-  <div class="divider my-2"></div>
+  <div class="divider my-3"></div>
 
-  <div *ngIf="applyStep.payments" class="mt-4">
-    <div class="fontSize-18 fontWeight-semiBold mb-3">Paiements</div>
+  <div *ngIf="applyStep.payments" class="mt-5">
+    <div class="fontSize-16 fontWeight-semiBold mb-3">Paiements</div>
 
     <PaymentList [params]="{procedureApplyStepIdId:applyStep.id}"
                  [displayedColumns]="[ 'code',  'amount',  'agency', 'employee', 'createdAt', 'action']"></PaymentList>

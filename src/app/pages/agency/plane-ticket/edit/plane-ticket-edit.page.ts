@@ -30,10 +30,10 @@ export class PlaneTicketEditPage implements OnInit {
       travelClass: new FormControl(this.planeTicket.travelClass),
       departureCountry: new FormControl(this.planeTicket.departureCountry),
       departureCity: new FormControl(this.planeTicket.departureCity),
-      departureDate: new FormControl(this.planeTicket.departureDate.toFormat('YYYY-MM-DD')),
+      departureDate: new FormControl(this.planeTicket.departureDate.toJSDate()),
       arrivalCountry: new FormControl(this.planeTicket.arrivalCountry),
       arrivalCity: new FormControl(this.planeTicket.arrivalCity),
-      returnDate: new FormControl(this.planeTicket.returnDate.toFormat('YYYY-MM-DD')),
+      returnDate: new FormControl(this.planeTicket.returnDate.toJSDate()),
     });
    }
 
@@ -43,7 +43,7 @@ export class PlaneTicketEditPage implements OnInit {
     const planeTicket = await this._service.editAsync(this.planeTicket, model);
 
     this._snackbar.open(`La commande de billet d'avion a été modifiée.`, '', {duration: 5000});
-    this._router.navigateByUrl(`/admin/plane-tickets/${planeTicket.id}`).then()
+    this._router.navigateByUrl(`/agencies/${planeTicket.agencyId}/plane-tickets/${planeTicket.id}`).then()
   }
 
 }

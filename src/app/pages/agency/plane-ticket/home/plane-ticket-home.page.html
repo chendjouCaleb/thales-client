@@ -3,7 +3,7 @@
 
   <div class="divider"></div>
   <div class="my-2">
-    <a mat-button color="primary" routerLink="/admin/plane-tickets/{{planeTicket.id}}/edit">
+    <a mat-button color="primary" [routerLink]="['/agencies', planeTicket.agencyId, 'plane-tickets', planeTicket.id, 'edit']">
       <mat-icon>edit</mat-icon>Modifier
     </a>
 

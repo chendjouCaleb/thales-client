@@ -23,7 +23,10 @@ export class ProcedureApplyStepHomePage implements OnInit {
   }
 
   addPayment() {
-    // const modalRef = this._dialog.open(ProcedureApplyStepPaymentAdd, {data: {applyStep: this.applyStep}});
+    const modalRef = this._controller.addPayment(this.applyStep)
+      .subscribe(payment => {
+
+      });
   }
 
   validateStep() {

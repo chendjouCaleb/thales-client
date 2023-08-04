@@ -19,11 +19,12 @@ import {MatInputModule} from "@angular/material/input";
 import {ProcedureApplyAddConfirm} from "./add/procedure-apply-add-confirm";
 import {ProcedureApplyStepValidate} from "./validate/procedure-apply-step-validate";
 import {CleaveModule} from "@app/cleave";
+import {ProcedureApplyStepPaymentAdd} from "./add-payment/procedure-apply-step-payment-add";
 
 @NgModule({
   imports: [CommonModule, DialogModule, MatSelectModule, MatListModule, MatButtonModule, FormsModule, RouterModule, MatProgressSpinnerModule, NavigationModule, MatIconModule, MatDialogModule, MatInputModule, ReactiveFormsModule, CleaveModule],
   declarations: [ ProcedureApplyAdd, ProcedureApplyAddProcedure, ProcedureApplyAddCustomer, ProcedureApplyList, ProcedureApplyAddConfirm,
-  ProcedureApplyStepValidate],
+  ProcedureApplyStepValidate, ProcedureApplyStepPaymentAdd ],
   exports: [ ProcedureApplyList ],
   providers: [ ProcedureApplyController ]
 })

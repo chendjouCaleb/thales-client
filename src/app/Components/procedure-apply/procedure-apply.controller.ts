@@ -3,7 +3,9 @@ import {MatDialog} from "@angular/material/dialog";
 import {Agency} from "@entities/agency";
 import {Observable} from "rxjs";
 import {ProcedureApplyAdd} from "@app/Components";
-import {ProcedureApply} from "@entities/procedure-apply";
+import {ProcedureApply, ProcedureApplyStep} from "@entities/procedure-apply";
+import {Payment} from "@entities/payment";
+import {ProcedureApplyStepValidate} from "@app/Components/procedure-apply/validate/procedure-apply-step-validate";
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +17,13 @@ export class ProcedureApplyController {
     const dialogRef = this._dialog.open(ProcedureApplyAdd, {
       autoFocus: false,
       panelClass: 'dialog-panel', data: {agency}});
+    return dialogRef.afterClosed();
+  }
+
+  validate(applyStep: ProcedureApplyStep): Observable<Payment> {
+    const dialogRef = this._dialog.open(ProcedureApplyStepValidate, {
+      autoFocus: false,
+      panelClass: 'dialog-panel', data: {applyStep}});
     return dialogRef.afterClosed();
   }
 }

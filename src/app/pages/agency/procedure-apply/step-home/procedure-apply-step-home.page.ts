@@ -1,10 +1,9 @@
 import {Component, OnInit} from "@angular/core";
 import {ProcedureApplyService} from "@app/services";
 import {ActivatedRoute} from "@angular/router";
-import { ProcedureApplyStep} from "@entities/index";
+import {ProcedureApplyStep} from "@entities/index";
 import {MatDialog} from "@angular/material/dialog";
-import {ProcedureApplyStepValidate} from "../../../../Components/procedure-apply/validate/procedure-apply-step-validate";
-import {ProcedureApplyStepPaymentAdd} from "../../../../Components/procedure-apply/add-payment/procedure-apply-step-payment-add";
+import {ProcedureApplyController} from "@app/Components";
 
 @Component({
   templateUrl: 'procedure-apply-step-home.page.html'
@@ -14,7 +13,9 @@ export class ProcedureApplyStepHomePage implements OnInit {
 
   constructor(private _service: ProcedureApplyService,
               private _dialog: MatDialog,
-              private _route: ActivatedRoute) {}
+              private _controller: ProcedureApplyController,
+              private _route: ActivatedRoute) {
+  }
 
   async ngOnInit() {
     const id = this._route.snapshot.params['procedureApplyStepId'];
@@ -22,11 +23,14 @@ export class ProcedureApplyStepHomePage implements OnInit {
   }
 
   addPayment() {
-    const modalRef = this._dialog.open(ProcedureApplyStepPaymentAdd, {data: {applyStep: this.applyStep}});
+    // const modalRef = this._dialog.open(ProcedureApplyStepPaymentAdd, {data: {applyStep: this.applyStep}});
   }
 
   validateStep() {
-    const modalRef = this._dialog.open(ProcedureApplyStepValidate, {data: {applyStep: this.applyStep}});
+    const modalRef = this._controller.validate(this.applyStep)
+      .subscribe(payment => {
+
+      });
   }
 
   invalidateStep() {

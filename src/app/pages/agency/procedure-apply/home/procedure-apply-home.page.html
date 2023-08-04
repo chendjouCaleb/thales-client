@@ -1,4 +1,4 @@
-<div class="m-2 p-4 bg-color-0 br-8 mat-elevation-z1" *ngIf="apply">
+<div class=" p-4 bg-color-0 " *ngIf="apply">
   <div class="fontSize-22 fontWeight-semiBold mb-3">Procédure en cours</div>
 
   <div class="divider"></div>
@@ -18,15 +18,16 @@
 
   </dl>
 
-  <div *ngIf="apply?.steps" class="mt-4">
+  <div *ngIf="apply.steps" class="mt-4">
     <div class="fontSize-18 fontWeight-semiBold">Étapes</div>
 
     <a class="mt-3 br-4 p-3 bg-color-10 borderColor-20 bg-color-20--hover divLink d-flex align-items-center"
+       *ngFor="let applyStep of apply.steps"
        [routerLink]="['/agencies',apply.agencyId, 'procedure-applies', apply.id, 'steps', applyStep.id]"
-       *ngFor="let applyStep of apply.steps">
+       >
      <div>
        <div class="fontWeight-semiBold fontSize-16">
-         {{applyStep.procedureStep.name}}
+         {{applyStep.procedureStep?.name}}
        </div>
        <div *ngIf="applyStep.validated">
          {{applyStep.paymentAmount | number}}  FCFA

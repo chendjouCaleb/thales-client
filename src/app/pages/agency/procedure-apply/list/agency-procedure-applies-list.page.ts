@@ -26,7 +26,7 @@ export class AgencyProcedureAppliesListPage implements OnInit {
   }
 
   apply() {
-    this._controller.addProcedureApply(this.agency, null, null).subscribe(apply => {
+    this._controller.addProcedureApply(this.agency).subscribe(apply => {
       if(apply) {
         this.list.add(apply);
       }

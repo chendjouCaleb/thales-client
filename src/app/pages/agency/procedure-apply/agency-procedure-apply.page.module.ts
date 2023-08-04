@@ -30,11 +30,8 @@ const routes: Routes = [
     imports: [CommonModule, RouterModule.forChild(routes), MatButtonModule, MatIconModule,
         ReactiveFormsModule, MatFormFieldModule, MatDialogModule, MatInputModule, MatMenuModule,
         CustomerPickerModule, ProcedureApplyModule, MatProgressSpinnerModule, CleaveModule],
-  exports: [
-    ProcedureAppliesListPage
-  ],
   declarations: [ AgencyProcedureAppliesListPage, ProcedureApplyHomePage, ProcedureApplyStepHomePage, ProcedureApplyStepValidate,
-    ProcedureApplyStepPaymentAdd, ProcedureAppliesListPage]
+    ProcedureApplyStepPaymentAdd]
 })
 export class AgencyProcedureApplyPageModule {
 

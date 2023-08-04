@@ -46,7 +46,7 @@ const routes: Routes = [
     PaymentModule, PlaneTicketModule, EmployeeModule, AgencyModule, ProcedureApplyModule
   ],
   declarations: [AgencyPage, AgencyPaymentsListPage, AgencyPlaneTicketListPage, AgencyEmployeesPage,
-    AgencySettingsPage, AgencyProcedureAppliesListPage]
+    AgencySettingsPage]
 })
 export class AgencyPageModule {
 

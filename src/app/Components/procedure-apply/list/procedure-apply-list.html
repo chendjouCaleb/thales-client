@@ -4,7 +4,7 @@
 
 <div *ngIf="applies && !isLoading">
   <a *ngFor="let apply of applies"
-     [routerLink]="['/admin', 'procedure-applies', apply.id]"
+     [routerLink]="['/agencies', apply.agencyId, 'procedure-applies', apply.id]"
      class="p-3 divLink mt-3 br-4 borderColor-20 bg-color-20--hover" style="border: 1px solid ">
     <div class="fontWeight-bold">{{apply.customer.fullName}}</div>
     <div>{{apply.procedure.name}}</div>

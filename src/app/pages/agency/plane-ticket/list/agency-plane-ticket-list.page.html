@@ -1,14 +1,15 @@
-<div class="bg-color-0 p-4">
-  <div class="d-flex align-items-center">
-    <div class="page-title flex-grow-1">Commandes de billet d'avion</div>
-    <div>
-      <a mat-flat-button color="primary" [routerLink]="['/agencies', agency.id, 'plane-tickets', 'add']" >
-        <mat-icon>add</mat-icon> Ajouter un billet d'avion </a>
-    </div>
+<div class="bg-color-0 px-4">
+
+  <breadcrumb class="my-3" [items]="breadcrumbItems"></breadcrumb>
+  <div class="divider my-3"></div>
+  <div>
+    <a mat-flat-button color="primary" [routerLink]="['/agencies', agency.id, 'plane-tickets', 'add']">
+      <mat-icon>add</mat-icon>
+      Ajouter un billet d'avion </a>
   </div>
   <div class="divider my-3"></div>
 
   <PlaneTicketList [params]="{agencyId:agency.id}"
-    [displayedColumns]=" [ 'id', 'departureCountry', 'arrivalCountry', 'customer', 'employee', 'createdAt', 'action']"
+                   [displayedColumns]=" [ 'id', 'departureCountry', 'arrivalCountry', 'customer', 'employee', 'createdAt', 'action']"
   ></PlaneTicketList>
 </div>

@@ -4,6 +4,7 @@ import {AgencyPage} from "@app/pages/agency/agency.page";
 import {EmployeeHttpClient} from "@app/services/employee-http-client.service";
 import {EmployeeList} from "@app/Components/employees/list/employee-list";
 import {EmployeeUIService} from "@app/Components/employees/employee-UIService";
+import {BreadcrumbItem} from "@app/Components";
 
 @Component({
   templateUrl: 'agency-employees.page.html'
@@ -14,6 +15,8 @@ export class AgencyEmployeesPage implements OnInit {
 
   agency: Agency;
 
+  breadcrumbItems: BreadcrumbItem[]
+
   constructor(private _service: EmployeeHttpClient,
               private _parent: AgencyPage,
               private _uiService: EmployeeUIService) {
@@ -21,7 +24,9 @@ export class AgencyEmployeesPage implements OnInit {
   }
 
   ngOnInit() {
-
+    this.breadcrumbItems = [...this._parent.breadcrumbItems,
+      new BreadcrumbItem('Employés de l\'agence')
+    ];
   }
 
   addEmployee() {

@@ -62,6 +62,18 @@
   </dl>
 
   <div class="divider my-3"></div>
+  <div>
+    <div class="label">Employé</div>
+    <div class="value">{{planeTicket.employee.user.fullName}}</div>
+  </div>
+
+  <div class="mt-3">
+    <div class="label">Date</div>
+    <div class="value">{{planeTicket.createdAt.toFormat('DD')}}</div>
+  </div>
+
+
+  <div class="divider my-3"></div>
 
   <div class="fontSize-18 fontWeight-semiBold mb-3">Paiements effectués</div>
   <PaymentList [params]="{planeTicketId: planeTicket.id}"

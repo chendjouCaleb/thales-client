@@ -1,6 +1,7 @@
 <div>
-  <ng-container *ngFor="let item of items">
-    <span class="breadcrumb-item" *ngIf="!item.url">{{item.title}}</span>
-    <a class="breadcrumb-item link" *ngIf="item.url" [routerLink]="item.url">{{item.title}}</a> /
+  <ng-container *ngFor="let item of items; let last=last">
+    <span class="breadcrumb-item" [class.last]="last" *ngIf="!item.url">{{item.title}}</span>
+    <a class="breadcrumb-item link" [class.last]="last" *ngIf="item.url" [routerLink]="item.url">{{item.title}}</a>
+    <span *ngIf="!last"> / </span>
   </ng-container>
 </div>

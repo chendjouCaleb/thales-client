@@ -3,5 +3,9 @@
 }
 .breadcrumb-item {
   font-size: 16px;
-  text-decoration: none;
+  text-decoration: none;;
+
+  &.last {
+    font-weight: 600;
+  }
 }

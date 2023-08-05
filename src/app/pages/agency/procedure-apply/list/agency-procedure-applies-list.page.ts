@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewChild} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
-import {ProcedureApplyController} from "@app/Components";
+import {BreadcrumbItem, ProcedureApplyController} from "@app/Components";
 import {Agency} from "@entities/agency";
 import {AgencyPage} from "../../agency.page";
 import {ProcedureApplyList} from "@app/Components/procedure-apply/list/procedure-apply-list";
@@ -13,7 +13,9 @@ export class AgencyProcedureAppliesListPage implements OnInit {
   agency: Agency;
 
   @ViewChild(ProcedureApplyList)
-  list: ProcedureApplyList
+  list: ProcedureApplyList;
+
+  breadcrumbItems: BreadcrumbItem[];
 
   constructor(private route: ActivatedRoute,
               private _parent: AgencyPage,
@@ -31,6 +33,10 @@ export class AgencyProcedureAppliesListPage implements OnInit {
         this.list.add(apply);
       }
     })
+
+    this.breadcrumbItems = [...this._parent.breadcrumbItems,
+      new BreadcrumbItem('Paiements')
+    ];
   }
 
 

@@ -1,6 +1,5 @@
-<div class="m-2 p-4 bg-color-0 br-8" *ngIf="applyStep">
-  <div class="fontSize-16 fontWeight-semiBold mb-3">Procédure en cours / {{applyStep.procedureStep.name}}</div>
-
+<div class="px-4 py-2" *ngIf="applyStep">
+  <breadcrumb class="my-3" [items]="breadcrumbItems"></breadcrumb>
 
   <div class="divider"></div>
 

@@ -48,7 +48,7 @@ export class ProcedureApplyStepHomePage implements OnInit {
 
     this.breadcrumbItems = [...this._parent.breadcrumbItems,
       new BreadcrumbItem('Procédures en cours', `/agencies/${this.apply.agencyId}/procedure-applies`),
-      new BreadcrumbItem(`Procédure N° ${this.apply.id}`, `/agencies/${this.apply.id}/procedure-applies`),
+      new BreadcrumbItem(`Procédure N° ${this.apply.id}`, `/agencies/${this.apply.agencyId}/procedure-applies/${this.apply.id}`),
       new BreadcrumbItem(`étapes`),
       new BreadcrumbItem(`${this.applyStep.procedureStep.name}`)
     ];

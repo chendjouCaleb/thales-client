@@ -34,7 +34,8 @@
 
 
     <ng-container matColumnDef="amount">
-      <th mat-header-cell *matHeaderCellDef> Montant </th>
+      <th mat-header-cell *matHeaderCellDef>
+        <div class="align-end">Montant</div> </th>
       <td mat-cell *matCellDef="let element">
 
         <div class="fontWeight-semiBold align-end" *ngIf="!element.deleted" >

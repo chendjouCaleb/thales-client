@@ -3,8 +3,10 @@ import {MatDialog} from "@angular/material/dialog";
 import {FormControl, FormGroup} from "@angular/forms";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {ActivatedRoute, Router} from "@angular/router";
-import {PlaneTicketService} from "../../../../services";
+import {PlaneTicketService} from "@app/services";
 import {PlaneTicket} from "@entities/index";
+import {BreadcrumbItem} from "@app/Components";
+import {AgencyPage} from "@app/pages/agency/agency.page";
 
 @Component({
   templateUrl: 'plane-ticket-edit.page.html'
@@ -13,16 +15,18 @@ export class PlaneTicketEditPage implements OnInit {
   formGroup: FormGroup;
   planeTicket: PlaneTicket;
 
+  breadcrumbItems: BreadcrumbItem[]
+
   constructor(private _dialog: MatDialog,
               private _snackbar: MatSnackBar,
               private _activatedRoute: ActivatedRoute,
               private _router: Router,
+              private _parent: AgencyPage,
               private _service: PlaneTicketService) {
   }
 
   async ngOnInit() {
     const planeTicketId = +this._activatedRoute.snapshot.params['planeTicketId'];
-
     this.planeTicket = await this._service.getByIdAsync(planeTicketId);
     this.formGroup = new FormGroup({
       placeCount : new FormControl(this.planeTicket.placeCount),
@@ -35,6 +39,12 @@ export class PlaneTicketEditPage implements OnInit {
       arrivalCity: new FormControl(this.planeTicket.arrivalCity),
       returnDate: new FormControl(this.planeTicket.returnDate.toJSDate()),
     });
+
+    this.breadcrumbItems = [...this._parent.breadcrumbItems,
+      new BreadcrumbItem('Billets d\'avion', `/agencies/${this.planeTicket.agencyId}/plane-tickets`),
+      new BreadcrumbItem(`Billet N° ${this.planeTicket.id}`, `/agencies/${this.planeTicket.agencyId}/plane-tickets/${this.planeTicket.id}`),
+      new BreadcrumbItem('Modifier')
+    ]
    }
 
 

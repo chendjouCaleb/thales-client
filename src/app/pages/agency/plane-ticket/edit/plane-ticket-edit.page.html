@@ -1,4 +1,5 @@
 <div *ngIf="planeTicket">
+  <breadcrumb class="m-3" *ngIf="planeTicket" [items]="breadcrumbItems"></breadcrumb>
   <div class="bg-color-0 h-100 p-4 d-flex align-items-center justify-content-center" style="box-sizing: border-box">
     <form [formGroup]="formGroup" class="th-form">
       <div class="title-20 mb-3">Achat de billet d'avion</div>

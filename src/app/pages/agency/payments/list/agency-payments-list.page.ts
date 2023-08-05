@@ -4,6 +4,7 @@ import {Agency, Payment} from "../../../../../entities";
 import {PaymentUIService} from "@app/Components/payments";
 import {PaymentsList} from "@app/Components/payments/list/payments-list";
 import {AgencyPage} from "@app/pages/agency/agency.page";
+import {BreadcrumbItem} from "@app/Components";
 
 @Component({
   templateUrl: 'agency-payments-list.page.html'
@@ -16,6 +17,7 @@ export class AgencyPaymentsListPage implements OnInit {
   paymentList: PaymentsList
 
   agency: Agency;
+  breadcrumbItems: BreadcrumbItem[];
 
   constructor(private _service: PaymentService,
               private _parent: AgencyPage,
@@ -26,7 +28,11 @@ export class AgencyPaymentsListPage implements OnInit {
   ngOnInit() {
     this._service.listAsync({agencyId: this.agency.id}).then(items => {
       this.payments = items;
-    })
+    });
+
+    this.breadcrumbItems = [...this._parent.breadcrumbItems,
+      new BreadcrumbItem('Paiements')
+    ];
   }
 
   addPayment() {

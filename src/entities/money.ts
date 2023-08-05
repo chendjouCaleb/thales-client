@@ -14,8 +14,7 @@ export class Money {
   }
 
   add(...monies: Money[]) {
-    let sum = monies.map(m => m.amount).reduce((s, current) => s + current) + this.amount;
-
+    let sum = monies.map(m => m.amount).reduce((s, current) => s + current, this.amount) ;
     return new Money(sum, this.currency)
   }
 

@@ -8,5 +8,7 @@
   </div>
   <div class="divider my-3"></div>
 
-  <PlaneTicketList [params]="{agencyId:agency.id}"></PlaneTicketList>
+  <PlaneTicketList [params]="{agencyId:agency.id}"
+    [displayedColumns]=" [ 'id', 'departureCountry', 'arrivalCountry', 'customer', 'employee', 'createdAt', 'action']"
+  ></PlaneTicketList>
 </div>

@@ -1,4 +1,4 @@
-<div class="p-3 m-3 bg-color-0 mat-elevation-z1">
+<div class="p-3 bg-color-0">
 
   <mat-tab-group #tabGroup mat-stretch-tabs="false" [selectedIndex]="tabGroupRemember.selectedIndex">
     <mat-tab label="Accueil">
@@ -12,7 +12,9 @@
 
     <mat-tab label="Billets d'avions">
       <div class="mt-4" *ngIf="customer">
-        <PlaneTicketList *ngIf="customer" [params]="{customerId: customer.id}"></PlaneTicketList>
+        <PlaneTicketList *ngIf="customer" [params]="{customerId: customer.id}"
+          [displayedColumns]="['id', 'departureCountry', 'arrivalCountry', 'agency', 'employee', 'createdAt', 'action']"
+        ></PlaneTicketList>
       </div>
     </mat-tab>
 

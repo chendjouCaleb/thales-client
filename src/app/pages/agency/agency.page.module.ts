@@ -6,7 +6,7 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatIconModule} from "@angular/material/icon";
 import {MatSidenavModule} from "@angular/material/sidenav";
-import {NavModule, ProcedureApplyModule} from "@app/Components";
+import {BreadcrumbModule, NavModule, ProcedureApplyModule} from "@app/Components";
 import {ScaffoldModule} from "@app/Components";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
@@ -43,7 +43,7 @@ const routes: Routes = [
   imports: [
     CommonModule, MatButtonModule, MatToolbarModule, RouterModule.forChild(routes), MatIconModule,
     MatSidenavModule, NavModule, ScaffoldModule, MatFormFieldModule, MatInputModule, MatTooltipModule,
-    PaymentModule, PlaneTicketModule, EmployeeModule, AgencyModule, ProcedureApplyModule
+    PaymentModule, PlaneTicketModule, EmployeeModule, AgencyModule, ProcedureApplyModule, BreadcrumbModule
   ],
   declarations: [AgencyPage, AgencyPaymentsListPage, AgencyEmployeesPage, AgencySettingsPage]
 })

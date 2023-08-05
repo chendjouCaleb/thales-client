@@ -1,14 +1,12 @@
-<div class="p-4 m-1 br-8 bg-color-0">
+<div class="px-4">
 
-
-  <div class="d-flex align-items-center justify-content-between">
-    <div class="fontSize-20 fontWeight-semiBold">Procédures en cours</div>
-
-    <button mat-flat-button color="primary" (click)="apply()">
-      <mat-icon>add</mat-icon>
-      Ajouter une application
-    </button>
-  </div>
+  <breadcrumb class="mt-3" [items]="breadcrumbItems"></breadcrumb>
+  <div class="divider my-3"></div>
+  <button mat-flat-button color="primary" (click)="apply()">
+    <mat-icon>add</mat-icon>
+    Ajouter une application
+  </button>
+  <div class="divider my-3"></div>
 
   <div class="mt-4">
     <procedure-apply-list [params]="{agencyId: agency.id}"></procedure-apply-list>

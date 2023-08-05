@@ -24,7 +24,9 @@ export class AgencyProcedureAppliesListPage implements OnInit {
   }
 
   async ngOnInit() {
-
+    this.breadcrumbItems = [...this._parent.breadcrumbItems,
+      new BreadcrumbItem('Procédures en cours', )
+    ];
   }
 
   apply() {

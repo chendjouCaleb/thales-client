@@ -39,6 +39,7 @@ export class AppComponent {
     const pdf_url = 'assets/icons/pdf-svgrepo-com.svg'
     iconRegistry.addSvgIconLiteral('pdf-svg-repos', sanitizer.bypassSecurityTrustHtml(PDF_SVG));
 
+    this._authService.init().then();
     _authService.stateChange.subscribe(state => {
       this.isAuthLoading = false;
     })

@@ -55,7 +55,7 @@
 
         <a *ngIf="element.procedureApplyStep" routerLink="/admin/procedure-applies/{{element.procedureApplyStep.procedureApplyId}}"
            class="inline-badge ms-bgColor-magentaPink-10 ms-bgColor-magentaPink-20--hover">
-          Procédure N°{{element.procedureApplyStep.id}}
+<!--          Procédure:  {{element.procedureApplyStep.procedureStep.name}}-->
         </a>
 
         {{element.reason}}

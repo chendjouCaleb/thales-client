@@ -14,6 +14,7 @@ export class AuthenticationService {
 
   private _session: Session = null;
   private _accessToken: string = '';
+  private _initialized = false;
   get accessToken(): string {
     return this._accessToken;
   }
@@ -34,6 +35,8 @@ export class AuthenticationService {
 
     if(!accessToken) {
       this._stateChange.next(false);
+      this._initialized = true;
+      console.log('You are logout.')
       return
     }
     const headers = new HttpHeaders().set('Authorization', `Bearer ${accessToken}`)
@@ -42,9 +45,16 @@ export class AuthenticationService {
 
     this._accessToken = accessToken;
     this._session = session;
+    this._initialized = true;
     this._stateChange.next(true);
-    console.log('Authentication service initialized')
+    console.log(`${session.user.fullName} is logged.`)
+  }
 
+  public async isLoggedAsync(): Promise<boolean> {
+    if(this._initialized) {
+      return this.isLogged;
+    }
+    return firstValueFrom(this._stateChange.asObservable());
   }
 
   public async loginAsync(model: LoginModel): Promise<Session> {

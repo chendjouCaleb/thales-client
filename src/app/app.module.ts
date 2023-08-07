@@ -40,8 +40,4 @@ registerLocaleData(localeFr, 'fr');
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {
-  constructor(private _authenticationService: AuthenticationService) {
-    this._authenticationService.init().then();
-  }
-}
+export class AppModule {}

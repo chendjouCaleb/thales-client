@@ -26,7 +26,7 @@ export class PlaneTicketAddRemember {
 
   get departureDate(): Date {
    const str = this.store.getItem<string>('departureDate');
-   return str ? new Date(Date.parse(str)) : null
+   return str ? new Date(Date.parse(str)) : null;
   }
   set departureDate(value: Date) { this.store.setItem('departureDate', value); }
 

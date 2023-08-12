@@ -140,6 +140,10 @@ $button-typography: mat.define-typography-config(
   text-align: left;
 }
 
+.link-inherit {
+  text-decoration: none !important;
+}
+
 .divLink {
   color: inherit !important;
   text-decoration: none;

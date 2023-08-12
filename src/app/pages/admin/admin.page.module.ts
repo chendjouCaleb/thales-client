@@ -11,6 +11,7 @@ import {ScaffoldModule} from "@app/Components";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MatTooltipModule} from "@angular/material/tooltip";
+import {EventsPage} from "./events/events-page";
 
 const routes: Routes = [
   {
@@ -22,6 +23,7 @@ const routes: Routes = [
       { path: 'procedure-applies',loadChildren: () => import('./procedure-applies/procedure-apply.page.module').then(m => m.ProcedureApplyPageModule)},
       { path: 'users', loadChildren: () => import('./users/users.page.module').then(m => m.UsersPageModule ) },
       { path: 'settings', loadChildren: () => import('./settings/settings.page.module').then(m => m.SettingsPageModule ) },
+      { path: 'events', component: EventsPage },
       { path: '', redirectTo: 'payments', pathMatch: 'full'}
     ]
   }

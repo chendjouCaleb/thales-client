@@ -6,6 +6,8 @@ export class BaseEntity<TID> {
   deletedAt: DateTime;
   code: string = '';
 
+  publisherId: string;
+  subjectId: string;
 
   constructor(value: any = {}) {
     if(value){
@@ -13,6 +15,8 @@ export class BaseEntity<TID> {
       this.deletedAt = value.deletedAt ? DateTime.fromISO(value.deletedAt) : null;
       this.id = value.id;
       this.code = value.code;
+      this.publisherId = value.publisherId;
+      this.subjectId = value.subjectId;
     }
   }
 

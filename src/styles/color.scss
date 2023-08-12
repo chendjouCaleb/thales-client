@@ -21,6 +21,8 @@ $ms-color-greenLight: #bad80a;
 $ms-color-cyanBlue-10: #0078d4;
 $ms-color-cyanBlue-20: #004e8c;
 
+$ms-color-magentaPink-0: #facee9;
+$ms-color-magentaPink-1: #f8b4de;
 $ms-color-magentaPink-10: #e3008c;
 $ms-color-magentaPink-20: #9b0062;
 
@@ -49,6 +51,7 @@ $ms-color-pinkRed-20: #750b1c;
 .ms-bgColor-cyan-10 { background-color: $ms-color-cyan-10}
 .ms-bgColor-cyan-20 { background-color: $ms-color-cyan-20}
 
+.ms-bgColor-magentaPink-0 { background-color: $ms-color-magentaPink-0}
 .ms-bgColor-magentaPink-10 { background-color: $ms-color-magentaPink-10}
 .ms-bgColor-magentaPink-20 { background-color: $ms-color-magentaPink-20}
 
@@ -62,7 +65,11 @@ $ms-color-pinkRed-20: #750b1c;
 .ms-bgColor-cyan-10--hover:hover { background-color: $ms-color-cyan-10}
 .ms-bgColor-cyan-20--hover:hover { background-color: $ms-color-cyan-20}
 .ms-bgColor-magentaPink-10--hover:hover { background-color: $ms-color-magentaPink-10}
-.ms-bgColor-magentaPink-20--hover:hover { background-color: $ms-color-magentaPink-20}
+.ms-bgColor-magentaPink-10--hover:hover { background-color: $ms-color-magentaPink-10}
+.ms-bgColor-magentaPink-1--hover:hover { background-color: $ms-color-magentaPink-1}
+
+.ms-color-magentaPink-10 { color: $ms-color-magentaPink-10}
+.ms-color-magentaPink-20 { color: $ms-color-magentaPink-20}
 
 .divider {
   width: 100%;

@@ -3,6 +3,7 @@ import {Customer} from "./customer";
 import {Procedure, ProcedureStep} from "./procedure";
 import {Payment} from "./payment";
 import {Agency} from "./agency";
+import {Employee} from "@entities/employee";
 
 export class ProcedureApply extends BaseEntity<number> {
   customer: Customer;
@@ -13,6 +14,9 @@ export class ProcedureApply extends BaseEntity<number> {
 
   agency: Agency;
   agencyId: number;
+
+  employee: Employee;
+  employeeId: number;
 
   steps: ProcedureApplyStep[] = [];
 

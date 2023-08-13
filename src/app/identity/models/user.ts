@@ -10,12 +10,16 @@ export class User {
       this.email = value.email;
       this.normalizedEmail = value.normalizedEmail;
 
-      this.createdAt = DateTime.fromISO(value.createdAt)
+      this.createdAt = DateTime.fromISO(value.createdAt);
+
+      this.actorId = value.actorId;
+      this.publisherId = value.publisherId;
+      this.subjectId = value.subjectId;
     }
   }
 
   id: string = '';
-  createdAt: DateTime
+  createdAt: DateTime;
   fullName: string = '';
 
   userName: string = '';
@@ -23,4 +27,8 @@ export class User {
 
   email: string = '';
   normalizedEmail: string = '';
+
+  actorId: string = '';
+  publisherId: string = '';
+  subjectId: string = '';
 }

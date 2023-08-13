@@ -12,6 +12,7 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {EventsPage} from "./events/events-page";
+import {TraceModule} from "@app/trace";
 
 const routes: Routes = [
   {
@@ -30,11 +31,11 @@ const routes: Routes = [
 ]
 
 @NgModule({
-    imports: [
-      CommonModule, MatButtonModule, MatToolbarModule, RouterModule.forChild(routes), MatIconModule,
-      MatSidenavModule, NavModule, ScaffoldModule, MatFormFieldModule, MatInputModule, MatTooltipModule
-    ],
-  declarations: [AdminPage]
+  imports: [
+    CommonModule, MatButtonModule, MatToolbarModule, RouterModule.forChild(routes), MatIconModule,
+    MatSidenavModule, NavModule, ScaffoldModule, MatFormFieldModule, MatInputModule, MatTooltipModule, TraceModule,
+  ],
+  declarations: [AdminPage, EventsPage ]
 })
 export class AdminPageModule {
 

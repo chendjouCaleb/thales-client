@@ -19,6 +19,8 @@ import {AgencyEmployeesPage} from "./employees/agency-employees.page";
 import {EmployeeModule} from "@app/Components/employees";
 import {AgencySettingsPage} from "./settings/agency-settings.page";
 import {AgencyModule} from "@app/Components/agencies";
+import {AgencyEventsPage} from "@app/pages/agency/events/agency-events-page";
+import {TraceModule} from "@app/trace";
 
 const routes: Routes = [
   {
@@ -34,6 +36,7 @@ const routes: Routes = [
         loadChildren: () => import('./procedure-apply/agency-procedure-apply.page.module').then(m => m.AgencyProcedureApplyPageModule)
       },
       {path: 'settings', component: AgencySettingsPage},
+      {path: 'events', component: AgencyEventsPage},
       {path: '', redirectTo: 'payments', pathMatch: 'full'}
     ]
   }
@@ -43,9 +46,10 @@ const routes: Routes = [
   imports: [
     CommonModule, MatButtonModule, MatToolbarModule, RouterModule.forChild(routes), MatIconModule,
     MatSidenavModule, NavModule, ScaffoldModule, MatFormFieldModule, MatInputModule, MatTooltipModule,
-    PaymentModule, PlaneTicketModule, EmployeeModule, AgencyModule, ProcedureApplyModule, BreadcrumbModule
+    PaymentModule, PlaneTicketModule, EmployeeModule, AgencyModule, ProcedureApplyModule, BreadcrumbModule,
+    TraceModule
   ],
-  declarations: [AgencyPage, AgencyPaymentsListPage, AgencyEmployeesPage, AgencySettingsPage]
+  declarations: [AgencyPage, AgencyPaymentsListPage, AgencyEmployeesPage, AgencySettingsPage, AgencyEventsPage]
 })
 export class AgencyPageModule {
 

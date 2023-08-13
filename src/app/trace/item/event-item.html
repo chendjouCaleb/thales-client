@@ -1,0 +1,30 @@
+<div *ngIf="event.name == 'PAYMENT__ADD'" event-item-template [event]="event" [user]="user" [agency]="payment.agency"
+     icon="paid"
+     title="Nouveau paiement">
+  <span class="">{{payment.customer.fullName}}</span> vous a versé
+  <span class="">{{payment.amount.amount | currency: payment.amount.currency}}</span>.
+</div>
+
+<div *ngIf="event.name == 'PAYMENT__DELETE'" event-item-template [event]="event" [user]="user" [agency]="payment.agency"
+     icon="money_off" color="warn"
+     title="Paiment supprimé">
+  <div >
+    Le paiement N°
+    <span class="fontWeight-semiBold">{{payment.code}}</span> a été supprimé.
+  </div>
+</div>
+
+
+
+<div *ngIf="event.name == 'PLANE_TICKET__ADD'" event-item-template [event]="event" [user]="user" [agency]="planeTicket.agency"
+     title="Achat de billet d'avion" icon="airplane_ticket">
+  <span class="">{{planeTicket.customer.fullName}}</span> a acheté un billet d'avion.
+</div>
+
+
+<div *ngIf="event.name == 'PROCEDURE_APPLY__ADD'" event-item-template [event]="event" [user]="user" [agency]="procedureApply.agency"
+     title="Nouvelle procédure" icon="receipt" color="primary">
+  <span class="">{{procedureApply.customer.fullName}}</span> a engagé la procédure
+  <span class="fontWeight-semiBold">{{procedureApply.procedure.name}}</span>
+  .
+</div>

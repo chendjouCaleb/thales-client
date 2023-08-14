@@ -8,5 +8,6 @@ export class AgencyEventsPage {
   eventParams:any
   constructor(private parent: AgencyPage) {
     this.eventParams = {publisherId: parent.agency.publisherId}
+
   }
 }

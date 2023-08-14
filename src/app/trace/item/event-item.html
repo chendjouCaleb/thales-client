@@ -21,6 +21,12 @@
   <span class="">{{planeTicket.customer.fullName}}</span> a acheté un billet d'avion.
 </div>
 
+<div *ngIf="event.name == 'CUSTOMER__ADD'" event-item-template [event]="event" [user]="user"
+     [routerLink]="['/admin', 'customers', customer.id ]"
+     title="Nouveau client" icon="person">
+  Un client a été ajouté: <span class="fontWeight-semiBold">{{customer.fullName}}</span>.
+</div>
+
 
 <div *ngIf="event.name == 'PROCEDURE_APPLY__ADD'" event-item-template [event]="event" [user]="user" [agency]="procedureApply.agency"
      title="Nouvelle procédure" icon="receipt" color="primary">

@@ -1,5 +1,5 @@
 <div *ngIf="events">
-  <div  *ngFor="let event of events" >
+  <div  *ngFor="let event of events"  matRipple>
     <div event-item [event]="event" class="p-2 bg-color-20--hover cursor-pointer"
     style="border-top: 1px solid #e1e1e1; border-bottom: 1px solid #e1e1e1; box-sizing: border-box"></div>
   </div>

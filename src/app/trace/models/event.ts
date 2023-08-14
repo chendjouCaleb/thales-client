@@ -18,7 +18,7 @@ export class Event {
     if(value) {
       this.id = value.id;
       this.name = value.name;
-      this.createdAt = DateTime.fromISO(value.createdAt);
+      this.createdAt = DateTime.fromISO(value.createdAt, {zone: 'Europe/London'})
       this.dataValue = value.dataValue;
       this.subjectId = value.subjectId;
       this.publisherId = value.publisherId;

@@ -22,7 +22,7 @@ export class EventList implements OnInit {
 
   async loadEvents() {
     this.isLoading = true;
-    const eventListModel = await this._traceService.listAsync();
+    const eventListModel = await this._traceService.listAsync(this.params);
     this.events = eventListModel.events;
     this.isLoading = false;
   }

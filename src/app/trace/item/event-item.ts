@@ -6,6 +6,7 @@ import {isSameDay} from "@app/utils";
 import {Payment} from "@entities/payment";
 import {PlaneTicket} from "@entities/plane-ticket";
 import {ProcedureApply} from "@entities/procedure-apply";
+import {Customer} from "@entities/customer";
 
 @Component({
   templateUrl: 'event-item.html',
@@ -19,7 +20,8 @@ export class EventItem implements OnInit {
   createdAt: string;
   payment: Payment;
   planeTicket: PlaneTicket;
-  procedureApply: ProcedureApply
+  procedureApply: ProcedureApply;
+  customer: Customer;
 
   ngOnInit() {
     const model = this.event.model;
@@ -27,5 +29,6 @@ export class EventItem implements OnInit {
     this.payment = model.payments.find(p => p.subjectId == this.event.subjectId);
     this.planeTicket = model.planeTickets.find(p => p.subjectId == this.event.subjectId);
     this.procedureApply = model.procedureApplies.find(p => p.subjectId == this.event.subjectId);
+    this.customer = model.customers.find(p => p.subjectId == this.event.subjectId);
   }
 }

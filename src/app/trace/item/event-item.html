@@ -17,7 +17,8 @@
 
 
 <div *ngIf="event.name == 'PLANE_TICKET__ADD'" event-item-template [event]="event" [user]="user" [agency]="planeTicket.agency"
-     title="Achat de billet d'avion" icon="airplane_ticket">
+     title="Achat de billet d'avion" icon="airplane_ticket"
+      [routerLink]="['/agencies', planeTicket.agencyId, 'plane-tickets', planeTicket.id]">
   <span class="">{{planeTicket.customer.fullName}}</span> a acheté un billet d'avion.
 </div>
 
@@ -29,7 +30,9 @@
 
 
 <div *ngIf="event.name == 'PROCEDURE_APPLY__ADD'" event-item-template [event]="event" [user]="user" [agency]="procedureApply.agency"
-     title="Nouvelle procédure" icon="receipt" color="primary">
+     title="Nouvelle procédure" icon="receipt" color="primary"
+     [routerLink]="['/agencies', procedureApply.agencyId, 'procedure-applies', procedureApply.id]">
+
   <span class="">{{procedureApply.customer.fullName}}</span> a engagé la procédure
   <span class="fontWeight-semiBold">{{procedureApply.procedure.name}}</span>
   .
@@ -37,7 +40,7 @@
 
 
 <div *ngIf="event.name == 'USER__ADD'" event-item-template [event]="event" [user]="user"
-     [routerLink]="['/admin', 'users', subjectUser.id ]"
+     [routerLink]="['/admin', 'users', subjectUser.userName, 'home' ]"
      title="Nouvel utilisateur" icon="person_add">
   Un utilisateur a été ajouté: <span class="fontWeight-semiBold">{{subjectUser.fullName}}</span>.
 </div>

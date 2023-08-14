@@ -1,5 +1,5 @@
 import {Payment} from "@entities/payment";
-import {Event} from './models';
+import {Event} from './models/event';
 import {User} from "@app/identity";
 import {Agency} from "@entities/agency";
 import {Employee} from "@entities/employee";

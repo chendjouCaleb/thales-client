@@ -1,6 +1,6 @@
 import {SERVER_URL} from "@app/http";
 import {HttpClient} from "@angular/common/http";
-import {EventListModel} from "@app/trace/event-list.model";
+import {EventListModel} from "./event-list.model";
 import {firstValueFrom} from "rxjs";
 import {Event } from './models/event';
 import {Agency} from "@entities/agency";

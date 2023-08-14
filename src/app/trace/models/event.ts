@@ -1,6 +1,7 @@
 import {DateTime} from "luxon";
 import {EventListModel} from "../event-list.model";
 import {ActorEvent} from "./actor-event";
+import {PublisherEvent} from "./publisher-event";
 
 export class Event {
   id: number;
@@ -11,6 +12,7 @@ export class Event {
   publisherId: string;
 
   actorEvents: ActorEvent[];
+  publisherEvents: PublisherEvent[];
 
   model: EventListModel
 
@@ -24,6 +26,7 @@ export class Event {
       this.publisherId = value.publisherId;
 
       this.actorEvents = value.actorEvents.map(ae => new ActorEvent(ae));
+      this.publisherEvents = value.publisherEvents.map(pe => new PublisherEvent(pe));
     }
   }
 }

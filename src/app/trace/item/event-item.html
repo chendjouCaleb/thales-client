@@ -34,3 +34,10 @@
   <span class="fontWeight-semiBold">{{procedureApply.procedure.name}}</span>
   .
 </div>
+
+
+<div *ngIf="event.name == 'USER__ADD'" event-item-template [event]="event" [user]="user"
+     [routerLink]="['/admin', 'users', subjectUser.id ]"
+     title="Nouvel utilisateur" icon="person_add">
+  Un utilisateur a été ajouté: <span class="fontWeight-semiBold">{{subjectUser.fullName}}</span>.
+</div>

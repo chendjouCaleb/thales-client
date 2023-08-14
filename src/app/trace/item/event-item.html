@@ -34,8 +34,25 @@
      [routerLink]="['/agencies', procedureApply.agencyId, 'procedure-applies', procedureApply.id]">
 
   <span class="">{{procedureApply.customer.fullName}}</span> a engagé la procédure
-  <span class="fontWeight-semiBold">{{procedureApply.procedure.name}}</span>
-  .
+  <span class="fontWeight-semiBold">{{procedureApply.procedure.name}}</span>.
+</div>
+
+<div *ngIf="event.name == 'PROCEDURE_APPLY_STEP__VALIDATE'" event-item-template [event]="event" [user]="user" [agency]="procedureApplyStep.agency"
+     title="étape validée" icon="done_all" color="primary"
+     [routerLink]="['/agencies', procedureApplyStep.agencyId, 'procedure-applies', procedureApplyStep.procedureApplyId]">
+
+  L'étape <span class="fontWeight-semiBold">{{procedureApplyStep.procedureStep.name}}</span>
+  pour la procédure <span class="fontWeight-semiBold">{{procedureApplyStep.procedureStep.procedure.name}}</span>
+  et le client <span class="fontWeight-semiBold">{{procedureApplyStep.procedureApply?.customer?.fullName}}</span>
+  a été validée.
+</div>
+
+
+<div *ngIf="event.name == 'PROCEDURE__ADD'" event-item-template [event]="event" [user]="user"
+     title="Nouvelle procédure" icon="post_add" color="primary"
+     [routerLink]="['/admin/procedures', procedure.id]">
+
+  Une nouvelle procédure a été ajoutée: <span class="fontWeight-semiBold">{{procedure.name}}</span>.
 </div>
 
 

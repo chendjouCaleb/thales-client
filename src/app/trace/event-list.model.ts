@@ -5,18 +5,21 @@ import {Agency} from "@entities/agency";
 import {Employee} from "@entities/employee";
 import {Customer} from "@entities/customer";
 import {PlaneTicket} from "@entities/plane-ticket";
-import {ProcedureApply} from "@entities/procedure-apply";
-import {Procedure} from "@entities/procedure";
+import {ProcedureApply, ProcedureApplyStep} from "@entities/procedure-apply";
+import {Procedure, ProcedureStep} from "@entities/procedure";
 
 export class EventListModel {
   events: Event[];
   users: User[];
   agencies: Agency[];
   employees: Employee[];
-  procedures: Procedure[];
   customers: Customer[];
   payments: Payment[];
   planeTickets: PlaneTicket[];
+
+  procedures: Procedure[];
+  procedureSteps: ProcedureStep[];
+  procedureApplySteps: ProcedureApplyStep[];
   procedureApplies: ProcedureApply[];
 
 
@@ -43,6 +46,19 @@ export class EventListModel {
       pt.customer = this.customers.find(c => c.id == pt.customerId);
       pt.employee = this.employees.find(e => e.id == pt.employeeId);
       pt.procedure = this.procedures.find(e => e.id == pt.procedureId);
+
+    });
+
+    this.procedureSteps.forEach(ps => {
+      ps.procedure = this.procedures.find(p => p.id == ps.procedureId);
+    });
+
+    this.procedureApplySteps.forEach(pas => {
+      pas.agency = this.agencies.find(a => a.id == pas.agencyId);
+      pas.employee = this.employees.find(e => e.id == pas.employeeId);
+      pas.procedureStep = this.procedureSteps.find(ps => ps.id == pas.procedureStepId);
+      pas.procedureApply = this.procedureApplies.find(pa => pa.id == pas.procedureApplyId);
+      //console.log(pas.procedureApply.customer)
     });
 
     this.events.forEach(e => e.model = this)

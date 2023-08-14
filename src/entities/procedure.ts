@@ -43,10 +43,7 @@ export class ProcedureStep extends BaseEntity<number>{
 
       this.index = value.index;
       this.procedureId = value.procedureId;
-
-      if(value.procedure) {
-        this.procedure = new Procedure(value.procedure);
-      }
+      this.procedure = value.procedure ? new Procedure(value.procedure) : null;
     }
   }
 }

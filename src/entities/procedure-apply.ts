@@ -45,6 +45,12 @@ export class ProcedureApplyStep extends BaseEntity<number> {
   procedureStep: ProcedureStep
   procedureStepId: number;
 
+  employee: Employee
+  employeeId: number;
+
+  agency: Agency;
+  agencyId: number;
+
   validated: boolean;
   paymentAmount: number = 0;
 
@@ -64,6 +70,11 @@ export class ProcedureApplyStep extends BaseEntity<number> {
       this.validated = value.validated;
       this.paymentAmount = value.paymentAmount;
 
+      this.employeeId = value.employeeId;
+      this.employee = value.employee ? new Employee(value.employee) : null;
+
+      this.agencyId = value.agencyId;
+      this.agency = value.agency ? new Agency(value.agency) : null;
 
     }
   }

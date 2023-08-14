@@ -19,8 +19,8 @@ export class Money {
   }
 
   subtract(...monies: Money[]) {
-    let sum = this.amount - monies.map(m => m.amount).reduce((s, current) => s + current);
-
-    return new Money(sum, this.currency)
+    const sum = monies.map(m => m.amount).reduce((s, current) => s + current, 0);
+    const result = this.amount - sum;
+    return new Money(result, this.currency)
   }
 }

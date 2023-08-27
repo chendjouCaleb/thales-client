@@ -5,6 +5,7 @@ import {Observable} from "rxjs";
 import {AgencyAdd} from "./add/agency-add";
 import {AgencyDelete} from "./delete/agency-delete";
 import {AgencyChangeName} from "@app/Components/agencies/change-name/agency-change-name";
+import {AgencyEdit} from "@app/Components/agencies/edit/agency-edit";
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,11 @@ export class AgencyService {
 
   changeAgencyName(agency: Agency): Observable<boolean> {
     const dialogRef = this._dialog.open(AgencyChangeName, {panelClass: 'dialog-panel', data: {agency}});
+    return dialogRef.afterClosed();
+  }
+
+  editAgency(agency: Agency): Observable<boolean> {
+    const dialogRef = this._dialog.open(AgencyEdit, {panelClass: 'dialog-panel', data: {agency}});
     return dialogRef.afterClosed();
   }
 

@@ -22,7 +22,11 @@ export class AgencySettingsPage {
   }
 
   editName() {
-    this._service.changeAgencyName(this.agency)
+    this._service.changeAgencyName(this.agency);
+  }
+
+  editInfo() {
+    this._service.editAgency(this.agency);
   }
 
 

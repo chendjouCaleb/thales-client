@@ -1,0 +1,30 @@
+<div class="fontWeight-semiBold fontSize-20 p-4">Ajouter une agence</div>
+
+
+<div class="px-4" [formGroup]="formGroup">
+  <mat-form-field style="width: 100%">
+    <mat-label>Adresse</mat-label>
+    <input matInput formControlName="address" required>
+  </mat-form-field>
+
+  <mat-form-field style="width: 100%">
+    <mat-label>Code postal</mat-label>
+    <input matInput formControlName="postalCode" required>
+  </mat-form-field>
+
+  <mat-form-field style="width: 100%">
+    <mat-label>Numéro de téléphone 1</mat-label>
+    <input matInput formControlName="phoneNumber1" required>
+  </mat-form-field>
+
+  <mat-form-field style="width: 100%">
+    <mat-label>Numéro de téléphone 2</mat-label>
+    <input matInput formControlName="phoneNumber2" required>
+  </mat-form-field>
+
+</div>
+
+<div class="p-4 align-end">
+  <button mat-button mat-dialog-close="" class="me-4">Annuler</button>
+  <button mat-flat-button color="primary" [disabled]="formGroup.invalid" (click)="edit()">Modifier</button>
+</div>

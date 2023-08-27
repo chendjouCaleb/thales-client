@@ -10,7 +10,11 @@ import {AgencyHttpClient} from "@app/services/agency.http-client";
 })
 export class AgencyAdd {
   formGroup = new FormGroup({
-    name: new FormControl<string>('')
+    name: new FormControl<string>(''),
+    address: new FormControl<string>(''),
+    postalCode: new FormControl<string>(''),
+    phoneNumber1: new FormControl<string>(''),
+    phoneNumber2: new FormControl<string>(''),
   })
 
   constructor(@Inject(MAT_DIALOG_DATA) data,
@@ -21,6 +25,10 @@ export class AgencyAdd {
   async add() {
     const model = new AgencyAddModel();
     model.name = this.formGroup.value.name;
+    model.address = this.formGroup.value.address;
+    model.phoneNumber1 = this.formGroup.value.phoneNumber1;
+    model.phoneNumber2 = this.formGroup.value.phoneNumber2;
+    model.postalCode = this.formGroup.value.postalCode;
 
     const agency = await this._service.addAsync(model);
     this._dialogRef.close(agency);

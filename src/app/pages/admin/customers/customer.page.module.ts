@@ -39,6 +39,7 @@ import {PlaneTicketModule} from "../../../Components/plane-tickets";
 import {ProcedureApplyPageModule} from "@app/pages/admin/procedure-applies/procedure-apply.page.module";
 import {ProcedureApplyModule} from "@app/Components";
 import {CleaveModule} from "@app/cleave";
+import {TraceModule} from "@app/trace";
 
 const routes: Routes = [
   {
@@ -56,7 +57,7 @@ const routes: Routes = [
     imports: [CommonModule, RouterModule.forChild(routes), FormsModule, MatButtonModule, MatIconModule,
         MatInputModule, MatFormFieldModule, MatDialogModule, MatCheckboxModule, MatRadioModule, MatSelectModule,
         MatStepperModule, ReactiveFormsModule, MatDatepickerModule, MatTableModule, MatTabsModule, PaymentModule, PlaneTicketModule,
-        ProcedureApplyModule, CleaveModule],
+        ProcedureApplyModule, CleaveModule, TraceModule],
 
   declarations: [
     CustomerPage, CustomerListPage, CustomerAddPage, CustomerAddAddress, CustomerAddContact,

@@ -15,6 +15,3 @@ console.log(isToday(laterToday)) // False
 export const isSameDay = (a: DateTime, b: DateTime): boolean => {
   return a.hasSame(b, "day") && a.hasSame(b, "month") && a.hasSame(b, "year");
 };
-
-console.log(isSameDay(today, laterToday)); // true
-console.log(isSameDay(today, tomorrow)); // false

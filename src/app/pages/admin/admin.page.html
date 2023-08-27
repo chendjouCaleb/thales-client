@@ -35,7 +35,7 @@
         <DIV class="divider"></DIV>
 
         <div>
-          <div>Agences</div>
+          <div class=" ms-3 py-2 fontWeight-semiBold fontSize-12">Agences</div>
           <a [routerLink]="['/agencies', agency.id]" th-nav-item *ngFor="let agency of agencies">
              {{agency.name}}</a>
         </div>

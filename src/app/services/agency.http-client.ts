@@ -3,7 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {SERVER_URL} from "@app/http";
 import {Agency} from "@entities/agency";
 import {firstValueFrom} from "rxjs";
-import {AgencyAddModel} from "@app/models";
+import {AgencyAddModel, AgencyChangeInfoModel} from "@app/models";
 
 @Injectable({
   providedIn: 'root'
@@ -38,6 +38,11 @@ export class AgencyHttpClient {
 
   changeNameAsync(agency: Agency, name: string): Promise<void> {
     const call = this._httpClient.put<void>(`${this.url}/${agency.id}/name`, {name});
+    return firstValueFrom(call);
+  }
+
+  changeInfoAsync(agency: Agency, model: AgencyChangeInfoModel): Promise<void> {
+    const call = this._httpClient.put<void>(`${this.url}/${agency.id}/info`, model);
     return firstValueFrom(call);
   }
 

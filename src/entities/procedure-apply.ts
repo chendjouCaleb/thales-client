@@ -30,7 +30,7 @@ export class ProcedureApply extends BaseEntity<number> {
       this.procedure = value.procedure ? new Procedure(value.procedure) : undefined;
 
       this.agencyId = value.agencyId;
-      this.agency = value.agency ? new Procedure(value.agency) : undefined;
+      this.agency = value.agency ? new Agency(value.agency) : undefined;
 
       this.steps = value.steps ? value.steps.map(s => new ProcedureApply(s)) : undefined;
     }

@@ -53,7 +53,6 @@ $my-typography: mat.define-typography-config(
   $button: $button-typo-level,
   $body-1: $body-typo-level,
   $body-2: $body-typo-level
-
 );
 
 $button-typography: mat.define-typography-config(
@@ -63,9 +62,6 @@ $button-typography: mat.define-typography-config(
   $body-1: $button-typo-level,
   $body-2: $button-typo-level,
 );
-
-
-
 
 
 @include mat.typography-hierarchy($my-typography);
@@ -193,4 +189,12 @@ $button-typography: mat.define-typography-config(
 
 .mdc-data-table__header-cell {
   padding: 16px !important;
+}
+
+$opacities: (0:0, 1:0.1, 2:0.2, 3:0.3, 4:0.4, 5:0.5, 6:0.6, 7:0.7, 8:0.8, 9 : 0.9, 10: 1);
+
+@each $key, $value in $opacities {
+  .ms-opacity-#{$key} {
+    opacity: $value;
+  }
 }

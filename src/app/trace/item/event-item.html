@@ -38,12 +38,12 @@
 </div>
 
 <div *ngIf="event.name == 'PROCEDURE_APPLY_STEP__VALIDATE'" event-item-template [event]="event" [user]="user" [agency]="procedureApplyStep.agency"
-     title="étape validée" icon="done_all" color="primary"
+     title="Étape validée" icon="done_all" color="primary"
      [routerLink]="['/agencies', procedureApplyStep.agencyId, 'procedure-applies', procedureApplyStep.procedureApplyId]">
 
   L'étape <span class="fontWeight-semiBold">{{procedureApplyStep.procedureStep.name}}</span>
   pour la procédure <span class="fontWeight-semiBold">{{procedureApplyStep.procedureStep.procedure.name}}</span>
-  et le client <span class="fontWeight-semiBold">{{procedureApplyStep.procedureApply?.customer?.fullName}}</span>
+  et le client <span class="fontWeight-semiBold">{{procedureApplyStep.procedureApply?.customer.fullName}}</span>
   a été validée.
 </div>
 

@@ -58,7 +58,7 @@ export class EventListModel {
       pas.employee = this.employees.find(e => e.id == pas.employeeId);
       pas.procedureStep = this.procedureSteps.find(ps => ps.id == pas.procedureStepId);
       pas.procedureApply = this.procedureApplies.find(pa => pa.id == pas.procedureApplyId);
-      //console.log(pas.procedureApply.customer)
+
     });
 
     this.events.forEach(e => e.model = this)

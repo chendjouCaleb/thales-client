@@ -15,7 +15,7 @@ export class PlaneTicketList implements OnInit {
 
   @Input()
   displayedColumns: string[] = [];
-  columns: string[] = [ 'id', 'departureCountry', 'arrivalCountry', 'customer', 'agency', 'employee', 'createdAt', 'action'];
+  columns: string[] = [ 'id', 'code', 'departureCountry', 'arrivalCountry', 'customer', 'agency', 'employee', 'createdAt', 'action'];
 
   constructor(private _service: PlaneTicketService, private _uiService: PlaneTicketUIService) {
   }

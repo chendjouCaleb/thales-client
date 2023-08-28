@@ -79,13 +79,13 @@ export class AuthenticationService {
 
   public async logoutAsync(): Promise<void> {
     const call = this._httpClient.put<void>(`${this.url}/logout`, {});
+    await firstValueFrom(call);
+
     localStorage.removeItem("AUTH_ACCESS_TOKEN");
     localStorage.removeItem("AUTH_SESSION_ID");
 
     this._session = null;
     this._accessToken = null
     this._stateChange.next(false);
-
-    return await firstValueFrom(call)
   }
 }

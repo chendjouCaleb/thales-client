@@ -1,5 +1,6 @@
 import {BaseEntity} from "./base-entity";
 import {DateTime} from "luxon";
+import {formatPhoneNumber} from "@app/utils";
 
 export class Customer extends BaseEntity<number> {
   firstName: string = "";
@@ -15,7 +16,7 @@ export class Customer extends BaseEntity<number> {
   hasPassport: boolean;
 
   studyLevel: string = "";
-  studyEndYear: number ;
+  studyEndYear: number;
 
   country: string = "";
   region: string = "";
@@ -28,7 +29,7 @@ export class Customer extends BaseEntity<number> {
 
   constructor(value: any = {}) {
     super(value);
-    if(value) {
+    if (value) {
       this.firstName = value.firstName;
       this.lastName = value.lastName;
       this.fullName = value.fullName;
@@ -49,4 +50,7 @@ export class Customer extends BaseEntity<number> {
     }
   }
 
+  get formattedPhoneNumber(): string {
+    return formatPhoneNumber(this.phoneNumber)
+  }
 }

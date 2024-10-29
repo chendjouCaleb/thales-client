@@ -12,6 +12,9 @@ export class PlaneTicketAddRemember {
   get placeCount(): number { return this.store.getItem('placeCount'); }
   set placeCount(value: number) { this.store.setItem('placeCount', value); }
 
+  get price(): number { return this.store.getItem('price'); }
+  set price(value: number) { this.store.setItem('price', value); }
+
   get backAndForth(): boolean { return this.store.getItem('backAndForth'); }
   set backAndForth(value: boolean) { this.store.setItem('backAndForth', value); }
 
@@ -52,6 +55,7 @@ export class PlaneTicketAddRemember {
     this.arrivalCountry = value.arrivalCountry;
     this.arrivalCity = value.arrivalCity;
     this.returnDate = value.returnDate;
+    this.price = value.price;
   }
 
   clear() {

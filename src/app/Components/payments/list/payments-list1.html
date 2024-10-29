@@ -1,0 +1,113 @@
+<div class="d-flex justify-content-center p-5" *ngIf="isLoading">
+  <mat-spinner></mat-spinner>
+</div>
+
+<div *ngIf="!isLoading">
+  <table mat-table [dataSource]="dataSource" >
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef>Id</th>
+      <td mat-cell *matCellDef="let element">
+        {{element.id}}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="agency">
+      <th mat-header-cell *matHeaderCellDef>Agence</th>
+      <td mat-cell *matCellDef="let element">
+        {{element.agencyName}}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="employee">
+      <th mat-header-cell *matHeaderCellDef>Employé</th>
+      <td mat-cell *matCellDef="let element">
+        {{element.employeeName}}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="code">
+      <th mat-header-cell *matHeaderCellDef>Code</th>
+      <td mat-cell *matCellDef="let element" >
+        <span class="fontWeight-semiBold">{{element.code}}</span>
+      </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="amount">
+      <th mat-header-cell *matHeaderCellDef>
+        <div class="align-end">Montant</div> </th>
+      <td mat-cell *matCellDef="let element">
+
+        <div class="fontWeight-semiBold align-end" *ngIf="!element.deleted" >
+          {{element.amount.amount | currency: element.amount.currency}}
+        </div>
+        <span class="inline-badge ms-bgColor-red-10" *ngIf="element.deleted" > Supprimé </span>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="reason">
+      <th mat-header-cell *matHeaderCellDef> Raison </th>
+      <td mat-cell *matCellDef="let element">
+        <a *ngIf="element.planeTicketId"
+           routerLink="/agencies/{{element.agencyId}}/plane-tickets/{{element.planeTicketId}}"
+           class="inline-badge ms-bgColor-cyan-10 ms-bgColor-cyan-20--hover">
+          Billet d'avion N°{{element.planeTicketId}}
+        </a>
+
+        <a *ngIf="element.procedureApplyStep" routerLink="/agencies/{{element.agencyId}}/procedure-applies/{{element.procedureApplyStep?.procedureApplyId}}"
+           class="link-inherit ">
+          <div class="p-2 br-4 fontSize-14 ms-color-magentaPink-10 ms-bgColor-magentaPink-0 ms-bgColor-magentaPink-1--hover">
+            Procédure <span class="fontWeight-bold">{{element.procedureApplyStep?.procedureName}} </span>
+            :
+            {{element.procedureApplyStep?.procedureStepName}}
+          </div>
+        </a>
+
+        {{element.reason}}
+
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="customer">
+      <th mat-header-cell *matHeaderCellDef>Client</th>
+      <td mat-cell *matCellDef="let element">
+        <a [routerLink]="['/admin/customers', element.id]">{{element.customerName}}</a>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="createdAt">
+      <th mat-header-cell *matHeaderCellDef>Ajouté le</th>
+      <td mat-cell *matCellDef="let element">
+        <span class="fontSize-12">{{element.createdAt.toFormat('ff')}}</span>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef> </th>
+      <td mat-cell *matCellDef="let element" >
+        <div class="align-end">
+          <a mat-icon-button [matMenuTriggerFor]="menu" class="text-uppercase">
+            <mat-icon>more_vert</mat-icon>
+          </a>
+          <mat-menu #menu="matMenu">
+            <a mat-menu-item (click)="printPDF(element)"> <mat-icon svgIcon="pdf-svg-repos"></mat-icon>  Imprimer</a>
+            <button mat-menu-item (click)="delete(element)">
+              <mat-icon>delete</mat-icon>
+              Supprimer</button>
+          </mat-menu>
+        </div>
+      </td>
+    </ng-container>
+
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row
+        (click)="onClick(row)"
+        *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>
+
+
+
+

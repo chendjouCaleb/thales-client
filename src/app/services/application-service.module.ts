@@ -7,10 +7,11 @@ import {PaymentService} from "./payment.service";
 import {PlaneTicketService} from "./plane-ticket.service";
 import {AgencyHttpClient} from "@app/services/agency.http-client";
 import {EmployeeHttpClient} from "@app/services/employee-http-client.service";
+import {MessageHttpClient} from "@app/services/message.service";
 
 @NgModule({
   imports : [ ApplicationHttpModule ],
   providers: [ CustomerService, ProcedureService, ProcedureApplyService, PaymentService, PlaneTicketService,
-  AgencyHttpClient, EmployeeHttpClient ]
+  AgencyHttpClient, EmployeeHttpClient, MessageHttpClient ]
 })
 export class ApplicationServiceModule {}

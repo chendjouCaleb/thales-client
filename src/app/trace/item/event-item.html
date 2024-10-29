@@ -61,3 +61,10 @@
      title="Nouvel utilisateur" icon="person_add">
   Un utilisateur a été ajouté: <span class="fontWeight-semiBold">{{subjectUser.fullName}}</span>.
 </div>
+
+
+<div *ngIf="event.name == 'MESSAGE__ADD'" event-item-template [event]="event"
+     [routerLink]="['/' ]"
+     title="Nouveau message" icon="email">
+  <span class="fontWeight-semiBold"></span>
+</div>

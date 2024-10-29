@@ -8,14 +8,11 @@
     <ng-content></ng-content>
 
     <div class="fontSize-12 mt-1" style="opacity: .6;">
-      <span class="fontWeight-semiBold">{{user?.fullName}}</span>
+      <span *ngFor="let meta of metas; let i=index">
+        {{meta}}
 
-      <ng-container *ngIf="agency">
-        &bullet; <span >{{agency.name}}</span>
-      </ng-container>
-
-      &bullet;
-      <span class="" >{{createdAt}}</span>
+        <span *ngIf="hasBullet(i)">&bullet;</span>
+      </span>
     </div>
   </div>
 </div>

@@ -39,15 +39,24 @@ export class AuthenticationService {
       console.log('You are logout.')
       return
     }
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${accessToken}`)
-    const call = this._httpClient.get<any>(`${this.url}/session`, {headers});
-    const session = new Session(await firstValueFrom(call));
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${accessToken}`);
 
-    this._accessToken = accessToken;
-    this._session = session;
-    this._initialized = true;
-    this._stateChange.next(true);
-    console.log(`${session.user.fullName} is logged.`)
+    try {
+      const call = this._httpClient.get<any>(`${this.url}/session`, {headers});
+      const session = new Session(await firstValueFrom(call));
+
+      this._accessToken = accessToken;
+      this._session = session;
+      this._initialized = true;
+      this._stateChange.next(true);
+      console.log(`${session.user.fullName} is logged.`)
+    }catch (e) {
+      if(e.error.errorCode === 'SessionNotFound') {
+        this.clearData();
+        this._stateChange.next(false);
+      }
+    }
+
   }
 
   public async isLoggedAsync(): Promise<boolean> {
@@ -80,12 +89,16 @@ export class AuthenticationService {
   public async logoutAsync(): Promise<void> {
     const call = this._httpClient.put<void>(`${this.url}/logout`, {});
     await firstValueFrom(call);
+    this.clearData();
 
+    this._stateChange.next(false);
+  }
+
+  private clearData() {
     localStorage.removeItem("AUTH_ACCESS_TOKEN");
     localStorage.removeItem("AUTH_SESSION_ID");
 
     this._session = null;
     this._accessToken = null
-    this._stateChange.next(false);
   }
 }

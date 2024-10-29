@@ -1,10 +1,8 @@
 import {Component, Inject} from "@angular/core";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {FormControl, FormGroup} from "@angular/forms";
-import {Customer, Payment} from "../../../../entities";
-import {PaymentService} from "../../../services";
-import {PaymentAddFormModel} from "../../../models/forms/payment.form-model";
+import {Payment} from "@entities/payment";
+import {PaymentService} from "@app/services";
 
 @Component({
   templateUrl: 'payment-delete.html'
@@ -23,6 +21,6 @@ export class PaymentDelete {
   async delete() {
     await this._service.deleteAsync(this.payment);
     this._dialogRef.close(true);
-    this._snackbar.open(`Le paiement a supprimé`, '', {duration: 5000})
+    this._snackbar.open(`Le paiement a été supprimé.`, '', {duration: 5000})
   }
 }

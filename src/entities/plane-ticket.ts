@@ -4,6 +4,7 @@ import {DateTime} from "luxon";
 import {Payment} from "./payment";
 import {Agency} from "@entities/agency";
 import {Employee} from "@entities/employee";
+import {Money} from "@entities/money";
 
 export class PlaneTicket extends BaseEntity<number> {
   placeCount: number = 0;
@@ -30,6 +31,8 @@ export class PlaneTicket extends BaseEntity<number> {
   payments: Payment[] = [];
   paymentAmount: number;
 
+  price: Money;
+
 
   constructor(value: any = {}) {
     super(value);
@@ -37,6 +40,8 @@ export class PlaneTicket extends BaseEntity<number> {
       this.placeCount = value.placeCount;
       this.backAndForth = value.backAndForth;
       this.travelClass = value.travelClass;
+
+      this.price = Money.parse(value.price);
 
       this.departureCountry = value.departureCountry;
       this.departureCity = value.departureCity;

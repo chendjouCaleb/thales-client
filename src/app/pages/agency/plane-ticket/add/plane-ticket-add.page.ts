@@ -36,6 +36,7 @@ export class PlaneTicketAddPage implements OnInit {
 
     this.formGroup = new FormGroup({
       placeCount: new FormControl(this.remember.placeCount),
+      price: new FormControl(this.remember.price),
       backAndForth: new FormControl(this.remember.backAndForth),
       travelClass: new FormControl(this.remember.travelClass),
       departureCountry: new FormControl(this.remember.departureCountry),

@@ -7,6 +7,7 @@ import {PaymentUIService} from "../payment-u-i.service";
 import {Router} from "@angular/router";
 import {DOCUMENT} from "@angular/common";
 import {environment} from "../../../../environments/environment";
+import {PaymentViewModel} from "@entities/view-models";
 
 @Component({
   templateUrl: 'payments-list.html',
@@ -19,12 +20,14 @@ export class PaymentsList implements OnInit {
   @Input()
   displayedColumns: string [] = [];
 
-
-  dataSource = new MatTableDataSource<Payment>();
   isLoading = true;
 
-  selectedPayment: Payment;
-  _payments: Payment[]
+  selectedPayment: PaymentViewModel;
+  payments: Payment[] = []
+
+  get _payments(): Payment[] {
+    return this.payments;
+  }
 
 
   columns: string[] = [ 'code',  'amount',  'reason', 'customer', 'agency', 'employee', 'createdAt', 'action'];
@@ -36,27 +39,21 @@ export class PaymentsList implements OnInit {
   }
 
   async ngOnInit() {
-    let items = await this._service.listAsync(this.params);
-    this._payments = items.sort((p1, p2) => p1.id - p2.id).reverse();
-    this.dataSource = new MatTableDataSource<Payment>(this._payments);
-
+    let params = {...this.params, includeCustomer: true, includeEmployee: true}
+    let items = await this._service.listAsync(params);
+    this.payments = items.payments;
     this.isLoading = false;
 
   }
 
   unshift(payment: Payment) {
-    this._payments.unshift(payment);
-    this.dataSource = new MatTableDataSource<Payment>(this._payments);
+    this.payments.unshift(payment);
   }
 
   remove(payment: Payment) {
-    this._payments = this._payments.filter(p => p.id !== payment.id)
-    this.dataSource = new MatTableDataSource<Payment>(this._payments);
+    this.payments = this.payments.filter(p => p.id !== payment.id)
   }
 
-  get payments(): Payment[] {
-    return this._payments.map(p => p);
-  }
 
   delete(payment: Payment) {
     this._uiService.deletePayment(payment).subscribe(deleted => {
@@ -66,9 +63,6 @@ export class PaymentsList implements OnInit {
     })
   }
 
-  details(payment: Payment) {
-    this.selectedPayment = payment;
-  }
 
   printPDF(payment: Payment) {
    this._document.defaultView.open(`${environment.serverUrl}/payments/${payment.id}/pdf`, '_blank')

@@ -26,9 +26,7 @@ export class AgencyPaymentsListPage implements OnInit {
   }
 
   ngOnInit() {
-    this._service.listAsync({agencyId: this.agency.id}).then(items => {
-      this.payments = items;
-    });
+
 
     this.breadcrumbItems = [...this._parent.breadcrumbItems,
       new BreadcrumbItem('Paiements')

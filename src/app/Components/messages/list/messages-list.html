@@ -1,0 +1,31 @@
+<div class="d-flex justify-content-center p-5" *ngIf="isLoading">
+  <mat-spinner></mat-spinner>
+</div>
+
+<div *ngIf="!isLoading">
+  <div *ngFor="let message of messages; let i=index"
+       class="message-item borderColor-40 border-bottom ps-2 py-3 d-flex cursor-pointer ms-bgColor-gray20--hover"
+       [class.border-top]="i == 0"
+    [routerLink]="['/admin/messages', message.id]"
+  >
+    <div class="flex-grow-1 me-2">
+      <div class="d-flex align-items-center">
+        <div class="fontWeight-semiBold flex-grow-1">{{message.fullName}}</div>
+        <div>{{formatDate(message.createdAt)}}</div>
+      </div>
+      <div >{{message.content}}</div>
+      <div>
+        <span *ngIf="!message.isRead" class="inline-badge ms-bgColor-cyan-20">Non lu</span>
+      </div>
+    </div>
+
+    <div class="message-item-delete-div me-2">
+      <button mat-icon-button color="warn" (click)="onItemClick($event, message)">
+        <mat-icon>delete</mat-icon></button>
+    </div>
+  </div>
+</div>
+
+
+
+

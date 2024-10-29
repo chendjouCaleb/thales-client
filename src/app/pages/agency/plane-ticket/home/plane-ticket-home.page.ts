@@ -59,9 +59,9 @@ export class PlaneTicketHomePage implements OnInit {
   }
 
   get total(): Money | null {
-    if(!this.paymentList?._payments)
+    if(!this.paymentList?.payments)
       return null;
-    return new Money(0, 'XAF').add(...this.paymentList._payments.map(p => p.amount));
+    return new Money(0, 'XAF').add(...this.paymentList.payments.map(p => p.amount));
   }
 
 }

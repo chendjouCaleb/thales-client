@@ -20,9 +20,6 @@ export class PaymentsListPage implements OnInit {
 
   ngOnInit() {
 
-    this._service.listAsync().then(items => {
-      this.payments = items;
-    })
   }
 
   onClick(row) {

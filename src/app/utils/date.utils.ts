@@ -15,3 +15,15 @@ console.log(isToday(laterToday)) // False
 export const isSameDay = (a: DateTime, b: DateTime): boolean => {
   return a.hasSame(b, "day") && a.hasSame(b, "month") && a.hasSame(b, "year");
 };
+
+
+export const formatDateTime = (date: DateTime) : string => {
+  if(isSameDay(date, DateTime.local())) {
+    return date.toFormat('t');
+  } else if(isSameDay(date, DateTime.local().minus({day: 1}))) {
+    return date.toFormat('t');
+  }
+  else {
+    return date.toFormat('ff');
+  }
+}

@@ -40,6 +40,7 @@ $ms-color-pinkRed-20: #750b1c;
 .bg-color-20--hover:hover {background-color: $ms-color-gray20;}
 
 .borderColor-20 {border-color: $ms-color-gray20 !important;}
+.borderColor-40 {border-color: $ms-color-gray40 !important;}
 .borderColor-green {border-color: $ms-color-green !important;}
 
 .fontColor-140 { color: $ms-color-gray140; }
@@ -67,6 +68,8 @@ $ms-color-pinkRed-20: #750b1c;
 .ms-bgColor-magentaPink-10--hover:hover { background-color: $ms-color-magentaPink-10}
 .ms-bgColor-magentaPink-10--hover:hover { background-color: $ms-color-magentaPink-10}
 .ms-bgColor-magentaPink-1--hover:hover { background-color: $ms-color-magentaPink-1}
+.ms-bgColor-gray20--hover:hover { background-color: $ms-color-gray20}
+
 
 .ms-color-magentaPink-10 { color: $ms-color-magentaPink-10}
 .ms-color-magentaPink-20 { color: $ms-color-magentaPink-20}
@@ -87,4 +90,12 @@ $ms-color-pinkRed-20: #750b1c;
   background-color: $ms-color-gray40;
   width: 1px !important;
   padding: 0 !important;
+}
+
+.border-top {
+  border-top: 1px solid;
+}
+
+.border-bottom {
+  border-bottom: 1px solid;
 }

@@ -7,6 +7,7 @@ import {Customer} from "@entities/customer";
 import {PlaneTicket} from "@entities/plane-ticket";
 import {ProcedureApply, ProcedureApplyStep} from "@entities/procedure-apply";
 import {Procedure, ProcedureStep} from "@entities/procedure";
+import {Message} from "@entities/message";
 
 export class EventListModel {
   events: Event[];
@@ -21,6 +22,9 @@ export class EventListModel {
   procedureSteps: ProcedureStep[];
   procedureApplySteps: ProcedureApplyStep[];
   procedureApplies: ProcedureApply[];
+
+  messages: Message[] = [];
+
 
 
   fix() {

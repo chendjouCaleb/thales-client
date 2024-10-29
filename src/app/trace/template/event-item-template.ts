@@ -1,9 +1,8 @@
 import {Component, Input, OnInit} from "@angular/core";
 import {User} from "@app/identity";
 import {Agency} from "@entities/agency";
-import {DateTime, Duration} from "luxon";
 import {Event} from '../models';
-import {isSameDay} from "@app/utils";
+import {formatDateTime} from "@app/utils";
 import {ThemePalette} from "@angular/material/core";
 
 @Component({
@@ -32,15 +31,27 @@ export class EventItemTemplate implements OnInit {
   @Input()
   title: string = '';
 
-  ngOnInit() {
-    if(isSameDay(this.event.createdAt, DateTime.local())) {
-      this.createdAt = this.event.createdAt.toFormat('t');
-    } else if(isSameDay(this.event.createdAt, DateTime.local().minus({day: 1}))) {
-      this.createdAt = 'Hier, ' + this.event.createdAt.toFormat('t');
-    }
+  metas: string[] = []
 
-    else {
-      this.createdAt = this.event.createdAt.toFormat('ff');
+  ngOnInit() {
+    this.createdAt = formatDateTime(this.event.createdAt)
+
+    this.metas = [this.user?.fullName, this.agency?.name, this.createdAt]
+  }
+
+  hasBullet(index: number) {
+    if(index == this.metas.length - 1) {
+      return false;
     }
+    if(!this.metas[index])
+      return false;
+    while(index > -1) {
+      if(this.metas[index]){
+        return true;
+      }
+
+      index -= 1;
+    }
+    return false;
   }
 }

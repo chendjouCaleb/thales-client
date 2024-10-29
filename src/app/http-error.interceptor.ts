@@ -23,7 +23,7 @@ export class ErrorCatchingInterceptor implements HttpInterceptor {
           }
           console.log(errorMsg);
           this.snackbar.open(errorMsg, '', {duration: 5000})
-          return throwError(errorMsg);
+          return throwError(() => error);
         })
       )
   }

@@ -25,6 +25,14 @@
           <mat-icon th-nav-item-icon>payments</mat-icon>
           Paiements</a>
 
+        <a routerLink="messages" th-nav-item>
+          <mat-icon th-nav-item-icon>email</mat-icon>
+          <div class="d-flex w-100 pe-3" >
+            <div class="flex-grow-1">Messages</div>
+            <span class="number-badge" *ngIf="messageCount && messageCount.nonRead">{{messageCount.nonRead}}</span>
+          </div>
+        </a>
+
         <a routerLink="events" th-nav-item>
           <mat-icon th-nav-item-icon>history</mat-icon>
           Historique</a>

@@ -1,0 +1,27 @@
+<div class="p-4 bg-color-0">
+  <breadcrumb *ngIf="message" [items]="breadcrumbItems"></breadcrumb>
+  <div class="divider my-3"></div>
+
+
+  <div *ngIf="message">
+    <div>
+      <div class="label">Nom & prénom</div>
+      <div class="value">{{message.fullName}}</div>
+    </div>
+    <div class="mt-2">
+      <div class="label">E-mail</div>
+      <div class="value">{{message.email}}</div>
+    </div>
+
+    <div class="mt-2">
+      <div class="label">Téléphone</div>
+      <div class="value">{{message.phoneNumber}}</div>
+    </div>
+
+
+
+    <div class="mt-4">
+      {{message.content}}
+    </div>
+  </div>
+</div>

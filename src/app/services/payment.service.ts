@@ -4,6 +4,7 @@ import {Agency, Customer, Payment} from "../../entities";
 import {HttpClient} from "@angular/common/http";
 import {firstValueFrom} from "rxjs";
 import {PaymentAddFormModel} from "../models/forms/payment.form-model";
+import {PaymentRangeViewModel} from "@entities/view-models/PaymentRangeViewModel";
 
 @Injectable({
   providedIn: 'root'
@@ -19,9 +20,12 @@ export class PaymentService {
   }
 
 
-  async listAsync(params: any = {}): Promise<Payment[]> {
-    const call = this._httpClient.get<Payment[]>(`${this.url}`, {params});
-    return (await firstValueFrom(call)).map(p => new Payment(p));
+  async listAsync(params: any = {}): Promise<PaymentRangeViewModel> {
+    const call = this._httpClient.get<any[]>(`${this.url}`, {params});
+    let range = new PaymentRangeViewModel(await firstValueFrom(call));
+    range.hydrate()
+
+    return range
   }
 
 

@@ -20,6 +20,6 @@ export class CustomerAddPage {
 
   async add() {
     const customer = await this.customerService.addAsync(this.model);
-    this.snackbar.open(`Le client ${customer.firstName} ${customer.lastName} a été ajouté.`);
+    this.snackbar.open(`Le client ${customer.firstName} ${customer.lastName} a été ajouté.`, '', {duration: 5000});
   }
 }

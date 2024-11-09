@@ -1,5 +1,5 @@
 import {Component, inject, Injectable} from "@angular/core";
-import {ActivatedRoute, CanActivate, CanActivateFn, Router} from "@angular/router";
+import { ActivatedRoute, CanActivateFn, Router } from "@angular/router";
 import {ResetPasswordState} from "../reset-password-state";
 import {ResetPasswordModel, UserService} from "../../../../identity";
 import {FormControl, FormGroup} from "@angular/forms";

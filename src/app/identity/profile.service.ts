@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {SERVER_URL} from "../http";
-import {HttpClient} from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import {firstValueFrom} from "rxjs";
 import {ChangeInfoModel, UserChangePasswordModel} from "./models";
 

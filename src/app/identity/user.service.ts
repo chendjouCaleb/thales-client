@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {SERVER_URL} from "../http";
-import {HttpClient} from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import {CheckPasswordModel, CheckResetPasswordModel, ResetPasswordModel, UserAddModel} from "./models/user.form-model";
 import {firstValueFrom, Observable} from "rxjs";
 import {User} from "./models";

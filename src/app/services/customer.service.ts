@@ -11,7 +11,7 @@ import {
 } from "../models";
 import {SERVER_URL} from "../http";
 import {Customer} from "../../entities";
-import {HttpClient} from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import {firstValueFrom} from "rxjs";
 import {DateTime} from "luxon";
 import {CustomerRangeViewModel} from "@entities/view-models/CustomerRangeViewModel";

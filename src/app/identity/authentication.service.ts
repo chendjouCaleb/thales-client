@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {SERVER_URL} from "../http";
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import {LoginModel, LoginResult, Session} from "./models";
 import {firstValueFrom, Observable, ReplaySubject, Subject} from "rxjs";
 

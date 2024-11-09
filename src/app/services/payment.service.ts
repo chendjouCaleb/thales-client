@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {SERVER_URL} from "../http";
 import {Agency, Customer, Payment} from "../../entities";
-import {HttpClient} from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import {firstValueFrom} from "rxjs";
 import {PaymentAddFormModel} from "../models/forms/payment.form-model";
 import {PaymentRangeViewModel} from "@entities/view-models/PaymentRangeViewModel";

@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {HttpClient} from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import {SERVER_URL} from "@app/http";
 import {Employee} from "@entities/employee";
 import {firstValueFrom} from "rxjs";

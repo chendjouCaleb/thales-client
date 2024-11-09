@@ -1,6 +1,6 @@
 import {NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
-import {HttpClientModule} from "@angular/common/http";
+import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
 import {EventList} from "./list/event-list";
 import {EventItem} from "./item/event-item";
 import {TraceService} from "./trace-service";
@@ -9,10 +9,6 @@ import {EventItemTemplate} from "./template/event-item-template";
 import {RouterModule} from "@angular/router";
 import {MatRippleModule} from "@angular/material/core";
 
-@NgModule({
-  imports: [CommonModule, HttpClientModule, MatIconModule, RouterModule, MatRippleModule],
-  providers: [ TraceService ],
-  declarations: [ EventList, EventItem, EventItemTemplate ],
-  exports: [ EventList, EventItem, EventItemTemplate ]
-})
+@NgModule({ declarations: [EventList, EventItem, EventItemTemplate],
+    exports: [EventList, EventItem, EventItemTemplate], imports: [CommonModule, MatIconModule, RouterModule, MatRippleModule], providers: [TraceService, provideHttpClient(withInterceptorsFromDi())] })
 export class TraceModule { }

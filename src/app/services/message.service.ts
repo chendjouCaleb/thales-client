@@ -2,7 +2,7 @@ import {Injectable} from "@angular/core";
 
 import {SERVER_URL} from "../http";
 import {Message} from "../../entities";
-import {HttpClient} from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import {firstValueFrom, ReplaySubject} from "rxjs";
 import {MessageCountModel} from "@app/models/message-count.model";
 

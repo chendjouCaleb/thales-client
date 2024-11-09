@@ -19,13 +19,17 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {CleaveModule} from "@app/cleave";
 import {MatSidenavModule} from "@angular/material/sidenav";
 import {PaymentDetails} from "./details/payment-details";
+import {Home, File, LucideAngularModule, MoveUp, MoveDown} from "lucide-angular";
 
 @NgModule({
-    imports: [CommonModule, MatButtonModule, MatDialogModule, MatTableModule, MatFormFieldModule, MatInputModule,
-        MatIconModule, MatMenuModule, ReactiveFormsModule, RouterModule, MatSelectModule, FormsModule, CustomerPickerModule, MatProgressSpinnerModule, CleaveModule, MatSidenavModule],
-  declarations: [ PaymentAdd, PaymentsList, PaymentDelete, PaymentDetails ],
-  exports: [ PaymentAdd, PaymentsList, PaymentDelete ],
-  providers: [ PaymentUIService]
+  imports: [CommonModule, MatButtonModule, MatDialogModule, MatTableModule, MatFormFieldModule, MatInputModule,
+    MatIconModule, MatMenuModule, ReactiveFormsModule, RouterModule, MatSelectModule,
+    FormsModule, CustomerPickerModule, MatProgressSpinnerModule, CleaveModule, MatSidenavModule,
+    LucideAngularModule.pick({File, Home, MoveUp, MoveDown })
+  ],
+  declarations: [PaymentAdd, PaymentsList, PaymentDelete, PaymentDetails],
+  exports: [PaymentAdd, PaymentsList, PaymentDelete],
+  providers: [PaymentUIService]
 })
 export class PaymentModule {
 

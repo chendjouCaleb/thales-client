@@ -14,6 +14,5 @@ export class CustomerListPage implements OnInit {
   }
 
   async ngOnInit() {
-    this.customers = await this._customerService.listAsync();
   }
 }

@@ -40,6 +40,7 @@ import {ProcedureApplyPageModule} from "@app/pages/admin/procedure-applies/proce
 import {ProcedureApplyModule} from "@app/Components";
 import {CleaveModule} from "@app/cleave";
 import {TraceModule} from "@app/trace";
+import {CustomerListModule} from "@app/Components/customers";
 
 const routes: Routes = [
   {
@@ -57,7 +58,7 @@ const routes: Routes = [
     imports: [CommonModule, RouterModule.forChild(routes), FormsModule, MatButtonModule, MatIconModule,
         MatInputModule, MatFormFieldModule, MatDialogModule, MatCheckboxModule, MatRadioModule, MatSelectModule,
         MatStepperModule, ReactiveFormsModule, MatDatepickerModule, MatTableModule, MatTabsModule, PaymentModule, PlaneTicketModule,
-        ProcedureApplyModule, CleaveModule, TraceModule],
+        ProcedureApplyModule, CleaveModule, TraceModule, CustomerListModule],
 
   declarations: [
     CustomerPage, CustomerListPage, CustomerAddPage, CustomerAddAddress, CustomerAddContact,

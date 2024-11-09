@@ -1,61 +1,77 @@
-<div class="d-flex justify-content-center p-5" *ngIf="isLoading">
-  <mat-spinner></mat-spinner>
-</div>
+<div #container>
+  <div class="d-flex justify-content-center p-5" *ngIf="isLoading">
+    <mat-spinner diameter="48" strokeWidth="2"></mat-spinner>
+  </div>
 
-<div *ngIf="!isLoading">
-  <table class="my-table">
-    <thead>
+  <div *ngIf="!isLoading">
+    <table class="my-table">
+      <thead>
       <tr>
         <th>#</th>
         <th>Code</th>
-        <th>Montant</th>
+        <th class="clickable">Montant</th>
         <th>Raison</th>
-        <th>Client</th>
+        <th class="clickable">Client</th>
         <th>Agence</th>
-        <th>Ajouté par</th>
-        <th>Ajouté le</th>
+        <th>
+          Ajouté par
+        </th>
+        <th class="clickable" (click)="changeOrderBy('ID')">
+            <span class="d-flex justify-content-center">
+              Ajouté le
+            <span *ngIf="orderby[0] == 'ID'" class="ps-2">
+            <lucide-angular *ngIf="orderby[1] == 'ASC'" name="move-up" class="my-icon" size="16"></lucide-angular>
+            <lucide-angular *ngIf="orderby[1] == 'DESC'" name="move-down" class="my-icon" size="16"></lucide-angular>
+              </span>
+            </span>
+        </th>
         <th>Action</th>
       </tr>
-    </thead>
+      </thead>
 
-    <tbody>
-      <tr *ngFor="let payment of payments; let i=index">
-        <td>{{i}}</td>
-        <td>{{payment.code}}</td>
-        <td>{{payment.amount.amount | currency: payment.amount.currency}}</td>
+      <tbody>
+      <tr *ngFor="let payment of payments; let i=index; trackBy: trackById" class="row-hover">
+        <td>{{ i }}</td>
+        <td>{{ payment.code }}</td>
+        <td>{{ payment.amount.amount | currency: payment.amount.currency }}</td>
         <td>
           <a *ngIf="payment.planeTicketId"
              routerLink="/agencies/{{payment.agencyId}}/plane-tickets/{{payment.planeTicketId}}"
              class="inline-badge ms-bgColor-cyan-10 ms-bgColor-cyan-20--hover">
-            Billet d'avion N°{{payment.planeTicketId}}
+            Billet d'avion N°{{ payment.planeTicketId }}
           </a>
 
-          <a *ngIf="payment.procedureApplyStep" routerLink="/agencies/{{payment.agencyId}}/procedure-applies/{{payment.procedureApplyStep?.procedureApplyId}}"
+          <a *ngIf="payment.procedureApplyStep"
+             routerLink="/agencies/{{payment.agencyId}}/procedure-applies/{{payment.procedureApplyStep?.procedureApplyId}}"
              class="link-inherit ">
-            <div class="p-2 br-4 fontSize-14 ms-color-magentaPink-10 ms-bgColor-magentaPink-0 ms-bgColor-magentaPink-1--hover">
-              Procédure <span class="fontWeight-bold">{{payment.procedureApplyStep?.procedureStep?.name}} </span>
+            <div
+              class="p-2 br-4 fontSize-14 ms-color-magentaPink-10 ms-bgColor-magentaPink-0 ms-bgColor-magentaPink-1--hover">
+              Procédure <span class="fontWeight-bold">{{ payment.procedureApplyStep?.procedureStep?.name }} </span>
               :
-              {{payment.procedureApplyStep?.procedureStep?.name}}
+              {{ payment.procedureApplyStep?.procedureStep?.name }}
             </div>
           </a>
 
-          {{payment.reason}}
+          {{ payment.reason }}
         </td>
 
-        <td>{{payment.customer?.fullName}}</td>
-        <td>{{payment.agency?.name}}</td>
-        <td>{{payment.employee?.user?.fullName}}</td>
+        <td>{{ payment.customer?.fullName }}</td>
+        <td>{{ payment.agency?.name }}</td>
+        <td>{{ payment.employee?.user?.fullName }}</td>
         <td>
-          <span class="fontSize-12">{{payment.createdAt.toFormat('ff')}}</span>
+          <span class="fontSize-12">{{ payment.createdAt.moment() }}</span>
         </td>
         <td>
 
         </td>
       </tr>
-    </tbody>
-  </table>
+      </tbody>
+    </table>
+
+    <div class="d-flex justify-content-center p-5" *ngIf="isRangeLoading">
+      <mat-spinner strokeWidth="2" diameter="32"></mat-spinner>
+    </div>
+  </div>
+
+
 </div>
-
-
-
-

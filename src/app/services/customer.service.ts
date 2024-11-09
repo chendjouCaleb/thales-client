@@ -14,6 +14,7 @@ import {Customer} from "../../entities";
 import {HttpClient} from "@angular/common/http";
 import {firstValueFrom} from "rxjs";
 import {DateTime} from "luxon";
+import {CustomerRangeViewModel} from "@entities/view-models/CustomerRangeViewModel";
 
 @Injectable({
   providedIn: 'root'
@@ -87,6 +88,12 @@ export class CustomerService {
     const call = this._httpClient.get<Customer[]>(`${this.url}`);
     const customers = await firstValueFrom(call);
     return customers.map(c => new Customer(c));
+  }
+
+  async getRangeAsync(params: any): Promise<CustomerRangeViewModel> {
+    const call = this._httpClient.get<CustomerRangeViewModel>(`${this.url}`, {params});
+    const customers = await firstValueFrom(call);
+    return new CustomerRangeViewModel(customers);
   }
 
   async getAsync(id: number): Promise<Customer> {

@@ -7,50 +7,7 @@
   </div>
   <div class="divider my-3"></div>
 
-
-
   <div class="mt-4">
-    <table mat-table [dataSource]="customers" >
-      <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef> Nom & prénom </th>
-        <td mat-cell *matCellDef="let element">
-          <a [routerLink]="['/admin/customers', element.id, 'home']">
-          {{element.firstName}} {{element.lastName}}
-        </a>
-        </td>
-      </ng-container>
-
-
-      <ng-container matColumnDef="sex">
-        <th mat-header-cell *matHeaderCellDef> Sexe </th>
-        <td mat-cell *matCellDef="let element">
-          <span class="fontSize-12" *ngIf="element.sex == 'M'">Masc.</span>
-          <span class="fontSize-12" *ngIf="element.sex == 'F'">Fém.</span>
-        </td>
-      </ng-container>
-
-      <ng-container matColumnDef="birthDate">
-        <th mat-header-cell *matHeaderCellDef> Date de naiss. </th>
-        <td mat-cell *matCellDef="let element">
-          <span class="fontSize-12">{{element.birthDate?.toFormat('DD')}}</span>
-        </td>
-      </ng-container>
-
-      <ng-container matColumnDef="action">
-        <th mat-header-cell *matHeaderCellDef> Action </th>
-        <td mat-cell *matCellDef="let element">
-          <a mat-button [routerLink]="['/admin/customers', element.id, 'home']" color="primary">
-            Détails
-          </a>
-        </td>
-      </ng-container>
-
-
-
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row
-
-          *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
+    <CustomerList></CustomerList>
   </div>
   </div>

@@ -81,7 +81,16 @@ export class CustomerService {
     await firstValueFrom(call);
     customer.email = model.email;
     customer.phoneNumber = model.phoneNumber;
+  }
 
+  async toggleFavoriteAsync(customer: Customer): Promise<void> {
+    const call = this._httpClient.put<void>(`${this.url}/${customer.id}/favorite`, {});
+    await firstValueFrom(call);
+  }
+
+  async toggleArchivedAsync(customer: Customer): Promise<void> {
+    const call = this._httpClient.put<void>(`${this.url}/${customer.id}/archived`, {});
+    await firstValueFrom(call);
   }
 
   async listAsync(): Promise<Customer[]> {

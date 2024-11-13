@@ -2,10 +2,11 @@ import {Component, Inject} from "@angular/core";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {PlaneTicket} from "../../../../entities";
-import {PlaneTicketService} from "../../../services";
+import {PlaneTicketService} from "@app/services";
 
 @Component({
-  templateUrl: 'plane-ticket-delete.html'
+  templateUrl: 'plane-ticket-delete.html',
+  selector: 'PlaneTicket'
 })
 export class PlaneTicketDelete {
   planeTicket: PlaneTicket

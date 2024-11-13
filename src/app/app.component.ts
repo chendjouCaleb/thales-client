@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import {AuthenticationService} from "@app/identity";
 import {MatIconRegistry} from "@angular/material/icon";
 import {DomSanitizer} from "@angular/platform-browser";
+import {RouterLink, RouterLinkActive, RouterOutlet} from "@angular/router";
+import {CommonModule} from "@angular/common";
+import {MatProgressSpinner} from "@angular/material/progress-spinner";
 
 const PDF_SVG = `<?xml version="1.0" encoding="iso-8859-1"?>
 <!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
@@ -26,7 +29,9 @@ const PDF_SVG = `<?xml version="1.0" encoding="iso-8859-1"?>
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  standalone: true,
+  imports: [CommonModule, RouterOutlet, RouterLink, RouterLinkActive, MatProgressSpinner],
 })
 export class AppComponent {
   title = 'thales';

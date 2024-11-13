@@ -1,0 +1,61 @@
+.my-button {
+  height: 42px;
+  color: inherit;
+  display: inline-block;
+  align-items: center;
+  background-color: transparent ;
+  border: none;
+  text-decoration: none;
+  border-radius: 32px;
+  padding: 0 16px;
+  font-family: "Helvetica Neue","Inter",  sans-serif;
+
+  &:hover {
+    background-color: rgba(10, 120, 213, 0.1);
+  }
+
+  .button-layout {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.my-icon-button {
+  border: none;
+  background-color: transparent;
+  height: 32px;
+  width: 32px;
+  overflow: hidden;
+  border-radius: 50%;
+  display: inline-block;
+
+  & .button-layout {
+    width: 100%;
+    height: 100%;
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+  }
+
+  svg {
+    fill: transparent;
+    stroke: #FFF;
+    height: 18px;
+  }
+
+  &:hover{
+    background-color: rgba(0, 0, 0, 0.55)
+  }
+}
+
+.my-icon-button.primary {
+  svg {
+    fill: rgb(10, 120, 213);
+    stroke: rgb(10, 120, 213);
+  }
+}
+
+lucide-icon.fill svg {
+  fill: #FFFFFF;
+}

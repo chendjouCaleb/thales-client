@@ -1,22 +1,41 @@
-import {Component, ElementRef, Inject, Input, OnInit, ViewChild} from "@angular/core";
+import {Component, ElementRef, EventEmitter, Inject, Input, OnInit, Output, ViewChild} from "@angular/core";
+import {LucideAngularModule, PlusIcon, UserIcon, FolderIcon, ArchiveIcon, SettingsIcon,
+  EllipsisVertical,
+  DeleteIcon,
+  StarIcon} from "lucide-angular";
+
 
 import {Customer} from "@entities/customer";
 import {CustomerService} from "@app/services";
 import {Router} from "@angular/router";
-import {DOCUMENT} from "@angular/common";
+import {DOCUMENT, NgForOf, NgIf} from "@angular/common";
 import {OrderBy} from "@app/models";
+import {MatProgressSpinner} from "@angular/material/progress-spinner";
+import {IconButton} from "@app/ui";
+import {CustomerArchiveDialogLauncher} from "@app/customers/archive";
 
 @Component({
   templateUrl: 'customer-list.html',
   selector: 'CustomerList',
-  styleUrls: [ "customer-list.scss"]
+  styleUrls: [ "customer-list.scss"],
+  imports: [LucideAngularModule, MatProgressSpinner, NgIf, NgForOf, IconButton],
+  providers: [ CustomerArchiveDialogLauncher ],
+  standalone: true
 })
 export class CustomerList implements OnInit {
+  icon = {ArchiveIcon, StarIcon, SettingsIcon, EllipsisVertical, FolderIcon,
+  DeleteIcon }
   @Input()
   params: any = {}
 
   @Input()
   displayedColumns: string [] = [];
+
+  @Output()
+  onArchivedChange = new EventEmitter<Customer>()
+
+  @Output()
+  onFavoriteChange = new EventEmitter<Customer>()
 
   isLoading = true;
   isRangeLoading = false
@@ -55,7 +74,7 @@ export class CustomerList implements OnInit {
   }
 
   display(name: string) {
-    return this.columns.indexOf(name) > 0
+    return this.displayedColumns.indexOf(name) > -1
   }
 
 
@@ -63,6 +82,7 @@ export class CustomerList implements OnInit {
 
   constructor(private _service: CustomerService,
               private _router: Router,
+              private _archiveDialog: CustomerArchiveDialogLauncher,
               private _elementRef: ElementRef<HTMLElement>,
               @Inject(DOCUMENT) private _document: Document) {
   }
@@ -116,7 +136,28 @@ export class CustomerList implements OnInit {
   }
 
 
+  async toggleFavorite(customer: Customer) {
+    await this._service.toggleFavoriteAsync(customer);
+    customer.isFavorite = !customer.isFavorite;
+    this.onFavoriteChange.emit(customer);
+  }
+
+  toggleArchived(customer: Customer) {
+    const dialogRef = this._archiveDialog.launch(customer);
+    dialogRef.subscribe((result => {
+      customer.isArchived = true
+      this.onArchivedChange.emit(customer)
+    }))
+  }
+
   onClick(row) {
     console.log(row)
   }
+
+  protected readonly settingsIcon = SettingsIcon;
+}
+
+
+export class Task<TResult> {
+
 }

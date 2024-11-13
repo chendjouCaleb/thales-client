@@ -5,7 +5,8 @@ import {Payment} from "@entities/payment";
 import {PaymentService} from "@app/services";
 
 @Component({
-  templateUrl: 'payment-delete.html'
+  templateUrl: 'payment-delete.html',
+  selector: 'PaymentDelete'
 })
 export class PaymentDelete {
   payment: Payment

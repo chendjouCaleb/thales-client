@@ -1,2 +1,18 @@
 @import "./my-color";
 @import "./my-table";
+
+.my-dialog-panel {
+  color: #FFFFFF;
+  border-radius: 8px;
+  width: 384px;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(22px) saturate(2);
+}
+
+.my-dialog-panel-container {
+  position: relative;
+
+  background-color: rgba(0, 0, 0, .3);
+
+}

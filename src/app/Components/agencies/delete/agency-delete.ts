@@ -7,7 +7,8 @@ import {PaymentService} from "../../../services";
 import {PaymentAddFormModel} from "../../../models/forms/payment.form-model";
 
 @Component({
-  templateUrl: 'agency-delete.html'
+  templateUrl: 'agency-delete.html',
+  selector: 'AgencyDelete'
 })
 export class AgencyDelete {
   payment: Payment

@@ -28,7 +28,7 @@ export class AuthenticationService {
   }
 
 
-  constructor( private _httpClient: HttpClient) {}
+  constructor(private _httpClient: HttpClient) {}
 
   public async init() {
     const accessToken = localStorage.getItem("AUTH_ACCESS_TOKEN");

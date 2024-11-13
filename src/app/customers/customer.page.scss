@@ -1,0 +1,56 @@
+:host {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  background-image: url("/assets/wp3252902-mac-os-wallpapers-hd.jpg");
+  color: #FFF;
+
+  &:before {
+    content: '';
+    position: absolute;
+    z-index: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: inherit;
+    -webkit-filter: blur(22px) saturate(2);
+  }
+
+  .page-container {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+  }
+
+  MenuDrawer {
+    width: 284px;
+    position: absolute;
+    left: 0;
+    top: 64px;
+    bottom: 0;
+  }
+
+  .container-content {
+    position: absolute;
+    left: 284px;
+    top: 64px;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.8)
+  }
+}
+
+.add-button {
+  background-color: rgba(10, 120, 213, 0.6);
+  &:hover {
+    background-color: rgba(10, 120, 213, 0.8);
+  }
+}
+

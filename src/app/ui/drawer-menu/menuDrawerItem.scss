@@ -1,0 +1,33 @@
+.menu-drawer {
+  display: block;
+  padding: 8px;
+  background-color: rgba(0,0,0, 0.7);
+}
+
+.menu-drawer-item {
+  height: 42px;
+  width: 100%;
+  color: inherit !important;
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  text-decoration: none;
+  border-radius: 16px;
+  padding: 0 16px;
+  font-family: "Helvetica Neue", "Inter", sans-serif;
+
+  &:hover {
+    background-color: rgba(10, 120, 213, 0.1);
+  }
+}
+
+.menu-drawer-item-layout {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  lucide-icon {
+    stroke: #FFFFFF;
+  }
+}

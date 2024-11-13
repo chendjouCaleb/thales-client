@@ -3,6 +3,10 @@ import {DateTime} from "luxon";
 import {formatPhoneNumber} from "@app/utils";
 
 export class Customer extends BaseEntity<number> {
+
+  isArchived: boolean = false;
+  isFavorite: boolean = false;
+
   firstName: string = "";
   lastName: string = "";
   fullName: string = '';
@@ -42,6 +46,8 @@ export class Customer extends BaseEntity<number> {
   constructor(value: any = {}) {
     super(value);
     if (value) {
+      this.isArchived = value.isArchived;
+      this.isFavorite = value.isFavorite;
       this.firstName = value.firstName;
       this.lastName = value.lastName;
       this.fullName = value.fullName;
@@ -60,13 +66,32 @@ export class Customer extends BaseEntity<number> {
       this.phoneNumber = value.phoneNumber;
       this.email = value.email;
       this.family = new FamilyInfo(value.family);
-      this.occupations = value.occupations.map(o => new Occupation(o));
-      this.jobs = value.jobs.map(j => new JobInfo(j));
-      this.addresses = value.addresses.map(a => new Address(a));
-      this.emails = value.emails.map(e => new Email(e));
-      this.phones = value.phones.map(p => new Phone(p));
-      this.passports = value.passports.map(p => new Passport(p));
-      this.studies = value.studies.map(s => new Study(s));
+      if(value.occupations) {
+        this.occupations = value.occupations.map(o => new Occupation(o));
+      }
+
+      if(value.jobs) {
+        this.jobs = value.jobs.map(j => new JobInfo(j));
+      }
+
+      if(value.addresses) {
+        this.addresses = value.addresses.map(a => new Address(a));
+      }
+
+      if(value.emails) {
+        this.emails = value.emails.map(e => new Email(e));
+      }
+
+      if(value.phones) {
+        this.phones = value.phones.map(p => new Phone(p));
+      }
+
+      if(value.passports) {
+        this.passports = value.passports.map(p => new Passport(p));
+      }
+
+
+      this.studies = value.studies ? value.studies.map(s => new Study(s)) : [];
       this.note = value.note
       this.nationality = value.nationality
     }

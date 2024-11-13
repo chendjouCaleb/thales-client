@@ -1,0 +1,60 @@
+<div class="page-container">
+  <CustomerToolbar></CustomerToolbar>
+
+  <MenuDrawer >
+    <div>
+      <button MyButton class="add-button" style="padding-top: 8px; padding-bottom: 8px">
+        <lucide-icon [img]="icon.PlusIcon" class="my-icon"></lucide-icon>
+        <span class="spacer-16"></span>
+        <span>Ajouter un client</span>
+      </button>
+    </div>
+
+    <div style="height: 24px"></div>
+
+    <div>
+      <a href="/" MenuDrawerItem>
+        <lucide-icon [img]="icon.StarIcon" class="my-icon"></lucide-icon>
+        <span class="spacer-16"></span>
+        <span>Favoris</span>
+      </a>
+
+      <a href="/" MenuDrawerItem>
+        <lucide-icon [img]="icon.UserIcon" class="my-icon"></lucide-icon>
+        <span class="spacer-16"></span>
+        <span>Tous les clients</span>
+      </a>
+
+      <button href="/archives" MenuDrawerItem>
+        <lucide-icon [img]="icon.ArchiveIcon" class="my-icon"></lucide-icon>
+        <span class="spacer-16"></span>
+        <span>Clients archivés</span>
+      </button>
+    </div>
+
+    <div style="height: 24px"></div>
+
+    <div >
+      <div class="fontWeight-semiBold fontSize-14 " style="margin-left: 16px; margin-bottom: 8px; opacity: .8"
+      >Dossiers</div>
+
+      <button href="/archives" MenuDrawerItem>
+        <lucide-icon [img]="icon.FolderIcon" class="my-icon"></lucide-icon>
+        <span class="spacer-16"></span>
+        <span>Dossiers</span>
+      </button>
+
+      <button href="/archives" MenuDrawerItem>
+        <lucide-icon [img]="icon.FolderIcon" class="my-icon"></lucide-icon>
+        <span class="spacer-16"></span>
+        <span>Achats de billets</span>
+      </button>
+
+    </div>
+  </MenuDrawer>
+
+
+  <div class="container-content" style="padding: 32px 16px">
+    <router-outlet></router-outlet>
+  </div>
+</div>

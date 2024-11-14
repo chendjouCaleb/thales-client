@@ -148,9 +148,21 @@ export class CustomerList implements OnInit {
   }
 
   toggleArchived(customer: Customer) {
+
+  }
+
+  archive(customer: Customer) {
     const dialogRef = this._archiveDialog.launch(customer);
     dialogRef.subscribe((result => {
       customer.isArchived = true
+      this.onArchivedChange.emit(customer)
+    }))
+  }
+
+  restoreArchived(customer: Customer) {
+    const dialogRef = this._archiveDialog.launchRestore(customer);
+    dialogRef.subscribe((result => {
+      customer.isArchived = false
       this.onArchivedChange.emit(customer)
     }))
   }

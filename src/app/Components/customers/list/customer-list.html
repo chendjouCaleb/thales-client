@@ -134,10 +134,10 @@
                 <button MenuItem>
                   <lucide-icon [img]="icon.PencilIcon" class="my-icon me-2" strokeWidth="1.5"></lucide-icon>
                   Modifier </button>
-                <button MenuItem *ngIf="!customer.isArchived">
+                <button MenuItem *ngIf="!customer.isArchived" (click)="archive(customer)">
                   <lucide-icon [img]="icon.ArchiveIcon" class="my-icon me-2" strokeWidth="1.5"></lucide-icon>
                   Archiver </button>
-                <button MenuItem *ngIf="customer.isArchived">
+                <button MenuItem *ngIf="customer.isArchived" (click)="restoreArchived(customer)">
                   <lucide-icon [img]="icon.ArchiveRestore" class="my-icon me-2" strokeWidth="1.5"></lucide-icon>
                   Restorer </button>
                 <button MenuItem >

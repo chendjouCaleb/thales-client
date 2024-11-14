@@ -21,7 +21,7 @@
         </th>
 
         <th *ngIf="display('phone')">
-            Téléphone
+          Téléphone
         </th>
 
         <th *ngIf="display('email')">
@@ -76,23 +76,26 @@
           </button>
         </th>
 
-        <th>Action</th>
+        <th></th>
       </tr>
       </thead>
 
       <tbody>
-      <tr *ngFor="let customer of customers; let i=index; trackBy: trackById" class="row-hover">
-        <td>{{ i +1 }}</td>
+      <tr *ngFor="let customer of customers; let i=index; trackBy: trackById" class="row-hover"
+          (mouseenter)="hoverIndex = i"
+          (mouseleave)="hoverIndex = null"
+      >
+        <td>{{ i + 1 }}</td>
         <td *ngIf="display('code')">{{ customer.code }}</td>
         <td *ngIf="display('name')">{{ customer.fullName }}</td>
         <td *ngIf="display('phone')">
           <span *ngIf="customer.phones.length > 0">
-            {{customer.phones[0]}}
+            {{ customer.phones[0] }}
           </span>
         </td>
         <td *ngIf="display('email')">
           <span *ngIf="customer.emails.length > 0">
-            {{customer.emails[0]}}
+            {{ customer.emails[0] }}
           </span>
         </td>
         <td *ngIf="display('birthDate')">{{ customer.birthDate.toFormat('DD') }}</td>
@@ -109,28 +112,43 @@
           <span class="fontSize-12 fontWeight-semiBold ms-color-greenDark" *ngIf="customer.hasPassport">Oui</span>
           <span class="fontSize-12 fontWeight-semiBold ms-color-red-10" *ngIf="!customer.hasPassport">Non</span>
         </td>
-        <td *ngIf="display('address')">{{ customer.city }}, {{customer.region}}</td>
+        <td *ngIf="display('address')">{{ customer.city }}, {{ customer.region }}</td>
         <td *ngIf="display('createdAt')">{{ customer.createdAt.moment() }}</td>
         <td *ngIf="display('updatedAt')">{{ customer.createdAt.moment() }}</td>
 
         <td style="text-align: end">
-          <button MyIconButton style="margin-right: 4px"
-                  [class.primary]="customer.isFavorite" (click)="toggleFavorite(customer)">
-            <lucide-icon [img]="icon.StarIcon" class="my-icon" [strokeWidth]="1.5">
+          <div [class.opacity-0]="hoverIndex != i && !dropdown.visible">
+            <button MyIconButton style="margin-right: 4px"
+                    [class.primary]="customer.isFavorite" (click)="toggleFavorite(customer)">
+              <lucide-icon [img]="icon.StarIcon" class="my-icon" [strokeWidth]="1.5"></lucide-icon>
+            </button>
 
-            </lucide-icon>
-          </button>
+            <button MyIconButton style="margin-right: 16px" #menuTrigger (click)="dropdown.open()">
+              <lucide-icon [img]="icon.EllipsisVertical" class="my-icon"></lucide-icon>
+            </button>
 
-
-          <button MyIconButton style="margin-right: 4px"
-                  [class.primary]="customer.isFavorite"
-                  (click)="toggleArchived(customer)">
-            <lucide-icon [img]="icon.ArchiveIcon" class="my-icon" strokeWidth="1.5"></lucide-icon>
-          </button>
-
-          <button MyIconButton style="margin-right: 16px">
-            <lucide-icon [img]="icon.EllipsisVertical" class="my-icon"></lucide-icon>
-          </button>
+            <Dropdown #dropdown [trigger]="menuTrigger.host"
+                      (onBackdropClick)="dropdown.close()"
+            >
+              <Menu>
+                <button MenuItem>
+                  <lucide-icon [img]="icon.PencilIcon" class="my-icon me-2" strokeWidth="1.5"></lucide-icon>
+                  Modifier </button>
+                <button MenuItem *ngIf="!customer.isArchived">
+                  <lucide-icon [img]="icon.ArchiveIcon" class="my-icon me-2" strokeWidth="1.5"></lucide-icon>
+                  Archiver </button>
+                <button MenuItem *ngIf="customer.isArchived">
+                  <lucide-icon [img]="icon.ArchiveRestore" class="my-icon me-2" strokeWidth="1.5"></lucide-icon>
+                  Restorer </button>
+                <button MenuItem >
+                  <lucide-icon [img]="icon.FolderInputIcon" class="my-icon me-2" strokeWidth="1.5"></lucide-icon>
+                  Ajouter à un dossier</button>
+                <button MenuItem>
+                  <lucide-icon [img]="icon.Trash2Icon" class="my-icon me-2" strokeWidth="1.5"></lucide-icon>
+                  Supprimer </button>
+              </Menu>
+            </Dropdown>
+          </div>
         </td>
       </tr>
       </tbody>

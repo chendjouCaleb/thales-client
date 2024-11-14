@@ -1,11 +1,16 @@
-.menu-drawer {
+.menu {
   display: block;
-  padding: 8px;
-  background-color: rgba(0,0,0, 0.7);
+  padding: 8px 4px;
+  background-color: rgba(0,0,0, 0.1);
+  width: box;
+  color: #FFF;
+  backdrop-filter: blur(22px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
 }
 
-.menu-drawer-item {
-  height: 42px;
+.menu-item {
+  height: 40px;
   width: 100%;
   color: inherit !important;
   display: flex;
@@ -13,20 +18,15 @@
   background-color: transparent;
   border: none;
   text-decoration: none;
-  border-radius: 8px;
+  border-radius: 4px;
   padding: 0 16px;
-  font-family: "Helvetica Neue", "Inter", sans-serif;
 
   &:hover {
-    background-color: rgba(10, 120, 213, 0.3);
-  }
-
-  &.active {
-    background-color: rgba(10, 120, 213, 0.8);
+    background-color: rgba(10, 120, 213, .6);
   }
 }
 
-.menu-drawer-item-layout {
+.menu-item-layout {
   display: flex;
   align-items: center;
   justify-content: center;

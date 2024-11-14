@@ -13,19 +13,19 @@
     <div style="height: 24px"></div>
 
     <div>
-      <a routerLink="favorites" MenuDrawerItem>
+      <a routerLink="favorites" routerLinkActive="active" MenuDrawerItem>
         <lucide-icon [img]="icon.StarIcon" class="my-icon"></lucide-icon>
         <span class="spacer-16"></span>
         <span>Favoris</span>
       </a>
 
-      <a routerLink="/customers" MenuDrawerItem>
+      <a routerLink="/customers" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"  MenuDrawerItem>
         <lucide-icon [img]="icon.UserIcon" class="my-icon"></lucide-icon>
         <span class="spacer-16"></span>
         <span>Tous les clients</span>
       </a>
 
-      <a routerLink="archive" MenuDrawerItem>
+      <a routerLink="archive" routerLinkActive="active" MenuDrawerItem>
         <lucide-icon [img]="icon.ArchiveIcon" class="my-icon"></lucide-icon>
         <span class="spacer-16"></span>
         <span>Clients archivés</span>
@@ -54,7 +54,7 @@
   </MenuDrawer>
 
 
-  <div class="container-content" style="padding: 32px 16px">
+  <div class="container-content">
     <router-outlet></router-outlet>
   </div>
 </div>

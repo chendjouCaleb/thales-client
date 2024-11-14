@@ -1,8 +1,10 @@
 import {Component, ElementRef, EventEmitter, Inject, Input, OnInit, Output, ViewChild} from "@angular/core";
-import {LucideAngularModule, PlusIcon, UserIcon, FolderIcon, ArchiveIcon, SettingsIcon,
+import {
+  LucideAngularModule, PlusIcon, UserIcon, FolderIcon, ArchiveIcon, SettingsIcon,
   EllipsisVertical,
-  DeleteIcon,
-  StarIcon} from "lucide-angular";
+  ArchiveRestore, FolderXIcon, Trash2Icon,
+  StarIcon, FolderInputIcon, PencilIcon
+} from "lucide-angular";
 
 
 import {Customer} from "@entities/customer";
@@ -11,20 +13,21 @@ import {Router} from "@angular/router";
 import {DOCUMENT, NgForOf, NgIf} from "@angular/common";
 import {OrderBy} from "@app/models";
 import {MatProgressSpinner} from "@angular/material/progress-spinner";
-import {IconButton} from "@app/ui";
+import {IconButton, Menu, MenuItem} from "@app/ui";
 import {CustomerArchiveDialogLauncher} from "@app/customers/archive";
+import {Dropdown} from "@app/NeoUI";
 
 @Component({
   templateUrl: 'customer-list.html',
   selector: 'CustomerList',
   styleUrls: [ "customer-list.scss"],
-  imports: [LucideAngularModule, MatProgressSpinner, NgIf, NgForOf, IconButton],
+  imports: [LucideAngularModule, MatProgressSpinner, NgIf, NgForOf, IconButton, Dropdown, Menu, MenuItem],
   providers: [ CustomerArchiveDialogLauncher ],
   standalone: true
 })
 export class CustomerList implements OnInit {
   icon = {ArchiveIcon, StarIcon, SettingsIcon, EllipsisVertical, FolderIcon,
-  DeleteIcon }
+    ArchiveRestore, FolderXIcon, Trash2Icon, FolderInputIcon, PencilIcon }
   @Input()
   params: any = {}
 
@@ -41,6 +44,8 @@ export class CustomerList implements OnInit {
   isRangeLoading = false
 
   customers: Customer[] = []
+
+  hoverIndex: number | null = null
 
   get _customers(): Customer[] {
     return this.customers;

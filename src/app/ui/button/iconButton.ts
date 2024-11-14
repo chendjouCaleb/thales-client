@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, ViewEncapsulation} from "@angular/core";
+import {ChangeDetectionStrategy, Component, ElementRef, ViewEncapsulation} from "@angular/core";
 
 @Component({
   template: `
@@ -16,5 +16,10 @@ import {ChangeDetectionStrategy, Component, ViewEncapsulation} from "@angular/co
   }
 })
 export class IconButton {
+  constructor(private elementRef: ElementRef<HTMLElement>) {
+  }
 
+  get host() {
+    return this.elementRef.nativeElement;
+  }
 }

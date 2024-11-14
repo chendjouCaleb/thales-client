@@ -13,23 +13,23 @@
     <div style="height: 24px"></div>
 
     <div>
-      <a href="/" MenuDrawerItem>
+      <a routerLink="favorites" MenuDrawerItem>
         <lucide-icon [img]="icon.StarIcon" class="my-icon"></lucide-icon>
         <span class="spacer-16"></span>
         <span>Favoris</span>
       </a>
 
-      <a href="/" MenuDrawerItem>
+      <a routerLink="/customers" MenuDrawerItem>
         <lucide-icon [img]="icon.UserIcon" class="my-icon"></lucide-icon>
         <span class="spacer-16"></span>
         <span>Tous les clients</span>
       </a>
 
-      <button href="/archives" MenuDrawerItem>
+      <a routerLink="archive" MenuDrawerItem>
         <lucide-icon [img]="icon.ArchiveIcon" class="my-icon"></lucide-icon>
         <span class="spacer-16"></span>
         <span>Clients archivés</span>
-      </button>
+      </a>
     </div>
 
     <div style="height: 24px"></div>

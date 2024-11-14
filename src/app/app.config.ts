@@ -4,14 +4,18 @@ import {HTTP_INTERCEPTORS, provideHttpClient, withInterceptors, withInterceptors
 import {provideRouter, Routes} from "@angular/router";
 import {provideAnimations} from "@angular/platform-browser/animations";
 import {CustomerPage} from "@app/customers";
-import {CustomerAllPage} from "@app/customers/all/customer-all.page";
+import {CustomerAllPage} from "@app/customers/list-page/customer-all.page";
+import {CustomerFavoritePage} from "@app/customers/list-page/customer-favorite.page";
+import {CustomerArchivePage} from "@app/customers/list-page/customer-archive.page";
 
 export const routes: Routes = [
   {
     path: 'customers',
     component: CustomerPage,
     children: [
-      {path: '', component: CustomerAllPage }
+      {path: '', component: CustomerAllPage },
+      {path: 'favorites', component: CustomerFavoritePage },
+      {path: 'archive', component: CustomerArchivePage },
     ]
   },
   {

@@ -7,12 +7,16 @@ import {Dialog} from "@angular/cdk/dialog";
 
 @Injectable()
 export class CustomerArchiveDialogLauncher {
-  constructor(private _dialog: Dialog) {}
+  constructor(private _dialog: Dialog) {
+  }
 
   launch(customer: Customer): Observable<boolean> {
     const dialogRef = this._dialog.open<boolean>(CustomerArchive,
-      {panelClass: 'my-dialog-panel',
-        data: {customer}});
+      {
+        panelClass: 'my-dialog-panel',
+        backdropClass: 'my-dialog-backdrop',
+        data: {customer}
+      });
     return dialogRef.closed;
   }
 

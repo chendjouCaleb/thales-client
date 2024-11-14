@@ -22,7 +22,7 @@ registerLocaleData(localeFr, 'fr');
 
 @NgModule({
   declarations: [
-    AppComponent
+
   ],
   imports: [
     BrowserModule,
@@ -33,7 +33,7 @@ registerLocaleData(localeFr, 'fr');
     ApplicationServiceModule,
     MatSnackBarModule,
     CustomerPickerModule,
-    MatProgressSpinnerModule, IdentityModule
+    MatProgressSpinnerModule, IdentityModule, AppComponent
   ],
   providers: [
     {provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'outline'}},

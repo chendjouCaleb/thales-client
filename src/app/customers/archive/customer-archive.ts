@@ -28,7 +28,8 @@ export class CustomerArchive {
   async changeInfo() {
 
     await this._customerService.toggleArchivedAsync(this.customer);
-    this._snackbar.open("Client archivé.", '', { panelClass: 'snackbar-dark'});
+    this._snackbar.open("Client archivé.", '',
+      { panelClass: 'snackbar-dark', duration: 2000});
     this._dialogRef.close();
   }
 

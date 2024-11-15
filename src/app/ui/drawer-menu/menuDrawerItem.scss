@@ -29,9 +29,15 @@
 .menu-drawer-item-layout {
   display: flex;
   align-items: center;
-  justify-content: center;
+  width: 100%;
 
   lucide-icon {
     stroke: #FFFFFF;
   }
+}
+
+.menu-item-countBadge {
+  color: #F9F9F9;
+  font-size: 12px;
+  font-weight: 500;
 }

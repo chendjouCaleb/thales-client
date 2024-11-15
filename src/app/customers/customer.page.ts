@@ -20,4 +20,8 @@ export class CustomerPage {
     PlusIcon, UserIcon, FolderIcon, ArchiveIcon, StarIcon
   }
   protected readonly settingsIcon = SettingsIcon;
+
+  allCustomerCount: number = 0;
+  archivedCustomerCount: number = 0;
+  favoriteCustomerCount: number = 0;
 }

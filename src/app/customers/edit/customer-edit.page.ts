@@ -1,96 +1,54 @@
-import {Component, ElementRef, HostListener, OnInit, ViewChild} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {CustomerService} from "@app/services";
-import {LANGUAGES} from "@app/models/langs";
 import {CustomerForm} from "@app/customers/add/form/customer.form";
 import {Button, IconButton} from "@app/ui";
-import {
-  Address,
-  CustomerInfoModel,
-  Email,
-  FamilyInfo,
-  JobInfo,
-  Lang,
-  Occupation,
-  Passport,
-  Phone, Study
-} from "@entities/customer";
+import {Customer, CustomerInfoModel} from "@entities/customer";
 import {CustomerFormGroup} from "@app/customers/add/form/customer-form-group";
 
-import {
-  LucideAngularModule,
-  EraserIcon
-} from 'lucide-angular';
+import {ArrowLeftIcon, EraserIcon, LucideAngularModule,} from 'lucide-angular';
+import {ActivatedRoute} from "@angular/router";
+import {Location, NgIf} from "@angular/common";
 
-const SAVE_FORM_KEY = "CUSTOMER_EDIT_FORM";
+const CUSTOMER_FORM_EDIT_KEY = "CUSTOMER_EDIT_FORM";
 @Component({
   standalone: true,
   imports: [
     CustomerForm,
     Button,
     LucideAngularModule,
-    IconButton
+    IconButton,
+    NgIf
   ],
   templateUrl: 'customer-edit.page.html'
 })
-export class CustomerEditPage {
-  icons = { EraserIcon }
+export class CustomerEditPage implements OnInit {
+  icons = { EraserIcon, ArrowLeftIcon }
   formGroup: CustomerFormGroup
 
+  customer: Customer
 
-  constructor(private customerService: CustomerService,
+
+  constructor(private _customerService: CustomerService,
+              private _route: ActivatedRoute,
+              public location: Location,
               private snackbar: MatSnackBar) {
+  }
 
-    let model: CustomerInfoModel
-    let storedModel = localStorage.getItem(SAVE_FORM_KEY)
+  async ngOnInit() {
+    const id = this._route.snapshot.params['customerId'];
+    this.customer = await this._customerService.getAsync(id);
 
-    if(storedModel) {
-      model = new CustomerInfoModel(JSON.parse(storedModel))
-    } else {
-      model = this.defaultModel();
-    }
-
-    this.formGroup = new CustomerFormGroup(model, SAVE_FORM_KEY);
+    const model = new CustomerInfoModel(this.customer);
+    this.formGroup = new CustomerFormGroup(model, CUSTOMER_FORM_EDIT_KEY);
   }
 
 
-
-  async add() {
+  async update() {
     let model = this.formGroup.getModel();
-    const customer = await this.customerService.addAsync(model);
-    this.snackbar.open(`Le client ${customer.firstName} ${customer.lastName} a été ajouté.`, '', {duration: 5000});
+     await this._customerService.updateAsync(this.customer, model);
+    this.snackbar.open(`Le client a été modifié.`, '', {duration: 5000});
   }
 
 
-  @HostListener('keyup', ['$event'])
-  onKeydown(event: KeyboardEvent) {
-    console.log('Key: ', event.code)
-  }
-
-  @HostListener('click')
-  onClick() {
-    console.log('Save customer add form')
-    this.formGroup.save()
-  }
-
-  clear() {
-    localStorage.removeItem(SAVE_FORM_KEY);
-    this.formGroup = new CustomerFormGroup(this.defaultModel(), SAVE_FORM_KEY);
-  }
-
-  defaultModel(): CustomerInfoModel {
-
-    const model = new CustomerInfoModel()
-    model.emails = [new Email()]
-    model.phones = [new Phone()]
-    model.langs = [new Lang()]
-    model.occupations = [new Occupation()]
-    model.passports = [new Passport()]
-    model.addresses = [new Address()]
-    model.jobs = [new JobInfo()]
-    model.studies = [new Study()]
-    model.family = new FamilyInfo();
-
-    return model;
-  }
 }

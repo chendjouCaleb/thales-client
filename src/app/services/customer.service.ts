@@ -28,6 +28,11 @@ export class CustomerService {
     return new Customer(await firstValueFrom(call));
   }
 
+  async updateAsync(customer: Customer, model: CustomerInfoModel): Promise<void> {
+    const call = this._httpClient.put<void>(`${this.url}/${customer.id}`, model);
+    await firstValueFrom(call);
+  }
+
   async changeInfoAsync(customer: Customer, model: CustomerChangeInfoFormModel): Promise<void> {
     const call = this._httpClient.put<void>(`${this.url}/${customer.id}/info`, model);
     await firstValueFrom(call);

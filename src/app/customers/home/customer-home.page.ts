@@ -1,7 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {CustomerForm} from "@app/customers/add/form/customer.form";
 import {Button, IconButton} from "@app/ui";
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute, Router, RouterLink} from "@angular/router";
 import {CustomerService} from "@app/services";
 import {Customer} from "@entities/customer";
 import {LucideAngularModule, StarIcon, ArrowLeftIcon, Trash2Icon, ArchiveIcon, ArchiveXIcon} from 'lucide-angular';
@@ -17,7 +17,8 @@ import {CustomerPersonaInput} from "@app/customers/persona/customer-persona-inpu
     IconButton,
     MatTooltip,
     NgIf,
-    CustomerPersonaInput
+    CustomerPersonaInput,
+    RouterLink
   ],
   templateUrl: 'customer-home.page.html'
 })

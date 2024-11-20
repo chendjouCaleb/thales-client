@@ -1,4 +1,4 @@
-<div class="d-flex align-items-center p-3">
+<div class="d-flex align-items-center p-3" *ngIf="customer">
   <button MyIconButton (click)="location.back()">
     <lucide-angular [img]="icons.ArrowLeftIcon" class="my-icon"></lucide-angular>
   </button>
@@ -29,15 +29,17 @@
       <lucide-angular [img]="icons.Trash2Icon" class="my-icon"></lucide-angular>
     </button>
 
-    <button MyButton class="primary">
+    <a MyButton class="primary"
+      [routerLink]="['/customers', customer.id, 'edit']"
+    >
       Modifier
-    </button>
+    </a>
   </div>
 </div>
 
 
 
-<div class="d-flex align-items-center px-4">
+<div class="d-flex align-items-center px-4" *ngIf="customer">
   <CustomerPersonaInput></CustomerPersonaInput>
   <div class="fontSize-24 ms-4">{{customer.fullName}}</div>
 </div>

@@ -1,18 +1,23 @@
-<div class="p-3" style="width: 640px">
-  <div class="d-flex align-items-center py-3">
-    <div class="fontWeight-semiBold fontSize-20 mb-3">Ajouter un client</div>
+<div style="width: 640px">
+  <div class="d-flex align-items-center p-4">
+
+    <div>
+      <button MyIconButton (click)="location.back()" class="pe-3">
+        <lucide-angular [img]="icons.ArrowLeftIcon" class="my-icon"></lucide-angular>
+      </button>
+    </div>
+    <div class="fontWeight-semiBold fontSize-20">Modifier le client</div>
     <span class="flex-grow-1"></span>
 
     <div>
-      <button MyIconButton class="me-2" (click)="clear()">
-        <lucide-angular [img]="icons.EraserIcon" ></lucide-angular>
-      </button>
-      <button MyButton class="primary" (click)="add()">Ajouter le client</button>
+      <button MyButton class="primary" (click)="update()">Enregistrer</button>
     </div>
 
   </div>
 
 
-  <CustomerForm [formGroup]="formGroup"></CustomerForm>
-
+  <div class="p-4">
+    <CustomerForm *ngIf="formGroup" [formGroup]="formGroup"></CustomerForm>
+  </div>
 </div>
+

@@ -7,6 +7,7 @@ import {CustomerPage} from "@app/customers";
 import {CustomerAllPage} from "@app/customers/list-page/customer-all.page";
 import {CustomerFavoritePage} from "@app/customers/list-page/customer-favorite.page";
 import {CustomerArchivePage} from "@app/customers/list-page/customer-archive.page";
+import {CustomerAddPage} from "@app/customers/add/customer-add.page";
 
 export const routes: Routes = [
   {
@@ -16,6 +17,7 @@ export const routes: Routes = [
       {path: '', component: CustomerAllPage },
       {path: 'favorites', component: CustomerFavoritePage },
       {path: 'archive', component: CustomerArchivePage },
+      {path: 'add', component: CustomerAddPage }
     ]
   },
   {

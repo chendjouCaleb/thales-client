@@ -1,4 +1,12 @@
-﻿.text-field {
+﻿:root {
+  --my-text-field-label-color: #b3b0ad;
+  --my-text-field-stroke-color: #b3b0ad;
+  --my-text-field-label-color__focused: #0A78D5;
+  --my-text-field-label-font-size: 14px;
+  --my-text-field-label-font-size__focused: 12px;
+}
+
+.my-text-field {
   display: inline-block;
   min-width: 100px;
   position: relative;
@@ -6,34 +14,35 @@
   height: 40px;
 }
 
-.text-field-label-box {
+.my-text-field-label-box {
   //border: 1px solid red;
   position: absolute;
   left: 0;
-  bottom: 4px;
-  font-size: 16px;
+  bottom: 6px;
+  font-size: 14px;
   font-weight: 500;
   height: 20px;
+  color: var(--my-text-field-stroke-color);
 
   transition: font-size 200ms ease-in-out, bottom 200ms ease-in-out;
 
   &.focused {
     font-size: 12px;
-    color: #0A78D5;
+    color: #0A78D5 !important;
     bottom: 20px;
   }
 
   &.floating {
     font-size: 12px;
-    color: #0A78D5;
+    color: var(--my-text-field-label-color);
     bottom: 20px;
   }
 }
 
-.text-field-input {
+.my-text-field-input {
   width: 100%;
   height: 20px;
-  font-size: 16px;
+  font-size: 14px;
   padding: 0;
   border: none;
   outline: none;
@@ -42,9 +51,10 @@
   bottom: 4px;
   background: transparent;
   box-sizing: border-box;
+  color: inherit;
 }
 
-.text-field-underline {
+.my-text-field-underline {
   height: .5px;
   border: none;
   background-color: #707070;
@@ -53,11 +63,12 @@
   width: 100%;
   position: absolute;
   z-index: 4;
+  border-radius: 2px;
 
   transition: height 200ms ease-in-out;
 
   &.focused {
-    height: 1px;
+    height: 2px;
     background-color: #0A78D5;
   }
 }

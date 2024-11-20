@@ -1,18 +1,31 @@
-﻿import {Directive, ElementRef, Input} from '@angular/core';
+﻿import {Directive, ElementRef, EventEmitter, Input, OnDestroy, Output} from '@angular/core';
 
 @Directive({
   selector: 'input[TextFieldInput]',
   standalone: true,
   host: {
-    'class': 'text-field-input',
+    'class': 'my-text-field-input',
     '[attr.disabled]':'disabled'
   }
 })
-export class TextFieldInput {
+export class TextFieldInput implements OnDestroy {
   @Input()
   disabled: boolean = false;
 
-  constructor(private _elementRef: ElementRef<HTMLInputElement>) {}
+  @Output()
+  onChange = new EventEmitter<string>();
+
+
+
+  constructor(private _elementRef: ElementRef<HTMLInputElement>) {
+    _elementRef.nativeElement.addEventListener('change', e => {
+      this.onChange.emit((e.target as HTMLInputElement).value)
+    })
+  }
+
+  ngOnDestroy(): void {
+        throw new Error('Method not implemented.');
+    }
 
 
   get host() {

@@ -1,0 +1,75 @@
+﻿:root {
+  --my-select-menu-color: #FFFFFF
+}
+
+.my-select-menu {
+  display: block;
+  box-sizing: border-box;
+  padding: 8px 4px;
+  background-color: rgba(0,0,0, 0.1);
+  color: inherit;
+  width: calc(100%);
+}
+
+.my-select-menu-item {
+  width: calc(100%);
+  font-size: 14px;
+  color: var(--my-select-menu-color);
+  background-color: transparent;
+  border: none;
+  text-decoration: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgba(10, 120, 213, .6);
+  }
+}
+
+.my-select-menu-item-layout {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: calc(100%);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+
+  //lucide-icon {
+  //  stroke: #FFFFFF;
+  //}
+}
+
+.my-select-menu-item-icon {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+}
+
+.my-select-menu-item-layout-content {
+  display: block;
+  width: calc(100%);
+  overflow:hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  text-align: left;
+}
+
+
+.my-select-dropdown-panel {
+  max-height: 400px;
+  overflow-y: hidden;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  box-sizing: border-box;
+
+  backdrop-filter: blur(22px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+
+}
+
+.my-select-dropdown {
+
+}

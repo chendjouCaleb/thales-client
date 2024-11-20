@@ -4,21 +4,22 @@ import Cleave from "cleave.js";
 import {DateTime} from "luxon";
 
 
-export const CLEAVE_DATE_CONTROL_VALUE_ACCESSOR: any = {
+export const CLEAVE_YEAR_CONTROL_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
-  useExisting: forwardRef(() => CleaveDateInputDirective),
+  useExisting: forwardRef(() => CleaveYearInputDirective),
   multi: true
 };
 
 @Directive({
-  selector: '[CleaveDateInput]',
-  providers: [CLEAVE_DATE_CONTROL_VALUE_ACCESSOR],
+  selector: '[CleaveYearInput]',
+  standalone: true,
+  providers: [CLEAVE_YEAR_CONTROL_VALUE_ACCESSOR],
   host: {
     '[attr.autocomplete]': '\'off\''
   }
 
 })
-export class CleaveDateInputDirective implements ControlValueAccessor, OnInit, OnDestroy {
+export class CleaveYearInputDirective implements ControlValueAccessor, OnInit, OnDestroy {
   private _mask: Cleave;
 
   constructor(private _elementRef: ElementRef<HTMLInputElement>) {}
@@ -27,12 +28,13 @@ export class CleaveDateInputDirective implements ControlValueAccessor, OnInit, O
     this._mask = new Cleave(this._elementRef.nativeElement, {
       date: true,
       delimiter: '/',
-      datePattern: ['d', 'm', 'Y'],
+      datePattern: ['Y'],
 
       onValueChanged: (event: any): void => {
         const time: string = event.target.value;
-        const date = DateTime.fromFormat(time, 'dd/MM/yyyy');
-        this._onChange(date.toJSDate())
+        const date = new Date(parseInt(time), 0)
+        console.log(date.toString(), time)
+        this._onChange(date)
       }
     });
   }
@@ -57,7 +59,8 @@ export class CleaveDateInputDirective implements ControlValueAccessor, OnInit, O
 
   writeValue(obj: Date): void {
     if (obj) {
-      const value = obj.toLocaleDateString();
+      console.log(typeof obj, obj)
+      const value = obj.getFullYear().toString();
       this._mask.setRawValue(value);
     }
   }

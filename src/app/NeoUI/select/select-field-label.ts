@@ -1,12 +1,12 @@
 ﻿import {Directive} from '@angular/core';
 
 @Directive({
-  selector: 'TextFieldLabel, [TextFieldLabel]',
+  selector: 'SelectFieldLabel, [SelectFieldLabel]',
   standalone: true,
   host: {
-    'class': 'my-text-field-label'
+    'class': 'my-select-field-label'
   }
 })
-export class TextFieldLabel {
+export class SelectFieldLabel {
   disabled: boolean = false
 }

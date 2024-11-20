@@ -1,5 +1,5 @@
 .my-button {
-  height: 42px;
+  height: 40px;
   color: inherit;
   display: inline-block;
   align-items: center;
@@ -17,6 +17,7 @@
   .button-layout {
     display: flex;
     align-items: center;
+    gap: 16px;
   }
 }
 
@@ -58,4 +59,13 @@
 
 lucide-icon.fill svg {
   fill: #FFFFFF;
+}
+
+.my-button.alpha-primary {
+  background-color: rgba(10, 120, 213, 0.2);
+  font-weight: 500;
+
+  &:hover {
+    background-color: rgba(10, 120, 213, 0.4);
+  }
 }

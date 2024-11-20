@@ -1,0 +1,11 @@
+<div class="p-3" style="width: 640px">
+  <div class="d-flex align-items-center py-3">
+    <div class="fontWeight-semiBold fontSize-20 mb-3">Ajouter un client</div>
+    <span class="flex-grow-1"></span>
+    <button MyButton class="alpha-primary" (click)="add()">Enregistrer</button>
+  </div>
+
+
+  <CustomerForm [model]="model" [formGroup]="formGroup"></CustomerForm>
+
+</div>

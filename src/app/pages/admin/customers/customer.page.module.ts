@@ -11,15 +11,6 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatRadioModule} from "@angular/material/radio";
-import {CustomerAddPage} from "./add/customer-add.page";
-import {MatSelectModule} from "@angular/material/select";
-import {CustomerAddAddress} from "./add/address/customer-add-address";
-import {CustomerAddContact} from "./add/contact/customer-add-contact";
-import {CustomerAddCulture} from "./add/culture/customer-add-culture";
-import {CustomerAddJob} from "./add/job/customer-add-job";
-import {CustomerAddPassport} from "./add/passport/customer-add-passport";
-import {CustomerAddPerson} from "./add/person/customer-add-person";
-import {CustomerAddStudy} from "./add/study/customer-add-study";
 import {MatStepperModule} from "@angular/material/stepper";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatTableModule} from "@angular/material/table";
@@ -36,17 +27,16 @@ import {MatTabsModule} from "@angular/material/tabs";
 import {PaymentModule} from "../../../Components/payments";
 import {CustomerPayments} from "./payments/customer-payments";
 import {PlaneTicketModule} from "../../../Components/plane-tickets";
-import {ProcedureApplyPageModule} from "@app/pages/admin/procedure-applies/procedure-apply.page.module";
 import {ProcedureApplyModule} from "@app/Components";
 import {CleaveModule} from "@app/cleave";
 import {TraceModule} from "@app/trace";
 import {CustomerList, CustomerListModule} from "@app/Components/customers";
+import {MatSelectModule} from "@angular/material/select";
 
 const routes: Routes = [
   {
     path: '', component: CustomerPage, children: [
       {path: 'list', component: CustomerListPage},
-      {path: 'add', component: CustomerAddPage},
       {path: ':customerId/home', redirectTo: ':customerId', pathMatch: 'full'},
       {path: ':customerId', component: CustomerIndexPage},
       {path: '', redirectTo: 'list', pathMatch: 'full'}
@@ -57,12 +47,12 @@ const routes: Routes = [
 @NgModule({
     imports: [CommonModule, RouterModule.forChild(routes), FormsModule, MatButtonModule, MatIconModule,
         MatInputModule, MatFormFieldModule, MatDialogModule, MatCheckboxModule, MatRadioModule, MatSelectModule,
-        MatStepperModule, ReactiveFormsModule, MatDatepickerModule, MatTableModule, MatTabsModule, PaymentModule, PlaneTicketModule,
+        MatStepperModule, ReactiveFormsModule, MatDatepickerModule, MatTableModule, MatTabsModule, PaymentModule,
+      PlaneTicketModule,
         ProcedureApplyModule, CleaveModule, TraceModule, CustomerListModule, CustomerList],
 
   declarations: [
-    CustomerPage, CustomerListPage, CustomerAddPage, CustomerAddAddress, CustomerAddContact,
-    CustomerAddCulture, CustomerAddJob, CustomerAddPassport, CustomerAddPerson, CustomerAddStudy, CustomerHomePage,
+    CustomerPage, CustomerListPage, CustomerHomePage,
     CustomerChangeInfo, CustomerChangeCulture, CustomerChangeAddress, CustomerChangeContact, CustomerChangePassport,
     CustomerChangeStudy, CustomerChangeJob, CustomerIndexPage, CustomerPayments
   ]

@@ -16,7 +16,7 @@ import {TextFieldInput} from './textFieldInput';
   encapsulation: ViewEncapsulation.None,
   standalone: true,
   host: {
-    class: 'text-field',
+    class: 'my-text-field',
     '[class.disabled]': 'disabled',
     '[class.focused]': 'focused',
   }

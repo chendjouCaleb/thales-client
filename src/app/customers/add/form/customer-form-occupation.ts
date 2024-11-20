@@ -15,7 +15,7 @@ import {SelectField} from "@app/NeoUI/select/select-field";
 import {SelectMenu} from "@app/NeoUI/select/select-menu";
 import {SelectMenuItem} from "@app/NeoUI/select/select-menu-item";
 import {allLanguageLevels} from "../../../../languages";
-import {allOccupationLevels} from "../../../../work";
+import {allOccupationLevels, getOccupationLevel} from "../../../../work";
 import {CustomerFormGroup} from "@app/customers/add/form/customer-form-group";
 import {ReactiveFormsModule} from "@angular/forms";
 import {getContactLabel} from "@app/conctact";
@@ -60,7 +60,7 @@ import {getContactLabel} from "@app/conctact";
 
           <MySelect class="flex-grow-1">
             <SelectField #occupationLevelField style="width: 100%"
-                         [value]="getContactLabel(occupation.controls.level.value)"
+                         [value]="getOccupationLevel(occupation.controls.level.value)"
                          (onChange)="occupation.controls.level.setValue($event.code)"
             >
               <span SelectFieldLabel>Niveau de compétence</span>
@@ -125,5 +125,5 @@ export class CustomerFormOccupation {
     return this.form.formGroup
   }
 
-  protected readonly getContactLabel = getContactLabel;
+  protected readonly getOccupationLevel = getOccupationLevel;
 }

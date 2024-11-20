@@ -11,6 +11,7 @@ import {NgForOf} from "@angular/common";
 import {CustomerForm} from "@app/customers/add/form/customer.form";
 import {CustomerFormGroup} from "@app/customers/add/form/customer-form-group";
 import {ReactiveFormsModule} from "@angular/forms";
+import {CleaveYearInputDirective} from "@app/cleave/cleave-year-input.directive";
 
 @Component({
   selector: 'CustomerFormJob, [CustomerFormJob]',
@@ -24,7 +25,8 @@ import {ReactiveFormsModule} from "@angular/forms";
     MatRipple,
     NgForOf,
     IconButton,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CleaveYearInputDirective
   ],
   template: `
     <div>
@@ -39,14 +41,15 @@ import {ReactiveFormsModule} from "@angular/forms";
             <div class="d-flex w-100" style="gap: 16px">
               <TextField class="flex-grow-1">
                 <label for="job-enterpriseName" TextFieldLabel>Nom de l'entreprise</label>
-                <input type="text" TextFieldInput id="job-label"
+                <input type="text" TextFieldInput id="job-enterpriseName"
                        [formControl]="job.controls.enterpriseName"
                 >
               </TextField>
 
               <TextField class="flex-grow-1">
-                <label for="country" TextFieldLabel>Poste</label>
+                <label for="jobTitle" TextFieldLabel>Poste</label>
                 <input type="text" TextFieldInput id="jobTitle"
+                       [formControl]="job.controls.jobTitle"
                 >
               </TextField>
             </div>
@@ -70,14 +73,14 @@ import {ReactiveFormsModule} from "@angular/forms";
               <TextField class="flex-grow-1">
                 <label for="start-at" TextFieldLabel>Année de début</label>
                 <input type="text" TextFieldInput id="start-at"
-
+                       CleaveYearInput [formControl]="job.controls.startAt"
                 >
               </TextField>
 
               <TextField class="flex-grow-1">
                 <label for="end-at" TextFieldLabel>Année de fin</label>
                 <input type="text" TextFieldInput id="end-at"
-
+                       CleaveYearInput [formControl]="job.controls.endAt"
                 >
               </TextField>
             </div>

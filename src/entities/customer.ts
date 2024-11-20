@@ -288,8 +288,8 @@ export class Passport {
   constructor(value: any = null) {
     if (value) {
       this.country = value.country;
-      this.issuedAt = new Date(value.issuedAt);
-      this.expireAt = new Date(value.expireAt);
+      this.issuedAt = value.issuedAt ? new Date(value.issuedAt) : null;
+      this.expireAt = value.expireAt ? new Date(value.expireAt) : null;
     }
   }
 
@@ -305,8 +305,8 @@ export class Study {
       this.schoolName = value.schoolName;
       this.discipline = value.discipline;
       this.level = value.level;
-      this.startAt = new Date(value.startAt);
-      this.endAt =   new Date(value.endAt);
+      this.startAt = value.startAt ? new Date(value.startAt): null;
+      this.endAt =  value.endAt ?  new Date(value.endAt) : null;
 
     }
   }

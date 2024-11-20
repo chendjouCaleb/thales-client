@@ -20,6 +20,7 @@ import {CustomerFormGroup} from "@app/customers/add/form/customer-form-group";
 import {ReactiveFormsModule} from "@angular/forms";
 import {getContactLabel} from "@app/conctact";
 import {CleaveModule} from "@app/cleave";
+import {CleaveYearInputDirective} from "@app/cleave/cleave-year-input.directive";
 
 @Component({
   selector: 'CustomerFormStudy, [CustomerFormStudy]',
@@ -40,7 +41,8 @@ import {CleaveModule} from "@app/cleave";
     SelectMenuItem,
     NgIf,
     ReactiveFormsModule,
-    CleaveModule
+    CleaveModule,
+    CleaveYearInputDirective
   ],
   template: `
     <div>
@@ -75,7 +77,7 @@ import {CleaveModule} from "@app/cleave";
             <div class="d-flex w-100 mt-2" style="gap: 16px">
               <TextField class="flex-grow-1">
                 <label for="start-at" TextFieldLabel>Année de début</label>
-                <input type="text" TextFieldInput id="start-at"
+                <input type="text" TextFieldInput id="start-at" CleaveYearInput
                        [formControl]="study.controls.startAt"
                 >
               </TextField>
@@ -83,7 +85,7 @@ import {CleaveModule} from "@app/cleave";
               <TextField class="flex-grow-1">
                 <label for="end-at" TextFieldLabel>Année de fin</label>
                 <input type="text" TextFieldInput id="end-at"
-                       [formControl]="study.controls.endAt"
+                       CleaveYearInput [formControl]="study.controls.endAt"
                 >
               </TextField>
               <MySelect class="flex-grow-1">

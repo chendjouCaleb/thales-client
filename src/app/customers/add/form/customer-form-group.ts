@@ -66,8 +66,8 @@ export class CustomerFormGroup {
     schoolName: new FormControl(study.schoolName),
     level: new FormControl(study.level),
     discipline: new FormControl(study.discipline),
-    startAt: new FormControl(study.startAt?.getFullYear()),
-    endAt: new FormControl(study.endAt?.getFullYear()),
+    startAt: new FormControl(study.startAt),
+    endAt: new FormControl(study.endAt),
   }));
 
   jobs = this.defaultModel.jobs.map(job => new FormGroup({
@@ -76,8 +76,8 @@ export class CustomerFormGroup {
     jobTitle: new FormControl(job.jobTitle),
     address: new FormControl(job.address),
     serviceName: new FormControl(job.serviceName),
-    startAt: new FormControl(job.startAt?.getFullYear()),
-    endAt: new FormControl(job.endAt?.getFullYear()),
+    startAt: new FormControl(job.startAt),
+    endAt: new FormControl(job.endAt),
   }));
 
   addresses = this.defaultModel.addresses.map(address => new FormGroup({
@@ -134,6 +134,13 @@ export class CustomerFormGroup {
       return lang;
     });
 
+    model.occupations = this.occupations.map(langControl => {
+      let lang = new Occupation()
+      lang.level = langControl.controls.level.value;
+      lang.name = langControl.controls.name.value;
+      return lang;
+    });
+
     model.addresses = this.addresses.map(langControl => {
       let address = new Address()
       address.kind = langControl.controls.kind.value;
@@ -150,8 +157,8 @@ export class CustomerFormGroup {
       study.schoolName = studyControl.controls.schoolName.value;
       study.discipline = studyControl.controls.discipline.value;
       study.level = studyControl.controls.level.value;
-      study.startAt = new Date(studyControl.controls.startAt.value, 0, 0);
-      study.endAt = new Date(studyControl.controls.endAt.value, 0, 0);
+      study.startAt = studyControl.controls.startAt.value;
+      study.endAt = studyControl.controls.endAt.value;
       return study;
     });
 
@@ -161,8 +168,8 @@ export class CustomerFormGroup {
       study.jobTitle = studyControl.controls.jobTitle.value;
       study.serviceName = studyControl.controls.serviceName.value;
       study.address = studyControl.controls.address.value;
-      study.startAt = new Date(studyControl.controls.startAt.value, 0, 0);
-      study.endAt = new Date(studyControl.controls.endAt.value, 0, 0);
+      study.startAt = studyControl.controls.startAt.value;
+      study.endAt = studyControl.controls.endAt.value;
       return study;
     });
 
@@ -245,8 +252,8 @@ export class CustomerFormGroup {
       schoolName: new FormControl(study.schoolName),
       discipline: new FormControl(study.discipline),
 
-      startAt: new FormControl(study.startAt.getFullYear()),
-      endAt: new FormControl(study.endAt.getFullYear()),
+      startAt: new FormControl(study.startAt),
+      endAt: new FormControl(study.endAt),
     });
     this.studies = [...this.studies, formGroup];
     return formGroup;
@@ -263,8 +270,8 @@ export class CustomerFormGroup {
       serviceName: new FormControl(jobInfo.serviceName),
       jobTitle: new FormControl(jobInfo.jobTitle),
       address: new FormControl(jobInfo.address),
-      startAt: new FormControl(jobInfo.startAt.getFullYear()),
-      endAt: new FormControl(jobInfo.endAt.getFullYear()),
+      startAt: new FormControl(jobInfo.startAt),
+      endAt: new FormControl(jobInfo.endAt),
     });
     this.jobs = [...this.jobs, formGroup];
     return formGroup;
@@ -290,11 +297,11 @@ export class CustomerFormGroup {
   }
 
 
-  addOccupation(mail: Occupation = new Occupation()): FormGroup {
+  addOccupation(occupation: Occupation = new Occupation()): FormGroup {
     let formGroup = new FormGroup({
       id: new FormControl((++this.uniqueId).toString()),
-      name: new FormControl(mail.name),
-      level: new FormControl(mail.level),
+      name: new FormControl(occupation.name),
+      level: new FormControl(occupation.level),
     });
     this.occupations = [...this.occupations, formGroup];
     return formGroup;

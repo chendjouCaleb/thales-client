@@ -1,0 +1,43 @@
+<div class="d-flex align-items-center p-3">
+  <button MyIconButton (click)="location.back()">
+    <lucide-angular [img]="icons.ArrowLeftIcon" class="my-icon"></lucide-angular>
+  </button>
+
+  <div class="flex-grow-1"></div>
+
+  <div>
+    <button MyIconButton class="me-1" matTooltip="Ajouter ce client aux favoris" *ngIf="!customer.isFavorite">
+      <lucide-angular [img]="icons.StarIcon" class="my-icon"></lucide-angular>
+    </button>
+
+    <button MyIconButton class="me-1" *ngIf="customer.isFavorite"
+            matTooltip="Enlever ce client des favoris">
+      <lucide-angular [img]="icons.StarIcon" class="primary-fill"></lucide-angular>
+    </button>
+
+    <button MyIconButton class="me-1" *ngIf="customer.isArchived"
+            matTooltip="Enlever ce client des archives">
+      <lucide-angular [img]="icons.ArchiveXIcon" class="my-icon"></lucide-angular>
+    </button>
+
+    <button MyIconButton class="me-1" *ngIf="!customer.isArchived"
+            matTooltip="Archiver ce client">
+      <lucide-angular [img]="icons.ArchiveIcon" class="my-icon"></lucide-angular>
+    </button>
+
+    <button MyIconButton class="me-1" matTooltip="Supprimer ce client">
+      <lucide-angular [img]="icons.Trash2Icon" class="my-icon"></lucide-angular>
+    </button>
+
+    <button MyButton class="primary">
+      Modifier
+    </button>
+  </div>
+</div>
+
+
+
+<div class="d-flex align-items-center px-4">
+  <CustomerPersonaInput></CustomerPersonaInput>
+  <div class="fontSize-24 ms-4">{{customer.fullName}}</div>
+</div>

@@ -37,8 +37,6 @@ const routes: Routes = [
   {
     path: '', component: CustomerPage, children: [
       {path: 'list', component: CustomerListPage},
-      {path: ':customerId/home', redirectTo: ':customerId', pathMatch: 'full'},
-      {path: ':customerId', component: CustomerIndexPage},
       {path: '', redirectTo: 'list', pathMatch: 'full'}
     ]
   }

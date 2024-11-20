@@ -8,6 +8,9 @@ import {CustomerAllPage} from "@app/customers/list-page/customer-all.page";
 import {CustomerFavoritePage} from "@app/customers/list-page/customer-favorite.page";
 import {CustomerArchivePage} from "@app/customers/list-page/customer-archive.page";
 import {CustomerAddPage} from "@app/customers/add/customer-add.page";
+import {CustomerIndexPage} from "@app/pages/admin/customers/index/customer-index.page";
+import {CustomerHomePage} from "@app/customers/home/customer-home.page";
+import {CustomerEditPage} from "@app/customers/edit/customer-edit.page";
 
 export const routes: Routes = [
   {
@@ -17,7 +20,10 @@ export const routes: Routes = [
       {path: '', component: CustomerAllPage },
       {path: 'favorites', component: CustomerFavoritePage },
       {path: 'archive', component: CustomerArchivePage },
-      {path: 'add', component: CustomerAddPage }
+      {path: 'add', component: CustomerAddPage },
+      {path: ':customerId/home', redirectTo: ':customerId', pathMatch: 'full'},
+      {path: ':customerId', component: CustomerHomePage},
+      {path: ':customerId/edit', component: CustomerEditPage},
     ]
   },
   {

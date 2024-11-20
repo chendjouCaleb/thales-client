@@ -40,6 +40,9 @@ export class CustomerList implements OnInit {
   @Output()
   onFavoriteChange = new EventEmitter<Customer>()
 
+  @Output()
+  onItemClick = new EventEmitter<Customer>()
+
   isLoading = true;
   isRangeLoading = false
 

@@ -84,6 +84,7 @@
       <tr *ngFor="let customer of customers; let i=index; trackBy: trackById" class="row-hover"
           (mouseenter)="hoverIndex = i"
           (mouseleave)="hoverIndex = null"
+          (click)="onItemClick.emit(customer)"
       >
         <td>{{ i + 1 }}</td>
         <td *ngIf="display('code')">{{ customer.code }}</td>

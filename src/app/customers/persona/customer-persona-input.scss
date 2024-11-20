@@ -1,0 +1,15 @@
+.customer-persona-input {
+  width: 162px;
+  height: 162px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, .1);
+
+  &:hover{
+    background-color: rgba(0, 0, 0, .3);
+  }
+}

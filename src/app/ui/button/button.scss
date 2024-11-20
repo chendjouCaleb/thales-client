@@ -3,12 +3,12 @@
   color: inherit;
   display: inline-block;
   align-items: center;
-  background-color: transparent ;
+  background-color: transparent;
   border: none;
   text-decoration: none;
   border-radius: 32px;
   padding: 0 16px;
-  font-family: "Helvetica Neue","Inter",  sans-serif;
+  font-family: "Helvetica Neue", "Inter", sans-serif;
 
   &:hover {
     background-color: rgba(10, 120, 213, 0.1);
@@ -24,8 +24,8 @@
 .my-icon-button {
   border: none;
   background-color: transparent;
-  height: 32px;
-  width: 32px;
+  height: 40px;
+  width: 40px;
   overflow: hidden;
   border-radius: 50%;
   display: inline-block;
@@ -42,11 +42,11 @@
   svg {
     fill: transparent;
     stroke: #FFF;
-    height: 18px;
+    height: 20px;
   }
 
-  &:hover{
-    background-color: rgba(0, 0, 0, 0.55)
+  &:hover {
+    background-color: rgba(10, 120, 213, 0.1);
   }
 }
 
@@ -78,5 +78,13 @@ lucide-icon.fill svg {
 
   &:hover {
     background-color: rgba(10, 120, 213, 0.9);
+  }
+}
+
+
+lucide-angular.primary-fill {
+  svg {
+    fill: rgb(10, 120, 213);
+    stroke: rgb(10, 120, 213);
   }
 }

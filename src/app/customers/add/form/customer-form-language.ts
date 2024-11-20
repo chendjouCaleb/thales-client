@@ -1,15 +1,10 @@
 import {Component} from "@angular/core";
 import {TextField, TextFieldInput, TextFieldLabel} from "@app/NeoUI";
-import {
-  LucideAngularModule,
-  PlusIcon, LanguagesIcon, XIcon
-} from 'lucide-angular';
+import {LanguagesIcon, LucideAngularModule, PlusIcon, XIcon} from 'lucide-angular';
 import {Button, IconButton} from "@app/ui";
 import {MatRipple} from "@angular/material/core";
-import {CustomerInfoModel, Lang, Phone} from "@entities/customer";
 import {NgForOf, NgIf} from "@angular/common";
 import {CustomerForm} from "@app/customers/add/form/customer.form";
-import {allContactLabels, getContactLabel} from "@app/conctact";
 import {Select} from "@app/NeoUI/select/select";
 import {SelectDropdown} from "@app/NeoUI/select/select-dropdown";
 import {SelectField} from "@app/NeoUI/select/select-field";
@@ -119,23 +114,10 @@ import {CustomerFormGroup} from "@app/customers/add/form/customer-form-group";
 })
 export class CustomerFormLang {
   icons = { LanguagesIcon, PlusIcon, XIcon };
-  id = 0
+  protected readonly getLanguageDescriptor = getLanguageDescriptor;
+  protected readonly getLanguageLevel = getLanguageLevel;
 
   constructor(public form: CustomerForm) {
-  }
-
-  get model(): CustomerInfoModel {
-    return this.form.model
-  }
-
-  addLang() {
-    let lang = new Lang();
-    lang.id = ++this.id;
-    this.model.langs.push(lang)
-  }
-
-  removeLang(id: number) {
-    this.model.langs = this.model.langs.filter(m => m.id != id)
   }
 
   protected readonly languageLevels = allLanguageLevels;
@@ -145,7 +127,5 @@ export class CustomerFormLang {
     return this.form.formGroup
   }
 
-  protected readonly getContactLabel = getContactLabel;
-  protected readonly getLanguageDescriptor = getLanguageDescriptor;
-  protected readonly getLanguageLevel = getLanguageLevel;
+
 }

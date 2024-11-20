@@ -1,24 +1,18 @@
 import {Component} from "@angular/core";
 import {TextField, TextFieldInput, TextFieldLabel} from "@app/NeoUI";
-import {
-  LucideAngularModule,
-  PlusIcon, XIcon, GraduationCapIcon
-} from 'lucide-angular';
+import {GraduationCapIcon, LucideAngularModule, PlusIcon, XIcon} from 'lucide-angular';
 import {Button, IconButton} from "@app/ui";
 import {MatRipple} from "@angular/material/core";
-import {CustomerInfoModel, Study, Phone} from "@entities/customer";
 import {NgForOf, NgIf} from "@angular/common";
 import {CustomerForm} from "@app/customers/add/form/customer.form";
 import {Select} from "@app/NeoUI/select/select";
 import {SelectField} from "@app/NeoUI/select/select-field";
-import {allOccupationLevels} from "../../../../work";
 import {allStudyLevels, getStudyLevel} from "../../../../scholar";
 import {SelectDropdown} from "@app/NeoUI/select/select-dropdown";
 import {SelectMenu} from "@app/NeoUI/select/select-menu";
 import {SelectMenuItem} from "@app/NeoUI/select/select-menu-item";
 import {CustomerFormGroup} from "@app/customers/add/form/customer-form-group";
 import {ReactiveFormsModule} from "@angular/forms";
-import {getContactLabel} from "@app/conctact";
 import {CleaveModule} from "@app/cleave";
 import {CleaveYearInputDirective} from "@app/cleave/cleave-year-input.directive";
 
@@ -132,31 +126,16 @@ import {CleaveYearInputDirective} from "@app/cleave/cleave-year-input.directive"
 })
 export class CustomerFormStudy {
   icons = { GraduationCapIcon, PlusIcon, XIcon };
-  id = 0
+  protected readonly getStudyLevel = getStudyLevel;
 
   protected readonly studyLevels = allStudyLevels;
 
   constructor(public form: CustomerForm) {
   }
 
-  get model(): CustomerInfoModel {
-    return this.form.model
-  }
-
-  addStudy() {
-    let study = new Study();
-    study.id = ++this.id;
-    this.model.studies.push(study)
-  }
-
-  removeStudy(id: number) {
-    this.model.studies = this.model.studies.filter(m => m.id != id)
-  }
-
   get formGroup(): CustomerFormGroup {
     return this.form.formGroup
   }
 
-  protected readonly getContactLabel = getContactLabel;
-  protected readonly getStudyLevel = getStudyLevel;
+
 }

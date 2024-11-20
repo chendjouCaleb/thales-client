@@ -139,16 +139,12 @@ import {CleaveModule} from "@app/cleave";
 })
 export class CustomerFormPerson {
   userIcon = UserRoundIcon
+  countries = allCountries
+  sexes = allSexes
 
   constructor(public form: CustomerForm) {
   }
 
-  countries = allCountries
-  sexes = allSexes
-
-  get model(): CustomerInfoModel {
-    return this.form.model
-  }
 
   get formGroup(): CustomerFormGroup {
     return this.form.formGroup

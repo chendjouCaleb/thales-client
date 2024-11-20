@@ -3,7 +3,6 @@ import {TextField, TextFieldInput, TextFieldLabel} from "@app/NeoUI";
 import {LucideAngularModule, MapPinIcon, PlusIcon, XIcon} from 'lucide-angular';
 import {Button, IconButton} from "@app/ui";
 import {MatRipple} from "@angular/material/core";
-import {Address, CustomerInfoModel} from "@entities/customer";
 import {NgForOf, NgIf} from "@angular/common";
 import {CustomerForm} from "@app/customers/add/form/customer.form";
 import {Select} from "@app/NeoUI/select/select";
@@ -12,7 +11,7 @@ import {SelectDropdown} from "@app/NeoUI/select/select-dropdown";
 import {SelectMenu} from "@app/NeoUI/select/select-menu";
 import {SelectMenuItem} from "@app/NeoUI/select/select-menu-item";
 import {allCountries, getCountry} from "../../../../countries";
-import {allAddressLabels, getAddressLabel, getContactLabel} from "@app/conctact";
+import {allAddressLabels, getAddressLabel} from "@app/conctact";
 import {CustomerFormGroup} from "@app/customers/add/form/customer-form-group";
 import {ReactiveFormsModule} from "@angular/forms";
 
@@ -143,32 +142,16 @@ import {ReactiveFormsModule} from "@angular/forms";
 })
 export class CustomerFormAddress {
   icons = { MapPinIcon, PlusIcon, XIcon };
-  id = 0;
+
   protected readonly countries = allCountries;
-
-  constructor(public form: CustomerForm) {
-  }
-
-  get model(): CustomerInfoModel {
-    return this.form.model
-  }
-
-  addAddress() {
-    let address = new Address();
-    address.id = ++this.id;
-    this.model.addresses.push(address)
-  }
-
-  removeAddress(id: number) {
-    this.model.addresses = this.model.addresses.filter(m => m.id != id)
-  }
-
   protected readonly addressLabels = allAddressLabels;
   protected readonly getAddressLabel = getAddressLabel;
+  protected readonly getCountry = getCountry;
 
   get formGroup(): CustomerFormGroup {
     return this.form.formGroup
   }
 
-  protected readonly getCountry = getCountry;
+  constructor(public form: CustomerForm) {
+  }
 }

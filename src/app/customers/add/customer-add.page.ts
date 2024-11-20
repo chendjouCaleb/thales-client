@@ -3,7 +3,7 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 import {CustomerService} from "@app/services";
 import {LANGUAGES} from "@app/models/langs";
 import {CustomerForm} from "@app/customers/add/form/customer.form";
-import {Button} from "@app/ui";
+import {Button, IconButton} from "@app/ui";
 import {
   Address,
   CustomerInfoModel,
@@ -17,60 +17,54 @@ import {
 } from "@entities/customer";
 import {CustomerFormGroup} from "@app/customers/add/form/customer-form-group";
 
+import {
+  LucideAngularModule,
+  EraserIcon
+} from 'lucide-angular';
+
 const SAVE_FORM_KEY = "CUSTOMER_ADD_FORM";
 @Component({
   standalone: true,
   imports: [
     CustomerForm,
-    Button
+    Button,
+    LucideAngularModule,
+    IconButton
   ],
   templateUrl: 'customer-add.page.html'
 })
 export class CustomerAddPage {
-  constructor(private customerService: CustomerService,
-              private snackbar: MatSnackBar,
-              private _elementRef: ElementRef<HTMLElement>
-              ) {
+  icons = {EraserIcon}
+  formGroup: CustomerFormGroup
 
-    let storedModel = localStorage.getItem(SAVE_FORM_KEY)
+
+  constructor(private customerService: CustomerService,
+              private snackbar: MatSnackBar) {
+
     let model: CustomerInfoModel
+    let storedModel = localStorage.getItem(SAVE_FORM_KEY)
 
     if(storedModel) {
       model = new CustomerInfoModel(JSON.parse(storedModel))
-    }else {
-      model = new CustomerInfoModel()
-      model = new CustomerInfoModel()
-      model.emails = [new Email()]
-      model.phones = [new Phone()]
-      model.langs = [new Lang()]
-      model.occupations = [new Occupation()]
-      model.passports = [new Passport()]
-      model.addresses = [new Address()]
-      model.jobs = [new JobInfo()]
-      model.studies = [new Study()]
-      model.family = new FamilyInfo()
+    } else {
+      model = this.defaultModel();
     }
-
 
     this.formGroup = new CustomerFormGroup(model, SAVE_FORM_KEY);
   }
 
-  languages = LANGUAGES
-  model: CustomerInfoModel
-  formGroup: CustomerFormGroup
 
-  // async add() {
-  //   const customer = await this.customerService.addAsync(this.model);
-  //   this.snackbar.open(`Le client ${customer.firstName} ${customer.lastName} a été ajouté.`, '', {duration: 5000});
-  // }
 
-  add() {
-    console.log(this.formGroup.getModel())
+  async add() {
+    let model = this.formGroup.getModel();
+    const customer = await this.customerService.addAsync(model);
+    this.snackbar.open(`Le client ${customer.firstName} ${customer.lastName} a été ajouté.`, '', {duration: 5000});
   }
+
 
   @HostListener('keyup', ['$event'])
   onKeydown(event: KeyboardEvent) {
-    //console.log('Key: ', event.code)
+    console.log('Key: ', event.code)
   }
 
   @HostListener('click')
@@ -79,7 +73,24 @@ export class CustomerAddPage {
     this.formGroup.save()
   }
 
-  // ngOnInit() {
-  //   this._elementRef.nativeElement.add
-  // }
+  clear() {
+    localStorage.removeItem(SAVE_FORM_KEY);
+    this.formGroup = new CustomerFormGroup(this.defaultModel(), SAVE_FORM_KEY);
+  }
+
+  defaultModel(): CustomerInfoModel {
+
+    const model = new CustomerInfoModel()
+    model.emails = [new Email()]
+    model.phones = [new Phone()]
+    model.langs = [new Lang()]
+    model.occupations = [new Occupation()]
+    model.passports = [new Passport()]
+    model.addresses = [new Address()]
+    model.jobs = [new JobInfo()]
+    model.studies = [new Study()]
+    model.family = new FamilyInfo();
+
+    return model;
+  }
 }

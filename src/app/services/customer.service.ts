@@ -10,7 +10,7 @@ import {
   CustomerChangeStudyFormModel
 } from "../models";
 import {SERVER_URL} from "../http";
-import {Customer} from "../../entities";
+import {Customer, CustomerInfoModel} from "../../entities";
 import { HttpClient } from "@angular/common/http";
 import {firstValueFrom} from "rxjs";
 import {DateTime} from "luxon";
@@ -23,7 +23,7 @@ export class CustomerService {
   private url = `${SERVER_URL}/customers`;
   constructor(private _httpClient: HttpClient) {}
 
-  async addAsync(model: CustomerAddFormModel): Promise<Customer> {
+  async addAsync(model: CustomerInfoModel): Promise<Customer> {
     const call = this._httpClient.post<Customer>(`${this.url}`, model);
     return new Customer(await firstValueFrom(call));
   }

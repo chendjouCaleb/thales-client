@@ -1,12 +1,8 @@
 import {Component} from "@angular/core";
 import {TextField, TextFieldInput, TextFieldLabel} from "@app/NeoUI";
-import {
-  LucideAngularModule,
-  PlusIcon, MailIcon, XIcon, UserRoundIcon
-} from 'lucide-angular';
+import {LucideAngularModule, MailIcon, PlusIcon, XIcon} from 'lucide-angular';
 import {Button, IconButton} from "@app/ui";
 import {MatRipple} from "@angular/material/core";
-import {CustomerInfoModel, Email} from "@entities/customer";
 import {NgForOf, NgIf} from "@angular/common";
 import {CustomerForm} from "@app/customers/add/form/customer.form";
 import {Select} from "@app/NeoUI/select/select";
@@ -14,7 +10,7 @@ import {SelectDropdown} from "@app/NeoUI/select/select-dropdown";
 import {SelectField} from "@app/NeoUI/select/select-field";
 import {SelectMenu} from "@app/NeoUI/select/select-menu";
 import {SelectMenuItem} from "@app/NeoUI/select/select-menu-item";
-import {allContactLabels, getAddressLabel, getContactLabel} from "@app/conctact";
+import {allContactLabels, getContactLabel} from "@app/conctact";
 import {CustomerFormGroup} from "@app/customers/add/form/customer-form-group";
 import {ReactiveFormsModule} from "@angular/forms";
 
@@ -93,31 +89,13 @@ import {ReactiveFormsModule} from "@angular/forms";
 })
 export class CustomerFormMail {
   icons = { MailIcon, PlusIcon, XIcon };
-  id = 0
-
   contactKinds = allContactLabels
+  protected readonly getContactLabel = getContactLabel;
 
   constructor(public form: CustomerForm) {
-  }
-
-  get model(): CustomerInfoModel {
-    return this.form.model
-  }
-
-  // addEmail() {
-  //   let mail = new Email();
-  //   mail.id = ++this.id;
-  //   console.log("id: ", this.id)
-  //   this.model.emails.push(mail)
-  // }
-
-  removeEmail(id: number) {
-    this.model.emails = this.model.emails.filter(m => m.id != id)
   }
 
   get formGroup(): CustomerFormGroup {
     return this.form.formGroup
   }
-
-  protected readonly getContactLabel = getContactLabel;
 }

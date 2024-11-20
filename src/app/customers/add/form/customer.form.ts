@@ -35,8 +35,6 @@ import {CustomerFormGroup} from "@app/customers/add/form/customer-form-group";
   selector: 'CustomerForm'
 })
 export class CustomerForm {
-  @Input()
-  model = new CustomerInfoModel()
 
   @Input()
   formGroup: CustomerFormGroup

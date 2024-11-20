@@ -1,12 +1,8 @@
 import {Component} from "@angular/core";
 import {TextField, TextFieldInput, TextFieldLabel} from "@app/NeoUI";
-import {
-  LucideAngularModule,
-  PlusIcon, IdCardIcon, XIcon
-} from 'lucide-angular';
+import {IdCardIcon, LucideAngularModule, PlusIcon, XIcon} from 'lucide-angular';
 import {Button, IconButton} from "@app/ui";
 import {MatRipple} from "@angular/material/core";
-import {CustomerInfoModel, Passport, Phone} from "@entities/customer";
 import {NgForOf, NgIf} from "@angular/common";
 import {CustomerForm} from "@app/customers/add/form/customer.form";
 import {allCountries, getCountry} from "../../../../countries";
@@ -106,29 +102,15 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 })
 export class CustomerFormPassport {
   icons = { IdCardIcon, PlusIcon, XIcon };
-  id = 0
+  protected readonly countries = allCountries;
+  protected readonly getCountry = getCountry;
 
   constructor(public form: CustomerForm) {
   }
 
-  get model(): CustomerInfoModel {
-    return this.form.model
-  }
-
-  addPassport() {
-    let passport = new Passport();
-    passport.id = ++this.id;
-    this.model.passports.push(passport)
-  }
-
-  removePassport(id: number) {
-    this.model.passports = this.model.passports.filter(m => m.id != id)
-  }
 
   get formGroup(): CustomerFormGroup {
     return this.form.formGroup
   }
 
-  protected readonly countries = allCountries;
-  protected readonly getCountry = getCountry;
 }

@@ -1,12 +1,8 @@
 import {Component} from "@angular/core";
 import {TextField, TextFieldInput, TextFieldLabel} from "@app/NeoUI";
-import {
-  LucideAngularModule,
-  PlusIcon, BriefcaseBusinessIcon, XIcon
-} from 'lucide-angular';
+import {BriefcaseBusinessIcon, LucideAngularModule, PlusIcon, XIcon} from 'lucide-angular';
 import {Button, IconButton} from "@app/ui";
 import {MatRipple} from "@angular/material/core";
-import {CustomerInfoModel, Occupation, Phone} from "@entities/customer";
 import {NgForOf, NgIf} from "@angular/common";
 import {CustomerForm} from "@app/customers/add/form/customer.form";
 import {Select} from "@app/NeoUI/select/select";
@@ -14,11 +10,9 @@ import {SelectDropdown} from "@app/NeoUI/select/select-dropdown";
 import {SelectField} from "@app/NeoUI/select/select-field";
 import {SelectMenu} from "@app/NeoUI/select/select-menu";
 import {SelectMenuItem} from "@app/NeoUI/select/select-menu-item";
-import {allLanguageLevels} from "../../../../languages";
 import {allOccupationLevels, getOccupationLevel} from "../../../../work";
 import {CustomerFormGroup} from "@app/customers/add/form/customer-form-group";
 import {ReactiveFormsModule} from "@angular/forms";
-import {getContactLabel} from "@app/conctact";
 
 @Component({
   selector: 'CustomerFormOccupation, [CustomerFormOccupation]',
@@ -100,30 +94,16 @@ import {getContactLabel} from "@app/conctact";
 })
 export class CustomerFormOccupation {
   icons = {  BriefcaseBusinessIcon, PlusIcon, XIcon };
-  id = 0
+  protected readonly languageLevels = allOccupationLevels;
+  protected readonly getOccupationLevel = getOccupationLevel;
 
   constructor(public form: CustomerForm) {
   }
 
-  get model(): CustomerInfoModel {
-    return this.form.model
-  }
-
-  addOccupation() {
-    let occupation = new Occupation();
-    occupation.id = ++this.id;
-    this.model.occupations.push(occupation)
-  }
-
-  removeOccupation(id: number) {
-    this.model.occupations = this.model.occupations.filter(m => m.id != id)
-  }
-
-  protected readonly languageLevels = allOccupationLevels;
 
   get formGroup(): CustomerFormGroup {
     return this.form.formGroup
   }
 
-  protected readonly getOccupationLevel = getOccupationLevel;
+
 }

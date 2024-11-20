@@ -24,7 +24,7 @@ export class TextFieldInput implements OnDestroy {
   }
 
   ngOnDestroy(): void {
-        throw new Error('Method not implemented.');
+
     }
 
 

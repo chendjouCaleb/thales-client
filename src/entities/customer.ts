@@ -134,7 +134,7 @@ export class CustomerInfoModel {
       this.firstName = value.firstName;
       this.lastName = value.lastName;
       this.nationality = value.nationality;
-      this.birthDate = new Date(value.birthDate);
+      this.birthDate = value.birthDate ? new Date(value.birthDate) : null;
       this.birthPlace = value.birthPlace;
       this.sex = value.sex;
       this.family = new FamilyInfo(value.family);
@@ -179,8 +179,8 @@ export class JobInfo {
       this.jobTitle = value.jobTitle;
       this.serviceName = value.serviceName;
       this.address = value.address;
-      this.startAt =  new Date(value.startAt);
-      this.endAt =    new Date(value.endAt);
+      this.startAt =  value.startAt ?new Date(value.startAt) : null;
+      this.endAt =    value.endAt ?new Date(value.endAt) : null;
 
     }
   }
@@ -211,7 +211,7 @@ export class FamilyInfo {
   constructor(value: any = null) {
     if (value) {
       this.married = value.married;
-      this.marriedAt = new Date(value.marriedAt);
+      this.marriedAt = value.marriedAt ? new Date(value.marriedAt) : null;
       this.childrenCount = value.childrenCount;
       this.maritalStatus = value.maritalStatus;
     }

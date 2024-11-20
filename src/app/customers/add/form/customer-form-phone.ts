@@ -1,12 +1,8 @@
 import {Component} from "@angular/core";
 import {TextField, TextFieldInput, TextFieldLabel} from "@app/NeoUI";
-import {
-  LucideAngularModule,
-  PlusIcon, PhoneIcon, XIcon
-} from 'lucide-angular';
+import {LucideAngularModule, PhoneIcon, PlusIcon, XIcon} from 'lucide-angular';
 import {Button, IconButton} from "@app/ui";
 import {MatRipple} from "@angular/material/core";
-import {CustomerInfoModel, Phone} from "@entities/customer";
 import {NgForOf, NgIf} from "@angular/common";
 import {CustomerForm} from "@app/customers/add/form/customer.form";
 import {allContactLabels, getContactLabel} from "@app/conctact";
@@ -95,28 +91,12 @@ import {CustomerFormGroup} from "@app/customers/add/form/customer-form-group";
 })
 export class CustomerFormPhone {
   icons = { PhoneIcon, PlusIcon, XIcon };
-  id = 0
+  protected readonly contactKinds = allContactLabels;
+  protected readonly getContactLabel = getContactLabel;
 
   constructor(public form: CustomerForm) {
   }
 
-  get model(): CustomerInfoModel {
-    return this.form.model
-  }
-
-  addPhone() {
-    let phone = new Phone();
-    phone.id = ++this.id;
-    console.log("id: ", this.id)
-    this.model.phones.push(phone)
-  }
-
-  removePhone(id: number) {
-    this.model.phones = this.model.phones.filter(m => m.id != id)
-  }
-
-  protected readonly contactKinds = allContactLabels;
-  protected readonly getContactLabel = getContactLabel;
 
   get formGroup(): CustomerFormGroup {
     return this.form.formGroup

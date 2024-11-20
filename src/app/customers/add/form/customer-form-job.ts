@@ -1,12 +1,8 @@
 import {Component} from "@angular/core";
 import {TextField, TextFieldInput, TextFieldLabel} from "@app/NeoUI";
-import {
-  LucideAngularModule,
-  PlusIcon, XIcon, BuildingIcon
-} from 'lucide-angular';
+import {BuildingIcon, LucideAngularModule, PlusIcon, XIcon} from 'lucide-angular';
 import {Button, IconButton} from "@app/ui";
 import {MatRipple} from "@angular/material/core";
-import {CustomerInfoModel, JobInfo, Phone} from "@entities/customer";
 import {NgForOf} from "@angular/common";
 import {CustomerForm} from "@app/customers/add/form/customer.form";
 import {CustomerFormGroup} from "@app/customers/add/form/customer-form-group";
@@ -105,23 +101,8 @@ import {CleaveYearInputDirective} from "@app/cleave/cleave-year-input.directive"
 })
 export class CustomerFormJob {
   icons = { BuildingIcon, PlusIcon, XIcon };
-  id = 0
 
   constructor(public form: CustomerForm) {
-  }
-
-  get model(): CustomerInfoModel {
-    return this.form.model
-  }
-
-  addJob() {
-    let job = new JobInfo();
-    job.id = ++this.id;
-    this.model.jobs.push(job)
-  }
-
-  removeJob(id: number) {
-    this.model.jobs = this.model.jobs.filter(m => m.id != id)
   }
 
   get formGroup(): CustomerFormGroup {

@@ -3,7 +3,6 @@ import {Dropdown, TextField, TextFieldInput, TextFieldLabel} from "@app/NeoUI";
 import {BabyIcon, CheckIcon, LucideAngularModule, PlusIcon, XIcon} from 'lucide-angular';
 import {Button, IconButton, Menu, MenuItem} from "@app/ui";
 import {MatRipple} from "@angular/material/core";
-import {FamilyInfo} from "@entities/customer";
 import {NgForOf, NgIf} from "@angular/common";
 import {CustomerForm} from "@app/customers/add/form/customer.form";
 import {Select} from "@app/NeoUI/select/select";
@@ -12,10 +11,10 @@ import {SelectField} from "@app/NeoUI/select/select-field";
 import {SelectMenu} from "@app/NeoUI/select/select-menu";
 import {SelectMenuItem} from "@app/NeoUI/select/select-menu-item";
 import {CustomerFormGroup} from "@app/customers/add/form/customer-form-group";
-import {allCountries, Country} from "../../../../countries";
 import {ReactiveFormsModule} from "@angular/forms";
 import {CleaveModule} from "@app/cleave";
 import {CleaveYearInputDirective} from "@app/cleave/cleave-year-input.directive";
+import {allMaritalStatuses, getMaritalStatus} from "../../../../human";
 
 @Component({
   selector: 'CustomerFormFamily, [CustomerFormFamily]',
@@ -94,18 +93,10 @@ import {CleaveYearInputDirective} from "@app/cleave/cleave-year-input.directive"
 })
 export class CustomerFormFamily {
   icons = { BabyIcon, PlusIcon, XIcon, CheckIcon };
-  id = 0
 
   maritalStatuses = allMaritalStatuses
 
-  selectedStatus: MaritalStatus
-
-  constructor(public form: CustomerForm) {
-  }
-
-  get model(): FamilyInfo {
-    return this.form.model.family
-  }
+  constructor(public form: CustomerForm) {}
 
   get formGroup(): CustomerFormGroup {
     return this.form.formGroup
@@ -116,19 +107,3 @@ export class CustomerFormFamily {
   }
 }
 
-const allMaritalStatuses: MaritalStatus[] = [
-  {code: 'SINGLE', name: 'Célibataire'},
-  {code: 'MARRIED', name: 'Marié'},
-  {code: 'DIVORCED', name: 'Divorcé'},
-]
-export interface MaritalStatus {
-  code : string,
-  name: string
-}
-
-export function getMaritalStatus(code: string) : MaritalStatus {
-  if(!code) {
-    return null
-  }
-  return allMaritalStatuses.find(c => c.code == code.toUpperCase())
-}

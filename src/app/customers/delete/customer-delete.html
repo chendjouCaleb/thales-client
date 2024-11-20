@@ -1,0 +1,18 @@
+
+<div class="p-3 my-dialog-panel-container">
+
+  <div class="my-dialog-content ">
+    <div class="fontSize-20">Supprimer un client</div>
+
+    <div class="my-3">
+      Voulez-vous supprimer le client <b>{{customer.fullName}}</b> ?
+    </div>
+
+
+    <div class="mt-3 align-end">
+      <button MyButton class="mr-3" (click)="close()">Annuler</button>
+      <button MyButton class="primary" (click)="delete()">Supprimer</button>
+    </div>
+  </div>
+
+</div>

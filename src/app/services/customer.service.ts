@@ -33,6 +33,12 @@ export class CustomerService {
     await firstValueFrom(call);
   }
 
+  async deleteAsync(customer: Customer): Promise<void> {
+    const call = this._httpClient.delete<void>(`${this.url}/${customer.id}`, {});
+    await firstValueFrom(call);
+  }
+
+
   async changeInfoAsync(customer: Customer, model: CustomerChangeInfoFormModel): Promise<void> {
     const call = this._httpClient.put<void>(`${this.url}/${customer.id}/info`, model);
     await firstValueFrom(call);

@@ -8,6 +8,8 @@ import {LucideAngularModule, StarIcon, ArrowLeftIcon, Trash2Icon, ArchiveIcon, A
 import {Location, NgIf} from '@angular/common';
 import {MatTooltip} from "@angular/material/tooltip";
 import {CustomerPersonaInput} from "@app/customers/persona/customer-persona-input";
+import {CustomerArchiveDialogLauncher} from "@app/customers/archive";
+import {CustomerDeleteDialogLauncher} from "@app/customers/delete";
 @Component({
   standalone: true,
   imports: [
@@ -20,6 +22,7 @@ import {CustomerPersonaInput} from "@app/customers/persona/customer-persona-inpu
     CustomerPersonaInput,
     RouterLink
   ],
+  providers: [ CustomerArchiveDialogLauncher, CustomerDeleteDialogLauncher ],
   templateUrl: 'customer-home.page.html'
 })
 export class CustomerHomePage implements OnInit {
@@ -28,11 +31,50 @@ export class CustomerHomePage implements OnInit {
   constructor(private _route: ActivatedRoute,
               public router: Router,
               public location: Location,
+
+              private _archiveDialog: CustomerArchiveDialogLauncher,
+              private _deleteDialogLauncher: CustomerDeleteDialogLauncher,
               private _customerService: CustomerService) {
   }
 
   async ngOnInit() {
     const id = this._route.snapshot.params['customerId'];
     this.customer = await this._customerService.getAsync(id);
+  }
+
+
+  async toggleFavorite(customer: Customer) {
+    await this._customerService.toggleFavoriteAsync(customer);
+    customer.isFavorite = !customer.isFavorite;
+    //this.onFavoriteChange.emit(customer);
+  }
+
+  toggleArchived(customer: Customer) {
+
+  }
+
+  archive(customer: Customer) {
+    const dialogRef = this._archiveDialog.launch(customer);
+    dialogRef.subscribe((result => {
+      customer.isArchived = true
+      //this.onArchivedChange.emit(customer)
+    }))
+  }
+
+  restoreArchived(customer: Customer) {
+    const dialogRef = this._archiveDialog.launchRestore(customer);
+    dialogRef.subscribe((result => {
+      customer.isArchived = false
+      //this.onArchivedChange.emit(customer)
+    }))
+  }
+
+  delete(customer: Customer) {
+    const dialogRef = this._deleteDialogLauncher.launch(customer);
+    dialogRef.subscribe((deleted => {
+      if(deleted) {
+        this.location.back();
+      }
+    }))
   }
 }

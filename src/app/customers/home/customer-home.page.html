@@ -6,26 +6,34 @@
   <div class="flex-grow-1"></div>
 
   <div>
-    <button MyIconButton class="me-1" matTooltip="Ajouter ce client aux favoris" *ngIf="!customer.isFavorite">
+    <button MyIconButton class="me-1" matTooltip="Ajouter ce client aux favoris" *ngIf="!customer.isFavorite"
+      (click)="toggleFavorite(customer)"
+    >
       <lucide-angular [img]="icons.StarIcon" class="my-icon"></lucide-angular>
     </button>
 
     <button MyIconButton class="me-1" *ngIf="customer.isFavorite"
+            (click)="toggleFavorite(customer)"
             matTooltip="Enlever ce client des favoris">
       <lucide-angular [img]="icons.StarIcon" class="primary-fill"></lucide-angular>
     </button>
 
     <button MyIconButton class="me-1" *ngIf="customer.isArchived"
-            matTooltip="Enlever ce client des archives">
+            matTooltip="Enlever ce client des archives"
+          (click)="restoreArchived(customer)"
+    >
       <lucide-angular [img]="icons.ArchiveXIcon" class="my-icon"></lucide-angular>
     </button>
 
     <button MyIconButton class="me-1" *ngIf="!customer.isArchived"
-            matTooltip="Archiver ce client">
+            matTooltip="Archiver ce client"
+      (click)="archive(customer)"
+    >
       <lucide-angular [img]="icons.ArchiveIcon" class="my-icon"></lucide-angular>
     </button>
 
-    <button MyIconButton class="me-1" matTooltip="Supprimer ce client">
+    <button MyIconButton class="me-1" matTooltip="Supprimer ce client"
+      (click)="delete(customer)">
       <lucide-angular [img]="icons.Trash2Icon" class="my-icon"></lucide-angular>
     </button>
 

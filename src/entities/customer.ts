@@ -278,6 +278,10 @@ export class Phone {
   id: number = 0;
   kind: string = ''
   value: string = ''
+
+  get formatted(): string {
+    return formatPhoneNumber(this.value)
+  }
 }
 
 export class Lang {

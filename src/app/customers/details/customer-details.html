@@ -1,0 +1,217 @@
+<div *ngIf="customer" class="p-3">
+
+
+  <div class="contact-section">
+    <div class="fontSize-16">Informations personelles</div>
+
+    <div class="contact-section-item">
+      <lucide-angular [img]="icons.UserIcon"></lucide-angular>
+      {{ customer.fullName }}
+    </div>
+
+    @if (customer.sex) {
+      <div class="contact-section-item">
+        <lucide-angular [img]="icons.BrainIcon"></lucide-angular>
+        <!--      {{customer.sex == 'M' ? 'Homme' : 'Femme'}}-->
+        {{ getSex(customer.sex).name }}
+      </div>
+    }
+
+    <div class="contact-section-item" *ngIf="customer.birthDate">
+      <lucide-angular [img]="icons.CakeIcon"></lucide-angular>
+      {{ customer.birthDate.toFormat('DDD') }}
+
+      @if (customer.birthDate) {
+        à <span class="fontWeight-semiBold">{{ customer.birthPlace }}</span>
+      }
+    </div>
+
+    @if (customer.family) {
+      <div class="contact-section-item">
+        <lucide-angular [img]="icons.BabyIcon"></lucide-angular>
+        {{ getMaritalStatus(customer.family.maritalStatus).name }}
+
+        @if (customer.family.maritalStatus == 'MARRIED' && customer.family.marriedAt) {
+          • en {{ customer.family.marriedAt.getFullYear() }}
+        }
+        @if (customer.family.childrenCount > 0) {
+          • en {{ customer.family.childrenCount }} enfant@if (customer.family.childrenCount > 1) {
+            s
+          }
+        } @else {
+          • Aucun enfant
+        }
+      </div>
+    }
+  </div>
+
+  <div class="contact-section mt-3">
+    <div class="fontSize-16">Coordonnées</div>
+
+    <div class="contact-section-item">
+      <lucide-angular [img]="icons.MailIcon"></lucide-angular>
+      <div>
+        @for (mail of customer.emails; track mail.value; let index = $index) {
+          <div [class.mt-1]="index > 0">
+            {{ mail.value }} • <span class="fontSize-12">{{ getContactLabel(mail.kind).name }}</span>
+          </div>
+        }
+      </div>
+    </div>
+
+    <div class="contact-section-item">
+      <lucide-angular [img]="icons.PhoneIcon"></lucide-angular>
+      <div>
+        @for (phone of customer.phones; track phone.value; let index = $index) {
+          <div [class.mt-1]="index > 0">
+            {{ phone.formatted }} • <span class="fontSize-12">{{ getContactLabel(phone.kind).name }}</span>
+          </div>
+        }
+      </div>
+    </div>
+
+    <div class="contact-section-item">
+      <lucide-angular [img]="icons.MapPinIcon"></lucide-angular>
+      <div>
+        @for (address of customer.addresses; track address; let index = $index) {
+          <div [class.mt-1]="index > 0">
+            @if (address.country) {
+              {{ getCountry(address.country).name }},
+            }
+
+            @if (address.region) {
+              {{ address.region }},
+            }
+            @if (address.city) {
+              {{ address.city }},
+            }
+            @if (address.street) {
+              {{ address.street }}
+            }
+            @if (address.postalCode) {
+              {{ address.postalCode }}
+            }
+
+            • <span class="fontSize-12">{{ getAddressLabel(address.kind).name }}</span>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+
+  @if (customer.langs.length > 0) {
+    <div class="contact-section mt-3">
+      <div class="fontSize-16">Langues parlées</div>
+
+      <div>
+        @for (language of customer.langs; track language.name; let index = $index) {
+          <div class="mt-2">
+            {{ getLanguageDescriptor(language.name).nameFr }}
+            • <span class="fontSize-12">{{ getLanguageLevel(language.level).title }}</span>
+          </div>
+        }
+      </div>
+    </div>
+  }
+
+
+
+  @if (customer.occupations.length > 0) {
+    <div class="contact-section mt-3">
+      <div class="fontSize-16">Compétences</div>
+
+      <div>
+        @for (occupation of customer.occupations; track occupation.name; let index = $index) {
+          <div class="mt-2">
+            {{ occupation.name }}
+            • <span class="fontSize-12">{{ getOccupationLevel(occupation.level).name }}</span>
+          </div>
+        }
+      </div>
+    </div>
+  }
+
+
+
+  @if (customer.jobs.length > 0) {
+    <div class="contact-section mt-3">
+      <div class="fontSize-16">Expérience professionelle</div>
+
+      <div>
+        @for (job of customer.jobs; track job; let index = $index) {
+
+          @if(index > 0) {
+            <div class="divider my-2"></div>
+          }
+          <div class="contact-section-item">
+            <lucide-angular [img]="icons.BuildingIcon"></lucide-angular>
+            <div>
+              {{ job.enterpriseName }}
+
+              @if (job.serviceName) {
+                , {{ job.serviceName }}
+              }
+            </div>
+          </div>
+
+          <div class="contact-section-item">
+            <lucide-angular [img]="icons.CalendarIcon"></lucide-angular>
+            @if (job.endAt) {
+              De {{ job.startAt.getFullYear() }} à {{ job.endAt.getFullYear() }}
+            }@else {
+              Depuis {{ job.startAt.getFullYear() }}
+            }
+          </div>
+
+          <div class="contact-section-item">
+            <lucide-angular [img]="icons.MapPinIcon"></lucide-angular>
+            <div>
+              {{ job.address }}
+            </div>
+          </div>
+
+          <div class="contact-section-item">
+            <lucide-angular [img]="icons.BriefcaseBusinessIcon"></lucide-angular>
+            <div>
+              {{ job.jobTitle }}
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  }
+
+
+  @if (customer.passports.length > 0) {
+    <div class="contact-section mt-3">
+      <div class="fontSize-16">Passports</div>
+
+      <div>
+        @for (passport of customer.passports; track passport; let index = $index) {
+
+          @if(index > 0) {
+            <div class="divider my-2"></div>
+          }
+          <div class="contact-section-item">
+            <lucide-angular [img]="icons.GlobeIcon"></lucide-angular>
+            <div>{{ getCountry(passport.country).name }}</div>
+          </div>
+
+          <div class="contact-section-item">
+            <lucide-angular [img]="icons.CalendarIcon"></lucide-angular>
+
+            <div>
+              <div *ngIf="passport.issuedAt">
+                Délivré le {{ passport.issuedAt.toLocaleDateString() }}
+              </div>
+
+              <div *ngIf="passport.expireAt">
+                Expire le {{ passport.expireAt.toLocaleDateString() }}
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  }
+</div>

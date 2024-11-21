@@ -1,5 +1,5 @@
 <div>
-  <TabRow #tabRow [selectedIndex]="2">
+  <TabRow #tabRow [selectedIndex]="0">
     <button TabRowItem
             (click)="tabRow.selectIndex(0, true); pager.selectIndex(0)"
             (mouseenter)="tabRow.activateHover(0)"
@@ -28,20 +28,37 @@
             [active] = "tabRow.selectedIndex == 3"
     >Procédures
     </button>
+
+    <button TabRowItem
+            (click)="tabRow.selectIndex(4, true); pager.selectIndex(4)"
+            (mouseenter)="tabRow.activateHover(4)"
+            (mouseleave)="tabRow.deactivateHover()"
+            [active] = "tabRow.selectedIndex == 4"
+    >Historique
+    </button>
   </TabRow>
 </div>
 
-<HorizontalPager #pager [selectedIndex]="2">
+<HorizontalPager #pager [selectedIndex]="0">
   <div *PageDef>
-    <span>0</span>
+    <div CustomerDetails [customer]="customer"></div>
   </div>
   <div *PageDef>
-    <span>1</span>
+    <PaymentList  [params]="{customerId: customer.id}"
+                  [displayedColumns]="[ 'code',  'amount',  'reason', 'agency', 'employee', 'createdAt', 'action']">
+
+    </PaymentList>
   </div>
   <div *PageDef>
-    <span>2</span>
+    <PlaneTicketList  [params]="{customerId: customer.id}"
+                     [displayedColumns]="['id', 'departureCountry', 'arrivalCountry', 'agency', 'employee', 'createdAt', 'action']"
+    ></PlaneTicketList>
   </div>
   <div *PageDef>
-    <span>3</span>
+    <procedure-apply-list [params]="{customerId: customer.id}"></procedure-apply-list>
+  </div>
+
+  <div *PageDef>
+    <event-list [params]="{publisherId: customer.publisherId}"></event-list>
   </div>
 </HorizontalPager>

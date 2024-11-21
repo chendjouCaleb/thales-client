@@ -20,6 +20,9 @@ import {Customer} from "@entities/customer";
 import {Task} from "@app/utils";
 import {CustomerService} from "@app/services";
 import {HorizontalPager, PageContentDef, TabRow, TabRowItem} from "@app/NeoUI";
+import {CustomerDetails} from "@app/customers/details/customer-details";
+import {PaymentModule, PlaneTicketModule, ProcedureApplyModule} from "@app/Components";
+import {TraceModule} from "@app/trace";
 
 @Component({
   standalone: true,
@@ -38,7 +41,12 @@ import {HorizontalPager, PageContentDef, TabRow, TabRowItem} from "@app/NeoUI";
     TabRow,
     TabRowItem,
     HorizontalPager,
-    PageContentDef
+    PageContentDef,
+    CustomerDetails,
+    ProcedureApplyModule,
+    PlaneTicketModule,
+    TraceModule,
+    PaymentModule
   ],
   templateUrl: 'customer-home.pager.html'
 })

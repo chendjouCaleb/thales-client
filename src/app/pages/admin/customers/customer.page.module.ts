@@ -14,18 +14,8 @@ import {MatRadioModule} from "@angular/material/radio";
 import {MatStepperModule} from "@angular/material/stepper";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatTableModule} from "@angular/material/table";
-import {CustomerHomePage} from "./home/customer-home.page";
-import {CustomerChangeInfo} from "./change-info/customer-change-info";
-import {CustomerChangeCulture} from "./change-culture/customer-change-culture";
-import {CustomerChangeAddress} from "./change-address/customer-change-address";
-import {CustomerChangeContact} from "./change-contact/customer-change-contact";
-import {CustomerChangePassport} from "./change-passport/customer-change-passport";
-import {CustomerChangeStudy} from "./change-study/customer-change-study";
-import {CustomerChangeJob} from "./change-job/customer-change-job";
-import {CustomerIndexPage} from "./index/customer-index.page";
 import {MatTabsModule} from "@angular/material/tabs";
 import {PaymentModule} from "../../../Components/payments";
-import {CustomerPayments} from "./payments/customer-payments";
 import {PlaneTicketModule} from "../../../Components/plane-tickets";
 import {ProcedureApplyModule} from "@app/Components";
 import {CleaveModule} from "@app/cleave";
@@ -50,9 +40,7 @@ const routes: Routes = [
         ProcedureApplyModule, CleaveModule, TraceModule, CustomerListModule, CustomerList],
 
   declarations: [
-    CustomerPage, CustomerListPage, CustomerHomePage,
-    CustomerChangeInfo, CustomerChangeCulture, CustomerChangeAddress, CustomerChangeContact, CustomerChangePassport,
-    CustomerChangeStudy, CustomerChangeJob, CustomerIndexPage, CustomerPayments
+    CustomerPage, CustomerListPage
   ]
 })
 export class CustomerPageModule {

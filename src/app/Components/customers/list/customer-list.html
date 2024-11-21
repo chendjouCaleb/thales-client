@@ -115,16 +115,20 @@
         </td>
         <td *ngIf="display('address')">{{ customer.city }}, {{ customer.region }}</td>
         <td *ngIf="display('createdAt')">{{ customer.createdAt.moment() }}</td>
-        <td *ngIf="display('updatedAt')">{{ customer.createdAt.moment() }}</td>
+        <td *ngIf="display('updatedAt')">
+          <span class="fontSize-12">{{ customer.createdAt.moment() }}</span>
+        </td>
 
         <td style="text-align: end">
           <div [class.opacity-0]="hoverIndex != i && !dropdown.visible">
             <button MyIconButton style="margin-right: 4px"
-                    [class.primary]="customer.isFavorite" (click)="toggleFavorite(customer)">
+                    [class.primary]="customer.isFavorite"
+                    (click)="toggleFavorite(customer); $event.stopPropagation()">
               <lucide-icon [img]="icon.StarIcon" class="my-icon" [strokeWidth]="1.5"></lucide-icon>
             </button>
 
-            <button MyIconButton style="margin-right: 16px" #menuTrigger (click)="dropdown.open()">
+            <button MyIconButton style="margin-right: 16px" #menuTrigger
+                    (click)="dropdown.open(); $event.stopPropagation()">
               <lucide-icon [img]="icon.EllipsisVertical" class="my-icon"></lucide-icon>
             </button>
 
@@ -133,19 +137,20 @@
             >
               <Menu>
                 <button MenuItem>
-                  <lucide-icon [img]="icon.PencilIcon" class="my-icon me-2" strokeWidth="1.5"></lucide-icon>
+                  <lucide-icon [img]="icon.PencilIcon"  strokeWidth="1.5"></lucide-icon>
                   Modifier </button>
-                <button MenuItem *ngIf="!customer.isArchived" (click)="archive(customer)">
-                  <lucide-icon [img]="icon.ArchiveIcon" class="my-icon me-2" strokeWidth="1.5"></lucide-icon>
+                <button MenuItem *ngIf="!customer.isArchived" (click)="archive(customer); $event.stopPropagation()">
+                  <lucide-icon [img]="icon.ArchiveIcon" strokeWidth="1.5"></lucide-icon>
                   Archiver </button>
-                <button MenuItem *ngIf="customer.isArchived" (click)="restoreArchived(customer)">
-                  <lucide-icon [img]="icon.ArchiveRestore" class="my-icon me-2" strokeWidth="1.5"></lucide-icon>
+                <button MenuItem *ngIf="customer.isArchived"
+                        (click)="restoreArchived(customer); $event.stopPropagation()">
+                  <lucide-icon [img]="icon.ArchiveRestore"  strokeWidth="1.5"></lucide-icon>
                   Restorer </button>
                 <button MenuItem >
-                  <lucide-icon [img]="icon.FolderInputIcon" class="my-icon me-2" strokeWidth="1.5"></lucide-icon>
+                  <lucide-icon [img]="icon.FolderInputIcon"  strokeWidth="1.5"></lucide-icon>
                   Ajouter à un dossier</button>
                 <button MenuItem>
-                  <lucide-icon [img]="icon.Trash2Icon" class="my-icon me-2" strokeWidth="1.5"></lucide-icon>
+                  <lucide-icon [img]="icon.Trash2Icon"  strokeWidth="1.5"></lucide-icon>
                   Supprimer </button>
               </Menu>
             </Dropdown>

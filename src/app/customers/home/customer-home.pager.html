@@ -1,0 +1,47 @@
+<div>
+  <TabRow #tabRow [selectedIndex]="2">
+    <button TabRowItem
+            (click)="tabRow.selectIndex(0, true); pager.selectIndex(0)"
+            (mouseenter)="tabRow.activateHover(0)"
+            (mouseleave)="tabRow.deactivateHover()"
+            [active] = "tabRow.selectedIndex == 0"
+    >Vue d'ensemble
+    </button>
+    <button TabRowItem
+            (click)="tabRow.selectIndex(1, true); pager.selectIndex(1)"
+            (mouseenter)="tabRow.activateHover(1)"
+            (mouseleave)="tabRow.deactivateHover()"
+            [active] = "tabRow.selectedIndex == 1"
+    >Paiements
+    </button>
+    <button TabRowItem (click)="tabRow.selectIndex(2, true); pager.selectIndex(2)"
+            (mouseenter)="tabRow.activateHover(2)"
+            (mouseleave)="tabRow.deactivateHover()"
+            [active] = "tabRow.selectedIndex == 2"
+
+    >Billets d'avions
+    </button>
+    <button TabRowItem
+            (click)="tabRow.selectIndex(3, true); pager.selectIndex(3)"
+            (mouseenter)="tabRow.activateHover(3)"
+            (mouseleave)="tabRow.deactivateHover()"
+            [active] = "tabRow.selectedIndex == 3"
+    >Procédures
+    </button>
+  </TabRow>
+</div>
+
+<HorizontalPager #pager [selectedIndex]="2">
+  <div *PageDef>
+    <span>0</span>
+  </div>
+  <div *PageDef>
+    <span>1</span>
+  </div>
+  <div *PageDef>
+    <span>2</span>
+  </div>
+  <div *PageDef>
+    <span>3</span>
+  </div>
+</HorizontalPager>

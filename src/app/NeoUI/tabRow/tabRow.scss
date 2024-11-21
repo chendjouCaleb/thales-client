@@ -1,11 +1,15 @@
-﻿.tab-row {
+﻿:root {
+  --my-tab-row--color: inherit;
+}
+
+.tab-row {
   position: relative;
 }
 
 .tab-row-thumb {
   background-color: #0A78D5;
   border-radius: 8px;
-  height: 4px;
+  height: 3px;
   width: 96px;
   display: inline-block;
   position: absolute;
@@ -24,6 +28,7 @@
   font-size: 14px;
   border-radius: 4px;
   font-family: "Noto Sans", sans-serif;
+  color: var(--my-tab-row--color);
   &.active {
     font-weight: 500;
     color: #0A78D5;

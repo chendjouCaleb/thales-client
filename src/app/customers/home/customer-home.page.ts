@@ -13,6 +13,8 @@ import {CustomerDeleteDialogLauncher} from "@app/customers/delete";
 import {Task} from "@app/utils";
 import {MatProgressSpinner} from "@angular/material/progress-spinner";
 import {AlertError} from "@app/ui/alert/alert-error";
+import {CustomerHomePager} from "@app/customers/home/customer-home.pager";
+
 @Component({
   standalone: true,
   imports: [
@@ -25,7 +27,8 @@ import {AlertError} from "@app/ui/alert/alert-error";
     CustomerPersonaInput,
     RouterLink,
     MatProgressSpinner,
-    AlertError
+    AlertError,
+    CustomerHomePager
   ],
   providers: [ CustomerArchiveDialogLauncher, CustomerDeleteDialogLauncher ],
   templateUrl: 'customer-home.page.html'

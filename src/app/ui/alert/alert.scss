@@ -1,0 +1,43 @@
+:root {
+  --my-alert-bgColor : rgba(255, 255, 255, 0.1);
+  --my-alert-color : rgba(255, 255, 255, 0.8);
+  --my-alert-borderColor : rgba(255, 255, 255, 0.6);
+}
+
+.my-alert {
+
+  display: block;
+
+  border-radius: 8px;
+  padding: 16px;
+
+  background-color: var(--my-alert-bgColor);
+  color: var(--my-alert-color);
+  border-color: var(--my-alert-borderColor);
+
+  &.error {
+    background-color: var(--my-color-errorContainer);
+    color: var(--my-color-onErrorContainer);
+    border-color: 1px solid var(--my-color-onErrorContainer);
+  }
+}
+.my-alert-container {
+  display: flex;
+  gap: 24px;
+}
+
+.my-alert-icon {
+  svg {
+    width: 64px;
+    height: 64px;
+  }
+}
+
+.my-alert-title{
+  font-size: 22px;
+  font-weight: 500;
+}
+
+.my-alert-text {
+  font-size: 16px;
+}

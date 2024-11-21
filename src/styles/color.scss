@@ -33,6 +33,11 @@ $ms-color-red-10: #d13438;
 $ms-color-red-20: #a4262c;
 $ms-color-pinkRed-20: #750b1c;
 
+:root {
+  --my-color-onErrorContainer: #f8acad;
+  --my-color-errorContainer: rgba(164, 38, 44, 0.1);
+}
+
 .bg-color-0 { background-color: $ms-color-gray0; }
 .bg-color-20 { background-color: $ms-color-gray20; }
 .bg-color-10 { background-color: $ms-color-gray10; }
@@ -99,3 +104,4 @@ $ms-color-pinkRed-20: #750b1c;
 .border-bottom {
   border-bottom: 1px solid;
 }
+

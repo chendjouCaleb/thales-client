@@ -169,6 +169,15 @@ export class CustomerInfoModel {
       this.nationality = value.nationality
     }
   }
+
+
+  clean() {
+    this.emails = this.emails.filter(e => e.value !== '');
+    this.phones = this.phones.filter(e => e.value !== '');
+    this.langs = this.langs.filter(e => e.name !== '');
+
+    this.passports = this.passports.filter(p => p.country !== '');
+  }
 }
 
 

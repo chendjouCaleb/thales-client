@@ -4,12 +4,15 @@ import {Button, IconButton} from "@app/ui";
 import {ActivatedRoute, Router, RouterLink} from "@angular/router";
 import {CustomerService} from "@app/services";
 import {Customer} from "@entities/customer";
-import {LucideAngularModule, StarIcon, ArrowLeftIcon, Trash2Icon, ArchiveIcon, ArchiveXIcon} from 'lucide-angular';
+import {LucideAngularModule, StarIcon, ArrowLeftIcon, Trash2Icon, ArchiveIcon, ArchiveXIcon, AlertCircleIcon} from 'lucide-angular';
 import {Location, NgIf} from '@angular/common';
 import {MatTooltip} from "@angular/material/tooltip";
 import {CustomerPersonaInput} from "@app/customers/persona/customer-persona-input";
 import {CustomerArchiveDialogLauncher} from "@app/customers/archive";
 import {CustomerDeleteDialogLauncher} from "@app/customers/delete";
+import {Task} from "@app/utils";
+import {MatProgressSpinner} from "@angular/material/progress-spinner";
+import {AlertError} from "@app/ui/alert/alert-error";
 @Component({
   standalone: true,
   imports: [
@@ -20,14 +23,22 @@ import {CustomerDeleteDialogLauncher} from "@app/customers/delete";
     MatTooltip,
     NgIf,
     CustomerPersonaInput,
-    RouterLink
+    RouterLink,
+    MatProgressSpinner,
+    AlertError
   ],
   providers: [ CustomerArchiveDialogLauncher, CustomerDeleteDialogLauncher ],
   templateUrl: 'customer-home.page.html'
 })
 export class CustomerHomePage implements OnInit {
-  icons = { StarIcon, ArrowLeftIcon, Trash2Icon, ArchiveIcon, ArchiveXIcon }
+  icons = { StarIcon, ArrowLeftIcon, Trash2Icon, ArchiveIcon, ArchiveXIcon, AlertCircleIcon }
   customer: Customer;
+  customerId: number;
+  loadCustomerTask = new Task<Customer>(async () => {
+    let customer = await this._customerService.getAsync(this.customerId);
+    this.customer = customer;
+    return customer;
+  })
   constructor(private _route: ActivatedRoute,
               public router: Router,
               public location: Location,
@@ -38,8 +49,8 @@ export class CustomerHomePage implements OnInit {
   }
 
   async ngOnInit() {
-    const id = this._route.snapshot.params['customerId'];
-    this.customer = await this._customerService.getAsync(id);
+    this.customerId = this._route.snapshot.params['customerId'];
+    await this.loadCustomerTask.launch()
   }
 
 
@@ -49,9 +60,6 @@ export class CustomerHomePage implements OnInit {
     //this.onFavoriteChange.emit(customer);
   }
 
-  toggleArchived(customer: Customer) {
-
-  }
 
   archive(customer: Customer) {
     const dialogRef = this._archiveDialog.launch(customer);

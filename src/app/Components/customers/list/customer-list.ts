@@ -112,8 +112,9 @@ export class CustomerList implements OnInit {
 
   async getFirstRange() {
     this.isLoading = true
-    let params = {...this.params,
-      take: 7,
+    let params = {
+      ...this.params,
+      take: 30,
       skip: this.customers.length
     }
     let range = await this._service.getRangeAsync(params);

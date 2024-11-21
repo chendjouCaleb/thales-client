@@ -43,9 +43,9 @@
   <div *PageDef>
     <div CustomerDetails [customer]="customer"></div>
   </div>
-  <div *PageDef>
-    <PaymentList  [params]="{customerId: customer.id}"
-                  [displayedColumns]="[ 'code',  'amount',  'reason', 'agency', 'employee', 'createdAt', 'action']">
+  <div *PageDef class="p-3">
+    <PaymentList class="d-block w-100"  [params]="{customerId: customer.id}"
+                  [displayedColumns]="[ 'code',  'amount',  'reason', 'employee', 'createdAt', 'action']">
 
     </PaymentList>
   </div>

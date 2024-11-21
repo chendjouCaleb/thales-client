@@ -1,8 +1,7 @@
-import {Component, ElementRef, HostListener, Inject, Input, OnInit, ViewChild} from "@angular/core";
+import {Component, ElementRef, HostListener, Inject, Input, LOCALE_ID, OnInit, ViewChild} from "@angular/core";
 
 import {Payment} from "@entities/payment";
 import {PaymentService} from "@app/services";
-import {MatTableDataSource} from "@angular/material/table";
 import {PaymentUIService} from "../payment-u-i.service";
 import {Router} from "@angular/router";
 import {DOCUMENT} from "@angular/common";
@@ -12,7 +11,10 @@ import {PaymentViewModel} from "@entities/view-models";
 @Component({
   templateUrl: 'payments-list.html',
   selector: 'PaymentList',
-  styleUrls: [ "payment-list.scss"]
+  styleUrls: [ "payment-list.scss"],
+  providers: [
+    { provide: LOCALE_ID, useValue: 'fr'},
+  ]
 })
 export class PaymentsList implements OnInit {
   @Input()
@@ -145,5 +147,9 @@ export class PaymentsList implements OnInit {
 
   onClick(row) {
     console.log(row)
+  }
+
+  display(name: string) {
+    return this.displayedColumns.indexOf(name) > -1
   }
 }

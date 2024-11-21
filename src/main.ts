@@ -1,9 +1,12 @@
+/// <reference types="@angular/localize" />
+
 import {bootstrapApplication} from '@angular/platform-browser';
 import './date'
 import {Component} from "@angular/core";
 import {RouterOutlet} from "@angular/router";
 import {appConfig} from "@app/app.config";
 import {AppComponent} from "@app/app.component";
+import '@angular/common/locales/global/fr';
 
 @Component({
   imports: [RouterOutlet],

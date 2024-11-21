@@ -1,4 +1,4 @@
-import {NgModule} from "@angular/core";
+import {LOCALE_ID, NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {MatButtonModule} from "@angular/material/button";
 import {MatDialogModule} from "@angular/material/dialog";
@@ -29,7 +29,7 @@ import {Home, File, LucideAngularModule, MoveUp, MoveDown} from "lucide-angular"
   ],
   declarations: [PaymentAdd, PaymentsList, PaymentDelete, PaymentDetails],
   exports: [PaymentAdd, PaymentsList, PaymentDelete],
-  providers: [PaymentUIService]
+  providers: [PaymentUIService, { provide: LOCALE_ID, useValue: 'fr'},]
 })
 export class PaymentModule {
 

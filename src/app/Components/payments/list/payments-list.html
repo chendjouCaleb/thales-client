@@ -4,37 +4,43 @@
   </div>
 
   <div *ngIf="!isLoading">
-    <table class="my-table">
+    <table class="my-table dark">
       <thead>
       <tr>
         <th>#</th>
         <th>Code</th>
-        <th class="clickable">Montant</th>
-        <th>Raison</th>
-        <th class="clickable">Client</th>
-        <th>Agence</th>
         <th>
+          <button class="th-button-1">
+            Montant
+          </button>
+        </th>
+        <th *ngIf="display('reason')">Raison</th>
+        <th *ngIf="display('customer')">
+          <button class="th-button-1">Client</button>
+        </th>
+        <th *ngIf="display('agency')">Agence</th>
+        <th *ngIf="display('employee')">
           Ajouté par
         </th>
-        <th class="clickable" (click)="changeOrderBy('ID')">
-            <span class="d-flex justify-content-center">
-              Ajouté le
+        <th *ngIf="display('createdAt')">
+          <button class="th-button-1" (click)="changeOrderBy('ID')">
+            Ajouté le
             <span *ngIf="orderby[0] == 'ID'" class="ps-2">
             <lucide-angular *ngIf="orderby[1] == 'ASC'" name="move-up" class="my-icon" size="16"></lucide-angular>
             <lucide-angular *ngIf="orderby[1] == 'DESC'" name="move-down" class="my-icon" size="16"></lucide-angular>
               </span>
-            </span>
+          </button>
         </th>
-        <th>Action</th>
+        <th></th>
       </tr>
       </thead>
 
       <tbody>
-      <tr *ngFor="let payment of payments; let i=index; trackBy: trackById" class="row-hover">
-        <td>{{ i }}</td>
+      <tr *ngFor="let payment of payments; let i=index; trackBy: trackById" class="row-hover cursor-pointer">
+        <td>{{ i + 1 }}</td>
         <td>{{ payment.code }}</td>
-        <td>{{ payment.amount.amount | currency: payment.amount.currency }}</td>
-        <td>
+        <td>{{ payment.amount.amount | currency: payment.amount.currency : 'symbol' : '1.0-0' : 'fr' }}</td>
+        <td *ngIf="display('reason')">
           <a *ngIf="payment.planeTicketId"
              routerLink="/agencies/{{payment.agencyId}}/plane-tickets/{{payment.planeTicketId}}"
              class="inline-badge ms-bgColor-cyan-10 ms-bgColor-cyan-20--hover">
@@ -55,10 +61,10 @@
           {{ payment.reason }}
         </td>
 
-        <td>{{ payment.customer?.fullName }}</td>
-        <td>{{ payment.agency?.name }}</td>
-        <td>{{ payment.employee?.user?.fullName }}</td>
-        <td>
+        <td *ngIf="display('customer')">{{ payment.customer?.fullName }}</td>
+        <td *ngIf="display('agency')">{{ payment.agency?.name }}</td>
+        <td *ngIf="display('employee')">{{ payment.employee?.user?.fullName }}</td>
+        <td *ngIf="display('createdAt')">
           <span class="fontSize-12">{{ payment.createdAt.moment() }}</span>
         </td>
         <td>

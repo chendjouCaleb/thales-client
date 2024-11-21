@@ -4,6 +4,7 @@ $my-table-color-row__hover: $my-color-divider;
 
 .my-table {
   border-collapse: collapse;
+  width: 100%;
 
   tr.row-hover:hover {
     background-color: $my-table-color-row__hover;

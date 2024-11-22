@@ -1,7 +1,9 @@
-import {Component} from "@angular/core";
+import {Component, OnDestroy, OnInit, ViewChild} from "@angular/core";
 import {CustomerList, CustomerListModule} from "@app/Components/customers";
 import {Router} from "@angular/router";
 import {Customer} from "@entities/customer";
+import {CustomerService} from "@app/services";
+import {Subscription} from "rxjs";
 
 @Component({
   template: `
@@ -17,13 +19,27 @@ import {Customer} from "@entities/customer";
   ],
   selector: 'CustomerFavoritePage'
 })
-export class CustomerAllPage {
+export class CustomerAllPage implements OnInit, OnDestroy {
   displayedColumns: string[] = ['name', 'phone', 'email', 'updatedAt', 'action'];
+  private archiveAddSubscription: Subscription;
 
-  constructor(private router: Router) {
+  @ViewChild(CustomerList)
+  customerList: CustomerList
+
+  constructor(private router: Router, private customerService: CustomerService) {
   }
 
   navigate(customer: Customer) {
     this.router.navigateByUrl(`customers/${customer.id}`)
+  }
+
+  ngOnInit() {
+    this.archiveAddSubscription = this.customerService.customerArchiveAdd.subscribe(c => {
+      this.customerList.remove(c)
+    });
+  }
+
+  ngOnDestroy() {
+    this.archiveAddSubscription.unsubscribe();
   }
 }

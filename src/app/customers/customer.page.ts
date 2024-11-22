@@ -57,6 +57,9 @@ export class CustomerPage implements OnInit, OnDestroy{
   }
 
   ngOnDestroy(): void {
-    this.archiveAddSubscription.unsubscribe()
+    this.archiveAddSubscription.unsubscribe();
+    this.archiveRemoveSubscription.unsubscribe();
+    this.favoriteAddSubscription.unsubscribe();
+    this.favoriteRemoveSubscription.unsubscribe();
   }
 }

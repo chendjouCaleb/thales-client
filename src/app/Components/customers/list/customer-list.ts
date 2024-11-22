@@ -141,7 +141,8 @@ export class CustomerList implements OnInit {
   }
 
   remove(customer: Customer) {
-    this.customers = this.customers.filter(p => p.id !== customer.id)
+    this.customers = this.customers.filter(p => p.id !== customer.id);
+    //this.total -= 1;
   }
 
 

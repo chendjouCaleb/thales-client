@@ -1,0 +1,27 @@
+.search-field {
+  display: flex;
+  gap: 8px;
+  //border: 1px solid #c8c6c4;
+  border-radius: 4px;
+  background-color: #f3f2f1;
+  padding: 4px 8px;
+
+  & input {
+    flex-grow: 1;
+    height: 24px;
+    font-size: 14px;
+    border: none;
+    outline: none;
+    background-color: transparent;
+
+  }
+}
+
+.picker-dialog-panel {
+  max-height: 512px;
+}
+
+.range-observer {
+  height: 16px;
+  background-color: transparent;
+}

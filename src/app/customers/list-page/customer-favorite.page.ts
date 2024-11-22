@@ -3,12 +3,13 @@ import {CustomerList, CustomerListModule} from "@app/Components/customers";
 import {Subscription} from "rxjs";
 import {Router} from "@angular/router";
 import {CustomerService} from "@app/services";
+import {Customer} from "@entities/customer";
 
 @Component({
   template: `
     <div class="p-3">
       <div class="fontSize-24" style="padding-bottom: 16px">Clients favoris</div>
-      <CustomerList [displayedColumns]="displayedColumns" [params]="params"></CustomerList>
+      <CustomerList [displayedColumns]="displayedColumns" [params]="params" (onItemClick)="navigate($event)"></CustomerList>
     </div>
   `,
   standalone: true,
@@ -29,6 +30,8 @@ export class CustomerFavoritePage implements OnInit, OnDestroy {
   @ViewChild(CustomerList)
   customerList: CustomerList
 
+
+
   constructor(private router: Router, private customerService: CustomerService) {
   }
 
@@ -40,5 +43,9 @@ export class CustomerFavoritePage implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.favoriteRemoveSubscription.unsubscribe();
+  }
+
+  navigate(customer: Customer) {
+    this.router.navigateByUrl(`customers/${customer.id}`)
   }
 }

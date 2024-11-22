@@ -1,23 +1,32 @@
 <div class="fontSize-18 fontWeight-semiBold p-3">Choisir un client</div>
 
-<div class="divider"></div>
-<div class="px-3 mt-2">
-  <mat-form-field class="w-100 m-0 p-0">
-      <span matPrefix class="ps-3 pe-2">
-        <mat-icon>search</mat-icon>
-      </span>
 
-  </mat-form-field>
+<div class="px-3 pb-3">
+  <div class="search-field">
+    <lucide-icon [img]="icons.SearchIcon" strokeWidth="1.5" class="search-field-icon"></lucide-icon>
+
+    <input type="text"  [(ngModel)]="filterValue" (ngModelChange)="filter($event)" placeholder="Recherche">
+  </div>
 </div>
 
-<div class="divider"></div>
 
-<div mat-dialog-content>
+
+<div mat-dialog-content style="padding: 0 !important;" #parent>
   <mat-selection-list [multiple]="false" [(ngModel)]="selected" #selectionList>
-    <mat-list-option *ngFor="let customer of displayedCustomers" togglePosition="before" [value]="customer" color="primary">
+    <mat-list-option *ngFor="let customer of customers" togglePosition="before" [value]="customer" color="primary">
       {{customer.firstName}} {{customer.lastName}}
     </mat-list-option>
   </mat-selection-list>
+
+  <div *ngIf="!hasMore && getFirstRange.success" class="end-list-thumb"></div>
+  <div class="d-flex align-items-center justify-content-center p-1" #rangeObserver
+       [class.d-none]="!hasMore && getFirstRange.success">
+    <mat-spinner diameter="32" [strokeWidth]=""></mat-spinner>
+  </div>
+
+
+
+  <div class="range-observer" #rangeObserver ></div>
 </div>
 
 <div class="divider"></div>

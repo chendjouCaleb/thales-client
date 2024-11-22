@@ -9,7 +9,9 @@ export class CustomerPickerDialog {
   constructor(private matDialog: MatDialog) {}
 
   open(): Observable<Customer> {
-    const dialogRef = this.matDialog.open(CustomerPicker, {panelClass: 'dialog-panel'});
+    const dialogRef = this.matDialog.open(CustomerPicker, {
+      panelClass: 'picker-dialog-panel'}
+    );
     return dialogRef.afterClosed();
   }
 }

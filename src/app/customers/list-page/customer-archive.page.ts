@@ -3,12 +3,13 @@ import {CustomerList, CustomerListModule} from "@app/Components/customers";
 import {Subscription} from "rxjs";
 import {Router} from "@angular/router";
 import {CustomerService} from "@app/services";
+import {Customer} from "@entities/customer";
 
 @Component({
   template: `
     <div class="p-3">
       <div class="fontSize-24" style="padding-bottom: 16px">Clients archivés</div>
-      <CustomerList [displayedColumns]="displayedColumns" [params]="params"></CustomerList>
+      <CustomerList [displayedColumns]="displayedColumns" [params]="params" (onItemClick)="navigate($event)"></CustomerList>
     </div>
   `,
   standalone: true,
@@ -30,6 +31,10 @@ export class CustomerArchivePage implements OnInit, OnDestroy {
   customerList: CustomerList
 
   constructor(private router: Router, private customerService: CustomerService) {
+  }
+
+  navigate(customer: Customer) {
+    this.router.navigateByUrl(`customers/${customer.id}`)
   }
 
   ngOnInit() {

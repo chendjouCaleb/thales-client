@@ -53,7 +53,7 @@
       <div>
         @for (mail of customer.emails; track mail.value; let index = $index) {
           <div [class.mt-1]="index > 0">
-            {{ mail.value }} • <span class="fontSize-12">{{ getContactLabel(mail.kind).name }}</span>
+            {{ mail.value }} • <span class="fontSize-12">{{ getContactLabel(mail.kind)?.name }}</span>
           </div>
         }
       </div>
@@ -64,7 +64,7 @@
       <div>
         @for (phone of customer.phones; track phone.value; let index = $index) {
           <div [class.mt-1]="index > 0">
-            {{ phone.formatted }} • <span class="fontSize-12">{{ getContactLabel(phone.kind).name }}</span>
+            {{ phone.formatted }} • <span class="fontSize-12">{{ getContactLabel(phone.kind)?.name }}</span>
           </div>
         }
       </div>
@@ -92,7 +92,7 @@
               {{ address.postalCode }}
             }
 
-            • <span class="fontSize-12">{{ getAddressLabel(address.kind).name }}</span>
+            • <span class="fontSize-12">{{ getAddressLabel(address.kind)?.name }}</span>
           </div>
         }
       </div>
@@ -106,8 +106,8 @@
       <div>
         @for (language of customer.langs; track language.name; let index = $index) {
           <div class="mt-2">
-            {{ getLanguageDescriptor(language.name).nameFr }}
-            • <span class="fontSize-12">{{ getLanguageLevel(language.level).title }}</span>
+            {{ getLanguageDescriptor(language.name)?.nameFr }}
+            • <span class="fontSize-12">{{ getLanguageLevel(language.level)?.title }}</span>
           </div>
         }
       </div>
@@ -124,7 +124,7 @@
         @for (occupation of customer.occupations; track occupation.name; let index = $index) {
           <div class="mt-2">
             {{ occupation.name }}
-            • <span class="fontSize-12">{{ getOccupationLevel(occupation.level).name }}</span>
+            • <span class="fontSize-12">{{ getOccupationLevel(occupation.level)?.name }}</span>
           </div>
         }
       </div>
@@ -157,9 +157,9 @@
           <div class="contact-section-item">
             <lucide-angular [img]="icons.CalendarIcon"></lucide-angular>
             @if (job.endAt) {
-              De {{ job.startAt.getFullYear() }} à {{ job.endAt.getFullYear() }}
+              De {{ job.startAt?.getFullYear() }} à {{ job.endAt.getFullYear() }}
             }@else {
-              Depuis {{ job.startAt.getFullYear() }}
+              Depuis {{ job.startAt?.getFullYear() }}
             }
           </div>
 
@@ -194,7 +194,7 @@
           }
           <div class="contact-section-item">
             <lucide-angular [img]="icons.GlobeIcon"></lucide-angular>
-            <div>{{ getCountry(passport.country).name }}</div>
+            <div>{{ getCountry(passport.country)?.name }}</div>
           </div>
 
           <div class="contact-section-item">
@@ -202,11 +202,11 @@
 
             <div>
               <div *ngIf="passport.issuedAt">
-                Délivré le {{ passport.issuedAt.toLocaleDateString() }}
+                Délivré le {{ passport.issuedAt?.toLocaleDateString() }}
               </div>
 
               <div *ngIf="passport.expireAt">
-                Expire le {{ passport.expireAt.toLocaleDateString() }}
+                Expire le {{ passport.expireAt?.toLocaleDateString() }}
               </div>
             </div>
           </div>

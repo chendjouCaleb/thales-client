@@ -49,16 +49,16 @@
 
     </PaymentList>
   </div>
-  <div *PageDef>
+  <div *PageDef class="p-3">
     <PlaneTicketList  [params]="{customerId: customer.id}"
                      [displayedColumns]="['id', 'departureCountry', 'arrivalCountry', 'agency', 'employee', 'createdAt', 'action']"
     ></PlaneTicketList>
   </div>
-  <div *PageDef>
+  <div *PageDef class="p-3">
     <procedure-apply-list [params]="{customerId: customer.id}"></procedure-apply-list>
   </div>
 
-  <div *PageDef>
+  <div *PageDef class="p-3">
     <event-list [params]="{publisherId: customer.publisherId}"></event-list>
   </div>
 </HorizontalPager>

@@ -5,6 +5,7 @@ import {MatDialogRef} from "@angular/material/dialog";
 
 @Component({
   templateUrl: 'customer-picker.html',
+  styleUrl: 'customer-picker.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CustomerPicker implements OnInit {

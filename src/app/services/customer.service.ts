@@ -10,9 +10,9 @@ import {
   CustomerChangeStudyFormModel
 } from "../models";
 import {SERVER_URL} from "../http";
-import {Customer, CustomerInfoModel} from "../../entities";
+import {Customer, CustomerInfoModel, CustomerStatisticsModel} from "../../entities";
 import { HttpClient } from "@angular/common/http";
-import {firstValueFrom} from "rxjs";
+import {firstValueFrom, Observable, Subject} from "rxjs";
 import {DateTime} from "luxon";
 import {CustomerRangeViewModel} from "@entities/view-models/CustomerRangeViewModel";
 
@@ -21,6 +21,28 @@ import {CustomerRangeViewModel} from "@entities/view-models/CustomerRangeViewMod
 })
 export class CustomerService {
   private url = `${SERVER_URL}/customers`;
+
+  private _customerArchiveAdd = new Subject<Customer>();
+  get customerArchiveAdd(): Observable<Customer> {
+    return this._customerArchiveAdd.asObservable()
+  }
+
+  private _customerArchiveRemove = new Subject<Customer>();
+  get customerArchiveRemove(): Observable<Customer> {
+    return this._customerArchiveRemove.asObservable()
+  }
+
+  private _customerFavoriteAdd = new Subject<Customer>();
+  get customerFavoriteAdd(): Observable<Customer> {
+    return this._customerFavoriteAdd.asObservable()
+  }
+
+  private _customerFavoriteRemove = new Subject<Customer>();
+  get customerFavoriteRemove(): Observable<Customer> {
+    return this._customerFavoriteRemove.asObservable()
+  }
+
+
   constructor(private _httpClient: HttpClient) {}
 
   async addAsync(model: CustomerInfoModel): Promise<Customer> {
@@ -97,11 +119,23 @@ export class CustomerService {
   async toggleFavoriteAsync(customer: Customer): Promise<void> {
     const call = this._httpClient.put<void>(`${this.url}/${customer.id}/favorite`, {});
     await firstValueFrom(call);
+
+    if(customer.isFavorite) {
+      this._customerFavoriteRemove.next(customer);
+    }else{
+      this._customerFavoriteAdd.next(customer);
+    }
   }
 
   async toggleArchivedAsync(customer: Customer): Promise<void> {
     const call = this._httpClient.put<void>(`${this.url}/${customer.id}/archived`, {});
     await firstValueFrom(call);
+
+    if(customer.isArchived) {
+      this._customerArchiveRemove.next(customer);
+    }else{
+      this._customerArchiveAdd.next(customer);
+    }
   }
 
   async listAsync(): Promise<Customer[]> {
@@ -119,5 +153,10 @@ export class CustomerService {
   async getAsync(id: number): Promise<Customer> {
     const call = this._httpClient.get<Customer>(`${this.url}/${id}`);
     return new Customer(await firstValueFrom(call));
+  }
+
+  async getStatisticsAsync(): Promise<CustomerStatisticsModel> {
+    const call = this._httpClient.get<Customer>(`${this.url}/statistics`);
+    return new CustomerStatisticsModel(await firstValueFrom(call));
   }
 }

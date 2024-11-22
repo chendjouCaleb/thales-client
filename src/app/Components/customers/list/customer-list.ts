@@ -177,8 +177,3 @@ export class CustomerList implements OnInit {
 
   protected readonly settingsIcon = SettingsIcon;
 }
-
-
-export class Task<TResult> {
-
-}

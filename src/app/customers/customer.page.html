@@ -19,7 +19,7 @@
         <span class="spacer-16"></span>
         <span>Favoris</span>
         <span class="flex-grow-1"></span>
-        <span class="menu-item-countBadge">{{favoriteCustomerCount}}</span>
+        <span class="menu-item-countBadge" *ngIf="statistics">{{statistics.favoriteCount}}</span>
       </a>
 
       <a routerLink="/customers" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"  MenuDrawerItem>
@@ -27,7 +27,7 @@
         <span class="spacer-16"></span>
         <span>Tous les clients</span>
         <span class="flex-grow-1"></span>
-        <span class="menu-item-countBadge">{{allCustomerCount}}</span>
+        <span class="menu-item-countBadge">@if(statistics){{{statistics.count }}}</span>
       </a>
 
       <a routerLink="archive" routerLinkActive="active" MenuDrawerItem>
@@ -35,7 +35,7 @@
         <span class="spacer-16"></span>
         <span>Clients archivés</span>
         <span class="flex-grow-1"></span>
-        <span class="menu-item-countBadge">{{archivedCustomerCount}}</span>
+        <span class="menu-item-countBadge" *ngIf="statistics">{{statistics.archiveCount ?? 0}}</span>
 
       </a>
     </div>

@@ -12,9 +12,10 @@ import {MatInputModule} from "@angular/material/input";
 import {MatIconModule} from "@angular/material/icon";
 import {LucideAngularModule} from "lucide-angular";
 import {MatProgressSpinner} from "@angular/material/progress-spinner";
+import {Button} from "@app/ui";
 
 @NgModule({
-  imports: [CommonModule, DialogModule, MatSelectModule, MatListModule, MatButtonModule, FormsModule, MatDialogModule, MatInputModule, MatIconModule, LucideAngularModule, MatProgressSpinner],
+  imports: [CommonModule, DialogModule, MatSelectModule, MatListModule, MatButtonModule, FormsModule, MatDialogModule, MatInputModule, MatIconModule, LucideAngularModule, MatProgressSpinner, Button],
   declarations: [ CustomerPicker ],
   providers: [ CustomerPickerDialog]
 })

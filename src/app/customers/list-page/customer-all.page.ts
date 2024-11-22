@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit, ViewChild} from "@angular/core";
+import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from "@angular/core";
 import {CustomerList, CustomerListModule} from "@app/Components/customers";
 import {Router} from "@angular/router";
 import {Customer} from "@entities/customer";
@@ -7,9 +7,11 @@ import {Subscription} from "rxjs";
 
 @Component({
   template: `
-    <div class="p-3">
+    <div class="p-3" >
       <div class="fontSize-24" style="padding-bottom: 16px">Tous les contacts</div>
-      <CustomerList [displayedColumns]="displayedColumns" (onItemClick)="navigate($event)"></CustomerList>
+      <CustomerList [displayedColumns]="displayedColumns" (onItemClick)="navigate($event)"
+      [parentHost]="_elementRef.nativeElement"
+      ></CustomerList>
     </div>
   `,
   standalone: true,
@@ -26,7 +28,9 @@ export class CustomerAllPage implements OnInit, OnDestroy {
   @ViewChild(CustomerList)
   customerList: CustomerList
 
-  constructor(private router: Router, private customerService: CustomerService) {
+  constructor(private router: Router,
+              public _elementRef: ElementRef<HTMLElement>,
+              private customerService: CustomerService) {
   }
 
   navigate(customer: Customer) {

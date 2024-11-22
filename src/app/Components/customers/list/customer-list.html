@@ -1,9 +1,9 @@
 <div #container>
-  <div class="d-flex justify-content-center p-5" *ngIf="isLoading">
+  <div class="d-flex justify-content-center p-5" *ngIf="getFirstRangeTask.loading">
     <mat-spinner diameter="48" strokeWidth="2"></mat-spinner>
   </div>
 
-  <div *ngIf="!isLoading">
+  <div *ngIf="!getFirstRangeTask.loading">
     <table class="my-table dark">
       <thead>
       <tr>
@@ -160,11 +160,12 @@
       </tr>
       </tbody>
     </table>
-
-    <div class="d-flex justify-content-center p-5" *ngIf="isRangeLoading">
-      <mat-spinner strokeWidth="2" diameter="32"></mat-spinner>
-    </div>
   </div>
 
+  <div *ngIf="!hasMore && getFirstRangeTask.success" class="end-list-thumb"></div>
+  <div class="range-observer-thumb" #rangeObserverThumb ></div>
+  <div class="d-flex justify-content-center p-3" *ngIf="getRangeTask.loading">
+    <mat-spinner strokeWidth="2" diameter="32"></mat-spinner>
+  </div>
 
 </div>

@@ -1,4 +1,14 @@
-import {Component, ElementRef, EventEmitter, Inject, Input, OnInit, Output, ViewChild} from "@angular/core";
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  EventEmitter,
+  Inject,
+  Input,
+  OnInit,
+  Output,
+  ViewChild
+} from "@angular/core";
 import {
   LucideAngularModule, PlusIcon, UserIcon, FolderIcon, ArchiveIcon, SettingsIcon,
   EllipsisVertical,
@@ -16,6 +26,7 @@ import {MatProgressSpinner} from "@angular/material/progress-spinner";
 import {IconButton, Menu, MenuItem} from "@app/ui";
 import {CustomerArchiveDialogLauncher} from "@app/customers/archive";
 import {Dropdown} from "@app/NeoUI";
+import {Task} from "@app/utils";
 
 @Component({
   templateUrl: 'customer-list.html',
@@ -25,7 +36,7 @@ import {Dropdown} from "@app/NeoUI";
   providers: [ CustomerArchiveDialogLauncher ],
   standalone: true
 })
-export class CustomerList implements OnInit {
+export class CustomerList implements OnInit, AfterViewInit {
   icon = {ArchiveIcon, StarIcon, SettingsIcon, EllipsisVertical, FolderIcon,
     ArchiveRestore, FolderXIcon, Trash2Icon, FolderInputIcon, PencilIcon }
   @Input()
@@ -43,26 +54,19 @@ export class CustomerList implements OnInit {
   @Output()
   onItemClick = new EventEmitter<Customer>()
 
-  isLoading = true;
-  isRangeLoading = false
-
   customers: Customer[] = []
 
   hoverIndex: number | null = null
 
-  get _customers(): Customer[] {
-    return this.customers;
-  }
-
-  orderby: OrderBy = { by: "ID", asc: false }
+  orderBy: OrderBy = { by: "ID", asc: false }
 
   async changeOrderBy(value: string) {
-    if(value == this.orderby.by) {
-      this.orderby.asc = !this.orderby.asc
+    if(value == this.orderBy.by) {
+      this.orderBy.asc = !this.orderBy.asc
     }else {
-      this.orderby.by = value
+      this.orderBy.by = value
     }
-    this.params = {...this.params, orderBy: this.orderby.by, asc: this.orderby.asc }
+    this.params = {...this.params, orderby: this.orderBy.by, asc: this.orderBy.asc }
 
     await this.reload()
   }
@@ -75,6 +79,12 @@ export class CustomerList implements OnInit {
   @ViewChild("container")
   container: ElementRef<HTMLElement>
 
+  @ViewChild('rangeObserverThumb')
+  rangeObserverThumbRef: ElementRef<HTMLElement>
+
+  @Input()
+  parentHost: HTMLElement
+
   total: number = 0;
 
   get hasMore(): boolean {
@@ -84,6 +94,27 @@ export class CustomerList implements OnInit {
   display(name: string) {
     return this.displayedColumns.indexOf(name) > -1
   }
+
+  getFirstRangeTask = new Task(async () => {
+    let params = {
+      ...this.params,
+      take: 20,
+      skip: this.customers.length
+    }
+    let range = await this._service.getRangeAsync(params);
+    this.customers.push(...range.customers)
+    this.total = range.total
+  })
+
+  getRangeTask = new Task(async () => {
+    let params = {...this.params,
+      take: 20,
+      skip: this.customers.length
+    }
+    let range = await this._service.getRangeAsync(params);
+    this.customers.push(...range.customers)
+    this.total = range.total
+  })
 
 
   columns: string[] = [ 'code', 'name',  'birthDate',  'sex', 'address', 'job', 'passport', 'createdAt', 'action'];
@@ -96,8 +127,22 @@ export class CustomerList implements OnInit {
   }
 
   async ngOnInit() {
-    await this.getFirstRange()
+    this.getFirstRangeTask.launch().then()
+  }
 
+  ngAfterViewInit() {
+    // if(this.parentHost == null) {
+    //   throw Error('a ParentHost is required')
+    // }
+    let intersectionObserver = new IntersectionObserver(entries => {
+      console.log('Intersection append')
+      if (entries[0].intersectionRatio <= 0) return;
+      if(this.getFirstRangeTask.success && !this.getRangeTask.loading && this.hasMore) {
+        this.getRangeTask.launch()
+      }
+    }, {root: null, threshold: 0.1});
+
+    intersectionObserver.observe(this.rangeObserverThumbRef.nativeElement)
   }
 
   trackById(index: number, item: any): number {
@@ -107,37 +152,7 @@ export class CustomerList implements OnInit {
   async reload() {
     this.total = 0
     this.customers = []
-    await this.getFirstRange()
-  }
-
-  async getFirstRange() {
-    this.isLoading = true
-    let params = {
-      ...this.params,
-      take: 30,
-      skip: this.customers.length
-    }
-    let range = await this._service.getRangeAsync(params);
-    this.customers.push(...range.customers)
-    this.total = range.total
-    this.isLoading = false;
-  }
-
-  async getRange() {
-    this.isRangeLoading = true
-    let params = {...this.params,
-      take: 7,
-      skip: this.customers.length
-    }
-    let range = await this._service.getRangeAsync(params);
-    this.customers.push(...range.customers)
-    this.total = range.total
-    this.isRangeLoading = false;
-  }
-
-
-  unshift(customer: Customer) {
-    this.customers.unshift(customer);
+    await this.getFirstRangeTask.launch()
   }
 
   remove(customer: Customer) {
@@ -152,13 +167,9 @@ export class CustomerList implements OnInit {
     this.onFavoriteChange.emit(customer);
   }
 
-  toggleArchived(customer: Customer) {
-
-  }
-
   archive(customer: Customer) {
     const dialogRef = this._archiveDialog.launch(customer);
-    dialogRef.subscribe((result => {
+    dialogRef.subscribe((() => {
       customer.isArchived = true
       this.onArchivedChange.emit(customer)
     }))
@@ -166,15 +177,9 @@ export class CustomerList implements OnInit {
 
   restoreArchived(customer: Customer) {
     const dialogRef = this._archiveDialog.launchRestore(customer);
-    dialogRef.subscribe((result => {
+    dialogRef.subscribe((() => {
       customer.isArchived = false
       this.onArchivedChange.emit(customer)
     }))
   }
-
-  onClick(row) {
-    console.log(row)
-  }
-
-  protected readonly settingsIcon = SettingsIcon;
 }

@@ -1,5 +1,8 @@
-import {Component} from "@angular/core";
+import {Component, OnDestroy, OnInit, ViewChild} from "@angular/core";
 import {CustomerList, CustomerListModule} from "@app/Components/customers";
+import {Subscription} from "rxjs";
+import {Router} from "@angular/router";
+import {CustomerService} from "@app/services";
 
 @Component({
   template: `
@@ -15,9 +18,27 @@ import {CustomerList, CustomerListModule} from "@app/Components/customers";
   ],
   selector: 'CustomersArchivedPage'
 })
-export class CustomerArchivePage {
+export class CustomerArchivePage implements OnInit, OnDestroy {
   displayedColumns: string[] = ['name', 'phone', 'email', 'updatedAt', 'action'];
   params = {
     archived: true
+  }
+
+  private archiveRemoveSubscription: Subscription;
+
+  @ViewChild(CustomerList)
+  customerList: CustomerList
+
+  constructor(private router: Router, private customerService: CustomerService) {
+  }
+
+  ngOnInit() {
+    this.archiveRemoveSubscription = this.customerService.customerArchiveRemove.subscribe(c => {
+      this.customerList.remove(c)
+    });
+  }
+
+  ngOnDestroy() {
+    this.archiveRemoveSubscription.unsubscribe();
   }
 }

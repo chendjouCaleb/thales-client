@@ -122,6 +122,7 @@
         <td style="text-align: end">
           <div [class.opacity-0]="hoverIndex != i && !dropdown.visible">
             <button MyIconButton style="margin-right: 4px"
+                    *ngIf="!customer.isArchived"
                     [class.primary]="customer.isFavorite"
                     (click)="toggleFavorite(customer); $event.stopPropagation()">
               <lucide-icon [img]="icon.StarIcon" class="my-icon" [strokeWidth]="1.5"></lucide-icon>

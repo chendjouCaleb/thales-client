@@ -1,3 +1,5 @@
 export const environment = {
-  serverUrl: 'http://localhost:5063/api'
+  serverUrl: 'http://localhost:5063/api',
+  paymentRangeSize: 10
 };
+

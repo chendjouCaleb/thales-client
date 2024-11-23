@@ -23,6 +23,7 @@ import {HorizontalPager, PageContentDef, TabRow, TabRowItem} from "@app/NeoUI";
 import {CustomerDetails} from "@app/customers/details/customer-details";
 import {PaymentModule, PlaneTicketModule, ProcedureApplyModule} from "@app/Components";
 import {TraceModule} from "@app/trace";
+import {PaymentsList} from "@app/Components/payments/list/payments-list";
 
 @Component({
   standalone: true,
@@ -46,7 +47,8 @@ import {TraceModule} from "@app/trace";
     ProcedureApplyModule,
     PlaneTicketModule,
     TraceModule,
-    PaymentModule
+    PaymentModule,
+    PaymentsList
   ],
   templateUrl: 'customer-home.pager.html'
 })

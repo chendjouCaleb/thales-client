@@ -13,7 +13,7 @@ $my-table-color-row__hover: $my-color-divider;
   th {
     //padding: 16px 16px;
     padding: 4px;
-    font-weight: 600;
+    font-weight: 500;
     border-bottom: 1px solid $my-table-color-divider;
   }
 
@@ -41,6 +41,7 @@ $my-table-color-row__hover: $my-color-divider;
     width: 100%;
     text-align: left;
     color: inherit;
+    font-weight: 500;
     &:hover {
       background-color: $my-table-color-row__hover;
     }

@@ -1,10 +1,25 @@
+
+.my-light-theme {
+  --menu__bgColor: rgba(0, 0, 0, 0.05);
+  --menu-item__color: #323130;
+  --menu-item__bgColor-hover: rgba(10, 120, 213, .1);
+}
+
+
+.my-dark-theme {
+  --menu__bgColor:rgba(255,255,255, 0.1);
+  --menu-item__color: #FFF;
+  --menu-item__bgColor-hover: rgba(10, 120, 213, .6);
+}
+
+
 .menu {
   display: block;
   padding: 8px 4px;
-  background-color: rgba(0,0,0, 0.1);
+  background-color: var(--menu__bgColor);
 
-  color: #FFF;
-  backdrop-filter: blur(22px);
+  color: var(--menu-item__color);
+  backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 4px;
 }
@@ -22,7 +37,7 @@
   padding: 0 16px;
 
   &:hover {
-    background-color: rgba(10, 120, 213, .6);
+    background-color: var(--menu-item__bgColor-hover);
   }
 }
 
@@ -33,6 +48,6 @@
   gap: 16px;
 
   lucide-icon {
-    stroke: #FFFFFF;
+    stroke: var(--menu-item__color);
   }
 }

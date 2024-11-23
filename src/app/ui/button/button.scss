@@ -1,3 +1,17 @@
+.my-light-theme {
+  --my-button__bgColor: transparent;
+  --my-button__color: #323130;
+  --my-button__bgColor-hover: rgba(10, 120, 213, .1);
+}
+
+
+.my-dark-theme {
+  --my-button__bgColor:rgba(255,255,255, 0.1);
+  --my-button__color: #FFF;
+  --my-button__bgColor-hover: rgba(10, 120, 213, .6);
+}
+
+
 .my-button {
   //height: 32px;
   color: inherit;
@@ -48,7 +62,7 @@
 
   svg {
     fill: transparent;
-    stroke: #FFF;
+    stroke: var(--my-button__color);
     height: 20px;
   }
 

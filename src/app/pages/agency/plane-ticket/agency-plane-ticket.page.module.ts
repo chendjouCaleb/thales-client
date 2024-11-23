@@ -19,6 +19,7 @@ import {PlaneTicketEditPage} from "./edit/plane-ticket-edit.page";
 import {PaymentModule} from "@app/Components";
 import {CleaveModule} from "@app/cleave";
 import {AgencyPlaneTicketListPage} from "./list/agency-plane-ticket-list.page";
+import {PaymentsList} from "@app/Components/payments/list/payments-list";
 
 const routes: Routes = [
   {path: 'add', component: PlaneTicketAddPage },
@@ -28,9 +29,9 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [CommonModule, RouterModule.forChild(routes), MatButtonModule, MatIconModule, ReactiveFormsModule,
-    MatFormFieldModule, MatDialogModule, MatInputModule, MatMenuModule, MatRadioModule, PlaneTicketModule, MatCheckboxModule,
-    CustomerPickerModule, PaymentModule, CleaveModule, BreadcrumbModule],
+    imports: [CommonModule, RouterModule.forChild(routes), MatButtonModule, MatIconModule, ReactiveFormsModule,
+        MatFormFieldModule, MatDialogModule, MatInputModule, MatMenuModule, MatRadioModule, PlaneTicketModule, MatCheckboxModule,
+        CustomerPickerModule, PaymentModule, CleaveModule, BreadcrumbModule, PaymentsList],
   declarations: [ PlaneTicketHomePage, PlaneTicketPaymentAdd, AgencyPlaneTicketListPage, PlaneTicketAddPage,
   PlaneTicketEditPage ]
 })

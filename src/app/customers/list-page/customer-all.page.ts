@@ -1,5 +1,5 @@
 import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from "@angular/core";
-import {CustomerList, CustomerListModule} from "@app/Components/customers";
+import {CustomerList } from "@app/Components/customers";
 import {Router} from "@angular/router";
 import {Customer} from "@entities/customer";
 import {CustomerService} from "@app/services";
@@ -16,7 +16,6 @@ import {Subscription} from "rxjs";
   `,
   standalone: true,
   imports: [
-    CustomerListModule,
     CustomerList
   ],
   selector: 'CustomerFavoritePage'

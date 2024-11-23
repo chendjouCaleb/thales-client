@@ -1,10 +1,10 @@
 <div #container>
-  <div class="d-flex justify-content-center p-5" *ngIf="isLoading">
+  <div class="d-flex justify-content-center p-5" *ngIf="getFirstRangeTask.loading">
     <mat-spinner diameter="48" strokeWidth="2"></mat-spinner>
   </div>
 
-  <div *ngIf="!isLoading">
-    <table class="my-table dark">
+  <div *ngIf="!getFirstRangeTask.loading">
+    <table class="my-table dark my-light-theme">
       <thead>
       <tr>
         <th>#</th>
@@ -68,16 +68,34 @@
           <span class="fontSize-12">{{ payment.createdAt.moment() }}</span>
         </td>
         <td>
+          <button MyIconButton style="margin-right: 16px" #menuTrigger
+                  (click)="dropdown.open(); $event.stopPropagation()">
+            <lucide-angular  [img]="icons.EllipsisVertical"  size="16"></lucide-angular>
+          </button>
 
+          <Dropdown #dropdown [trigger]="menuTrigger.host"
+                    (onBackdropClick)="dropdown.close()">
+            <MyMenu class="my-light-theme">
+              <button MenuItem (click)="printPDF(payment)">
+                <img src="/assets/icons/pdf-svgrepo-com.svg" alt="PdfIcon" height="24">
+                Imprimer
+              </button>
+
+
+              <button MenuItem (click)="delete(payment)">
+                <lucide-icon [img]="icons.Trash2"  strokeWidth="1.5"></lucide-icon>
+                Supprimer </button>
+            </MyMenu>
+          </Dropdown>
         </td>
       </tr>
       </tbody>
     </table>
-
-    <div class="d-flex justify-content-center p-5" *ngIf="isRangeLoading">
-      <mat-spinner strokeWidth="2" diameter="32"></mat-spinner>
-    </div>
   </div>
 
-
+  <div *ngIf="!hasMore && getFirstRangeTask.success" class="end-list-thumb"></div>
+  <div class="range-observer-thumb" #rangeObserverThumb ></div>
+  <div class="d-flex justify-content-center p-3" *ngIf="getRangeTask.loading">
+    <mat-spinner strokeWidth="2" diameter="48"></mat-spinner>
+  </div>
 </div>

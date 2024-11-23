@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit, ViewChild} from "@angular/core";
-import {CustomerList, CustomerListModule} from "@app/Components/customers";
+import {CustomerList } from "@app/Components/customers";
 import {Subscription} from "rxjs";
 import {Router} from "@angular/router";
 import {CustomerService} from "@app/services";
@@ -14,7 +14,6 @@ import {Customer} from "@entities/customer";
   `,
   standalone: true,
   imports: [
-    CustomerListModule,
     CustomerList
   ],
   selector: 'CustomersArchivedPage'

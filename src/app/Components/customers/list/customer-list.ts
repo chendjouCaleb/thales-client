@@ -1,26 +1,22 @@
+import {AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from "@angular/core";
 import {
-  AfterViewInit,
-  Component,
-  ElementRef,
-  EventEmitter,
-  Inject,
-  Input,
-  OnInit,
-  Output,
-  ViewChild
-} from "@angular/core";
-import {
-  LucideAngularModule, PlusIcon, UserIcon, FolderIcon, ArchiveIcon, SettingsIcon,
+  ArchiveIcon,
+  ArchiveRestore,
   EllipsisVertical,
-  ArchiveRestore, FolderXIcon, Trash2Icon,
-  StarIcon, FolderInputIcon, PencilIcon
+  FolderIcon,
+  FolderInputIcon,
+  FolderXIcon,
+  LucideAngularModule,
+  PencilIcon,
+  SettingsIcon,
+  StarIcon,
+  Trash2Icon
 } from "lucide-angular";
 
 
 import {Customer} from "@entities/customer";
 import {CustomerService} from "@app/services";
-import {Router} from "@angular/router";
-import {DOCUMENT, NgForOf, NgIf} from "@angular/common";
+import {NgForOf, NgIf} from "@angular/common";
 import {OrderBy} from "@app/models";
 import {MatProgressSpinner} from "@angular/material/progress-spinner";
 import {IconButton, Menu, MenuItem} from "@app/ui";
@@ -71,11 +67,6 @@ export class CustomerList implements OnInit, AfterViewInit {
     await this.reload()
   }
 
-
-  get host(): HTMLElement {
-    return this._elementRef.nativeElement
-  }
-
   @ViewChild("container")
   container: ElementRef<HTMLElement>
 
@@ -120,10 +111,9 @@ export class CustomerList implements OnInit, AfterViewInit {
   columns: string[] = [ 'code', 'name',  'birthDate',  'sex', 'address', 'job', 'passport', 'createdAt', 'action'];
 
   constructor(private _service: CustomerService,
-              private _router: Router,
               private _archiveDialog: CustomerArchiveDialogLauncher,
-              private _elementRef: ElementRef<HTMLElement>,
-              @Inject(DOCUMENT) private _document: Document) {
+              private _elementRef: ElementRef<HTMLElement>
+  ) {
   }
 
   async ngOnInit() {

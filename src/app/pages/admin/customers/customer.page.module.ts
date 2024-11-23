@@ -20,7 +20,7 @@ import {PlaneTicketModule} from "../../../Components/plane-tickets";
 import {ProcedureApplyModule} from "@app/Components";
 import {CleaveModule} from "@app/cleave";
 import {TraceModule} from "@app/trace";
-import {CustomerList, CustomerListModule} from "@app/Components/customers";
+import {CustomerList } from "@app/Components/customers";
 import {MatSelectModule} from "@angular/material/select";
 
 const routes: Routes = [
@@ -37,7 +37,7 @@ const routes: Routes = [
         MatInputModule, MatFormFieldModule, MatDialogModule, MatCheckboxModule, MatRadioModule, MatSelectModule,
         MatStepperModule, ReactiveFormsModule, MatDatepickerModule, MatTableModule, MatTabsModule, PaymentModule,
       PlaneTicketModule,
-        ProcedureApplyModule, CleaveModule, TraceModule, CustomerListModule, CustomerList],
+        ProcedureApplyModule, CleaveModule, TraceModule,  CustomerList],
 
   declarations: [
     CustomerPage, CustomerListPage

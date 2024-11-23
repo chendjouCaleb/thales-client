@@ -4,5 +4,5 @@
   </div>
   <div class="divider my-3"></div>
 
-  <PaymentList [params]="{}" [displayedColumns]="[ 'code',  'amount',  'reason', 'customer', 'agency', 'employee', 'createdAt', 'action']"></PaymentList>
+  <PaymentList [params]="{includeAgency: true}" [displayedColumns]="[ 'code',  'amount',  'reason', 'customer', 'agency', 'employee', 'createdAt', 'action']"></PaymentList>
 </div>

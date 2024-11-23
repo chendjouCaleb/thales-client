@@ -24,6 +24,7 @@ export class TraceService {
     const value = await firstValueFrom(call);
 
     const model = new EventListModel();
+    model.total = value.total
     model.events = value.events.map(e => new Event(e));
     model.users = value.users.map(u => new User(u));
     model.agencies = value.agencies.map(a => new Agency(a));
@@ -36,7 +37,7 @@ export class TraceService {
 
     model.procedureApplies = value.procedureApplies.map(p => new ProcedureApply(p));
     model.procedureApplySteps = value.procedureApplySteps.map(p => new ProcedureApplyStep(p));
-    model.fix();
+    model.hydrate();
 
     return model;
   }

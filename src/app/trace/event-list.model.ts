@@ -10,6 +10,7 @@ import {Procedure, ProcedureStep} from "@entities/procedure";
 import {Message} from "@entities/message";
 
 export class EventListModel {
+  total: number;
   events: Event[];
   users: User[];
   agencies: Agency[];
@@ -25,9 +26,7 @@ export class EventListModel {
 
   messages: Message[] = [];
 
-
-
-  fix() {
+  hydrate() {
     this.employees.forEach(e => {
       e.agency = this.agencies.find(a => a.id == e.agencyId);
       e.user = this.users.find(u => u.id == e.userId);

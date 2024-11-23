@@ -38,6 +38,7 @@ export class PaymentRangeViewModel {
     this.payments.forEach(payment => {
       payment.customer = this.customers.find(c => c.id == payment.customerId);
       payment.employee = this.employees.find(c => c.id == payment.employeeId);
+      payment.agency = this.agencies.find(c => c.id == payment.agencyId);
     })
   }
 }

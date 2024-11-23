@@ -21,6 +21,7 @@ import {AgencySettingsPage} from "./settings/agency-settings.page";
 import {AgencyModule} from "@app/Components/agencies";
 import {AgencyEventsPage} from "@app/pages/agency/events/agency-events-page";
 import {TraceModule} from "@app/trace";
+import {PaymentsList} from "@app/Components/payments/list/payments-list";
 
 const routes: Routes = [
   {
@@ -47,7 +48,7 @@ const routes: Routes = [
     CommonModule, MatButtonModule, MatToolbarModule, RouterModule.forChild(routes), MatIconModule,
     MatSidenavModule, NavModule, ScaffoldModule, MatFormFieldModule, MatInputModule, MatTooltipModule,
     PaymentModule, PlaneTicketModule, EmployeeModule, AgencyModule, ProcedureApplyModule, BreadcrumbModule,
-    TraceModule
+    TraceModule, PaymentsList
   ],
   declarations: [AgencyPage, AgencyPaymentsListPage, AgencyEmployeesPage, AgencySettingsPage, AgencyEventsPage]
 })

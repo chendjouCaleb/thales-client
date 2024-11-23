@@ -8,6 +8,7 @@ import {MatTableModule} from "@angular/material/table";
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatIconModule} from "@angular/material/icon";
 import {PaymentModule} from "../../../Components/payments";
+import {PaymentsList} from "@app/Components/payments/list/payments-list";
 
 const routes: Routes = [
   {path: 'list', component: PaymentsListPage },
@@ -16,7 +17,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [CommonModule, RouterModule.forChild(routes), MatMenuModule, MatButtonModule, MatTableModule,
-    MatDialogModule, MatIconModule, PaymentModule ],
+    MatDialogModule, MatIconModule, PaymentModule, PaymentsList],
   declarations: [ PaymentsListPage ]
 })
 export class PaymentsPageModule {

@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  serverUrl: '/api'
+  serverUrl: 'https://thales.southafricanorth.cloudapp.azure.com/api'
 };

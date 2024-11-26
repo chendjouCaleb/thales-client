@@ -1,4 +1,4 @@
-<div class="page-container">
+<div class="page-container my-dark-theme">
   <CustomerToolbar></CustomerToolbar>
 
   <MenuDrawer >
@@ -25,9 +25,9 @@
       <a routerLink="/customers" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"  MenuDrawerItem>
         <lucide-icon [img]="icon.UserIcon" class="my-icon"></lucide-icon>
         <span class="spacer-16"></span>
-        <span>Tous les clients</span>
+        <span>Vos clients</span>
         <span class="flex-grow-1"></span>
-        <span class="menu-item-countBadge">@if(statistics){{{statistics.count }}}</span>
+        <span class="menu-item-countBadge">@if(statistics){{{statistics.nonArchivedCount }}}</span>
       </a>
 
       <a routerLink="archive" routerLinkActive="active" MenuDrawerItem>

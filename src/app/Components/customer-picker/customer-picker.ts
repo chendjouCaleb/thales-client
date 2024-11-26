@@ -79,6 +79,11 @@ export class CustomerPicker implements OnInit, AfterViewInit {
     this.getFirstRange.launch()
   }
 
+  async reset() {
+    this.customers = [];
+    this.getFirstRange.launch()
+  }
+
   ngAfterViewInit() {
     let intersectionObserver = new IntersectionObserver(entries => {
       console.log('Intersection append')
@@ -91,8 +96,14 @@ export class CustomerPicker implements OnInit, AfterViewInit {
     intersectionObserver.observe(this.rangeObserverRef.nativeElement)
   }
 
+  timeoutID;
   filter(event) {
-
+    this.params = { ...this.params, searchQuery : this.filterValue }
+    clearTimeout(this.timeoutID)
+    this.timeoutID = setTimeout(() => {
+      console.log('search query: ', this.filterValue)
+      this.reset()
+    }, 1000)
     this._changeDetector.markForCheck();
   }
 

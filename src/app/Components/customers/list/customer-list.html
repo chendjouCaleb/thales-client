@@ -134,8 +134,10 @@
             </button>
 
             <Dropdown #dropdown [trigger]="menuTrigger.host"
-                      (onBackdropClick)="dropdown.close()">
-              <Menu>
+                      (onBackdropClick)="dropdown.close()"
+
+            >
+              <Menu class="my-dark-theme">
                 <button MenuItem>
                   <lucide-icon [img]="icon.PencilIcon"  strokeWidth="1.5"></lucide-icon>
                   Modifier </button>

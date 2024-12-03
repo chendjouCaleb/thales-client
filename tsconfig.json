@@ -26,9 +26,9 @@
       "dom"
     ],
     "paths": {
-      "@app/*":["src/app/*"],
-      "@app/cleave/*":["src/app/cleave/*"],
-      "@entities/*":["src/entities/*"]
+      "@app/*":["./src/app/*"],
+      "@app/cleave/*":["./src/app/cleave/*"],
+      "@entities/*":["./src/entities/*"]
     }
   },
   "angularCompilerOptions": {

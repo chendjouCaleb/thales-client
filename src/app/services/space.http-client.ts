@@ -31,6 +31,12 @@ export class SpaceHttpClient {
     return new Space(value);
   }
 
+  async getByIdentifierAsync(identifier: string): Promise<Space> {
+    const call = this._httpClient.get<Space>(`${this.url}/find/${identifier}`);
+    const value = await firstValueFrom(call);
+    return new Space(value);
+  }
+
   containsNameAsync(name: string): Promise<boolean> {
     const call = this._httpClient.get<boolean>(`${this.url}/contains/name`, {params: {name}});
     return firstValueFrom(call);

@@ -10,6 +10,7 @@ import {CustomerArchivePage} from "@app/customers/list-page/customer-archive.pag
 import {CustomerAddPage} from "@app/customers/add/customer-add.page";
 import {CustomerHomePage} from "@app/customers/home/customer-home.page";
 import {CustomerEditPage} from "@app/customers/edit/customer-edit.page";
+import {MySpacesPage} from "@app/pages/home/my-spaces/my-spaces.page";
 
 export const routes: Routes = [
   {
@@ -26,6 +27,10 @@ export const routes: Routes = [
     ]
   },
   {
+    path: '', canActivate: [IsAuthGuardFunc],
+    component: MySpacesPage,
+  },
+  {
     path: 'admin', canActivate: [IsAuthGuardFunc],
     loadChildren: () => import('./pages/admin/admin.page.module').then(m => m.AdminPageModule)
   },
@@ -38,9 +43,7 @@ export const routes: Routes = [
   {
     path: 'identity',
     loadChildren: () => import('./pages/identity/identity.page.module').then(m => m.IdentityPageModule)
-  },
-
-  {path: '', redirectTo: 'admin', pathMatch: 'full'}
+  }
 ];
 
 export const appConfig: ApplicationConfig = {

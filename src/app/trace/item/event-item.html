@@ -1,70 +1,65 @@
-<div *ngIf="event.name == 'PAYMENT__ADD'" event-item-template [event]="event" [user]="user" [agency]="payment.agency"
-     icon="paid"
-     title="Nouveau paiement">
-  <span class="">{{payment.customer.fullName}}</span> vous a versé
-  <span class="">{{payment.amount.amount | currency: payment.amount.currency}}</span>.
-</div>
-
-<div *ngIf="event.name == 'PAYMENT__DELETE'" event-item-template [event]="event" [user]="user" [agency]="payment.agency"
-     icon="money_off" color="warn"
-     title="Paiment supprimé">
-  <div >
-    Le paiement N°
-    <span class="fontWeight-semiBold">{{payment.code}}</span> a été supprimé.
+@if(event.name == 'PAYMENT__ADD') {
+  <div event-item-template [event]="event" [user]="user" [agency]="payment.agency"
+       icon="paid"
+       title="Nouveau paiement">
+    <span class="">{{payment.customer.fullName}}</span> vous a versé
+    <span class="">{{payment.amount.amount | currency: payment.amount.currency}}</span>.
   </div>
-</div>
+} @else if (event.name == 'PAYMENT__DELETE') {
+  <div event-item-template [event]="event" [user]="user" [agency]="payment.agency"
+       icon="money_off" color="warn"
+       title="Paiment supprimé">
+    <div >
+      Le paiement N°
+      <span class="fontWeight-semiBold">{{payment.code}}</span> a été supprimé.
+    </div>
+  </div>
+}@else if (event.name == 'PLANE_TICKET__ADD') {
+  <div event-item-template [event]="event" [user]="user" [agency]="planeTicket.agency"
+       title="Achat de billet d'avion" icon="airplane_ticket"
+       [routerLink]="['/agencies', planeTicket.agencyId, 'plane-tickets', planeTicket.id]">
+    <span class="">{{planeTicket.customer.fullName}}</span> a acheté un billet d'avion.
+  </div>
+}@else if (event.name == 'CUSTOMER__ADD') {
+  <div event-item-template [event]="event" [user]="user"
+       [routerLink]="['/admin', 'customers', customer.id ]"
+       title="Nouveau client" icon="person">
+    Un client a été ajouté: <span class="fontWeight-semiBold">{{customer.fullName}}</span>.
+  </div>
+}@else if (event.name == 'PROCEDURE_APPLY__ADD') {
+  <div event-item-template [event]="event" [user]="user" [agency]="procedureApply.agency"
+       title="Nouvelle procédure" icon="receipt" color="primary"
+       [routerLink]="['/agencies', procedureApply.agencyId, 'procedure-applies', procedureApply.id]">
 
+    <span class="">{{procedureApply.customer.fullName}}</span> a engagé la procédure
+    <span class="fontWeight-semiBold">{{procedureApply.procedure.name}}</span>.
+  </div>
+}@else if (event.name == 'PROCEDURE_APPLY_STEP__VALIDATE') {
+  <div  event-item-template [event]="event" [user]="user" [agency]="procedureApplyStep.agency"
+        title="Étape validée" icon="done_all" color="primary"
+        [routerLink]="['/agencies', procedureApplyStep.agencyId, 'procedure-applies', procedureApplyStep.procedureApplyId]">
 
+    L'étape <span class="fontWeight-semiBold">{{procedureApplyStep.procedureStep.name}}</span>
+    pour la procédure <span class="fontWeight-semiBold">{{procedureApplyStep.procedureStep.procedure.name}}</span>
+    et le client <span class="fontWeight-semiBold">{{procedureApplyStep.procedureApply?.customer.fullName}}</span>
+    a été validée.
+  </div>
+}@else if (event.name == 'PROCEDURE__ADD') {
+  <div  event-item-template [event]="event" [user]="user"
+        title="Nouvelle procédure" icon="post_add" color="primary"
+        [routerLink]="['/admin/procedures', procedure.id]">
 
-<div *ngIf="event.name == 'PLANE_TICKET__ADD'" event-item-template [event]="event" [user]="user" [agency]="planeTicket.agency"
-     title="Achat de billet d'avion" icon="airplane_ticket"
-      [routerLink]="['/agencies', planeTicket.agencyId, 'plane-tickets', planeTicket.id]">
-  <span class="">{{planeTicket.customer.fullName}}</span> a acheté un billet d'avion.
-</div>
-
-<div *ngIf="event.name == 'CUSTOMER__ADD'" event-item-template [event]="event" [user]="user"
-     [routerLink]="['/admin', 'customers', customer.id ]"
-     title="Nouveau client" icon="person">
-  Un client a été ajouté: <span class="fontWeight-semiBold">{{customer.fullName}}</span>.
-</div>
-
-
-<div *ngIf="event.name == 'PROCEDURE_APPLY__ADD'" event-item-template [event]="event" [user]="user" [agency]="procedureApply.agency"
-     title="Nouvelle procédure" icon="receipt" color="primary"
-     [routerLink]="['/agencies', procedureApply.agencyId, 'procedure-applies', procedureApply.id]">
-
-  <span class="">{{procedureApply.customer.fullName}}</span> a engagé la procédure
-  <span class="fontWeight-semiBold">{{procedureApply.procedure.name}}</span>.
-</div>
-
-<div *ngIf="event.name == 'PROCEDURE_APPLY_STEP__VALIDATE'" event-item-template [event]="event" [user]="user" [agency]="procedureApplyStep.agency"
-     title="Étape validée" icon="done_all" color="primary"
-     [routerLink]="['/agencies', procedureApplyStep.agencyId, 'procedure-applies', procedureApplyStep.procedureApplyId]">
-
-  L'étape <span class="fontWeight-semiBold">{{procedureApplyStep.procedureStep.name}}</span>
-  pour la procédure <span class="fontWeight-semiBold">{{procedureApplyStep.procedureStep.procedure.name}}</span>
-  et le client <span class="fontWeight-semiBold">{{procedureApplyStep.procedureApply?.customer.fullName}}</span>
-  a été validée.
-</div>
-
-
-<div *ngIf="event.name == 'PROCEDURE__ADD'" event-item-template [event]="event" [user]="user"
-     title="Nouvelle procédure" icon="post_add" color="primary"
-     [routerLink]="['/admin/procedures', procedure.id]">
-
-  Une nouvelle procédure a été ajoutée: <span class="fontWeight-semiBold">{{procedure.name}}</span>.
-</div>
-
-
-<div *ngIf="event.name == 'USER__ADD'" event-item-template [event]="event" [user]="user"
-     [routerLink]="['/admin', 'users', subjectUser.userName, 'home' ]"
-     title="Nouvel utilisateur" icon="person_add">
-  Un utilisateur a été ajouté: <span class="fontWeight-semiBold">{{subjectUser.fullName}}</span>.
-</div>
-
-
-<div *ngIf="event.name == 'MESSAGE__ADD'" event-item-template [event]="event"
-     [routerLink]="['/' ]"
-     title="Nouveau message" icon="email">
-  <span class="fontWeight-semiBold"></span>
-</div>
+    Une nouvelle procédure a été ajoutée: <span class="fontWeight-semiBold">{{procedure.name}}</span>.
+  </div>
+}@else if (event.name == 'USER__ADD') {
+  <div event-item-template [event]="event" [user]="user"
+       [routerLink]="['/admin', 'users', subjectUser.userName, 'home' ]"
+       title="Nouvel utilisateur" icon="person_add">
+    Un utilisateur a été ajouté: <span class="fontWeight-semiBold">{{subjectUser.fullName}}</span>.
+  </div>
+}@else {
+  <div event-item-template [event]="event" [user]="user"
+       title="" >
+    {{event.name}}
+  </div>
+}

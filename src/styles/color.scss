@@ -105,3 +105,18 @@ $ms-color-pinkRed-20: #750b1c;
   border-bottom: 1px solid;
 }
 
+.my-dark-theme {
+  --my-backgroundColor: #1b1a19;
+  --my-OnBackgroundColor: #faf9f8;
+  --my-SecondaryBackgroundColor: #252423;
+  --my-SecondaryBackgroundColor__hover: #252423;
+  --my-OnSecondaryBackgroundColor: #faf9f8;
+  --my-CardBorderColor: #252423;
+  --my-CardBorderColor__hover: #323130;
+}
+
+.my-light-theme {
+  --my-backgroundColor: #1b1a19;
+
+  --my-card-border-color: #e1dfdd;
+}

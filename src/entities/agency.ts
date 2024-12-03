@@ -1,9 +1,13 @@
 import {BaseEntity} from "./base-entity";
 import {formatPhoneNumber} from "@app/utils";
+import {Space} from "@entities/space";
 
 export class Agency extends BaseEntity<number> {
   name: string = '';
   normalizedName: string = '';
+
+  space: Space;
+  spaceId: number;
 
   address: string = '';
   postalCode: string = '';
@@ -19,6 +23,9 @@ export class Agency extends BaseEntity<number> {
       this.postalCode = value.postalCode;
       this.phoneNumber1 = value.phoneNumber1;
       this.phoneNumber2 = value.phoneNumber2;
+
+      this.spaceId = value.SpaceId;
+      this.space = value.Space ? new Space(value.Space) : undefined;
     }
   }
 

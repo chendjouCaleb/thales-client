@@ -1,0 +1,29 @@
+.space-page-container {
+  background-color: var(--my-backgroundColor);
+  color: var(--my-OnSecondaryBackgroundColor);
+  display: block;
+  width: 100vw;
+  height: 100vh;
+}
+
+.space-card {
+  color: inherit;
+  text-decoration: none;
+  background-color: var(--my-SecondaryBackgroundColor);
+  padding: 16px;
+  display: inline-block;
+  border: 1px solid var(--my-CardBorderColor);
+  border-radius: 8px;
+  width: 256px;
+
+  & .space-card-image {
+    height: 170px;
+    display: flex;
+    justify-content: center;
+
+  }
+  &:hover {
+    background-color: var(--my-backgroundColor);
+    border-color: var(--my-CardBorderColor__hover);
+  }
+}

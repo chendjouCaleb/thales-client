@@ -9,3 +9,5 @@ export * from './employee';
 export * from './message';
 export * from './view-models';
 
+export * from './member';
+export * from './space';

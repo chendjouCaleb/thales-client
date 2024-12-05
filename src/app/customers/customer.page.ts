@@ -3,12 +3,13 @@ import {CustomerToolbar} from "@app/customers/toolbar/customer-toolbar";
 import {MenuDrawer, MenuDrawerItem} from "@app/ui";
 import {LucideAngularModule, PlusIcon, UserIcon, FolderIcon, ArchiveIcon, SettingsIcon, StarIcon} from "lucide-angular";
 import {Button} from "@app/ui/button/button";
-import {RouterLink, RouterLinkActive, RouterOutlet} from "@angular/router";
+import {ActivatedRoute, RouterLink, RouterLinkActive, RouterOutlet} from "@angular/router";
 import {CustomerStatisticsModel} from "@entities/view-models";
 import {Task} from "@app/utils";
-import {CustomerService} from "@app/services";
+import {CustomerService, SpaceHttpClient} from "@app/services";
 import {NgIf} from "@angular/common";
 import {Subscription} from "rxjs";
+import {Space} from "@entities/space";
 
 @Component({
   templateUrl: 'customer.page.html',
@@ -24,12 +25,21 @@ export class CustomerPage implements OnInit, OnDestroy{
   icon = {
     PlusIcon, UserIcon, FolderIcon, ArchiveIcon, StarIcon
   }
+
+  space: Space
   customerService = inject(CustomerService)
+  spaceService = inject(SpaceHttpClient)
 
   getStatisticsTask = new Task<CustomerStatisticsModel>(async () => {
-    this.statistics = await this.customerService.getStatisticsAsync();
+    this.statistics = await this.customerService.getStatisticsAsync(this.space);
     return this.statistics
-  })
+  });
+
+  getSpaceTask = new Task(async () => {
+    const identifier = this.route.snapshot.params['identifier'];
+    this.space = await this.spaceService.getByIdentifierAsync(identifier);
+    this.getStatisticsTask.launch();
+  });
 
   statistics: CustomerStatisticsModel;
 
@@ -38,8 +48,12 @@ export class CustomerPage implements OnInit, OnDestroy{
   private favoriteAddSubscription: Subscription;
   private favoriteRemoveSubscription: Subscription;
 
+  constructor(private route: ActivatedRoute) {
+  }
+
   ngOnInit() {
-    this.getStatisticsTask.launch();
+    this.getSpaceTask.launch()
+
     this.archiveAddSubscription = this.customerService.customerArchiveAdd.subscribe(c => {
       this.statistics.archiveCount += 1;
     });

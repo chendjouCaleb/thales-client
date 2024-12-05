@@ -14,10 +14,11 @@ import {MySpacesPage} from "@app/pages/home/my-spaces/my-spaces.page";
 
 export const routes: Routes = [
   {
-    path: 'customers',
+    path: 'spaces/:identifier/customers',
     component: CustomerPage,
     children: [
       {path: '', component: CustomerAllPage },
+      {path: 'all', component: CustomerAllPage },
       {path: 'favorites', component: CustomerFavoritePage },
       {path: 'archive', component: CustomerArchivePage },
       {path: 'add', component: CustomerAddPage },

@@ -4,6 +4,7 @@ import {Subscription} from "rxjs";
 import {Router} from "@angular/router";
 import {CustomerService} from "@app/services";
 import {Customer} from "@entities/customer";
+import {CustomerPage} from "@app/customers";
 
 @Component({
   template: `
@@ -31,7 +32,8 @@ export class CustomerFavoritePage implements OnInit, OnDestroy {
 
 
 
-  constructor(private router: Router, private customerService: CustomerService) {
+  constructor(private router: Router, private customerService: CustomerService,
+              private parent: CustomerPage) {
   }
 
   ngOnInit() {
@@ -45,6 +47,6 @@ export class CustomerFavoritePage implements OnInit, OnDestroy {
   }
 
   navigate(customer: Customer) {
-    this.router.navigateByUrl(`customers/${customer.id}`)
+    this.router.navigate(['/spaces', this.parent.space.identifier, 'customers',  customer.id])
   }
 }

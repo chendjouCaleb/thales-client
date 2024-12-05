@@ -22,7 +22,7 @@
         <span class="menu-item-countBadge" *ngIf="statistics">{{statistics.favoriteCount}}</span>
       </a>
 
-      <a routerLink="/customers" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"  MenuDrawerItem>
+      <a routerLink="all" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"  MenuDrawerItem>
         <lucide-icon [img]="icon.UserIcon" class="my-icon"></lucide-icon>
         <span class="spacer-16"></span>
         <span>Vos clients</span>
@@ -63,6 +63,8 @@
 
 
   <div class="container-content">
-    <router-outlet></router-outlet>
+    @if(space) {
+      <router-outlet></router-outlet>
+    }
   </div>
 </div>

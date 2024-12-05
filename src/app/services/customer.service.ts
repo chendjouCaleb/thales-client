@@ -10,7 +10,7 @@ import {
   CustomerChangeStudyFormModel
 } from "../models";
 import {SERVER_URL} from "../http";
-import {Customer, CustomerInfoModel, CustomerStatisticsModel} from "../../entities";
+import {Customer, CustomerInfoModel, CustomerStatisticsModel, Space} from "../../entities";
 import { HttpClient } from "@angular/common/http";
 import {firstValueFrom, Observable, Subject} from "rxjs";
 import {DateTime} from "luxon";
@@ -155,8 +155,9 @@ export class CustomerService {
     return new Customer(await firstValueFrom(call));
   }
 
-  async getStatisticsAsync(): Promise<CustomerStatisticsModel> {
-    const call = this._httpClient.get<Customer>(`${this.url}/statistics`);
+  async getStatisticsAsync(space: Space): Promise<CustomerStatisticsModel> {
+    const params = {spaceId: space.id}
+    const call = this._httpClient.get<Customer>(`${this.url}/statistics`, {params});
     return new CustomerStatisticsModel(await firstValueFrom(call));
   }
 }

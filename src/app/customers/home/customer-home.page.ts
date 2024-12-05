@@ -14,6 +14,7 @@ import {Task} from "@app/utils";
 import {MatProgressSpinner} from "@angular/material/progress-spinner";
 import {AlertError} from "@app/ui/alert/alert-error";
 import {CustomerHomePager} from "@app/customers/home/customer-home.pager";
+import {CustomerPage} from "@app/customers";
 
 @Component({
   standalone: true,
@@ -45,7 +46,7 @@ export class CustomerHomePage implements OnInit {
   constructor(private _route: ActivatedRoute,
               public router: Router,
               public location: Location,
-
+              public parent: CustomerPage,
               private _archiveDialog: CustomerArchiveDialogLauncher,
               private _deleteDialogLauncher: CustomerDeleteDialogLauncher,
               private _customerService: CustomerService) {

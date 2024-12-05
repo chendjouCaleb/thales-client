@@ -4,6 +4,8 @@ import {Router} from "@angular/router";
 import {Customer} from "@entities/customer";
 import {CustomerService} from "@app/services";
 import {Subscription} from "rxjs";
+import {CustomerPage} from "@app/customers";
+import {Space} from "@entities/space";
 
 @Component({
   template: `
@@ -26,14 +28,17 @@ export class CustomerAllPage implements OnInit, OnDestroy {
 
   @ViewChild(CustomerList)
   customerList: CustomerList
-
+  space: Space
   constructor(private router: Router,
+              private parent: CustomerPage,
               public _elementRef: ElementRef<HTMLElement>,
               private customerService: CustomerService) {
+    this.space = this.parent.space
   }
 
   navigate(customer: Customer) {
-    this.router.navigateByUrl(`customers/${customer.id}`)
+    //this.router.navigateByUrl(`${customer.id}`)
+    this.router.navigate(['/spaces', this.space.identifier, 'customers',  customer.id])
   }
 
   ngOnInit() {

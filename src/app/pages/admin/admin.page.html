@@ -1,11 +1,13 @@
 <th-scaffold>
   <mat-sidenav-container style="height: 100%">
     <mat-sidenav mode="side" [opened]="true">
+
+      <div class="fontSize-16 fontWeight-semiBold" *ngIf="space">{{space.name}}</div>
       <th-nav>
         <a th-nav-item routerLink="users">
           <mat-icon th-nav-item-icon>person</mat-icon>
           Utilisateurs</a>
-        <a href="#" th-nav-item routerLink="/customers">
+        <a href="#" th-nav-item routerLink="customers">
           <mat-icon th-nav-item-icon>groups</mat-icon>
           <span>Clients</span>
         </a>
@@ -37,14 +39,16 @@
         <DIV class="divider"></DIV>
 
         <div>
-          <div class=" ms-3 py-2 fontWeight-semiBold fontSize-12">Agences</div>
+          <div class="ms-3 py-2 fontWeight-semiBold fontSize-12">Agences</div>
           <a [routerLink]="['/agencies', agency.id]" th-nav-item *ngFor="let agency of agencies">
              {{agency.name}}</a>
         </div>
       </th-nav>
     </mat-sidenav>
     <mat-sidenav-content>
-      <router-outlet></router-outlet>
+      @if (space){
+        <router-outlet></router-outlet>
+      }
     </mat-sidenav-content>
   </mat-sidenav-container>
 </th-scaffold>

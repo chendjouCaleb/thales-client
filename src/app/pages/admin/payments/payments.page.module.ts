@@ -7,7 +7,7 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatTableModule} from "@angular/material/table";
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatIconModule} from "@angular/material/icon";
-import {PaymentModule} from "../../../Components/payments";
+import {PaymentModule} from "@app/Components";
 import {PaymentsList} from "@app/Components/payments/list/payments-list";
 
 const routes: Routes = [

@@ -3,7 +3,7 @@
   @if(getSpaceTask.success && spaces.length > 0) {
     <div class="mt-3">
       @for (space of spaces; track space.id) {
-        <a [routerLink]="[ '/spaces', space.identifier ]" class="space-card">
+        <a [routerLink]="[ '/admin', space.identifier ]" class="space-card">
 
           <div class="space-card-image">
             <lucide-angular [img]="icons.BuildingIcon" size="128" strokeWidth="1"></lucide-angular>

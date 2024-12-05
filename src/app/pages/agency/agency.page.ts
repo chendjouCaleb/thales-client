@@ -4,7 +4,7 @@ import {AuthenticationService, Session} from "@app/identity";
 import {Agency} from "@entities/agency";
 import {AgencyHttpClient} from "@app/services/agency.http-client";
 import {ActivatedRoute} from "@angular/router";
-import {Breadcrumb, BreadcrumbItem} from "@app/Components";
+import {BreadcrumbItem} from "@app/Components";
 
 @Component({
   templateUrl: 'agency.page.html'

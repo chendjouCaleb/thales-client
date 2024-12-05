@@ -32,7 +32,7 @@ export class LoginPage {
 
     const user = await this.authenticationService.loginAsync(model);
     this._snackbar.open(`Vous êtes maintenant connecté.`, '', {duration: 5000});
-    this._router.navigateByUrl(`/admin`).then()
+    this._router.navigateByUrl(``).then()
 
   }
 

@@ -1,5 +1,5 @@
 import {AfterViewInit, Component, ElementRef, Input, isDevMode, OnInit, ViewChild} from "@angular/core";
-import {TraceService} from "../trace-service";
+import {TraceService} from "@app/trace";
 import {Event} from '../models';
 import {sleep, Task} from "@app/utils";
 import {isVisibleElement} from "@app/utils/dom";
@@ -61,7 +61,11 @@ export class EventList implements AfterViewInit {
     }, {root: null, threshold: 0.1});
 
     intersectionObserver.observe(this.rangeObserverThumbRef.nativeElement);
-    this.loadFirstRange()
+
+    Promise.resolve().then(() => {
+      this.loadFirstRange().then()
+    })
+
   }
 
 

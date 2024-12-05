@@ -31,7 +31,7 @@ export const routes: Routes = [
     component: MySpacesPage,
   },
   {
-    path: 'admin', canActivate: [IsAuthGuardFunc],
+    path: 'admin/:identifier', canActivate: [IsAuthGuardFunc],
     loadChildren: () => import('./pages/admin/admin.page.module').then(m => m.AdminPageModule)
   },
 

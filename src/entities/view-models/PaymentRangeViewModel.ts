@@ -39,6 +39,14 @@ export class PaymentRangeViewModel {
       payment.customer = this.customers.find(c => c.id == payment.customerId);
       payment.employee = this.employees.find(c => c.id == payment.employeeId);
       payment.agency = this.agencies.find(c => c.id == payment.agencyId);
-    })
+
+      if(payment.planeTicketId) {
+        payment.planeTicket = this.planeTickets.find(p => p.id == payment.planeTicketId);
+      }
+
+      if(payment.procedureApplyStepId) {
+        payment.procedureApplyStep = this.procedureApplySteps.find(p => p.id == payment.procedureApplyStepId);
+      }
+    });
   }
 }

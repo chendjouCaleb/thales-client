@@ -24,6 +24,7 @@ import {CustomerDetails} from "@app/customers/details/customer-details";
 import {PaymentModule, PlaneTicketModule, ProcedureApplyModule} from "@app/Components";
 import {TraceModule} from "@app/trace";
 import {PaymentsList} from "@app/Components/payments/list/payments-list";
+import {PlaneTicketList} from "@app/Components/plane-tickets/list/plane-ticket-list";
 
 @Component({
   standalone: true,
@@ -48,7 +49,8 @@ import {PaymentsList} from "@app/Components/payments/list/payments-list";
     PlaneTicketModule,
     TraceModule,
     PaymentModule,
-    PaymentsList
+    PaymentsList,
+    PlaneTicketList
   ],
   templateUrl: 'customer-home.pager.html'
 })

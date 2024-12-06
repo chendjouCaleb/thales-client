@@ -20,8 +20,8 @@ import {LucideAngularModule} from "lucide-angular";
 @NgModule({
   imports: [CommonModule, MatButtonModule, MatDialogModule, MatTableModule, MatFormFieldModule, MatInputModule,
     MatIconModule, MatMenuModule, ReactiveFormsModule, RouterModule, MatProgressSpinner, Dropdown, IconButton, LucideAngularModule, Menu, MenuItem],
-  declarations: [ PlaneTicketList, PlaneTicketDelete ],
-  exports: [ PlaneTicketList, PlaneTicketDelete ],
+  declarations: [  PlaneTicketDelete ],
+  exports: [  PlaneTicketDelete ],
   providers: [ PlaneTicketUIService]
 })
 export class PlaneTicketModule {

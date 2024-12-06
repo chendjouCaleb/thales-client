@@ -5,14 +5,25 @@ import {MatTableDataSource} from "@angular/material/table";
 import {PlaneTicketUIService} from "@app/Components";
 import {sleep, Task} from "@app/utils";
 import {isVisibleElement} from "@app/utils/dom";
-import {icons} from "lucide-angular";
+import {EllipsisVerticalIcon, LucideAngularModule, MoveDownIcon, MoveUpIcon} from "lucide-angular";
+import {MatProgressSpinner} from "@angular/material/progress-spinner";
+import {CurrencyPipe, NgForOf, NgIf} from "@angular/common";
 
-const ITEMS_RANGE_SIZE = isDevMode() ? 10 : 30;
+const ITEMS_RANGE_SIZE = isDevMode() ? 5 : 30;
 @Component({
   templateUrl: 'plane-ticket-list.html',
-  selector: 'PlaneTicketList'
+  selector: 'PlaneTicketList',
+  imports: [
+    MatProgressSpinner,
+    LucideAngularModule,
+    CurrencyPipe,
+    NgForOf,
+    NgIf
+  ],
+  standalone: true
 })
 export class PlaneTicketList implements OnInit {
+  icons = { MoveDownIcon, MoveUpIcon, EllipsisVerticalIcon }
   @Input()
   params: any = {}
 
@@ -121,13 +132,7 @@ export class PlaneTicketList implements OnInit {
     this.planeTickets = this.planeTickets.filter(p => p.id !== planeTicket.id)
   }
 
-  onClick(row) {
-    console.log(row)
-  }
-
   display(name: string) {
     return this.displayedColumns.indexOf(name) > -1
   }
-
-  protected readonly icons = icons;
 }

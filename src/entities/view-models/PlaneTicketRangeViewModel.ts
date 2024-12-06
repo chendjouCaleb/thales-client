@@ -19,7 +19,7 @@ export class PlaneTicketRangeViewModel {
 
   constructor(value: any = {}) {
     if (value) {
-      this.payments = value.payments.map(p => new Payment(p));
+      this.payments = value.payments?.map(p => new Payment(p));
       this.agencies = value.agencies.map(p => new Agency(p));
       this.employees = value.employees.map(p => new Employee(p));
       this.users = value.users.map(p => new User(p));

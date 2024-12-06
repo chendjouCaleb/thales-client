@@ -14,20 +14,6 @@ export class ProcedureApplyService {
 
   constructor(private _httpClient: HttpClient) {}
 
-  async listByCustomerAsync(customer: Customer): Promise<ProcedureApply[]> {
-    const customerId = customer.id.toString();
-      const call = this._httpClient.get<ProcedureApply[]>(`${this.url}`, {params: {customerId}});
-      const items = await firstValueFrom(call);
-      return items;
-  }
-
-  async listByProcedureAsync(procedure: Procedure): Promise<ProcedureApply[]> {
-    const procedureId = procedure.id;
-    const call = this._httpClient.get<ProcedureApply[]>(`${this.url}`, {params: {procedureId}});
-    const items = await firstValueFrom(call);
-    return items;
-  }
-
   async listAsync(params: any): Promise<ProcedureApply[]> {
     const call = this._httpClient.get<ProcedureApply[]>(`${this.url}`, {params});
     const items = await firstValueFrom(call);

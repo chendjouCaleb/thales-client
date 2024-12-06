@@ -13,10 +13,10 @@ export class PlaneTicketService {
 
   constructor(private _httpClient: HttpClient) {}
 
-
   async listAsync(params: any): Promise<PlaneTicketRangeViewModel> {
-    const call = this._httpClient.get<PlaneTicketRangeViewModel>(`${this.url}`, {params});
-    const range = await firstValueFrom(call);
+    const call = this._httpClient.get(`${this.url}`, {params});
+    const range = new PlaneTicketRangeViewModel(await firstValueFrom(call));
+
     range.hydrate();
     return range;
   }

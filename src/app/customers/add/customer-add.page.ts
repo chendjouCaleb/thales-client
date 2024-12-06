@@ -21,6 +21,9 @@ import {
   LucideAngularModule,
   EraserIcon
 } from 'lucide-angular';
+import {CustomerPage} from "@app/customers";
+import {Space} from "@entities/space";
+import {Location} from "@angular/common";
 
 const SAVE_FORM_KEY = "CUSTOMER_ADD_FORM";
 @Component({
@@ -36,10 +39,13 @@ const SAVE_FORM_KEY = "CUSTOMER_ADD_FORM";
 export class CustomerAddPage {
   icons = {EraserIcon}
   formGroup: CustomerFormGroup
-
+  space: Space
 
   constructor(private customerService: CustomerService,
-              private snackbar: MatSnackBar) {
+              private snackbar: MatSnackBar,
+              private parent:  CustomerPage,
+              private _location: Location
+              ) {
 
     let model: CustomerInfoModel
     let storedModel = localStorage.getItem(SAVE_FORM_KEY)
@@ -49,7 +55,7 @@ export class CustomerAddPage {
     } else {
       model = this.defaultModel();
     }
-
+    this.space = parent.space
     this.formGroup = new CustomerFormGroup(model, SAVE_FORM_KEY);
   }
 
@@ -57,8 +63,9 @@ export class CustomerAddPage {
 
   async add() {
     let model = this.formGroup.getModel();
-    const customer = await this.customerService.addAsync(model);
+    const customer = await this.customerService.addAsync(this.space, model);
     this.snackbar.open(`Le client ${customer.firstName} ${customer.lastName} a été ajouté.`, '', {duration: 5000});
+    this._location.back()
   }
 
 

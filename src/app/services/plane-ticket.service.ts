@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import {Agency, Customer, Payment, PlaneTicket} from "../../entities";
-import {SERVER_URL} from "../http/http-config";
+import {Agency, Customer, Payment, PlaneTicket, PlaneTicketRangeViewModel} from "../../entities";
+import {SERVER_URL} from "@app/http";
 import {firstValueFrom} from "rxjs";
 import {PlaneTicketAddModel} from "../models";
 
@@ -13,23 +13,12 @@ export class PlaneTicketService {
 
   constructor(private _httpClient: HttpClient) {}
 
-  async listByCustomerAsync(customer: Customer): Promise<PlaneTicket[]> {
-    const customerId = customer.id.toString();
-      const call = this._httpClient.get<PlaneTicket[]>(`${this.url}`, {params: {customerId}});
-      const items = await firstValueFrom(call);
-      return items.map(i => new PlaneTicket(i));
-  }
 
-  async listAllAsync(): Promise<PlaneTicket[]> {
-    const call = this._httpClient.get<PlaneTicket[]>(`${this.url}`);
-    const items = await firstValueFrom(call);
-    return items.map(i => new PlaneTicket(i));
-  }
-
-  async listAsync(params: any): Promise<PlaneTicket[]> {
-    const call = this._httpClient.get<PlaneTicket[]>(`${this.url}`, {params});
-    const items = await firstValueFrom(call);
-    return items.map(i => new PlaneTicket(i));
+  async listAsync(params: any): Promise<PlaneTicketRangeViewModel> {
+    const call = this._httpClient.get<PlaneTicketRangeViewModel>(`${this.url}`, {params});
+    const range = await firstValueFrom(call);
+    range.hydrate();
+    return range;
   }
 
 

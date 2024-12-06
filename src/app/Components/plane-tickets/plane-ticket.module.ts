@@ -12,10 +12,14 @@ import {MatMenuModule} from "@angular/material/menu";
 import {ReactiveFormsModule} from "@angular/forms";
 import {PlaneTicketDelete} from "./delete/plane-ticket-delete";
 import {RouterModule} from "@angular/router";
+import {MatProgressSpinner} from "@angular/material/progress-spinner";
+import {Dropdown} from "@app/NeoUI";
+import {IconButton, Menu, MenuItem} from "@app/ui";
+import {LucideAngularModule} from "lucide-angular";
 
 @NgModule({
   imports: [CommonModule, MatButtonModule, MatDialogModule, MatTableModule, MatFormFieldModule, MatInputModule,
-    MatIconModule, MatMenuModule, ReactiveFormsModule, RouterModule],
+    MatIconModule, MatMenuModule, ReactiveFormsModule, RouterModule, MatProgressSpinner, Dropdown, IconButton, LucideAngularModule, Menu, MenuItem],
   declarations: [ PlaneTicketList, PlaneTicketDelete ],
   exports: [ PlaneTicketList, PlaneTicketDelete ],
   providers: [ PlaneTicketUIService]

@@ -2,11 +2,13 @@
   display: block;
   box-sizing: border-box;
   height: 100%;
+  background-color: var(--my-backgroundColor);
 }
 
 .th-scaffold-container {
   height: 100%;
   box-sizing: border-box;
+  background-color: var(--my-backgroundColor);
 
   & mat-toolbar {
     position: absolute;
@@ -16,6 +18,7 @@
   }
 
   & .th-scaffold-container-body {
+    background-color: var(--my-backgroundColor);
     position: absolute;
     z-index: 1;
     top: 52px;

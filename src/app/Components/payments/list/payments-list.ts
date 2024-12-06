@@ -114,11 +114,11 @@ export class PaymentsList implements OnInit, AfterViewInit {
 
   async loadFirstRange() {
     await this.getFirstRangeTask.launch()
-    await sleep(500)
+    await sleep(100)
     let visible = isVisibleElement(this.rangeObserverThumbRef.nativeElement)
     while (visible && this.hasMore) {
       await this.getRangeTask.launch()
-      await sleep(500)
+      await sleep(100)
       visible = isVisibleElement(this.rangeObserverThumbRef.nativeElement)
     }
   }

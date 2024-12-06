@@ -1,88 +1,75 @@
-<div >
-  <table mat-table [dataSource]="dataSource" >
-    <ng-container matColumnDef="id">
-      <th mat-header-cell *matHeaderCellDef>Id</th>
-      <td mat-cell *matCellDef="let element">
-        {{element.id}}
+<div class="d-flex justify-content-center p-5" *ngIf="getFirstRangeTask.loading">
+  <mat-spinner diameter="48" strokeWidth="2"></mat-spinner>
+</div>
+
+
+<div *ngIf="!getFirstRangeTask.loading">
+  <table class="my-table dark my-light-theme">
+    <thead>
+    <tr>
+      <th>#</th>
+      <th>Code</th>
+      <th>Pays & ville de Départ</th>
+      <th>Destination</th>
+      <th>Prix</th>
+      <th>Montant versé</th>
+      <th *ngIf="display('agency')">Agence</th>
+      <th *ngIf="display('customer')">
+        <button class="th-button-1">Client</button>
+      </th>
+      <th *ngIf="display('employee')">
+        Ajouté par
+      </th>
+      <th *ngIf="display('createdAt')">
+        <button class="th-button-1" (click)="changeOrderBy('ID')">
+          Ajouté le
+          <span *ngIf="orderby[0] == 'ID'" class="ps-2">
+            <lucide-angular *ngIf="orderby[1] == 'ASC'" name="move-up" class="my-icon" size="16"></lucide-angular>
+            <lucide-angular *ngIf="orderby[1] == 'DESC'" name="move-down" class="my-icon" size="16"></lucide-angular>
+              </span>
+        </button>
+      </th>
+      <th></th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr *ngFor="let planeTicket of planeTickets; let i=index;" class="row-hover cursor-pointer">
+      <td>{{ i + 1 }}</td>
+      <td>{{ planeTicket.code }}</td>
+      <td>{{ planeTicket.departureCountry }}, {{ planeTicket.departureCity }}</td>
+      <td>{{ planeTicket.arrivalCountry }}, {{ planeTicket.arrivalCity }}</td>
+      <td>{{ planeTicket.paymentAmount | currency: 'XAF' : 'symbol' : '1.0-0' : 'fr' }}</td>
+      <td>{{ planeTicket.price.amount | currency: 'XAF' : 'symbol' : '1.0-0' : 'fr' }}</td>
+
+      <td *ngIf="display('customer')">{{ planeTicket.customer?.fullName }}</td>
+      <td *ngIf="display('agency')">{{ planeTicket.agency?.name }}</td>
+      <td *ngIf="display('employee')">{{ planeTicket.employee?.user?.fullName }}</td>
+      <td *ngIf="display('createdAt')">
+        <span class="fontSize-12">{{ planeTicket.createdAt.moment() }}</span>
       </td>
-    </ng-container>
+      <td>
+        <button MyIconButton style="margin-right: 16px" #menuTrigger
+                (click)="dropdown.open(); $event.stopPropagation()">
+          <lucide-angular  [img]="icons.EllipsisVertical"  size="16"></lucide-angular>
+        </button>
 
-    <ng-container matColumnDef="code">
-      <th mat-header-cell *matHeaderCellDef>Code</th>
-      <td mat-cell *matCellDef="let element">
-        {{element.code}}
+        <Dropdown #dropdown [trigger]="menuTrigger.host"  (onBackdropClick)="dropdown.close()">
+          <MyMenu class="my-light-theme">
+            <button MenuItem >
+              <lucide-icon [img]="icons.Trash2"  strokeWidth="1.5"></lucide-icon>
+              Supprimer </button>
+          </MyMenu>
+        </Dropdown>
       </td>
-    </ng-container>
-
-    <ng-container matColumnDef="agency">
-      <th mat-header-cell *matHeaderCellDef>Agence</th>
-      <td mat-cell *matCellDef="let element">
-        {{element.agency.name}}
-      </td>
-    </ng-container>
-
-    <ng-container matColumnDef="employee">
-      <th mat-header-cell *matHeaderCellDef>Employé</th>
-      <td mat-cell *matCellDef="let element">
-        {{element.employee.user.fullName}}
-      </td>
-    </ng-container>
-
-
-    <ng-container matColumnDef="departureCountry">
-      <th mat-header-cell *matHeaderCellDef> Pays & ville de Départ </th>
-      <td mat-cell *matCellDef="let element">
-        <span class="fontWeight-semiBold" >{{ element.departureCountry }}, {{ element.departureCity }}  </span>
-      </td>
-    </ng-container>
-
-    <ng-container matColumnDef="arrivalCountry">
-      <th mat-header-cell *matHeaderCellDef> Pays & ville d'arrivée </th>
-      <td mat-cell *matCellDef="let element">
-        <span class="fontWeight-semiBold" >{{ element.arrivalCountry }}, {{ element.arrivalCity }} </span>
-      </td>
-    </ng-container>
-
-
-
-    <ng-container matColumnDef="customer">
-      <th mat-header-cell *matHeaderCellDef>Clients</th>
-      <td mat-cell *matCellDef="let element">
-        <a [routerLink]="['/admin/customers', element.id]">{{element.customer.fullName}}</a>
-      </td>
-    </ng-container>
-
-    <ng-container matColumnDef="paymentAmount">
-      <th mat-header-cell *matHeaderCellDef>Montant versé</th>
-      <td mat-cell *matCellDef="let element">
-       {{element.paymentAmount | number}} FCFA
-      </td>
-    </ng-container>
-
-    <ng-container matColumnDef="createdAt">
-      <th mat-header-cell *matHeaderCellDef>Ajouté le</th>
-      <td mat-cell *matCellDef="let element">
-        <span class="fontSize-12">{{element.createdAt.toFormat('ff')}}</span>
-      </td>
-    </ng-container>
-
-    <ng-container matColumnDef="action">
-      <th mat-header-cell *matHeaderCellDef> </th>
-      <td mat-cell *matCellDef="let element" >
-        <div class="align-end">
-          <a mat-button color="primary" [routerLink]="['/agencies', element.agencyId,  'plane-tickets', element.id]" class="my-2">
-            Détails
-          </a>
-
-        </div>
-      </td>
-    </ng-container>
-
-
-
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row
-        (click)="onClick(row)"
-        *matRowDef="let row; columns: displayedColumns;"></tr>
+    </tr>
+    </tbody>
   </table>
+</div>
+
+
+<div *ngIf="!hasMore && getFirstRangeTask.success" class="end-list-thumb"></div>
+<div class="range-observer-thumb" #rangeObserverThumb ></div>
+<div class="d-flex justify-content-center p-3" *ngIf="getRangeTask.loading">
+  <mat-spinner strokeWidth="2" diameter="48"></mat-spinner>
 </div>

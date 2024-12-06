@@ -26,6 +26,8 @@ html, body { height: 100%; }
 body { margin: 0;
   font-family: "Inter","Helvetica Neue", sans-serif;
   font-size: 14px;
+  background-color: var(--my-backgroundColor);
+  color:var(--my-OnBackgroundColor)
 }
 
 $my-font-family: "Helvetica Neue";

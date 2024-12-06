@@ -1,3 +1,7 @@
+<div class="d-flex justify-content-center p-3" *ngIf="getPlaneTicketTask.loading">
+  <mat-spinner strokeWidth="2" diameter="48"></mat-spinner>
+</div>
+
 <div class="px-4 bg-color-0 br-8 " *ngIf="planeTicket">
   <breadcrumb class="my-3" *ngIf="planeTicket" [items]="breadcrumbItems"></breadcrumb>
 

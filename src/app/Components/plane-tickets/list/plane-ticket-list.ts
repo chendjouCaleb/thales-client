@@ -1,7 +1,6 @@
 import {Component, ElementRef, Input, isDevMode, OnInit, ViewChild} from "@angular/core";
-import {Payment, PlaneTicket} from "../../../../entities";
+import {PlaneTicket} from "../../../../entities";
 import {PlaneTicketService} from "@app/services";
-import {MatTableDataSource} from "@angular/material/table";
 import {PlaneTicketUIService} from "@app/Components";
 import {sleep, Task} from "@app/utils";
 import {isVisibleElement} from "@app/utils/dom";

@@ -21,6 +21,7 @@ import {CleaveModule} from "@app/cleave";
 import {AgencyPlaneTicketListPage} from "./list/agency-plane-ticket-list.page";
 import {PaymentsList} from "@app/Components/payments/list/payments-list";
 import {PlaneTicketList} from "@app/Components/plane-tickets/list/plane-ticket-list";
+import {MatProgressSpinner} from "@angular/material/progress-spinner";
 
 const routes: Routes = [
   {path: 'add', component: PlaneTicketAddPage },
@@ -30,9 +31,9 @@ const routes: Routes = [
 ];
 
 @NgModule({
-    imports: [CommonModule, RouterModule.forChild(routes), MatButtonModule, MatIconModule, ReactiveFormsModule,
-        MatFormFieldModule, MatDialogModule, MatInputModule, MatMenuModule, MatRadioModule, PlaneTicketModule, MatCheckboxModule,
-        CustomerPickerModule, PaymentModule, CleaveModule, BreadcrumbModule, PaymentsList, PlaneTicketList],
+  imports: [CommonModule, RouterModule.forChild(routes), MatButtonModule, MatIconModule, ReactiveFormsModule,
+    MatFormFieldModule, MatDialogModule, MatInputModule, MatMenuModule, MatRadioModule, PlaneTicketModule, MatCheckboxModule,
+    CustomerPickerModule, PaymentModule, CleaveModule, BreadcrumbModule, PaymentsList, PlaneTicketList, MatProgressSpinner],
   declarations: [ PlaneTicketHomePage, PlaneTicketPaymentAdd, AgencyPlaneTicketListPage, PlaneTicketAddPage,
   PlaneTicketEditPage ]
 })

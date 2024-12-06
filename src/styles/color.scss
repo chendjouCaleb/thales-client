@@ -82,7 +82,8 @@ $ms-color-pinkRed-20: #750b1c;
 .color-red { color: $ms-color-red-10 }
 
 .divider {
-  width: 100%;
+
+  box-sizing: border-box;
   background-color: $ms-color-gray40;
   height: 1px !important;
   padding: 0 !important;
@@ -107,6 +108,7 @@ $ms-color-pinkRed-20: #750b1c;
 
 .my-dark-theme {
   --my-backgroundColor: #1b1a19;
+  --my-backgroundColor__hover: #252423;
   --my-OnBackgroundColor: #faf9f8;
   --my-SecondaryBackgroundColor: #252423;
   --my-SecondaryBackgroundColor__hover: #252423;

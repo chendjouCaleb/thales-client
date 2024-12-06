@@ -1,10 +1,8 @@
 .th-nav {
   display: block;
-  height: 100%;
   width: 100%;
   min-width: 256px;
-  min-height: 500px;
-  padding-top: 16px;
+  box-sizing: border-box;
 }
 
 .th-nav-item {
@@ -14,10 +12,11 @@
   width: 100%;
   color: inherit !important;
   text-decoration: none;
-  font-weight: 500;
+
+  border-radius: 4px;
 
   &:hover {
-    background-color: #EEE;
+    background-color: var(--my-SecondaryBackgroundColor__hover);
   }
 }
 

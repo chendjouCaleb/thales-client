@@ -8,10 +8,11 @@ import {MatTooltipModule} from "@angular/material/tooltip";
 import {MatButtonModule} from "@angular/material/button";
 import {RouterModule} from "@angular/router";
 import {MatMenuModule} from "@angular/material/menu";
+import {Button} from "@app/ui";
 
 @NgModule({
-  imports: [CommonModule, MatToolbarModule, MatIconModule, MatTooltipModule, MatButtonModule, RouterModule, MatMenuModule],
-  declarations: [ Scaffold, ScaffoldToolbar ],
+  imports: [CommonModule, MatToolbarModule, MatIconModule, MatTooltipModule, MatButtonModule, RouterModule, MatMenuModule, Button, ScaffoldToolbar],
+  declarations: [ Scaffold ],
   exports: [ Scaffold ]
 })
 export class ScaffoldModule {

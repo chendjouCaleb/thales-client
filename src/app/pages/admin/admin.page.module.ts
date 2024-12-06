@@ -36,7 +36,7 @@ const routes: Routes = [
     CommonModule, MatButtonModule, MatToolbarModule, RouterModule.forChild(routes), MatIconModule,
     MatSidenavModule, NavModule, ScaffoldModule, MatFormFieldModule, MatInputModule, MatTooltipModule, TraceModule,
   ],
-  declarations: [AdminPage, EventsPage ]
+  declarations: [ EventsPage ]
 })
 export class AdminPageModule {
 

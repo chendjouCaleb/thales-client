@@ -1,35 +1,44 @@
-<mat-toolbar class="mat-elevation-z8" style="padding-left: 0">
-  <button style="margin-left: 8px; margin-right: 8px" mat-icon-button aria-label="Open menu icon"
+<div class="th-scaffold-toolbar" >
+  <div style="display: flex; align-items: center">
+    <button style="margin-left: 8px; margin-right: 8px" MyIconButton aria-label="Open menu icon"
+            #sidebarToggleBtn (click)="scaffold.sidenav.toggle()">
+      <lucide-icon [img]="icons.MenuIcon"  strokeWidth="1.5"></lucide-icon>
+    </button>
 
-          #sidebarToggleBtn (click)="scaffold.sidenav.toggle()">
-    <mat-icon>menu</mat-icon>
-  </button>
-
-  <span class="cursor-pointer" routerLink="/admin" matTooltip="Accueil">FAST App</span>
+    <span class="cursor-pointer" routerLink="/admin" matTooltip="Accueil">FAST App</span>
+  </div>
 
   <div style="flex: 1 1 auto;"></div>
 
   <div style="display: flex; align-items: center">
-    <ng-container *ngIf="!session">
-      <a routerLink="/identity/login" mat-flat-button color="primary">Se connecter</a>
-    </ng-container>
+    @if(!session) {
+      <a routerLink="/identity/login" MyButton class="primary">Se connecter</a>
+    }
 
-    <ng-container *ngIf="session">
+
+    @if(session) {
       <button style="border-radius: 50%; border: none;
       display: flex; align-items: center; justify-content: center;
       cursor: pointer;
-    overflow: hidden; height: 36px; width: 36px; margin-left: 8px"
-              [matTooltip]="session.user.fullName" [matMenuTriggerFor]="menu">
+        overflow: hidden; height: 36px; width: 36px; margin-left: 8px"
+              #menuTrigger
+              (click)="dropdown.open(); $event.stopPropagation()"
+              [matTooltip]="session.user.fullName" >
         <img src="/assets/user.png" alt="profile image" height="36" width="36">
       </button>
 
-      <mat-menu #menu>
-        <a mat-menu-item routerLink="/identity/profile">
-          <mat-icon>manage_accounts</mat-icon>Profile</a>
-        <a mat-menu-item routerLink="/identity/logout">
-          <mat-icon>logout</mat-icon> Se déconnecter
-        </a>
-      </mat-menu>
-    </ng-container>
+      <Dropdown #dropdown [trigger]="menuTrigger"
+                (onBackdropClick)="dropdown.close()">
+        <MyMenu class="my-light-theme">
+
+          <a MenuItem routerLink="/identity/profile">
+            <lucide-icon [img]="icons.UserCogIcon"  strokeWidth="1.5"></lucide-icon>
+            Profile</a>
+          <a  MenuItem routerLink="/identity/logout">
+            <lucide-icon [img]="icons.LogOutIcon"  strokeWidth="1.5"></lucide-icon>  Se déconnecter
+          </a>
+        </MyMenu>
+      </Dropdown>
+    }
   </div>
-</mat-toolbar>
+</div>

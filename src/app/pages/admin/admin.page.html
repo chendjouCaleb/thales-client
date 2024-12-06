@@ -2,49 +2,64 @@
   <mat-sidenav-container style="height: 100%">
     <mat-sidenav mode="side" [opened]="true">
 
-      <div class="fontSize-16 fontWeight-semiBold" *ngIf="space">{{space.name}}</div>
-      <th-nav>
-        <a th-nav-item routerLink="users">
-          <mat-icon th-nav-item-icon>person</mat-icon>
-          Utilisateurs</a>
-
-        <a href="#" th-nav-item [routerLink]="['/spaces', space?.identifier, 'customers']">
-          <mat-icon th-nav-item-icon>groups</mat-icon>
-          <span>Clients</span>
-        </a>
-
-        <a href="#" th-nav-item routerLink="procedures">
-          <mat-icon th-nav-item-icon>route</mat-icon>Procédures
-        </a>
-
-        <a href="#" th-nav-item routerLink="procedure-applies">
-          <mat-icon th-nav-item-icon>route</mat-icon>Procédures en cours
-        </a>
-
-        <a routerLink="plane-tickets" th-nav-item>
-          <mat-icon th-nav-item-icon>airplane_ticket</mat-icon>
-          Billets d'avion</a>
-        <a routerLink="payments" th-nav-item>
-          <mat-icon th-nav-item-icon>payments</mat-icon>
-          Paiements</a>
-
-
-
-        <a routerLink="events" th-nav-item>
-          <mat-icon th-nav-item-icon>history</mat-icon>
-          Historique</a>
-
-        <a routerLink="settings" th-nav-item>
-          <mat-icon th-nav-item-icon>settings</mat-icon> Paramètres</a>
-
-        <DIV class="divider"></DIV>
-
-        <div>
-          <div class="ms-3 py-2 fontWeight-semiBold fontSize-12">Agences</div>
-          <a [routerLink]="['/agencies', agency.id]" th-nav-item *ngFor="let agency of agencies">
-             {{agency.name}}</a>
+      <div class="sidenav-content" style="">
+        <div class="d-flex align-items-center py-3" style="padding-left: 16px">
+          <lucide-icon [img]="icons.BuildingIcon" [size]="32"></lucide-icon>
+          <div class="ms-3">
+            <div class="fontSize-16 fontWeight-semiBold" *ngIf="space">{{space.name}}</div>
+            <div class="fontSize-12" style="opacity: .6;">Espace</div>
+          </div>
         </div>
-      </th-nav>
+
+
+        <th-nav style="padding: 4px" class="mt-2">
+
+
+          <a href="#" th-nav-item [routerLink]="['/spaces', space?.identifier, 'customers']">
+            <lucide-icon [img]="icons.UsersIcon" th-nav-item-icon  strokeWidth="1.75"></lucide-icon>
+            <span>Clients</span>
+          </a>
+
+          <a href="#" th-nav-item routerLink="procedures">
+            <lucide-icon [img]="icons.FileTextIcon" th-nav-item-icon  strokeWidth="1.75"></lucide-icon>
+            Procédures
+          </a>
+
+          <a href="#" th-nav-item routerLink="procedure-applies">
+            <lucide-icon [img]="icons.WalletCardsIcon" th-nav-item-icon  strokeWidth="1.75"></lucide-icon>
+            Procédures en cours
+          </a>
+
+          <a routerLink="plane-tickets" th-nav-item>
+            <lucide-icon [img]="icons.TicketsPlaneIcon" th-nav-item-icon  strokeWidth="1.75"></lucide-icon>
+            Billets d'avion</a>
+          <a routerLink="payments" th-nav-item>
+            <lucide-icon [img]="icons.DollarSignIcon" th-nav-item-icon  strokeWidth="1.5"></lucide-icon>
+            Paiements</a>
+
+
+
+          <a routerLink="events" th-nav-item>
+            <lucide-icon [img]="icons.HistoryIcon" th-nav-item-icon  strokeWidth="1.5"></lucide-icon>
+            Historique</a>
+
+          <a th-nav-item routerLink="members">
+            <lucide-icon [img]="icons.UsersIcon" th-nav-item-icon  strokeWidth="2"></lucide-icon>
+            Membres</a>
+
+          <a routerLink="settings" th-nav-item>
+            <lucide-icon [img]="icons.SettingsIcon" th-nav-item-icon  strokeWidth="1.5"></lucide-icon>
+            Paramètres</a>
+
+          <DIV class="divider m-2"></DIV>
+
+          <div>
+            <div class="ms-3 py-2 fontWeight-semiBold fontSize-12">Agences</div>
+            <a [routerLink]="['/agencies', agency.id]" th-nav-item *ngFor="let agency of agencies">
+              {{agency.name}}</a>
+          </div>
+        </th-nav>
+      </div>
     </mat-sidenav>
     <mat-sidenav-content>
       @if (space){

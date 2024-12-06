@@ -3,7 +3,7 @@
     <div class="title-20">Procédures</div>
 
     <div class="align-end flex-grow-1">
-      <a mat-flat-button color="primary" routerLink="/admin/procedures/add">
+      <a MyButton class="primary" [routerLink]="['/admin', space.id , 'procedures', 'add']">
         <mat-icon>add</mat-icon> Ajouter une procédure
       </a>
     </div>

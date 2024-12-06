@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import {Procedure, ProcedureStep} from "../../entities";
+import {Procedure, ProcedureStep, Space} from "../../entities";
 import {SERVER_URL} from "@app/http";
 import {firstValueFrom} from "rxjs";
 import {ProcedureFormModel, ProcedureStepFormModel} from "../models";
@@ -33,8 +33,9 @@ export class ProcedureService {
     return new Procedure(result);
   }
 
-  async addAsync(model: ProcedureFormModel): Promise<Procedure> {
-    const call = this._httpClient.post<Procedure>(`${this.url}`, model);
+  async addAsync(space: Space, model: ProcedureFormModel): Promise<Procedure> {
+    const params = { spaceId : space.id };
+    const call = this._httpClient.post<Procedure>(`${this.url}`, model, {params});
     const result = await firstValueFrom(call);
     return new Procedure(result);
   }

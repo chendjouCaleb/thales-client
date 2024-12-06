@@ -7,6 +7,8 @@ import {FormControl, FormGroup} from "@angular/forms";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {ProcedureService} from "@app/services";
 import {Router} from "@angular/router";
+import {AdminPage} from "@app/pages/admin/admin.page";
+import {Space} from "@entities/space";
 
 @Component({
   templateUrl: 'procedure-add.page.html'
@@ -15,11 +17,15 @@ export class ProcedureAddPage {
   model = new ProcedureFormModel();
   remember: ProcedureAddRemember;
   formGroup: FormGroup;
+  space: Space
 
   constructor(private _dialog: MatDialog,
               private _snackbar: MatSnackBar,
               private _router: Router,
-              private _service: ProcedureService) {
+              private _parent: AdminPage,
+              private _service: ProcedureService
+  ) {
+    this.space = _parent.space;
 
     this.remember = new ProcedureAddRemember();
     this.formGroup = new FormGroup({
@@ -56,10 +62,10 @@ export class ProcedureAddPage {
   }
 
   async addStep() {
-      const procedure = await this._service.addAsync(this.model);
+      const procedure = await this._service.addAsync(this.space, this.model);
       this._snackbar.open(`La précédure a été ajoutée.`, 'VOIR', {})
         .onAction().subscribe(() => {
-          this._router.navigateByUrl(`/admin/procedures/${procedure.id}`).then()
+          this._router.navigateByUrl(`/admin/${this.space.id}/procedures/${procedure.id}`).then()
       });
   }
 

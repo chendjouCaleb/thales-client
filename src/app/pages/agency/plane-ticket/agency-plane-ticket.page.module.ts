@@ -1,6 +1,5 @@
 import {NgModule} from "@angular/core";
 import {RouterModule, Routes} from "@angular/router";
-import {PlaneTicketHomePage} from "./home/plane-ticket-home.page";
 import {CommonModule} from "@angular/common";
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
@@ -9,7 +8,6 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatInputModule} from "@angular/material/input";
 import {MatMenuModule} from "@angular/material/menu";
-import {PlaneTicketPaymentAdd} from "./add-payment/plane-ticket-payment-add";
 import {BreadcrumbModule, PlaneTicketModule} from "@app/Components";
 import {PlaneTicketAddPage} from "./add/plane-ticket-add.page";
 import {MatRadioModule} from "@angular/material/radio";
@@ -35,7 +33,7 @@ const routes: Routes = [
   imports: [CommonModule, RouterModule.forChild(routes), MatButtonModule, MatIconModule, ReactiveFormsModule,
     MatFormFieldModule, MatDialogModule, MatInputModule, MatMenuModule, MatRadioModule, PlaneTicketModule, MatCheckboxModule,
     CustomerPickerModule, PaymentModule, CleaveModule, BreadcrumbModule, PaymentsList, PlaneTicketList, MatProgressSpinner],
-  declarations: [ PlaneTicketHomePage, PlaneTicketPaymentAdd, AgencyPlaneTicketListPage, PlaneTicketAddPage,
+  declarations: [ PlaneTicketAddPage,
   PlaneTicketEditPage ]
 })
 export class AgencyPlaneTicketPageModule {

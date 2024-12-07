@@ -2,13 +2,24 @@ import {Component, OnInit, ViewChild} from "@angular/core";
 import {PlaneTicketService} from "@app/services";
 import {Agency, PlaneTicket} from "../../../../../entities";
 import {PlaneTicketList} from "@app/Components/plane-tickets/list/plane-ticket-list";
-import {PlaneTicketUIService} from "@app/Components";
+import {BreadcrumbModule, PlaneTicketUIService} from "@app/Components";
 import {AgencyPage} from "@app/pages/agency/agency.page";
 import {BreadcrumbItem} from "@app/Components";
-import {Router} from "@angular/router";
+import {Router, RouterLink} from "@angular/router";
+import {MatIcon} from "@angular/material/icon";
+import {Button} from "@app/ui";
 
 @Component({
-  templateUrl: 'agency-plane-ticket-list.page.html'
+  templateUrl: 'agency-plane-ticket-list.page.html',
+  selector: 'AgencyPlaneTicketListPage',
+  imports: [
+    BreadcrumbModule,
+    RouterLink,
+    MatIcon,
+    PlaneTicketList,
+    Button
+  ],
+  standalone: true
 })
 export class AgencyPlaneTicketListPage implements OnInit {
   planeTickets: PlaneTicket[] = [];

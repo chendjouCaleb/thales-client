@@ -1,12 +1,27 @@
 import {Component, Inject} from "@angular/core";
-import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
+import {MAT_DIALOG_DATA, MatDialogClose, MatDialogRef} from "@angular/material/dialog";
 import {PlaneTicketService} from "@app/services";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {PlaneTicket} from "@entities/index";
-import {FormControl} from "@angular/forms";
+import {FormControl, ReactiveFormsModule} from "@angular/forms";
+import {MatFormField, MatLabel} from "@angular/material/form-field";
+import {CleaveModule} from "@app/cleave";
+import {MatInput} from "@angular/material/input";
+import {MatButton} from "@angular/material/button";
 
 @Component({
-  templateUrl: 'plane-ticket-payment-add.html'
+  templateUrl: 'plane-ticket-payment-add.html',
+  selector: 'PlaneTicketPaymentAdd',
+  imports: [
+    MatFormField,
+    CleaveModule,
+    MatInput,
+    ReactiveFormsModule,
+    MatButton,
+    MatLabel,
+    MatDialogClose
+  ],
+  standalone: true
 })
 export class PlaneTicketPaymentAdd {
   planeTicket: PlaneTicket;

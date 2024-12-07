@@ -1,0 +1,7 @@
+<div class="d-flex justify-content-center p-3" *ngIf="getPlaneTicketTask.loading">
+  <mat-spinner strokeWidth="2" diameter="48"></mat-spinner>
+</div>
+
+@if(getPlaneTicketTask.success) {
+  <PlaneTicketHome [planeTicket]="planeTicket"></PlaneTicketHome>
+}

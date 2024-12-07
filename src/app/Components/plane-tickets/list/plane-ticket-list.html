@@ -4,7 +4,7 @@
 
 
 <div *ngIf="!getFirstRangeTask.loading">
-  <table class="my-table my-dark-theme">
+  <table class="my-table">
     <thead>
     <tr>
       <th>#</th>
@@ -16,7 +16,7 @@
         <button class="th-button-1">Client</button>
       </th>
 
-      <th >
+      <th>
         <button class="th-button-1" (click)="changeOrderBy('ID')">
           Ajouté le
           <span *ngIf="orderby[0] == 'ID'" class="ps-2">
@@ -29,7 +29,9 @@
     </thead>
 
     <tbody>
-    <tr *ngFor="let planeTicket of planeTickets; let i=index;" class="row-hover cursor-pointer">
+    <tr *ngFor="let planeTicket of planeTickets; let i=index;" class="row-hover cursor-pointer"
+        (click)="rowClick.emit(planeTicket)"
+    >
       <td>{{ i + 1 }}</td>
       <td>{{ planeTicket.departureCountry }}, {{ planeTicket.departureCity }}</td>
       <td>{{ planeTicket.arrivalCountry }}, {{ planeTicket.arrivalCity }}</td>
@@ -38,7 +40,7 @@
 
       <td *ngIf="display('customer')">{{ planeTicket.customer?.fullName }}</td>
 
-      <td >
+      <td>
         <span class="fontSize-12">{{ planeTicket.createdAt.moment() }}</span>
       </td>
     </tr>

@@ -62,9 +62,11 @@
       </div>
     </mat-sidenav>
     <mat-sidenav-content>
-      @if (space){
-        <router-outlet></router-outlet>
-      }
+      <div style="background: var(--my-backgroundColor); color: var(--my-OnBackgroundColor); height: 100%">
+        @if (space){
+          <router-outlet></router-outlet>
+        }
+      </div>
     </mat-sidenav-content>
   </mat-sidenav-container>
 </th-scaffold>

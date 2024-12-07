@@ -10,6 +10,7 @@
   <div class="divider my-3"></div>
 
   <PlaneTicketList [params]="{agencyId:agency.id}"
+                   (rowClick)="onClick($event)"
                    [displayedColumns]=" [ 'customer']"
   ></PlaneTicketList>
 </div>

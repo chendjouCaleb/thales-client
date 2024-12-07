@@ -5,6 +5,7 @@ import {Payment} from "./payment";
 import {Agency} from "@entities/agency";
 import {Employee} from "@entities/employee";
 import {Money} from "@entities/money";
+import {Space} from "@entities/space";
 
 export class PlaneTicket extends BaseEntity<number> {
   placeCount: number = 0;
@@ -22,8 +23,11 @@ export class PlaneTicket extends BaseEntity<number> {
   customer: Customer;
   customerId: number;
 
-  agency:Agency;
+  agency: Agency;
   agencyId: number;
+
+  space: Space;
+  spaceId: number;
 
   employee: Employee;
   employeeId: number;

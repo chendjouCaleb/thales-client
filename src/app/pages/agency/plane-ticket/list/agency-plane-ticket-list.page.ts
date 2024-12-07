@@ -5,6 +5,7 @@ import {PlaneTicketList} from "@app/Components/plane-tickets/list/plane-ticket-l
 import {PlaneTicketUIService} from "@app/Components";
 import {AgencyPage} from "@app/pages/agency/agency.page";
 import {BreadcrumbItem} from "@app/Components";
+import {Router} from "@angular/router";
 
 @Component({
   templateUrl: 'agency-plane-ticket-list.page.html'
@@ -21,6 +22,7 @@ export class AgencyPlaneTicketListPage implements OnInit {
 
   constructor(private _service: PlaneTicketService,
               private _parent: AgencyPage,
+              private _router: Router,
               private _uiService: PlaneTicketUIService) {
     this.agency = _parent.agency;
   }
@@ -39,7 +41,7 @@ export class AgencyPlaneTicketListPage implements OnInit {
     // })
   }
 
-  onClick(row) {
-    console.log(row)
+  onClick(planeTicket: PlaneTicket) {
+    this._router.navigate(['/agencies', planeTicket.agencyId, 'plane-tickets', planeTicket.id] )
   }
 }

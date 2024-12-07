@@ -22,10 +22,11 @@ import {AgencyPlaneTicketListPage} from "./list/agency-plane-ticket-list.page";
 import {PaymentsList} from "@app/Components/payments/list/payments-list";
 import {PlaneTicketList} from "@app/Components/plane-tickets/list/plane-ticket-list";
 import {MatProgressSpinner} from "@angular/material/progress-spinner";
+import {AgencyPlaneTicketPage} from "@app/pages/agency/plane-ticket/agency-plane-ticket.page";
 
 const routes: Routes = [
   {path: 'add', component: PlaneTicketAddPage },
-  {path: ':planeTicketId', component: PlaneTicketHomePage },
+  {path: ':planeTicketId', component: AgencyPlaneTicketPage },
   {path: ':planeTicketId/edit', component: PlaneTicketEditPage },
   {path: '', component: AgencyPlaneTicketListPage }
 ];

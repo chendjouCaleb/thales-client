@@ -1,4 +1,4 @@
-import {Component, ElementRef, Input, isDevMode, OnInit, ViewChild} from "@angular/core";
+import {Component, ElementRef, EventEmitter, Input, isDevMode, OnInit, Output, ViewChild} from "@angular/core";
 import {PlaneTicket} from "../../../../entities";
 import {PlaneTicketService} from "@app/services";
 import {PlaneTicketUIService} from "@app/Components";
@@ -7,6 +7,7 @@ import {isVisibleElement} from "@app/utils/dom";
 import {EllipsisVerticalIcon, LucideAngularModule, MoveDownIcon, MoveUpIcon} from "lucide-angular";
 import {MatProgressSpinner} from "@angular/material/progress-spinner";
 import {CurrencyPipe, NgForOf, NgIf} from "@angular/common";
+import {RouterLink} from "@angular/router";
 
 const ITEMS_RANGE_SIZE = isDevMode() ? 5 : 30;
 @Component({
@@ -17,7 +18,8 @@ const ITEMS_RANGE_SIZE = isDevMode() ? 5 : 30;
     LucideAngularModule,
     CurrencyPipe,
     NgForOf,
-    NgIf
+    NgIf,
+    RouterLink
   ],
   standalone: true
 })
@@ -28,10 +30,13 @@ export class PlaneTicketList implements OnInit {
 
   @Input()
   displayedColumns: string[] = [];
-  columns: string[] = [ 'id', 'code', 'departureCountry', 'arrivalCountry', 'customer', 'agency', 'employee', 'createdAt', 'action'];
+  columns: string[] = [ 'id', 'code', 'customer', 'agency', 'employee', 'createdAt', 'action'];
 
   @ViewChild('rangeObserverThumb')
   rangeObserverThumbRef: ElementRef<HTMLElement>
+
+  @Output()
+  rowClick = new EventEmitter<PlaneTicket>()
 
   orderby: String[] = ["ID", "DESC"]
   planeTickets: PlaneTicket[] = []
@@ -120,7 +125,7 @@ export class PlaneTicketList implements OnInit {
   async reload() {
     this.total = 0
     this.planeTickets = []
-    await this.getFirstRangeTask.launch()
+    await this.loadFirstRange()
   }
 
   unshift(planeTicket: PlaneTicket) {

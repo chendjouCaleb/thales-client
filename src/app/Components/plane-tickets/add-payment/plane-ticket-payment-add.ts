@@ -8,6 +8,8 @@ import {MatFormField, MatLabel} from "@angular/material/form-field";
 import {CleaveModule} from "@app/cleave";
 import {MatInput} from "@angular/material/input";
 import {MatButton} from "@angular/material/button";
+import {TextField, TextFieldInput, TextFieldLabel} from "@app/NeoUI";
+import {Button} from "@app/ui";
 
 @Component({
   templateUrl: 'plane-ticket-payment-add.html',
@@ -19,7 +21,11 @@ import {MatButton} from "@angular/material/button";
     ReactiveFormsModule,
     MatButton,
     MatLabel,
-    MatDialogClose
+    MatDialogClose,
+    TextField,
+    TextFieldInput,
+    TextFieldLabel,
+    Button
   ],
   standalone: true
 })

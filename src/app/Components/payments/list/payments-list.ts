@@ -18,11 +18,10 @@ import {CurrencyPipe, DOCUMENT, NgForOf, NgIf} from "@angular/common";
 import {sleep, Task} from "@app/utils";
 import {isVisibleElement} from "@app/utils/dom";
 import {environment} from "../../../../environments/environment";
-import {icons, LucideAngularModule} from "lucide-angular";
+import {EllipsisVerticalIcon, LucideAngularModule, MoveDownIcon, MoveUpIcon, Trash2Icon} from "lucide-angular";
 import {MatProgressSpinner} from "@angular/material/progress-spinner";
 import {IconButton, Menu, MenuItem} from "@app/ui";
 import {Dropdown} from "@app/NeoUI";
-
 
 
 const PAYMENT_RANGE_SIZE = isDevMode() ? 10 : 30;
@@ -40,6 +39,7 @@ const PAYMENT_RANGE_SIZE = isDevMode() ? 10 : 30;
 })
 export class PaymentsList implements OnInit, AfterViewInit {
   columns: string[] = [ 'code',  'amount',  'reason', 'customer', 'agency', 'employee', 'createdAt', 'action'];
+  icons = { MoveUpIcon, MoveDownIcon, EllipsisVerticalIcon, Trash2Icon }
 
   @Input()
   params: any = {}
@@ -184,6 +184,4 @@ export class PaymentsList implements OnInit, AfterViewInit {
   display(name: string) {
     return this.displayedColumns.indexOf(name) > -1
   }
-
-  protected readonly icons = icons;
 }

@@ -27,6 +27,7 @@ export class ProcedureApplyRangeViewModel {
       this.customers = value.customers?.map(p => new Customer(p));
       this.procedures = value.procedures.map(p => new Procedure(p));
       this.procedureSteps = value.procedureSteps.map(p => new ProcedureStep(p));
+      this.procedureApplies = value.procedureApplies.map(p => new ProcedureApply(p));
       this.procedures = value.procedures.map(p => new Procedure(p));
       this.total = value.total
     }

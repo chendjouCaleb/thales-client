@@ -26,8 +26,8 @@
           <button class="th-button-1" (click)="changeOrderBy('ID')">
             Ajouté le
             <span *ngIf="orderby[0] == 'ID'" class="ps-2">
-            <lucide-angular *ngIf="orderby[1] == 'ASC'" name="move-up" class="my-icon" size="16"></lucide-angular>
-            <lucide-angular *ngIf="orderby[1] == 'DESC'" name="move-down" class="my-icon" size="16"></lucide-angular>
+            <lucide-angular *ngIf="orderby[1] == 'ASC'" [img]="icons.MoveUpIcon" size="16"></lucide-angular>
+            <lucide-angular *ngIf="orderby[1] == 'DESC'" [img]="icons.MoveDownIcon" size="16"></lucide-angular>
               </span>
           </button>
         </th>
@@ -70,7 +70,7 @@
         <td>
           <button MyIconButton style="margin-right: 16px" #menuTrigger
                   (click)="dropdown.open(); $event.stopPropagation()">
-            <lucide-angular  [img]="icons.EllipsisVertical"  size="16"></lucide-angular>
+            <lucide-angular  [img]="icons.EllipsisVerticalIcon"  size="16"></lucide-angular>
           </button>
 
           <Dropdown #dropdown [trigger]="menuTrigger.host"
@@ -83,7 +83,7 @@
 
 
               <button MenuItem (click)="delete(payment)">
-                <lucide-icon [img]="icons.Trash2"  strokeWidth="1.5"></lucide-icon>
+                <lucide-icon [img]="icons.Trash2Icon"  strokeWidth="1.5"></lucide-icon>
                 Supprimer </button>
             </MyMenu>
           </Dropdown>

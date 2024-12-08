@@ -1,12 +1,29 @@
 import {Component, Inject, OnInit} from "@angular/core";
-import {CustomerService, ProcedureService} from "../../../services";
+import {ProcedureService} from "@app/services";
 import {Agency, Customer, Procedure} from "@entities/index";
-import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {ProcedureApplyService} from "../../../services/procedure-apply.service";
+import {MAT_DIALOG_DATA, MatDialogClose, MatDialogRef} from "@angular/material/dialog";
+import {ProcedureApplyService} from "@app/services";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {MatIconButton} from "@angular/material/button";
+import {MatIcon} from "@angular/material/icon";
+import {NavigationModule} from "@app/navigation";
+import {ProcedureApplyAddProcedure} from "@app/Components/procedure-apply/add/procedure-apply-add-procedure";
+import {ProcedureApplyAddCustomer} from "@app/Components/procedure-apply/add/procedure-apply-add-customer";
+import {ProcedureApplyAddConfirm} from "@app/Components/procedure-apply/add/procedure-apply-add-confirm";
 
 @Component({
-  templateUrl: 'procedure-apply-add.html'
+  templateUrl: 'procedure-apply-add.html',
+  selector: 'ProcedureApplyAdd',
+  imports: [
+    MatIconButton,
+    MatDialogClose,
+    MatIcon,
+    NavigationModule,
+    ProcedureApplyAddProcedure,
+    ProcedureApplyAddCustomer,
+    ProcedureApplyAddConfirm
+  ],
+  standalone: true
 })
 export class ProcedureApplyAdd implements OnInit {
   customer: Customer

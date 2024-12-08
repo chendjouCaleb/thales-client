@@ -25,7 +25,7 @@ import {EmployeeDelete} from "./delete/employee-delete";
   imports: [CommonModule, MatCheckboxModule, MatFormFieldModule, MatInputModule, MatDialogModule, MatCheckboxModule,
     MatProgressSpinnerModule, MatStepperModule, ReactiveFormsModule, MatButtonModule, FormsModule, NavigationModule,
     MatIconModule, MatMenuModule, MatRippleModule, NavigationModule],
-  declarations: [ EmployeeList, EmployeeAdd, EmployeeAddUser, EmployeeAddInfo, EmployeeSetAdmin, EmployeeUnsetAdmin, EmployeeDelete ],
+  declarations: [ EmployeeList, EmployeeAdd, EmployeeAddUser, EmployeeAddInfo, EmployeeSetAdmin, EmployeeDelete ],
   exports: [ EmployeeList ],
   providers: [ EmployeeUIService ]
 })

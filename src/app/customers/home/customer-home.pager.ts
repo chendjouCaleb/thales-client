@@ -25,6 +25,7 @@ import {PaymentModule, PlaneTicketModule, ProcedureApplyModule} from "@app/Compo
 import {TraceModule} from "@app/trace";
 import {PaymentsList} from "@app/Components/payments/list/payments-list";
 import {PlaneTicketList} from "@app/Components/plane-tickets/list/plane-ticket-list";
+import {ProcedureApplyList} from "@app/Components/procedure-apply/list/procedure-apply-list";
 
 @Component({
   standalone: true,

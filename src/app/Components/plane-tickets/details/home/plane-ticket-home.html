@@ -5,18 +5,21 @@
 
   <div class="divider"></div>
   <div class="my-2">
-    <a mat-button >
-      <mat-icon>edit</mat-icon>Modifier
-    </a>
+    <button MyButton >
+      <lucide-angular [img]="icons.PencilIcon" ></lucide-angular>
+      Modifier
+    </button>
 
-    <button (click)="delete()" mat-button color="warn" class="ml-3">
-      <mat-icon>delete</mat-icon>  Supprimer
+    <button (click)="delete()" MyButton class="ml-3">
+      <lucide-angular [img]="icons.Trash2Icon"  ></lucide-angular>
+      Supprimer
     </button>
 
     <div class="vertical-divider mx-3"></div>
 
-    <button (click)="addPayment()" mat-button color="primary">
-      <mat-icon>paid</mat-icon> Ajouter un paiement
+    <button (click)="addPayment()" MyButton class="primary">
+      <lucide-angular [img]="icons.DollarSignIcon"  ></lucide-angular>
+      Ajouter un paiement
     </button>
 
   </div>
@@ -36,7 +39,8 @@
     <dd> {{planeTicket.code}} </dd>
     <dt>Client</dt>
     <dd>
-      <a routerLink="/admin/customers/{{planeTicket.customer.id}}/home">{{planeTicket.customer?.fullName}}</a>
+      <a routerLink="/spaces/{{planeTicket.space.identifier}}/customers/{{planeTicket.customer.id}}">
+        {{planeTicket.customer?.fullName}}</a>
     </dd>
 
     <dt>Aller et retour</dt>

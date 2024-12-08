@@ -1,10 +1,17 @@
 import {Component} from "@angular/core";
-import {CustomerPicker, CustomerPickerDialog, ProcedureApplyAdd} from "@app/Components";
+import {CustomerPickerDialog, ProcedureApplyAdd} from "@app/Components";
 import {NavHost} from "@app/navigation";
-import {Customer} from "@entities/customer";
+import {MatIcon} from "@angular/material/icon";
+import {MatButton, MatIconButton} from "@angular/material/button";
 
 @Component({
   selector: 'procedure-apply-add-confirm',
+  standalone: true,
+  imports: [
+    MatIcon,
+    MatIconButton,
+    MatButton
+  ],
   template: `
     <div class="d-flex align-items-center">
       <button mat-icon-button (click)="back()">
@@ -15,16 +22,16 @@ import {Customer} from "@entities/customer";
 
     <div class="mt-3">
       <div class="label">Procédure</div>
-      <div class="value">{{parent.procedure.name}}</div>
+      <div class="value">{{ parent.procedure.name }}</div>
     </div>
 
     <div class="mt-3">
       <div class="label">Client</div>
-      <div class="value">{{parent.customer.fullName}}</div>
+      <div class="value">{{ parent.customer.fullName }}</div>
     </div>
 
     <div class="align-end py-3">
-      <button mat-flat-button color="primary" (click)="parent.add()" >Ajouter</button>
+      <button mat-flat-button color="primary" (click)="parent.add()">Ajouter</button>
     </div>
   `
 })

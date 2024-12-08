@@ -12,6 +12,8 @@ import {Task} from "@app/utils";
 import {PlaneTicketPaymentAdd} from "@app/Components/plane-tickets/add-payment/plane-ticket-payment-add";
 import {MatIcon} from "@angular/material/icon";
 import {MatAnchor, MatButton} from "@angular/material/button";
+import {Button} from "@app/ui";
+import {DollarSignIcon, LucideAngularModule, PencilIcon, Trash2Icon} from "lucide-angular";
 
 @Component({
   templateUrl: 'plane-ticket-home.html',
@@ -23,17 +25,19 @@ import {MatAnchor, MatButton} from "@angular/material/button";
     PaymentsList,
     CurrencyPipe,
     NgIf,
-    MatAnchor
+    MatAnchor,
+    Button,
+    LucideAngularModule
   ],
   standalone: true
 })
 export class PlaneTicketHome implements OnInit {
+  icons = { PencilIcon, Trash2Icon, DollarSignIcon }
   @Input()
   planeTicket: PlaneTicket;
 
   @ViewChild(PaymentsList)
   paymentList: PaymentsList;
-
 
   constructor(private _service: PlaneTicketService,
               private _dialog: MatDialog,

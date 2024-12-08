@@ -2,20 +2,33 @@ import {Component} from "@angular/core";
 import { CustomerPickerDialog, ProcedureApplyAdd} from "@app/Components";
 import {NavHost} from "@app/navigation";
 import {Customer} from "@entities/customer";
+import {MatButton, MatIconButton} from "@angular/material/button";
+import {MatFormField} from "@angular/material/form-field";
+import {MatInput} from "@angular/material/input";
+import {MatIcon} from "@angular/material/icon";
 
 @Component({
   selector: 'procedure-apply-add-customer',
+  standalone: true,
+  imports: [
+    MatIconButton,
+    MatFormField,
+    MatInput,
+    MatButton,
+    MatIcon
+  ],
   template: `
     <div class="d-flex align-items-center">
       <button mat-icon-button (click)="back()">
         <mat-icon>arrow_back</mat-icon>
       </button>
-      <div class="ms-3 fontWeight-semiBold fontSize-16">{{parent.procedure.name}}</div>
+      <div class="ms-3 fontWeight-semiBold fontSize-16">{{ parent.procedure.name }}</div>
     </div>
 
     <div class="fontSize-16 mt-3 mb-2">Choisir un client</div>
     <mat-form-field class="w-100">
-      <input type="text" matInput [value]="customer?.fullName" placeholder="Choisir un client" (click)="selectCustomer($event)">
+      <input type="text" matInput [value]="customer?.fullName" placeholder="Choisir un client"
+             (click)="selectCustomer($event)">
     </mat-form-field>
 
     <div class="align-end py-3">

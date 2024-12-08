@@ -1,9 +1,10 @@
 import {Injectable} from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import {Agency, Customer, Payment, Procedure, ProcedureApply, ProcedureApplyStep, ProcedureStep} from "../../entities";
-import {SERVER_URL} from "../http/http-config";
+import {SERVER_URL} from "@app/http";
 import {firstValueFrom} from "rxjs";
 import {ProcedureApplyStepValidateModel, ProcedureStepFormModel} from "../models";
+import {ProcedureApplyRangeViewModel} from "@entities/view-models/ProcedureApplyRangeViewModel";
 
 @Injectable({
   providedIn: 'root'
@@ -14,10 +15,12 @@ export class ProcedureApplyService {
 
   constructor(private _httpClient: HttpClient) {}
 
-  async listAsync(params: any): Promise<ProcedureApply[]> {
+  async listAsync(params: any): Promise<ProcedureApplyRangeViewModel> {
     const call = this._httpClient.get<ProcedureApply[]>(`${this.url}`, {params});
-    const items = await firstValueFrom(call);
-    return items.map(p => new ProcedureApply(p));
+    const items = new ProcedureApplyRangeViewModel(await firstValueFrom(call));
+    items.hydrate()
+
+    return items;
   }
 
   async getByIdAsync(id: number): Promise<ProcedureApply> {

@@ -1,15 +1,20 @@
-<div class="fontWeight-semiBold fontSize-20 p-4">Ajouter un paiement pour le billet</div>
+<div style="background-color: var(--my-backgroundColor); border: 1px solid var(--my-dividerColor)">
+  <div class="fontWeight-semiBold fontSize-20 p-4">Ajouter un paiement pour le billet</div>
 
 
 
-<div class="px-4">
-    <mat-form-field style="width: 100%">
-      <mat-label>Montant versé</mat-label>
-      <input CleaveNumberInput  matInput [formControl]="formControl">
-    </mat-form-field>
-</div>
+  <div class="px-4">
+    <TextField class="w-100">
+      <label for="amount" TextFieldLabel>Montant versé</label>
+      <input type="text" TextFieldInput id="amount" CleaveNumberInput
+             [formControl]="formControl"
+      >
+    </TextField>
+  </div>
 
-<div class="p-4 align-end">
-  <button mat-stroked-button mat-dialog-close="" class="me-4">Annuler</button>
-  <button mat-flat-button color="primary" (click)="addPayment()">Ajouter</button>
+  <div class="p-4 align-end">
+    <button MyButton mat-dialog-close="" class="me-4">Annuler</button>
+    <button MyButton class="primary" (click)="addPayment()">Ajouter</button>
+  </div>
+
 </div>

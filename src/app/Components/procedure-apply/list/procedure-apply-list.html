@@ -1,16 +1,24 @@
-<div *ngIf="isLoading">
-  <mat-spinner></mat-spinner>
+<div class="d-flex justify-content-center p-5" *ngIf="getFirstRangeTask.loading">
+  <mat-spinner diameter="48" strokeWidth="2"></mat-spinner>
 </div>
 
-<div *ngIf="applies && !isLoading">
-  <a *ngFor="let apply of applies"
+@if(getFirstRangeTask.success) {
+  <div *ngFor="let apply of procedureApplies; let i=index"
      [routerLink]="['/agencies', apply.agencyId, 'procedure-applies', apply.id]"
-     class="p-2 divLink mt-3 br-4 borderColor-20 bg-color-20--hover" style="border: 1px solid ">
-    <div class="fontWeight-bold">{{apply.customer.fullName}}</div>
+     class="p-3"
+       [class.mt-3]="i > 0"
+       style="background-color: var(--my-SurfaceColor); color: var(--my-OnSurfaceColor); border-radius: 8px">
+    <div class="fontWeight-bold fontSize-16">{{apply.customer.fullName}}</div>
     <div>
       <span>{{apply.procedure.name}}</span>
       <span class="mx-2"> </span>
       <span class="opacity-75 fontSize-12">Depuis le {{apply.createdAt.toFormat('ff')}}</span>
     </div>
-  </a>
+  </div>
+}
+
+<div *ngIf="!hasMore && getFirstRangeTask.success" class="end-list-thumb"></div>
+<div class="range-observer-thumb" #rangeObserverThumb></div>
+<div class="d-flex justify-content-center p-3" *ngIf="getRangeTask.loading">
+  <mat-spinner strokeWidth="2" diameter="48"></mat-spinner>
 </div>

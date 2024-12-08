@@ -16,6 +16,7 @@ import {ProcedureApplyHomePage} from "./home/procedure-apply-home.page";
 import {ProcedureApplyStepHomePage} from "./step-home/procedure-apply-step-home.page";
 import {PaymentModule} from "@app/Components/payments";
 import {PaymentsList} from "@app/Components/payments/list/payments-list";
+import {ProcedureApplyList} from "@app/Components/procedure-apply/list/procedure-apply-list";
 
 const routes: Routes = [
   {path: '', component: AgencyProcedureAppliesListPage},
@@ -26,7 +27,7 @@ const routes: Routes = [
 @NgModule({
     imports: [CommonModule, RouterModule.forChild(routes), MatButtonModule, MatIconModule,
         ReactiveFormsModule, MatFormFieldModule, MatDialogModule, MatInputModule, MatMenuModule,
-        CustomerPickerModule, ProcedureApplyModule, MatProgressSpinnerModule, CleaveModule, PaymentModule, BreadcrumbModule, PaymentsList],
+        CustomerPickerModule, ProcedureApplyModule, MatProgressSpinnerModule, CleaveModule, PaymentModule, BreadcrumbModule, PaymentsList, ProcedureApplyList],
   declarations: [AgencyProcedureAppliesListPage, ProcedureApplyHomePage, ProcedureApplyStepHomePage]
 })
 export class AgencyProcedureApplyPageModule {

@@ -60,6 +60,9 @@ export class PlaneTicket extends BaseEntity<number> {
       this.payments = value.payments ? value.payments.map(p => new Payment(p)) : null;
       this.paymentAmount = value.paymentAmount;
 
+      this.spaceId = value.spaceId;
+      this.space = value.space ? new Space(value.space) : undefined;
+
       this.agencyId = value.agencyId;
       this.agency = value.agency ? new Agency(value.agency) : undefined;
 

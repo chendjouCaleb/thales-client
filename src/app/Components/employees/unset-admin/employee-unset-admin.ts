@@ -5,7 +5,9 @@ import {Employee} from "@entities/employee";
 import {EmployeeHttpClient} from "@app/services/employee-http-client.service";
 
 @Component({
-  templateUrl: 'employee-unset-admin.html'
+  templateUrl: 'employee-unset-admin.html',
+  selector: 'EmployeeUnsetAdmin',
+  standalone: true
 })
 export class EmployeeUnsetAdmin {
   employee: Employee

@@ -27,6 +27,7 @@ import {ProcedureStepChangeDescription} from "./step-change-description/procedur
 import {ProcedureStepSettingsPage} from "./step-settings/procedure-step-settings.page";
 import {CleaveModule} from "@app/cleave";
 import {TraceModule} from "@app/trace";
+import {ProcedureApplyList} from "@app/Components/procedure-apply/list/procedure-apply-list";
 
 const routes: Routes = [
   {path: 'list', component: ProceduresListPage},
@@ -38,9 +39,9 @@ const routes: Routes = [
 ];
 
 @NgModule({
-    imports: [CommonModule, MatButtonModule, MatIconModule, ReactiveFormsModule,
-        RouterModule.forChild(routes), MatFormFieldModule, MatInputModule, MatDialogModule, MatTabsModule, MatListModule,
-        CustomerPickerModule, ProcedureApplyModule, CleaveModule, TraceModule],
+  imports: [CommonModule, MatButtonModule, MatIconModule, ReactiveFormsModule,
+    RouterModule.forChild(routes), MatFormFieldModule, MatInputModule, MatDialogModule, MatTabsModule, MatListModule,
+    CustomerPickerModule, ProcedureApplyModule, CleaveModule, TraceModule, ProcedureApplyList],
   declarations: [ProceduresPage, ProceduresListPage, ProcedureAddPage, ProcedureAddStep,
     ProcedureIndexPage, ProcedureAppliesPage, ProcedureHomePage, ProcedureSettingsPage, ProcedureChangeName,
     ProcedureDelete, ProcedureChangeDescription, ProcedureStepSettingsPage,

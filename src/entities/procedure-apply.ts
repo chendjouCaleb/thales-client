@@ -4,6 +4,7 @@ import {Procedure, ProcedureStep} from "./procedure";
 import {Payment} from "./payment";
 import {Agency} from "./agency";
 import {Employee} from "@entities/employee";
+import { Space } from "./space";
 
 export class ProcedureApply extends BaseEntity<number> {
   customer: Customer;
@@ -14,6 +15,9 @@ export class ProcedureApply extends BaseEntity<number> {
 
   agency: Agency;
   agencyId: number;
+
+  space: Space;
+  spaceId: number;
 
   employee: Employee;
   employeeId: number;
@@ -31,6 +35,9 @@ export class ProcedureApply extends BaseEntity<number> {
 
       this.agencyId = value.agencyId;
       this.agency = value.agency ? new Agency(value.agency) : undefined;
+
+      this.spaceId = value.spaceId;
+      this.space = value.space ? new Space(value.space) : undefined;
 
       this.steps = value.steps ? value.steps.map(s => new ProcedureApply(s)) : undefined;
     }

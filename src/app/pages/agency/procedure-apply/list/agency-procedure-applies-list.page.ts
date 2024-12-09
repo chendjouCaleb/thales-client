@@ -1,9 +1,10 @@
 import {Component, OnInit, ViewChild} from "@angular/core";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {BreadcrumbItem, ProcedureApplyController} from "@app/Components";
 import {Agency} from "@entities/agency";
 import {AgencyPage} from "../../agency.page";
 import {ProcedureApplyList} from "@app/Components/procedure-apply/list/procedure-apply-list";
+import {ProcedureApply} from "@entities/procedure-apply";
 
 
 @Component({
@@ -17,7 +18,7 @@ export class AgencyProcedureAppliesListPage implements OnInit {
 
   breadcrumbItems: BreadcrumbItem[];
 
-  constructor(private route: ActivatedRoute,
+  constructor(private router: Router,
               private _parent: AgencyPage,
               private _controller: ProcedureApplyController) {
     this.agency = _parent.agency;
@@ -39,6 +40,10 @@ export class AgencyProcedureAppliesListPage implements OnInit {
     this.breadcrumbItems = [...this._parent.breadcrumbItems,
       new BreadcrumbItem('Paiements')
     ];
+  }
+
+  click(apply: ProcedureApply) {
+    this.router.navigate(['/agencies', apply.agencyId, 'procedure-applies', apply.id])
   }
 
 

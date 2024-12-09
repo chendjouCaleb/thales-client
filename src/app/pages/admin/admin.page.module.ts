@@ -15,6 +15,9 @@ import {EventsPage} from "./events/events-page";
 import {TraceModule} from "@app/trace";
 import {PlaneTicketListPage} from "@app/pages/admin/plane-ticket/list/plane-ticket-list.page";
 import {SpacePlaneTicketPage} from "@app/pages/admin/plane-ticket/space-plane-ticket.page";
+import {ProcedureApply} from "@entities/procedure-apply";
+import {SpaceProcedureApply} from "@app/pages/admin/procedure-applies/space-procedure-apply";
+import {SpaceProcedureAppliesListPage} from "@app/pages/admin/procedure-applies/space-procedure-applies-list-page";
 
 const routes: Routes = [
   {
@@ -25,7 +28,8 @@ const routes: Routes = [
       { path: 'messages', loadChildren: () => import('./messages/messages.page.module').then(m => m.MessagesPageModule) },
       { path: 'plane-tickets', component: PlaneTicketListPage },
       { path: 'plane-tickets/:planeTicketId', component: SpacePlaneTicketPage },
-      { path: 'procedure-applies',loadChildren: () => import('./procedure-applies/procedure-apply.page.module').then(m => m.ProcedureApplyPageModule)},
+      { path: 'procedure-applies', component: SpaceProcedureAppliesListPage},
+      { path: 'procedure-applies/:procedureApplyId', component: SpaceProcedureApply},
       { path: 'users', loadChildren: () => import('./users/users.page.module').then(m => m.UsersPageModule ) },
       { path: 'settings', loadChildren: () => import('./settings/settings.page.module').then(m => m.SettingsPageModule ) },
       { path: 'events', component: EventsPage },

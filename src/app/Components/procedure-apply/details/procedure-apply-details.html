@@ -1,0 +1,9 @@
+@if (getProcedureApply.loading) {
+  <div class="d-flex justify-content-center p-5">
+    <mat-spinner diameter="48" strokeWidth="2"></mat-spinner>
+  </div>
+}
+
+@if (getProcedureApply.success) {
+  <div ProcedureApplyHome [apply]="procedureApply"></div>
+}

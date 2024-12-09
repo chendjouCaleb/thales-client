@@ -12,23 +12,24 @@ import {BreadcrumbModule, CustomerPickerModule, ProcedureApplyModule} from "@app
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {CleaveModule} from "@app/cleave";
 import {AgencyProcedureAppliesListPage} from "./list/agency-procedure-applies-list.page";
-import {ProcedureApplyHomePage} from "./home/procedure-apply-home.page";
 import {ProcedureApplyStepHomePage} from "./step-home/procedure-apply-step-home.page";
 import {PaymentModule} from "@app/Components/payments";
 import {PaymentsList} from "@app/Components/payments/list/payments-list";
 import {ProcedureApplyList} from "@app/Components/procedure-apply/list/procedure-apply-list";
+import {AgencyProcedureApply} from "@app/pages/agency/procedure-apply/agency-procedure-apply";
 
 const routes: Routes = [
   {path: '', component: AgencyProcedureAppliesListPage},
-  {path: ':procedureApplyId', component: ProcedureApplyHomePage},
+  {path: ':procedureApplyId', component: AgencyProcedureApply },
   {path: ':procedureApplyId/steps/:procedureApplyStepId', component: ProcedureApplyStepHomePage}
 ]
 
 @NgModule({
-    imports: [CommonModule, RouterModule.forChild(routes), MatButtonModule, MatIconModule,
-        ReactiveFormsModule, MatFormFieldModule, MatDialogModule, MatInputModule, MatMenuModule,
-        CustomerPickerModule, ProcedureApplyModule, MatProgressSpinnerModule, CleaveModule, PaymentModule, BreadcrumbModule, PaymentsList, ProcedureApplyList],
-  declarations: [AgencyProcedureAppliesListPage, ProcedureApplyHomePage, ProcedureApplyStepHomePage]
+  imports: [CommonModule, RouterModule.forChild(routes), MatButtonModule, MatIconModule,
+    ReactiveFormsModule, MatFormFieldModule, MatDialogModule, MatInputModule, MatMenuModule,
+    CustomerPickerModule, ProcedureApplyModule, MatProgressSpinnerModule, CleaveModule, PaymentModule, BreadcrumbModule, PaymentsList, ProcedureApplyList],
+
+  declarations: [AgencyProcedureAppliesListPage, ProcedureApplyStepHomePage]
 })
 export class AgencyProcedureApplyPageModule {
 

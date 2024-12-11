@@ -13,6 +13,10 @@ export class Money {
     return new Money(+tokens[0], tokens[1]);
   }
 
+  format(): string {
+    return new Intl.NumberFormat('fr-FR', {style: 'currency', currency: this.currency}).format(this.amount)
+  }
+
   add(...monies: Money[]) {
     let sum = monies.map(m => m.amount).reduce((s, current) => s + current, this.amount) ;
     return new Money(sum, this.currency)

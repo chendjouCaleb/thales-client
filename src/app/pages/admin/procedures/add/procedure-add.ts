@@ -13,6 +13,7 @@ import {TextField, TextFieldInput, TextFieldLabel} from "@app/NeoUI";
 import {DecimalPipe, NgForOf} from "@angular/common";
 import {LucideAngularModule, PencilIcon, PlusIcon, XIcon} from "lucide-angular";
 import {Button, IconButton} from "@app/ui";
+import {Procedure} from "@entities/procedure";
 
 @Component({
   templateUrl: 'procedure-add.html',
@@ -37,6 +38,7 @@ export class ProcedureAdd {
   formGroup: FormGroup;
 
   space: Space
+  onAdd: (procedure: Procedure) => void
 
   constructor(private _dialog: Dialog,
               public dialogRef: DialogRef,
@@ -44,6 +46,7 @@ export class ProcedureAdd {
               private _service: ProcedureService,
               @Inject(DIALOG_DATA)data: any) {
     this.space = data.space;
+    this.onAdd = data.onAdd;
 
     this.remember = new ProcedureAddRemember();
     this.formGroup = new FormGroup({
@@ -83,6 +86,9 @@ export class ProcedureAdd {
 
   async addStep() {
       const procedure = await this._service.addAsync(this.space, this.model);
+      if(this.onAdd) {
+        this.onAdd(procedure)
+      }
       this._snackbar.open(`La précédure a été ajoutée.`, 'VOIR', {duration: 5000});
       this.dialogRef.close(procedure);
   }

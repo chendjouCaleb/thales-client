@@ -8,8 +8,8 @@ import {ProcedureAdd} from "@app/pages/admin/procedures/add/procedure-add";
 export class ProcedureAddDialog {
   constructor(private cdkDialog: Dialog) {
   }
-  open(space: Space) {
-    const data = { space };
+  open(space: Space, onAdd: (procedure: Procedure) => void ) {
+    const data = { space, onAdd };
     return this.cdkDialog.open<Procedure>(ProcedureAdd, {
       data,
       panelClass: 'my-dialog-panel',

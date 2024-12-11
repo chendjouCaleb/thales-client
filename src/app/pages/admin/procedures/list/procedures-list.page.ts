@@ -33,6 +33,8 @@ export class ProceduresListPage implements OnInit {
   }
 
   launchAdd() {
-    this._procedureAddDialog.open(this.space)
+    this._procedureAddDialog.open(this.space,
+      (procedure) => { this.procedures.unshift(procedure)
+    });
   }
 }

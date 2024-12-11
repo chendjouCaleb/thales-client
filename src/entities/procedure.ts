@@ -4,7 +4,7 @@ import {Money} from "@entities/money";
 export class Procedure extends BaseEntity<number>  {
   name: string = '';
   normalizedName: string = '';
-  price: number = 0;
+  price: Money ;
   description: string = '';
 
   steps: ProcedureStep[]=[];
@@ -15,7 +15,7 @@ export class Procedure extends BaseEntity<number>  {
     if(value) {
       this.name = value.name;
       this.normalizedName = value.normalizedName;
-      this.price = value.price;
+      this.price = Money.parse(value.price);
       this.description = value.description;
     }
   }

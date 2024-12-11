@@ -1,12 +1,10 @@
 import {Component, Inject} from "@angular/core";
 import {ProcedureFormModel, ProcedureStepFormModel} from "@app/models";
-import {MatDialog, MatDialogRef} from "@angular/material/dialog";
 import {ProcedureAddStep} from "./procedure-add-step";
 import {ProcedureAddRemember} from "./procedure-add-remember";
 import {FormControl, FormGroup, ReactiveFormsModule} from "@angular/forms";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {ProcedureService} from "@app/services";
-import {Router} from "@angular/router";
 import {Space} from "@entities/space";
 import {Dialog, DIALOG_DATA, DialogRef} from "@angular/cdk/dialog";
 import {TextField, TextFieldInput, TextFieldLabel} from "@app/NeoUI";
@@ -30,7 +28,14 @@ import {formatCurrency} from "@entities/money";
     IconButton,
     NgForOf
   ],
-  standalone: true
+  standalone: true,
+  styles: [`
+    :host {
+      display: block;
+      box-sizing: border-box;
+      width: 620px !important;
+    }
+  `]
 })
 export class ProcedureAdd {
   icons = { PlusIcon, PencilIcon, XIcon }

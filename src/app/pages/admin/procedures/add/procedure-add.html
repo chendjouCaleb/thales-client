@@ -23,8 +23,9 @@
       <div style="opacity: .8" class="mt-2">Ajouter des étapes à la procédure.</div>
 
       <div *ngFor="let stepModel of model.stepModels" class="mt-2 p-2 br-4 d-flex surface hover">
+        <div style="font-size: 28px; padding-right: 16px">{{stepModel.index + 1}}</div>
         <div class="flex-grow-1">
-          <div class="fontWeight-semiBold">{{stepModel.name}} ({{stepModel.index + 1}})</div>
+          <div class="fontWeight-semiBold">{{stepModel.name}}</div>
           <div>{{ formatCurrency(stepModel.price) }}</div>
           <div style="opacity: .7">{{stepModel.description}}</div>
         </div>
@@ -42,7 +43,7 @@
       </div>
 
       <div class="align-end mt-2">
-        <button (click)="addStepModel()" MyButton >
+        <button (click)="addStepModel()" MyButton class="alpha-primary">
           <lucide-angular [img]="icons.PlusIcon" ></lucide-angular> Ajouter une étape</button>
       </div>
     </div>

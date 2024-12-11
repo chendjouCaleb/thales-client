@@ -9,10 +9,9 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatDialogModule} from "@angular/material/dialog";
-import {ProcedureAppliesPage} from "./applies/procedure-applies.page";
 import {MatTabsModule} from "@angular/material/tabs";
 import {ProcedureIndexPage} from "./index/procedure-index.page";
-import {ProcedureHomePage} from "./home/procedure-home.page";
+import {ProcedureHome} from "./home/procedure-home";
 import {MatListModule} from "@angular/material/list";
 import {CustomerPickerModule, ProcedureApplyModule} from "@app/Components";
 import {ProcedureSettingsPage} from "./settings/procedure-settings.page";
@@ -27,6 +26,9 @@ import {CleaveModule} from "@app/cleave";
 import {TraceModule} from "@app/trace";
 import {ProcedureApplyList} from "@app/Components/procedure-apply/list/procedure-apply-list";
 import {Button} from "@app/ui";
+import {HorizontalPager, TabRow, TabRowItem} from "@app/NeoUI";
+import {PaymentsList} from "@app/Components/payments/list/payments-list";
+import {ProcedureApplyHome} from "@app/Components/procedure-apply/details/home/procedure-apply-home";
 
 const routes: Routes = [
   {path: 'list', component: ProceduresListPage},
@@ -39,11 +41,12 @@ const routes: Routes = [
 @NgModule({
   imports: [CommonModule, MatButtonModule, MatIconModule, ReactiveFormsModule,
     RouterModule.forChild(routes), MatFormFieldModule, MatInputModule, MatDialogModule, MatTabsModule, MatListModule,
-    CustomerPickerModule, ProcedureApplyModule, CleaveModule, TraceModule, ProcedureApplyList, Button],
+    CustomerPickerModule, ProcedureApplyModule, CleaveModule, TraceModule, ProcedureApplyList, Button,
+    HorizontalPager, PaymentsList, ProcedureApplyHome, TabRow, TabRowItem],
+
   declarations: [ProceduresPage,
-    ProcedureIndexPage, ProcedureAppliesPage, ProcedureHomePage, ProcedureSettingsPage, ProcedureChangeName,
-    ProcedureDelete, ProcedureChangeDescription, ProcedureStepSettingsPage,
-  ProcedureStepChangeName, ProcedureStepChangePrice, ProcedureStepChangeDescription ]
+    ProcedureDelete, ProcedureStepSettingsPage,
+    ProcedureStepChangeName, ProcedureStepChangePrice, ProcedureStepChangeDescription]
 })
 export class ProceduresPageModule {
 

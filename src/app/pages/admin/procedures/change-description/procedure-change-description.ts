@@ -1,20 +1,31 @@
 import {Component, Inject} from "@angular/core";
-import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {ProcedureService} from "../../../../services";
+import {ProcedureService} from "@app/services";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {Procedure} from "../../../../../entities";
-import {FormControl, FormGroup} from "@angular/forms";
+import {Procedure} from "@entities/procedure";
+import {FormControl, ReactiveFormsModule} from "@angular/forms";
+import {DIALOG_DATA, DialogRef} from "@angular/cdk/dialog";
+import {TextField, TextFieldInput} from "@app/NeoUI";
+import {Button} from "@app/ui";
 
 @Component({
-  templateUrl: 'procedure-change-description.html'
+  templateUrl: 'procedure-change-description.html',
+  selector: 'ProcedureChangeDescription',
+  imports: [
+    TextField,
+    ReactiveFormsModule,
+    TextFieldInput,
+    Button
+  ],
+  standalone: true
 })
 export class ProcedureChangeDescription {
   procedure: Procedure;
 
   formControl: FormControl<string>
 
-  constructor(@Inject(MAT_DIALOG_DATA) data,
-              private _dialogRef: MatDialogRef<ProcedureChangeDescription>,
+  constructor(@Inject(DIALOG_DATA) data:any
+    ,
+              public _dialogRef: DialogRef<string, ProcedureChangeDescription>,
               private _service: ProcedureService,
               private _snackbar: MatSnackBar) {
     this.procedure = data.procedure;
@@ -27,6 +38,6 @@ export class ProcedureChangeDescription {
     await this._service.changeDescriptionAsync(this.procedure, description);
     this.procedure.description = description;
     this._dialogRef.close(description);
-    this._snackbar.open(`La description de la procédure a été changée.`, '', {duration: 5000})
+    this._snackbar.open(`La description de la procédure a été changée.`, '', {duration: 3000})
   }
 }

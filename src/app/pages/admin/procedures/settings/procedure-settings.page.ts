@@ -1,22 +1,32 @@
 import {Component} from "@angular/core";
 import {Procedure, ProcedureStep} from "../../../../../entities";
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute, Router, RouterLink} from "@angular/router";
 import {ProcedureService} from "../../../../services";
 import {MatDialog} from "@angular/material/dialog";
 import {ProcedureChangeName} from "../change-name/procedure-change-name";
 import {ProcedureDelete} from "../delete/procedure-delete";
 import {ProcedureChangeDescription} from "../change-description/procedure-change-description";
+import {LucideAngularModule, PencilIcon, PlusIcon, Trash2Icon} from "lucide-angular";
+import {Button} from "@app/ui";
+import {NgForOf, NgIf} from "@angular/common";
+import {Dialog} from "@angular/cdk/dialog";
+import {AdminPage} from "@app/pages/admin/admin.page";
 
 @Component({
-  templateUrl: 'procedure-settings.page.html'
+  templateUrl: 'procedure-settings.page.html',
+  selector: 'ProcedureSettings',
+  standalone: true,
+  imports: [LucideAngularModule, Button, NgIf, RouterLink, NgForOf]
 })
 export class ProcedureSettingsPage {
+  icons = { PencilIcon, PlusIcon, Trash2Icon }
   procedure: Procedure;
   steps: ProcedureStep[] = [];
 
   constructor(private route: ActivatedRoute,
-              private _dialog: MatDialog,
+              private _dialog: Dialog,
               private _router: Router,
+              public parent: AdminPage,
               private _service: ProcedureService) {}
 
   async ngOnInit() {
@@ -27,13 +37,11 @@ export class ProcedureSettingsPage {
 
   editName() {
     const dialogRef = this._dialog.open(ProcedureChangeName, {
-      panelClass: 'dialog-panel',
       data: {procedure: this.procedure}})
   }
 
   editDescription() {
     const dialogRef = this._dialog.open(ProcedureChangeDescription, {
-      panelClass: 'dialog-panel',
       data: {procedure: this.procedure}})
   }
 
@@ -41,10 +49,9 @@ export class ProcedureSettingsPage {
 
   delete() {
     const dialogRef = this._dialog.open(ProcedureDelete, {
-      panelClass: 'dialog-panel',
       data: {procedure: this.procedure}})
 
-    dialogRef.afterClosed().subscribe(deleted => {
+    dialogRef.closed.subscribe(deleted => {
       if(deleted) {
         this._router.navigateByUrl('/admin/procedures').then();
       }

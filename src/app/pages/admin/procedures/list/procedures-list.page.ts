@@ -7,18 +7,25 @@ import {Space} from "@entities/space";
 import {LucideAngularModule, PlusIcon} from "lucide-angular";
 import {Button} from "@app/ui";
 import {RouterLink} from "@angular/router";
+import {Task} from "@app/utils";
+import {MatProgressSpinner} from "@angular/material/progress-spinner";
+import {NgIf} from "@angular/common";
 
 @Component({
   templateUrl: 'procedures-list.page.html',
   selector: 'ProcedureListPage',
   standalone: true,
-  imports: [LucideAngularModule, Button, RouterLink],
+  imports: [LucideAngularModule, Button, RouterLink, MatProgressSpinner, NgIf],
   providers: [ ProcedureAddDialog ]
 })
 export class ProceduresListPage implements OnInit {
   procedures: Procedure[] = [];
   space: Space
-  icons = { PlusIcon }
+  icons = { PlusIcon };
+
+  getProcedureListTask = new Task(async () => {
+    this.procedures = await this._service.listAsync({spaceId: this.space.id});
+  })
 
   constructor(private _service: ProcedureService,
               private _procedureAddDialog: ProcedureAddDialog,
@@ -27,9 +34,7 @@ export class ProceduresListPage implements OnInit {
   }
 
   ngOnInit() {
-    this._service.listAsync({spaceId: this.space.id}).then(items => {
-      this.procedures = items;
-    });
+    this.getProcedureListTask.launch()
   }
 
   launchAdd() {

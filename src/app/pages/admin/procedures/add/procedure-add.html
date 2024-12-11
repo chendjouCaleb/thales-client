@@ -25,7 +25,7 @@
       <div *ngFor="let stepModel of model.stepModels" class="mt-2 p-2 br-4 d-flex surface hover">
         <div class="flex-grow-1">
           <div class="fontWeight-semiBold">{{stepModel.name}} ({{stepModel.index + 1}})</div>
-          <div>{{stepModel.price | number}} FCFA</div>
+          <div>{{ formatCurrency(stepModel.price) }}</div>
           <div style="opacity: .7">{{stepModel.description}}</div>
         </div>
 

@@ -14,6 +14,7 @@ import {DecimalPipe, NgForOf} from "@angular/common";
 import {LucideAngularModule, PencilIcon, PlusIcon, XIcon} from "lucide-angular";
 import {Button, IconButton} from "@app/ui";
 import {Procedure} from "@entities/procedure";
+import {formatCurrency} from "@entities/money";
 
 @Component({
   templateUrl: 'procedure-add.html',
@@ -92,4 +93,5 @@ export class ProcedureAdd {
       this.dialogRef.close(procedure);
   }
 
+  protected readonly formatCurrency = formatCurrency;
 }

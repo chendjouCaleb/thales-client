@@ -11,6 +11,7 @@ import {CustomerAddPage} from "@app/customers/add/customer-add.page";
 import {CustomerHomePage} from "@app/customers/home/customer-home.page";
 import {CustomerEditPage} from "@app/customers/edit/customer-edit.page";
 import {MySpacesPage} from "@app/pages/home/my-spaces/my-spaces.page";
+import {DEFAULT_DIALOG_CONFIG} from "@angular/cdk/dialog";
 
 export const routes: Routes = [
   {
@@ -59,6 +60,10 @@ export const appConfig: ApplicationConfig = {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthorizationInterceptor,
       multi: true,
+    },
+    {provide: DEFAULT_DIALOG_CONFIG, useValue: {hasBackdrop: true,
+        panelClass: 'my-dialog-panel',
+        backdropClass: 'my-dialog-backdrop'}
     }
   ]
 }

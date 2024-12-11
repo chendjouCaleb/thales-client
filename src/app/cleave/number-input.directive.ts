@@ -55,7 +55,7 @@ export class CleaveNumberInputDirective implements ControlValueAccessor, OnInit,
 
   writeValue(obj: Date): void {
     if (obj) {
-      const value = obj.toLocaleDateString();
+      const value = obj.toString();
       this._mask.setRawValue(value);
     }
   }

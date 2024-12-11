@@ -26,7 +26,7 @@ import {DIALOG_DATA, DialogRef} from "@angular/cdk/dialog";
   standalone: true
 })
 export class ProcedureAddStep {
-  icons = { PlusIcon, PencilIcon, XIcon }
+  icons = {PlusIcon, PencilIcon, XIcon}
 
   stepModel: ProcedureStepFormModel;
   model: ProcedureFormModel;
@@ -42,7 +42,7 @@ export class ProcedureAddStep {
     this.remember = data.remember;
 
     this.formGroup = new FormGroup({
-      name: new FormControl(this.stepModel?.name ),
+      name: new FormControl(this.stepModel?.name),
       price: new FormControl<number>(this.stepModel?.price),
       description: new FormControl(this.stepModel?.description),
     });
@@ -64,12 +64,12 @@ export class ProcedureAddStep {
   }
 
   updateModel() {
-      const value = this.formGroup.value;
-      this.stepModel.name = value.name;
-      this.stepModel.price = value.price;
-      this.stepModel.description = value.description;
+    const value = this.formGroup.value;
+    this.stepModel.name = value.name;
+    this.stepModel.price = value.price;
+    this.stepModel.description = value.description;
 
     this.remember.stepModels = this.model.stepModels
-      this._dialogRef.close();
+    this._dialogRef.close();
   }
 }

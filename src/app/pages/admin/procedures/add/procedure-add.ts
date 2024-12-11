@@ -68,8 +68,6 @@ export class ProcedureAdd {
 
   addStepModel() {
     const modalRef = this._dialog.open(ProcedureAddStep, {
-      panelClass: 'my-dialog-panel',
-      backdropClass: 'my-dialog-backdrop',
       data: { model: this.model, remember: this.remember}});
   }
 
@@ -80,11 +78,12 @@ export class ProcedureAdd {
   }
 
   editStepModel(stepModel: ProcedureStepFormModel) {
-    const modalRef = this._dialog.open(ProcedureAddStep, {panelClass: 'dialog-panel',
+    const modalRef = this._dialog.open(ProcedureAddStep, {
+
       data: {stepModel, model: this.model, remember: this.remember}});
   }
 
-  async addStep() {
+  async addProcedure() {
       const procedure = await this._service.addAsync(this.space, this.model);
       if(this.onAdd) {
         this.onAdd(procedure)

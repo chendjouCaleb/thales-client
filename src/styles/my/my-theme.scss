@@ -6,8 +6,9 @@
   color: var(--my-OnbackgroundColor);
   border-radius: 8px;
   width: 384px;
+  max-height: 100vh;
   position: relative;
-  overflow: hidden;
+  overflow: auto;
   backdrop-filter: blur(22px) saturate(2);
 }
 
@@ -21,5 +22,5 @@
 
 .my-dialog-backdrop {
   //background-color: rgba(0, 0, 0, .8);
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.3);
 }

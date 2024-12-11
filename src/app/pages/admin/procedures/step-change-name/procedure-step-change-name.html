@@ -3,13 +3,13 @@
 
 
 <div class="px-4">
-    <mat-form-field style="width: 100%">
-      <mat-label>Nom de l'étape</mat-label>
-      <input type="text" matInput [formControl]="formControl">
-    </mat-form-field>
+    <TextField style="width: 100%">
+      <label for="procedure-step-name-field" TextFieldLabel>Nom de l'étape</label>
+      <input type="text" id="procedure-step-name-field" TextFieldInput [formControl]="formControl">
+    </TextField>
 </div>
 
 <div class="p-4 align-end">
-  <button mat-stroked-button mat-dialog-close="" class="me-4">Annuler</button>
-  <button mat-flat-button color="primary" (click)="changeName()">Modifier</button>
+  <button MyButton (click)="dialogRef.close()" class="me-3">Annuler</button>
+  <button MyButton class="primary" (click)="changeName()">Modifier</button>
 </div>

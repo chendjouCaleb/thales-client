@@ -11,14 +11,9 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatTabsModule} from "@angular/material/tabs";
 import {ProcedureIndexPage} from "./index/procedure-index.page";
-import {ProcedureHome} from "./home/procedure-home";
 import {MatListModule} from "@angular/material/list";
 import {CustomerPickerModule, ProcedureApplyModule} from "@app/Components";
 import {ProcedureSettingsPage} from "./settings/procedure-settings.page";
-import {ProcedureChangeName} from "./change-name/procedure-change-name";
-import {ProcedureDelete} from "./delete/procedure-delete";
-import {ProcedureChangeDescription} from "./change-description/procedure-change-description";
-import {ProcedureStepChangeName} from "./step-change-name/procedure-step-change-name";
 import {ProcedureStepChangePrice} from "./step-change-price/procedure-step-change-price";
 import {ProcedureStepChangeDescription} from "./step-change-description/procedure-step-change-description";
 import {ProcedureStepSettingsPage} from "./step-settings/procedure-step-settings.page";
@@ -44,8 +39,7 @@ const routes: Routes = [
     CustomerPickerModule, ProcedureApplyModule, CleaveModule, TraceModule, ProcedureApplyList, Button,
     HorizontalPager, PaymentsList, ProcedureApplyHome, TabRow, TabRowItem],
 
-  declarations: [ProceduresPage,
-    ProcedureStepChangeName, ProcedureStepChangePrice, ProcedureStepChangeDescription]
+  declarations: [ProceduresPage, ProcedureStepChangePrice, ProcedureStepChangeDescription]
 })
 export class ProceduresPageModule {
 

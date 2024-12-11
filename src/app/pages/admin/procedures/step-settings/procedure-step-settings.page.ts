@@ -10,6 +10,7 @@ import {ProcedureStepChangePrice} from "../step-change-price/procedure-step-chan
 import {Button} from "@app/ui";
 import {LucideAngularModule, PencilIcon, Trash2Icon} from "lucide-angular";
 import {NgIf} from "@angular/common";
+import {Dialog} from "@angular/cdk/dialog";
 
 @Component({
   templateUrl: 'procedure-step-settings.page.html',
@@ -24,7 +25,7 @@ export class ProcedureStepSettingsPage {
   procedureStep: ProcedureStep;
 
   constructor(private route: ActivatedRoute,
-              private _dialog: MatDialog,
+              private _dialog: Dialog,
               private _router: Router,
               private _service: ProcedureService) {}
 
@@ -35,19 +36,19 @@ export class ProcedureStepSettingsPage {
 
   editName() {
     const dialogRef = this._dialog.open(ProcedureStepChangeName, {
-      panelClass: 'dialog-panel',
+
       data: {procedure: this.procedureStep}})
   }
 
   editDescription() {
     const dialogRef = this._dialog.open(ProcedureStepChangeDescription, {
-      panelClass: 'dialog-panel',
+
       data: {procedure: this.procedureStep}})
   }
 
   editPrice() {
     const dialogRef = this._dialog.open(ProcedureStepChangePrice, {
-      panelClass: 'dialog-panel',
+
       data: {procedure: this.procedureStep}})
   }
 
@@ -55,10 +56,10 @@ export class ProcedureStepSettingsPage {
 
   delete() {
     const dialogRef = this._dialog.open(ProcedureDelete, {
-      panelClass: 'dialog-panel',
+
       data: {procedure: this.procedureStep}})
 
-    dialogRef.afterClosed().subscribe(deleted => {
+    dialogRef.closed.subscribe(deleted => {
       if(deleted) {
         this._router.navigateByUrl('/admin/procedures').then();
       }

@@ -1,20 +1,32 @@
 import {Component, Inject} from "@angular/core";
-import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {ProcedureService} from "../../../../services";
+import {ProcedureService} from "@app/services";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {Procedure, ProcedureStep} from "../../../../../entities";
-import {FormControl, FormGroup} from "@angular/forms";
+import {ProcedureStep} from "@entities/procedure";
+import {FormControl, ReactiveFormsModule} from "@angular/forms";
+import {DIALOG_DATA, DialogRef} from "@angular/cdk/dialog";
+import {TextField, TextFieldInput, TextFieldLabel} from "@app/NeoUI";
+import {Button} from "@app/ui";
 
 @Component({
-  templateUrl: 'procedure-step-change-name.html'
+  templateUrl: 'procedure-step-change-name.html',
+  selector: 'ProcedureStepChangeName',
+  imports: [
+    TextField,
+    TextFieldLabel,
+    TextFieldInput,
+    ReactiveFormsModule,
+    Button
+  ],
+  standalone: true
 })
 export class ProcedureStepChangeName {
   procedureStep: ProcedureStep;
 
   formControl: FormControl<string>
 
-  constructor(@Inject(MAT_DIALOG_DATA) data,
-              private _dialogRef: MatDialogRef<ProcedureStepChangeName>,
+  constructor(@Inject(DIALOG_DATA) data: any
+    ,
+              public dialogRef: DialogRef<string,ProcedureStepChangeName>,
               private _service: ProcedureService,
               private _snackbar: MatSnackBar) {
     this.procedureStep = data.procedure;
@@ -26,7 +38,7 @@ export class ProcedureStepChangeName {
 
     await this._service.changeStepNameAsync(this.procedureStep, name);
     this.procedureStep.name = name;
-    this._dialogRef.close(name);
-    this._snackbar.open(`Le nom de l'étape procédure a été changé.`, '', {duration: 5000})
+    this.dialogRef.close(name);
+    this._snackbar.open(`Le nom de l'étape procédure a été changé.`, '', {duration: 3000})
   }
 }

@@ -13,6 +13,7 @@ import {LucideAngularModule, PencilIcon, PlusIcon, XIcon} from "lucide-angular";
 import {Button, IconButton} from "@app/ui";
 import {Procedure} from "@entities/procedure";
 import {formatCurrency} from "@entities/money";
+import {CdkDrag, CdkDragDrop, CdkDropList, moveItemInArray} from "@angular/cdk/drag-drop";
 
 @Component({
   templateUrl: 'procedure-add.html',
@@ -26,16 +27,12 @@ import {formatCurrency} from "@entities/money";
     LucideAngularModule,
     Button,
     IconButton,
-    NgForOf
+    NgForOf,
+    CdkDrag,
+    CdkDropList
   ],
   standalone: true,
-  styles: [`
-    :host {
-      display: block;
-      box-sizing: border-box;
-      width: 620px !important;
-    }
-  `]
+  styleUrl: 'procedure-add.scss'
 })
 export class ProcedureAdd {
   icons = { PlusIcon, PencilIcon, XIcon }
@@ -87,6 +84,14 @@ export class ProcedureAdd {
     const modalRef = this._dialog.open(ProcedureAddStep, {
 
       data: {stepModel, model: this.model, remember: this.remember}});
+  }
+
+  onDragStep(event: CdkDragDrop<any>) {
+    console.log(event)
+    moveItemInArray(this.model.stepModels, event.previousIndex, event.currentIndex);
+    this.model.stepModels.forEach((stepModel, index) => {
+      stepModel.index = index
+    })
   }
 
   async addProcedure() {

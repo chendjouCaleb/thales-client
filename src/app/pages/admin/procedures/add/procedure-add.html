@@ -22,24 +22,26 @@
 
       <div style="opacity: .8" class="mt-2">Ajouter des étapes à la procédure.</div>
 
-      <div *ngFor="let stepModel of model.stepModels" class="mt-2 p-2 br-4 d-flex surface hover">
-        <div style="font-size: 28px; padding-right: 16px">{{stepModel.index + 1}}</div>
-        <div class="flex-grow-1">
-          <div class="fontWeight-semiBold">{{stepModel.name}}</div>
-          <div>{{ formatCurrency(stepModel.price) }}</div>
-          <div style="opacity: .7">{{stepModel.description}}</div>
+      <div cdkDropList (cdkDropListDropped)="onDragStep($event)">
+        <div *ngFor="let stepModel of model.stepModels" cdkDrag class="mt-2 d-flex surface hover procedure-step-item">
+          <div style="font-size: 28px; padding-right: 16px">{{stepModel.index + 1}}</div>
+          <div class="flex-grow-1">
+            <div class="fontWeight-semiBold">{{stepModel.name}}</div>
+            <div>{{ formatCurrency(stepModel.price) }}</div>
+            <div style="opacity: .7">{{stepModel.description}}</div>
+          </div>
+
+          <div>
+            <button MyIconButton (click)="editStepModel(stepModel)">
+              <lucide-angular [img]="icons.PencilIcon" ></lucide-angular>
+            </button>
+
+            <button MyIconButton (click)="removeStepModel(stepModel)">
+              <lucide-angular [img]="icons.XIcon" ></lucide-angular>
+            </button>
+          </div>
+
         </div>
-
-        <div>
-          <button MyIconButton (click)="editStepModel(stepModel)">
-            <lucide-angular [img]="icons.PencilIcon" ></lucide-angular>
-          </button>
-
-          <button MyIconButton (click)="removeStepModel(stepModel)">
-            <lucide-angular [img]="icons.XIcon" ></lucide-angular>
-          </button>
-        </div>
-
       </div>
 
       <div class="align-end mt-2">

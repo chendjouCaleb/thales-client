@@ -5,6 +5,7 @@ import {Task} from "@app/utils";
 import {MatProgressSpinner} from "@angular/material/progress-spinner";
 import {NgIf} from "@angular/common";
 import {ProcedureApplyHome} from "@app/Components/procedure-apply/details/home/procedure-apply-home";
+import {ProcedureApplyPager} from "@app/Components/procedure-apply/details/procedure-apply-pager";
 
 @Component({
   templateUrl: 'procedure-apply-details.html',
@@ -13,7 +14,8 @@ import {ProcedureApplyHome} from "@app/Components/procedure-apply/details/home/p
   imports: [
     MatProgressSpinner,
     NgIf,
-    ProcedureApplyHome
+    ProcedureApplyHome,
+    ProcedureApplyPager
   ],
   encapsulation: ViewEncapsulation.None
 })

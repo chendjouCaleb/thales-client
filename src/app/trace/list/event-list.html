@@ -3,9 +3,10 @@
   <div class="d-flex justify-content-center p-5" *ngIf="getFirstRangeTask.loading">
     <mat-spinner diameter="48" strokeWidth="2"></mat-spinner>
   </div>
-  <div  *ngFor="let event of events"  matRipple>
-    <div event-item [event]="event" class="p-2 bg-color-20--hover cursor-pointer"
-    style="border-top: 1px solid #e1e1e1; border-bottom: 1px solid #e1e1e1; box-sizing: border-box"></div>
+
+  <div  *ngFor="let event of events; let i=index"  matRipple>
+    <div event-item [event]="event" class="p-2 br-4 surface hover cursor-pointer" [class.mt-2]="i > 0"
+    style="box-sizing: border-box"></div>
   </div>
 
 

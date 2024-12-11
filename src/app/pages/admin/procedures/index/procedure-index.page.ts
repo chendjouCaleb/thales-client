@@ -4,6 +4,7 @@ import {ProcedureService} from "../../../../services/procedure.service";
 import {Procedure, ProcedureStep} from "../../../../../entities";
 import {MatTabGroup} from "@angular/material/tabs";
 import {MatTabGroupRemember} from "../../../../utils/mat-tab-remember";
+import {AdminPage} from "@app/pages/admin/admin.page";
 
 @Component({
   templateUrl: 'procedure-index.page.html'
@@ -17,7 +18,9 @@ export class ProcedureIndexPage implements OnInit {
   tabGroup: MatTabGroup;
   tabGroupRemember = new MatTabGroupRemember('procedure-index-tab');
 
-  constructor(private route: ActivatedRoute, private _service: ProcedureService) {}
+  constructor(private route: ActivatedRoute,
+              public parent: AdminPage,
+              private _service: ProcedureService) {}
 
   async ngOnInit() {
     const procedureId = +this.route.snapshot.params['procedureId'];

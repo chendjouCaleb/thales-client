@@ -6,7 +6,8 @@ import {Procedure} from "../../../../../entities";
 import {FormControl, FormGroup} from "@angular/forms";
 
 @Component({
-  templateUrl: 'procedure-change-name.html'
+  templateUrl: 'procedure-change-name.html',
+  selector: 'ProcedureChangeName'
 })
 export class ProcedureChangeName {
   procedure: Procedure;

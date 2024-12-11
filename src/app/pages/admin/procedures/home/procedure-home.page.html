@@ -2,7 +2,7 @@
 <div class="p-3" *ngIf="procedure">
 
   <div class="py-3">
-    <a  [routerLink]="['/admin', 'procedures', procedure.id, 'settings']" mat-flat-button>
+    <a  [routerLink]="['/admin', parent.space.identifier, 'procedures', procedure.id, 'settings']" mat-flat-button>
       <mat-icon>settings</mat-icon> Paramètres
     </a>
   </div>
@@ -11,9 +11,9 @@
 
 
   <div class="mt-4">
-    <a class="mt-3 br-4 p-3 bg-color-10 borderColor-20 bg-color-20--hover divLink d-flex align-items-center"
-       [routerLink]="['/admin', 'procedures', procedure.id, 'home']"
-       style="border: 1px solid" *ngFor="let step of procedure.steps">
+    <a class="mt-3 br-4 p-3 bg-color-10 surface hover divLink d-flex align-items-center"
+       [routerLink]="['/admin', parent.space.identifier, 'procedures', procedure.id, 'home']"
+      *ngFor="let step of procedure.steps">
 
 
       <div style="font-size: 32px; font-weight: 600">{{step.index + 1}}</div>

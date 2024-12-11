@@ -2,6 +2,8 @@ import {Component, Input, OnInit} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
 import {ProcedureService} from "../../../../services/procedure.service";
 import {Procedure} from "../../../../../entities";
+import {AgencyPage} from "@app/pages/agency/agency.page";
+import {AdminPage} from "@app/pages/admin/admin.page";
 
 @Component({
   templateUrl: 'procedure-home.page.html',
@@ -12,7 +14,9 @@ export class ProcedureHomePage implements OnInit {
   procedure: Procedure;
 
 
-  constructor(private route: ActivatedRoute, private _service: ProcedureService) {}
+  constructor(private route: ActivatedRoute,
+              public parent: AdminPage,
+              private _service: ProcedureService) {}
 
   async ngOnInit() {
     // const procedureId = +this.route.snapshot.params['procedureId'];

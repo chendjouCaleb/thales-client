@@ -1,24 +1,23 @@
 <dl class="description-list">
   <dt>Code</dt>
-  <dd>{{ apply.code }}</dd>
+  <dd>{{ procedureApply.code }}</dd>
 
   <dt>Procédure</dt>
-  <dd>{{ apply.procedure.name }}</dd>
+  <dd>{{ procedureApply.procedure.name }}</dd>
 
   <dt>Client</dt>
-  <dd>{{ apply.customer.fullName }}</dd>
+  <dd>{{ procedureApply.customer.fullName }}</dd>
 
   <dt>Date d'engagement</dt>
-  <dd>{{ apply.createdAt.toFormat('ff') }}</dd>
+  <dd>{{ procedureApply.createdAt.toFormat('ff') }}</dd>
 
 </dl>
 
-<div *ngIf="apply.steps" class="mt-4">
+<div *ngIf="procedureApply.steps" class="mt-4">
   <div class="fontSize-18 fontWeight-semiBold">Étapes</div>
 
-  <a class="mt-3 br-4 p-3  divLink d-flex align-items-center"
-     *ngFor="let applyStep of apply.steps"
-     [routerLink]="['/agencies',apply.agencyId, 'procedure-applies', apply.id, 'steps', applyStep.id]"
+  <div class="mt-3 br-4 p-3  divLink d-flex align-items-center surface hover"
+     *ngFor="let applyStep of procedureApply.steps"
   >
     <div>
       <div class="fontWeight-semiBold fontSize-16">
@@ -32,15 +31,7 @@
         <span class="inline-badge ms-bgColor-cyan-10">En attente</span>
       </div>
     </div>
-  </a>
+  </div>
 
 </div>
 
-
-<div class="mt-5">
-  <div class="fontSize-16 fontWeight-semiBold mb-3">Paiements</div>
-
-  <PaymentList [params]="{procedureApplyId:apply.id}"
-               [displayedColumns]="[ 'code',  'amount', 'reason',  'agency', 'employee', 'createdAt', 'action']"></PaymentList>
-
-</div>

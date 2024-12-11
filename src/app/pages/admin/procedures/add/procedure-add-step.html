@@ -1,0 +1,35 @@
+<form [formGroup]="formGroup" class="p-4">
+  <div class="title-20">Ajouter une étape</div>
+  <div class="mt-4">
+    <TextField style="width: 100%;">
+      <label TextFieldLabel for="procedure-step-name-field">Nom de l'étape</label>
+      <input type="text" TextFieldInput formControlName="name" id="procedure-step-name-field">
+    </TextField>
+  </div>
+
+  <div>
+    <TextField style="width: 100%;">
+      <label TextFieldLabel for="procedure-step-price-field">Prix</label>
+      <input CleaveNumberInput TextFieldInput formControlName="price" id="procedure-step-price-field">
+    </TextField>
+  </div>
+
+  <div>
+    <TextField style="width: 100%;">
+      <label TextFieldLabel for="procedure-step-description-field">Description</label>
+      <textarea TextFieldInput formControlName="description" id="procedure-step-description-field"></textarea>
+    </TextField>
+  </div>
+
+  <div class="mt-3 align-end">
+    <button MyButton class="me-3" (click)="_dialogRef.close()">Annuler</button>
+
+    <button *ngIf="!stepModel" MyButton class="primary" (click)="addModel()">
+      Ajouter
+    </button>
+
+    <button *ngIf="stepModel" MyButton class="primary"  (click)="updateModel()">
+      Mettre à jour
+    </button>
+  </div>
+</form>

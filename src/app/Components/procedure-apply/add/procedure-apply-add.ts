@@ -43,7 +43,7 @@ export class ProcedureApplyAdd implements OnInit {
   }
 
   async ngOnInit() {
-    this.procedures = await this._procedureService.listAsync();
+    this.procedures = await this._procedureService.listAsync({spaceId: this.agency.spaceId});
   }
 
   async add() {

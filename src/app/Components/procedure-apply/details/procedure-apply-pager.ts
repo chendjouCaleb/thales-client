@@ -1,0 +1,33 @@
+import {Component, Input, OnInit, ViewEncapsulation} from "@angular/core";
+import {HorizontalPager, PageContentDef, TabRow, TabRowItem} from "@app/NeoUI";
+import {PaymentsList} from "@app/Components/payments/list/payments-list";
+import {ProcedureApply} from "@entities/procedure-apply";
+import {TraceModule} from "@app/trace";
+import {ProcedureApplyHome} from "@app/Components/procedure-apply/details/home/procedure-apply-home";
+
+@Component({
+  templateUrl: 'procedure-apply-pager.html',
+  selector: 'ProcedureApplyPager, [ProcedureApplyPager]',
+  standalone: true,
+  encapsulation: ViewEncapsulation.None,
+  imports: [
+    TabRow,
+    TabRowItem,
+    HorizontalPager,
+    PageContentDef,
+    PaymentsList,
+    TraceModule,
+    ProcedureApplyHome
+  ]
+})
+export class ProcedureApplyPager implements OnInit {
+  ngOnInit(): void {
+      if(this.procedureApply) {
+        throw new Error("procedureApply should not be null")
+      }
+  }
+  @Input()
+  procedureApply: ProcedureApply
+
+
+}

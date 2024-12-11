@@ -1,7 +1,7 @@
 ﻿import {Directive, ElementRef, EventEmitter, Input, OnDestroy, Output} from '@angular/core';
 
 @Directive({
-  selector: 'input[TextFieldInput]',
+  selector: 'input[TextFieldInput], textarea[TextFieldInput]',
   standalone: true,
   host: {
     'class': 'my-text-field-input',

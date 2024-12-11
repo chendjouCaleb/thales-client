@@ -86,7 +86,10 @@ export class HorizontalPager implements AfterViewInit {
     if(animate) {
       this.animatePageIn(contentDef.contentCache.instance, index).then()
     }
-    this.boxHeight = contentDef.contentCache.instance.host.offsetHeight
+    Promise.resolve().then(() => {
+      this.boxHeight = contentDef.contentCache.instance.host.offsetHeight
+    })
+
 
     this._selectedIndex = index;
     this._currentContentDef = contentDef

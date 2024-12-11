@@ -1,50 +1,33 @@
 import {Component, Inject} from "@angular/core";
-import {FormControl, FormGroup} from "@angular/forms";
-import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {ProcedureFormModel, ProcedureStepFormModel} from "../../../../models";
+import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {MatDialogRef} from "@angular/material/dialog";
+import {ProcedureFormModel, ProcedureStepFormModel} from "@app/models";
 import {ProcedureAddRemember} from "./procedure-add-remember";
+import {CleaveModule} from "@app/cleave";
+import {NgIf} from "@angular/common";
+import {PencilIcon, PlusIcon, XIcon} from "lucide-angular";
+import {TextField, TextFieldInput, TextFieldLabel} from "@app/NeoUI";
+import {Button} from "@app/ui";
+import {DIALOG_DATA, DialogRef} from "@angular/cdk/dialog";
 
 @Component({
-  template: `
-        <form [formGroup]="formGroup" class="p-4">
-          <div class="title-20">Ajouter une étape</div>
-          <div class="mt-4">
-            <mat-form-field style="width: 100%;">
-              <mat-label>Nom de l'étape</mat-label>
-              <input type="text" matInput formControlName="name">
-            </mat-form-field>
-          </div>
-
-          <div>
-            <mat-form-field style="width: 100%;">
-              <mat-label>Prix</mat-label>
-              <input CleaveNumberInput matInput formControlName="price">
-            </mat-form-field>
-          </div>
-
-          <div>
-            <mat-form-field style="width: 100%;">
-              <mat-label>Description</mat-label>
-              <textarea  matInput formControlName="description"></textarea>
-            </mat-form-field>
-          </div>
-
-          <div class="mt-3 align-end">
-            <button mat-flat-button mat-dialog-close class="me-3">Annuler</button>
-
-            <button *ngIf="!stepModel" mat-flat-button color="primary" (click)="addModel()">
-              <mat-icon>add</mat-icon> Ajouter
-            </button>
-
-            <button *ngIf="stepModel" mat-flat-button color="primary" (click)="updateModel()">
-              Mettre à jour
-            </button>
-          </div>
-        </form>
-  `,
-  selector: 'procedure-add-step, [procedure-add-step]'
+  templateUrl: 'procedure-add-step.html',
+  selector: 'procedure-add-step, [procedure-add-step]',
+  imports: [
+    CleaveModule,
+    FormsModule,
+    NgIf,
+    ReactiveFormsModule,
+    TextField,
+    TextFieldLabel,
+    TextFieldInput,
+    Button
+  ],
+  standalone: true
 })
 export class ProcedureAddStep {
+  icons = { PlusIcon, PencilIcon, XIcon }
+
   stepModel: ProcedureStepFormModel;
   model: ProcedureFormModel;
   remember: ProcedureAddRemember;
@@ -52,8 +35,8 @@ export class ProcedureAddStep {
   formGroup: FormGroup;
 
 
-  constructor(private _dialogRef: MatDialogRef<ProcedureAddStep>,
-              @Inject(MAT_DIALOG_DATA) data) {
+  constructor(public readonly _dialogRef: DialogRef<ProcedureStepFormModel, ProcedureAddStep>,
+              @Inject(DIALOG_DATA) data: any) {
     this.stepModel = data.stepModel;
     this.model = data.model;
     this.remember = data.remember;

@@ -21,7 +21,7 @@ import {PaymentsList} from "@app/Components/payments/list/payments-list";
 })
 export class ProcedureApplyHome implements OnInit {
   @Input()
-  apply: ProcedureApply;
+  procedureApply: ProcedureApply;
 
   constructor(private _service: ProcedureApplyService) {}
 

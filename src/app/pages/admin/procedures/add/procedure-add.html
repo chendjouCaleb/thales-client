@@ -1,0 +1,57 @@
+<div class="p-4">
+  <form [formGroup]="formGroup" >
+    <div class="title-20">Ajouter une procédure</div>
+
+    <div class="mt-3">
+      <TextField class="w-100">
+        <label TextFieldLabel for="procedure-name">Nom de la procédure</label>
+        <input TextFieldInput type="text" id="procedure-name" formControlName="name">
+      </TextField>
+
+      <TextField class="w-100 mt-2">
+        <label TextFieldLabel for="procedure-description-field">Description</label>
+        <textarea TextFieldInput type="text" formControlName="description" id="procedure-description-field">
+
+          </textarea>
+      </TextField>
+    </div>
+
+
+    <div class="mt-2">
+      <div class="title-16">Étapes</div>
+
+      <div style="opacity: .8" class="mt-2">Ajouter des étapes à la procédure.</div>
+
+      <div *ngFor="let stepModel of model.stepModels" class="mt-2 p-2 br-4 d-flex surface hover">
+        <div class="flex-grow-1">
+          <div class="fontWeight-semiBold">{{stepModel.name}} ({{stepModel.index + 1}})</div>
+          <div>{{stepModel.price | number}} FCFA</div>
+          <div style="opacity: .7">{{stepModel.description}}</div>
+        </div>
+
+        <div>
+          <button MyIconButton (click)="editStepModel(stepModel)">
+            <lucide-angular [img]="icons.PencilIcon" ></lucide-angular>
+          </button>
+
+          <button MyIconButton (click)="removeStepModel(stepModel)">
+            <lucide-angular [img]="icons.XIcon" ></lucide-angular>
+          </button>
+        </div>
+
+      </div>
+
+      <div class="align-end mt-2">
+        <button (click)="addStepModel()" MyButton >
+          <lucide-angular [img]="icons.PlusIcon" ></lucide-angular> Ajouter une étape</button>
+      </div>
+    </div>
+
+
+    <div class="mt-4 py-4 borderColor-20 align-end" style="border-top: 1px solid #e1dfdd">
+      <button MyButton (click)="dialogRef.close()">Annuler</button>
+      <button MyButton class="primary" (click)="addStep()">Ajouter la procédure</button>
+    </div>
+  </form>
+
+</div>

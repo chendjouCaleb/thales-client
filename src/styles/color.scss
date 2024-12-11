@@ -112,7 +112,7 @@ $ms-color-pinkRed-20: #750b1c;
   --my-backgroundColor__hover: #252423;
   --my-OnBackgroundColor: #faf9f8;
   --my-SurfaceColor: #252423;
-  --my-SurfaceColor__hover: #252423;
+  --my-SurfaceColor__hover: #1d1d1d;
   --my-OnSurfaceColor: #faf9f8;
   --my-CardBorderColor: #252423;
   --my-CardBorderColor__hover: #323130;
@@ -124,3 +124,11 @@ $ms-color-pinkRed-20: #750b1c;
   --my-card-border-color: #e1dfdd;
 }
 
+.surface {
+  background-color: var(--my-SurfaceColor);
+  color: var(--my-OnSurfaceColor);
+
+  &.hover:hover {
+    background-color: var(--my-SurfaceColor__hover);
+  }
+}

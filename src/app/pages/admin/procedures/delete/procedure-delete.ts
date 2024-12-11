@@ -6,7 +6,8 @@ import {Procedure} from "../../../../../entities";
 import {FormControl, FormGroup} from "@angular/forms";
 
 @Component({
-  templateUrl: 'procedure-delete.html'
+  templateUrl: 'procedure-delete.html',
+  selector: 'ProcedureDelete'
 })
 export class ProcedureDelete {
   procedure: Procedure;

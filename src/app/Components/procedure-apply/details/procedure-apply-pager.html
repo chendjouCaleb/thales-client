@@ -1,0 +1,43 @@
+<div>
+  <TabRow #tabRow [selectedIndex]="0">
+    <button TabRowItem
+            (click)="tabRow.selectIndex(0, true); pager.selectIndex(0)"
+            (mouseenter)="tabRow.activateHover(0)"
+            (mouseleave)="tabRow.deactivateHover()"
+            [active] = "tabRow.selectedIndex == 0"
+    >Vue d'ensemble
+    </button>
+    <button TabRowItem
+            (click)="tabRow.selectIndex(1, true); pager.selectIndex(1)"
+            (mouseenter)="tabRow.activateHover(1)"
+            (mouseleave)="tabRow.deactivateHover()"
+            [active] = "tabRow.selectedIndex == 1"
+    >Paiements
+    </button>
+
+    <button TabRowItem
+            (click)="tabRow.selectIndex(2, true); pager.selectIndex(2)"
+            (mouseenter)="tabRow.activateHover(2)"
+            (mouseleave)="tabRow.deactivateHover()"
+            [active] = "tabRow.selectedIndex == 2"
+    >Historique
+    </button>
+  </TabRow>
+</div>
+
+<HorizontalPager #pager [selectedIndex]="0">
+  <div *PageDef>
+    <div ProcedureApplyHome [procedureApply]="procedureApply" class="p-3"></div>
+  </div>
+  <div *PageDef class="p-3">
+    <PaymentList class="d-block w-100"  [params]="{procedureApplyId: procedureApply.id}"
+                 [displayedColumns]="[ 'code',  'amount',  'employee', 'createdAt', 'action']">
+
+    </PaymentList>
+  </div>
+
+
+  <div *PageDef class="p-3">
+    <event-list [params]="{publisherId: procedureApply.publisherId}"></event-list>
+  </div>
+</HorizontalPager>

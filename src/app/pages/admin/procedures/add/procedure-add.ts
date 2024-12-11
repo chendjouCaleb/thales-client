@@ -1,25 +1,49 @@
-import {Component} from "@angular/core";
+import {Component, Inject} from "@angular/core";
 import {ProcedureFormModel, ProcedureStepFormModel} from "@app/models";
 import {MatDialog, MatDialogRef} from "@angular/material/dialog";
 import {ProcedureAddStep} from "./procedure-add-step";
 import {ProcedureAddRemember} from "./procedure-add-remember";
-import {FormControl, FormGroup} from "@angular/forms";
+import {FormControl, FormGroup, ReactiveFormsModule} from "@angular/forms";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {ProcedureService} from "@app/services";
 import {Router} from "@angular/router";
+import {Space} from "@entities/space";
+import {Dialog, DIALOG_DATA, DialogRef} from "@angular/cdk/dialog";
+import {TextField, TextFieldInput, TextFieldLabel} from "@app/NeoUI";
+import {DecimalPipe, NgForOf} from "@angular/common";
+import {LucideAngularModule, PencilIcon, PlusIcon, XIcon} from "lucide-angular";
+import {Button, IconButton} from "@app/ui";
 
 @Component({
-  templateUrl: 'procedure-add.page.html'
+  templateUrl: 'procedure-add.html',
+  selector: 'ProcedureAdd',
+  imports: [
+    ReactiveFormsModule,
+    TextField,
+    TextFieldInput,
+    TextFieldLabel,
+    DecimalPipe,
+    LucideAngularModule,
+    Button,
+    IconButton,
+    NgForOf
+  ],
+  standalone: true
 })
-export class ProcedureAddPage {
+export class ProcedureAdd {
+  icons = { PlusIcon, PencilIcon, XIcon }
   model = new ProcedureFormModel();
   remember: ProcedureAddRemember;
   formGroup: FormGroup;
 
-  constructor(private _dialog: MatDialog,
+  space: Space
+
+  constructor(private _dialog: Dialog,
+              public dialogRef: DialogRef,
               private _snackbar: MatSnackBar,
-              private _router: Router,
-              private _service: ProcedureService) {
+              private _service: ProcedureService,
+              @Inject(DIALOG_DATA)data: any) {
+    this.space = data.space;
 
     this.remember = new ProcedureAddRemember();
     this.formGroup = new FormGroup({
@@ -41,7 +65,9 @@ export class ProcedureAddPage {
 
   addStepModel() {
     const modalRef = this._dialog.open(ProcedureAddStep, {
-      panelClass: 'dialog-panel', data: { model: this.model, remember: this.remember}});
+      panelClass: 'my-dialog-panel',
+      backdropClass: 'my-dialog-backdrop',
+      data: { model: this.model, remember: this.remember}});
   }
 
   removeStepModel(stepModel: ProcedureStepFormModel) {
@@ -56,11 +82,9 @@ export class ProcedureAddPage {
   }
 
   async addStep() {
-      const procedure = await this._service.addAsync(this.model);
-      this._snackbar.open(`La précédure a été ajoutée.`, 'VOIR', {})
-        .onAction().subscribe(() => {
-          this._router.navigateByUrl(`/admin/procedures/${procedure.id}`).then()
-      });
+      const procedure = await this._service.addAsync(this.space, this.model);
+      this._snackbar.open(`La précédure a été ajoutée.`, 'VOIR', {duration: 5000});
+      this.dialogRef.close(procedure);
   }
 
 }

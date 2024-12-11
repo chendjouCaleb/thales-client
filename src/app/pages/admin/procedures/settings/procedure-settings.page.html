@@ -1,4 +1,4 @@
-<div class="p-3 m-3 bg-color-0" *ngIf="procedure">
+<div class="p-4" *ngIf="procedure">
   <div class="fontWeight-semiBold fontSize-22">Paramètres</div>
 
   <div class="mt-4 d-flex align-items-center">
@@ -44,9 +44,9 @@
     </div>
 
     <div class="mt-4">
-      <a class="mt-3 br-4 p-3 bg-color-10 borderColor-20 bg-color-20--hover divLink d-flex align-items-center"
+      <a class="mt-3 br-4 p-3 surface hover divLink d-flex align-items-center"
          [routerLink]="['/admin', 'procedures', 'steps', step.id, 'settings']"
-         style="border: 1px solid" *ngFor="let step of procedure.steps">
+           *ngFor="let step of procedure.steps">
 
 
         <div style="font-size: 32px; font-weight: 600">{{step.index + 1}}</div>

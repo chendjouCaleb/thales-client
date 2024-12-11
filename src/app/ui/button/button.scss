@@ -32,6 +32,11 @@
   font-family: "Helvetica Neue", "Inter", sans-serif;
   font-size: var(--my-button__fontSize);
 
+  svg.lucide {
+    width: 20px;
+    height: 20px;
+  }
+
   &:hover {
     background-color: rgba(10, 120, 213, 0.1);
   }
@@ -102,6 +107,15 @@ lucide-icon.fill svg {
 
   &:hover {
     background-color: rgba(10, 120, 213, 0.9);
+  }
+}
+
+.my-button.warn {
+  background-color: var(--my-warnColor);
+  color: #FFFFFF;
+
+  &:hover {
+    background-color: var(--my-warnColor__hover);
   }
 }
 

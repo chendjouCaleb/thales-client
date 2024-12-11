@@ -30,7 +30,7 @@ $ms-color-cyan-10: #00b7c3;
 $ms-color-cyan-20: #038387;
 
 $ms-color-red-10: #d13438;
-$ms-color-red-20: #a4262c;
+$ms-color-red-20:     #a4262c;
 $ms-color-pinkRed-20: #750b1c;
 
 :root {
@@ -116,6 +116,10 @@ $ms-color-pinkRed-20: #750b1c;
   --my-OnSurfaceColor: #faf9f8;
   --my-CardBorderColor: #252423;
   --my-CardBorderColor__hover: #323130;
+
+  --my-warnColor: #a4262c;
+  --my-warnColor__hover: #750b1c;
+  --my-onWarnColor:  #faf9f8;
 }
 
 .my-light-theme {

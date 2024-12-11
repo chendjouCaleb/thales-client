@@ -45,7 +45,6 @@ const routes: Routes = [
     HorizontalPager, PaymentsList, ProcedureApplyHome, TabRow, TabRowItem],
 
   declarations: [ProceduresPage,
-    ProcedureDelete, ProcedureStepSettingsPage,
     ProcedureStepChangeName, ProcedureStepChangePrice, ProcedureStepChangeDescription]
 })
 export class ProceduresPageModule {

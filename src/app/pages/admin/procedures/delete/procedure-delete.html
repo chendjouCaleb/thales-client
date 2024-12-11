@@ -1,12 +1,10 @@
 <div class="fontWeight-semiBold fontSize-20 p-4">Supprimer la procédure</div>
 
-
-
 <div class="px-4">
   Êtes vous sûre de vouloir supprimer cette procédure ?
 </div>
 
 <div class="p-4 align-end">
-  <button mat-stroked-button mat-dialog-close="" class="me-4">Annuler</button>
-  <button mat-flat-button color="warn" (click)="delete()">Supprimer</button>
+  <button MyButton (click)="_dialogRef.close()" class="me-3">Annuler</button>
+  <button MyButton class="warn" (click)="delete()">Supprimer</button>
 </div>

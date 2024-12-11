@@ -1,4 +1,4 @@
-<div class="p-3 m-3 bg-color-0" *ngIf="procedureStep">
+<div class="p-3" *ngIf="procedureStep">
   <div class="fontWeight-semiBold fontSize-22">Paramètres d'étape</div>
 
   <div class="mt-4 d-flex align-items-center">
@@ -7,8 +7,8 @@
       <div class="value">{{ procedureStep.name }}</div>
     </div>
 
-    <button mat-button color="primary" (click)="editName()">
-      <mat-icon>edit</mat-icon>
+    <button MyButton class="primary" (click)="editName()">
+      <lucide-angular [img]="icons.PencilIcon"></lucide-angular>
       Modifier
     </button>
   </div>
@@ -19,11 +19,11 @@
     <div class="flex-grow-1">
       <div class="fontWeight-semiBold">Prix</div>
       <div class="fontColor-140">
-        {{ procedureStep.price.amount | currency: procedureStep.price.currency }}</div>
+        {{ procedureStep.price.format() }}</div>
     </div>
 
-    <button mat-button color="primary" (click)="editPrice()">
-      <mat-icon>edit</mat-icon> Modifier
+    <button MyButton class="primary" (click)="editPrice()">
+      <lucide-angular [img]="icons.PencilIcon"></lucide-angular> Modifier
     </button>
   </div>
 
@@ -36,8 +36,8 @@
       <div class="fontColor-140">{{ procedureStep.description }}</div>
     </div>
 
-    <button mat-button color="primary" (click)="editDescription()">
-      <mat-icon>edit</mat-icon>
+    <button MyButton class="primary" (click)="editDescription()">
+      <lucide-angular [img]="icons.PencilIcon"></lucide-angular>
       Modifier
     </button>
   </div>
@@ -52,8 +52,8 @@
       <div class="fontColor-140">Supprimer définitivement cette procédure</div>
     </div>
 
-    <button mat-flat-button color="warn" (click)="delete()">
-      <mat-icon>delete</mat-icon>
+    <button MyButton class="warn" (click)="delete()">
+      <lucide-angular [img]="icons.Trash2Icon"></lucide-angular>
       Supprimer
     </button>
   </div>

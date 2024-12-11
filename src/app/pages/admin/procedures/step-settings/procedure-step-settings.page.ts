@@ -7,11 +7,20 @@ import {ProcedureDelete} from "../delete/procedure-delete";
 import {ProcedureStepChangeName} from "../step-change-name/procedure-step-change-name";
 import {ProcedureStepChangeDescription} from "../step-change-description/procedure-step-change-description";
 import {ProcedureStepChangePrice} from "../step-change-price/procedure-step-change-price";
+import {Button} from "@app/ui";
+import {LucideAngularModule, PencilIcon, Trash2Icon} from "lucide-angular";
+import {NgIf} from "@angular/common";
 
 @Component({
-  templateUrl: 'procedure-step-settings.page.html'
+  templateUrl: 'procedure-step-settings.page.html',
+  selector: 'ProcedureStepSettings',
+  imports: [
+    Button, LucideAngularModule, NgIf
+  ],
+  standalone: true
 })
 export class ProcedureStepSettingsPage {
+  icons = { PencilIcon, Trash2Icon}
   procedureStep: ProcedureStep;
 
   constructor(private route: ActivatedRoute,

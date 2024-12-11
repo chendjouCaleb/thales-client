@@ -1,19 +1,23 @@
 import {Component, Inject} from "@angular/core";
-import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {ProcedureService} from "../../../../services";
+import {ProcedureService} from "@app/services";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {Procedure} from "../../../../../entities";
-import {FormControl, FormGroup} from "@angular/forms";
+import {Procedure} from "@entities/procedure";
+import {DIALOG_DATA, DialogRef} from "@angular/cdk/dialog";
+import {Button} from "@app/ui";
 
 @Component({
   templateUrl: 'procedure-delete.html',
-  selector: 'ProcedureDelete'
+  selector: 'ProcedureDelete',
+  imports: [
+    Button
+  ],
+  standalone: true
 })
 export class ProcedureDelete {
   procedure: Procedure;
 
-  constructor(@Inject(MAT_DIALOG_DATA) data,
-              private _dialogRef: MatDialogRef<ProcedureDelete>,
+  constructor(@Inject(DIALOG_DATA) data:any,
+              public _dialogRef: DialogRef<boolean, ProcedureDelete>,
               private _service: ProcedureService,
               private _snackbar: MatSnackBar) {
     this.procedure = data.procedure;

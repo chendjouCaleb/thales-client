@@ -43,7 +43,13 @@ export class ProcedureSettingsPage implements OnInit {
       this.steps = this.steps.filter(s => s.id != step.id);
       this.steps.forEach((step, index) => {
         step.index = index;
-      })
+      });
+    });
+
+    this._service.onStepAdd.subscribe(step => {
+      if(!this.steps.find(s => s.id == step.id)) {
+        this.steps.push(step);
+      }
     })
   }
 

@@ -13,6 +13,7 @@ import {Dialog} from "@angular/cdk/dialog";
 import {AdminPage} from "@app/pages/admin/admin.page";
 import {ProcedureStepSettings} from "@app/pages/admin/procedures/step-settings/procedure-step-settings";
 import {Subscription} from "rxjs";
+import {ProcedureStepAdd} from "@app/pages/admin/procedures/step-add/procedure-step-add";
 
 @Component({
   templateUrl: 'procedure-settings.page.html',
@@ -40,6 +41,9 @@ export class ProcedureSettingsPage implements OnInit {
 
     this._service.onStepDelete.subscribe(step => {
       this.steps = this.steps.filter(s => s.id != step.id);
+      this.steps.forEach((step, index) => {
+        step.index = index;
+      })
     })
   }
 
@@ -58,7 +62,10 @@ export class ProcedureSettingsPage implements OnInit {
       data: {procedure: this.procedure}})
   }
 
-  addStep() {}
+  addStep() {
+    const dialogRef = this._dialog.open(ProcedureStepAdd, {
+      data: {procedure: this.procedure}})
+  }
 
   delete() {
     const dialogRef = this._dialog.open(ProcedureDelete, {

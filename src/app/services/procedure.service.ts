@@ -18,6 +18,11 @@ export class ProcedureService {
     return this._onStepDelete.asObservable()
   }
 
+  private _onStepAdd = new Subject<ProcedureStep>();
+  get onStepAdd(): Observable<ProcedureStep> {
+    return this._onStepAdd.asObservable()
+  }
+
   constructor(private _httpClient: HttpClient) {
   }
 
@@ -74,7 +79,9 @@ export class ProcedureService {
     const procedureId = procedure.id;
     const call = this._httpClient.post<ProcedureStep>(`${this.stepUrl}`, model, {params: {procedureId}});
     const result = await firstValueFrom(call);
-    return new ProcedureStep(result);
+    const step = new ProcedureStep(result);
+    this._onStepAdd.next(step);
+    return step;
   }
 
   changeStepNameAsync(procedureStep: ProcedureStep, name: string): Promise<void> {

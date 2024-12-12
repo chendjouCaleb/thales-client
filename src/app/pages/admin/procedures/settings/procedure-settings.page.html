@@ -7,7 +7,7 @@
       <div class="fontWeight-semiBold">{{ procedure.name }}</div>
     </div>
 
-    <button MyButton class="primary" (click)="editName()">
+    <button MyButton class="alpha-primary" (click)="editName()">
       <lucide-angular [img]="icons.PencilIcon"></lucide-angular>
       Modifier
     </button>
@@ -18,10 +18,10 @@
   <div class=" d-flex align-items-center">
     <div class="flex-grow-1">
       <div>Description</div>
-      <div class="fontColor-140">{{ procedure.description }}</div>
+      <div class="opacity-8">{{ procedure.description }}</div>
     </div>
 
-    <button MyButton class="primary" (click)="editDescription()">
+    <button MyButton class="alpha-primary" (click)="editDescription()">
       <lucide-angular [img]="icons.PencilIcon"></lucide-angular>
       Modifier
     </button>
@@ -33,7 +33,7 @@
     <div class="d-flex">
       <div class="flex-grow-1">
         <div class="fontSize-16 fontWeight-semiBold">Étapes</div>
-        <div class="fontColor-140">Cliquez sur une étape pour la modifier</div>
+        <div class="opacity-8">Cliquez sur une étape pour la modifier</div>
       </div>
 
       <button MyButton class="alpha-primary" (click)="addStep()">
@@ -66,8 +66,8 @@
 
   <div class=" d-flex align-items-center">
     <div class="flex-grow-1">
-      <div class="fontSize-16 fontWeight-semiBold">Supression</div>
-      <div class="fontColor-140">Supprimer définitivement cette procédure</div>
+      <div class="fontSize-16 fontWeight-semiBold">Suppréssion</div>
+      <div class="opacity-8">Supprimer définitivement cette procédure</div>
     </div>
 
     <button MyButton class="warn" (click)="delete()">

@@ -1,8 +1,8 @@
 import {Injectable} from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import {Procedure, ProcedureStep, Space} from "../../entities";
+import {HttpClient} from "@angular/common/http";
+import {Customer, Procedure, ProcedureStep, Space} from "../../entities";
 import {SERVER_URL} from "@app/http";
-import {firstValueFrom} from "rxjs";
+import {firstValueFrom, Observable, Subject} from "rxjs";
 import {ProcedureFormModel, ProcedureStepFormModel} from "../models";
 import {Money} from "@entities/money";
 
@@ -13,20 +13,25 @@ export class ProcedureService {
   private url = `${SERVER_URL}/procedures`;
   private stepUrl = `${SERVER_URL}/procedure-steps`;
 
+  private _onStepDelete = new Subject<ProcedureStep>();
+  get onStepDelete(): Observable<ProcedureStep> {
+    return this._onStepDelete.asObservable()
+  }
+
   constructor(private _httpClient: HttpClient) {
   }
 
   async listAsync(params: any): Promise<Procedure[]> {
-      const call = this._httpClient.get<Procedure[]>(`${this.url}`, { params});
-      let items = await firstValueFrom(call);
+    const call = this._httpClient.get<Procedure[]>(`${this.url}`, {params});
+    let items = await firstValueFrom(call);
 
-      items = items.map(p => new Procedure(p))
+    items = items.map(p => new Procedure(p))
 
-      // items.forEach(item => {
-      //   item.price = item.steps.map(p => p.price).reduce((pv, cv) => pv + cv);
-      // });
+    // items.forEach(item => {
+    //   item.price = item.steps.map(p => p.price).reduce((pv, cv) => pv + cv);
+    // });
 
-      return items;
+    return items;
   }
 
   async getByIdAsync(id: number): Promise<Procedure> {
@@ -36,7 +41,7 @@ export class ProcedureService {
   }
 
   async addAsync(space: Space, model: ProcedureFormModel): Promise<Procedure> {
-    const params = { spaceId: space.id }
+    const params = {spaceId: space.id}
     const call = this._httpClient.post<Procedure>(`${this.url}`, model, {params});
     const result = await firstValueFrom(call);
     return new Procedure(result);
@@ -67,34 +72,34 @@ export class ProcedureService {
 
   async addStepAsync(procedure: Procedure, model: ProcedureStepFormModel): Promise<ProcedureStep> {
     const procedureId = procedure.id;
-    const call = this._httpClient.post<ProcedureStep>(`${this.stepUrl}`,model, {params: {procedureId}});
+    const call = this._httpClient.post<ProcedureStep>(`${this.stepUrl}`, model, {params: {procedureId}});
     const result = await firstValueFrom(call);
     return new ProcedureStep(result);
   }
 
   changeStepNameAsync(procedureStep: ProcedureStep, name: string): Promise<void> {
     const procedureStepId = procedureStep.id;
-    const call = this._httpClient.put<void>(`${this.stepUrl}/${procedureStepId}/name`,{name});
+    const call = this._httpClient.put<void>(`${this.stepUrl}/${procedureStepId}/name`, {name});
     return firstValueFrom(call);
   }
 
   changeStepDescriptionAsync(procedureStep: ProcedureStep, description: string): Promise<void> {
     const procedureStepId = procedureStep.id;
-    const call = this._httpClient.put<void>(`${this.stepUrl}/${procedureStepId}/description`,{description});
+    const call = this._httpClient.put<void>(`${this.stepUrl}/${procedureStepId}/description`, {description});
     return firstValueFrom(call);
   }
 
 
   async changeStepPriceAsync(procedureStep: ProcedureStep, price: number): Promise<void> {
     const procedureStepId = procedureStep.id;
-    const call = this._httpClient.put<void>(`${this.stepUrl}/${procedureStepId}/price`,{price});
+    const call = this._httpClient.put<void>(`${this.stepUrl}/${procedureStepId}/price`, {price});
     await firstValueFrom(call);
     procedureStep.price = new Money(price, 'XAF');
   }
 
   async changeStepIndexAsync(procedureStep: ProcedureStep, index: number): Promise<void> {
     const procedureStepId = procedureStep.id;
-    const call = this._httpClient.put(`${this.stepUrl}/${procedureStepId}/index`,{index});
+    const call = this._httpClient.put(`${this.stepUrl}/${procedureStepId}/index`, {index});
     await firstValueFrom(call);
   }
 
@@ -102,6 +107,7 @@ export class ProcedureService {
     const procedureStepId = procedureStep.id;
     const call = this._httpClient.delete(`${this.stepUrl}/${procedureStepId}`);
     await firstValueFrom(call);
+    this._onStepDelete.next(procedureStep);
   }
 
   async deleteAsync(procedure: Procedure): Promise<void> {

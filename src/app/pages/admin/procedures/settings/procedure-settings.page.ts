@@ -1,4 +1,4 @@
-import {Component} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 import {Procedure, ProcedureStep} from "../../../../../entities";
 import {ActivatedRoute, Router, RouterLink} from "@angular/router";
 import {ProcedureService} from "../../../../services";
@@ -12,6 +12,7 @@ import {NgForOf, NgIf} from "@angular/common";
 import {Dialog} from "@angular/cdk/dialog";
 import {AdminPage} from "@app/pages/admin/admin.page";
 import {ProcedureStepSettings} from "@app/pages/admin/procedures/step-settings/procedure-step-settings";
+import {Subscription} from "rxjs";
 
 @Component({
   templateUrl: 'procedure-settings.page.html',
@@ -19,10 +20,12 @@ import {ProcedureStepSettings} from "@app/pages/admin/procedures/step-settings/p
   standalone: true,
   imports: [LucideAngularModule, Button, NgIf, RouterLink, NgForOf]
 })
-export class ProcedureSettingsPage {
+export class ProcedureSettingsPage implements OnInit {
   icons = { PencilIcon, PlusIcon, Trash2Icon }
   procedure: Procedure;
   steps: ProcedureStep[] = [];
+
+  deleteStepSubscription: Subscription
 
   constructor(private route: ActivatedRoute,
               private _dialog: Dialog,
@@ -33,7 +36,11 @@ export class ProcedureSettingsPage {
   async ngOnInit() {
     const procedureId = +this.route.snapshot.params['procedureId'];
     this.procedure = await this._service.getByIdAsync(procedureId);
-    this.procedure.steps = await this._service.getStepsAsync(this.procedure);
+    this.steps = await this._service.getStepsAsync(this.procedure);
+
+    this._service.onStepDelete.subscribe(step => {
+      this.steps = this.steps.filter(s => s.id != step.id);
+    })
   }
 
   openStepSettings(procedureStep: ProcedureStep) {

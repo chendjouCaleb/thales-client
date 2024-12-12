@@ -11,6 +11,7 @@ import {Button, IconButton} from "@app/ui";
 import {LucideAngularModule, PencilIcon, Trash2Icon, XIcon} from "lucide-angular";
 import {NgIf} from "@angular/common";
 import {Dialog, DIALOG_DATA, DialogRef} from "@angular/cdk/dialog";
+import {ProcedureStepDelete} from "@app/pages/admin/procedures/step-delete/procedure-step-delete";
 
 @Component({
   templateUrl: 'procedure-step-settings.html',
@@ -54,13 +55,13 @@ export class ProcedureStepSettings {
   addStep() {}
 
   delete() {
-    const dialogRef = this._dialog.open(ProcedureDelete, {
+    const dialogRef = this._dialog.open(ProcedureStepDelete, {
 
-      data: {procedure: this.procedureStep}})
+      data: {procedureStep: this.procedureStep}})
 
     dialogRef.closed.subscribe(deleted => {
       if(deleted) {
-        this._router.navigateByUrl('/admin/procedures').then();
+        this._dialogRef.close()
       }
     })
   }

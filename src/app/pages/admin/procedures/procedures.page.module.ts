@@ -16,7 +16,7 @@ import {CustomerPickerModule, ProcedureApplyModule} from "@app/Components";
 import {ProcedureSettingsPage} from "./settings/procedure-settings.page";
 import {ProcedureStepChangePrice} from "./step-change-price/procedure-step-change-price";
 import {ProcedureStepChangeDescription} from "./step-change-description/procedure-step-change-description";
-import {ProcedureStepSettingsPage} from "./step-settings/procedure-step-settings.page";
+import {ProcedureStepSettings} from "./step-settings/procedure-step-settings";
 import {CleaveModule} from "@app/cleave";
 import {TraceModule} from "@app/trace";
 import {ProcedureApplyList} from "@app/Components/procedure-apply/list/procedure-apply-list";
@@ -29,7 +29,6 @@ const routes: Routes = [
   {path: 'list', component: ProceduresListPage},
   {path: ':procedureId', component: ProcedureIndexPage},
   {path: ':procedureId/settings', component: ProcedureSettingsPage},
-  {path: 'steps/:procedureStepId/settings', component: ProcedureStepSettingsPage},
   {path: '', redirectTo: 'list', pathMatch: 'full'}
 ];
 

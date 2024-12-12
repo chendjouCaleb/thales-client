@@ -1,5 +1,11 @@
-<div class="p-3" *ngIf="procedureStep">
-  <div class="fontWeight-semiBold fontSize-22">Paramètres d'étape</div>
+<div class="p-4" *ngIf="procedureStep">
+  <div class="d-flex align-items-center">
+    <div class="fontWeight-semiBold fontSize-22 flex-grow-1">Paramètres d'étape</div>
+    <button MyIconButton>
+      <lucide-angular [img]="icons.XIcon"></lucide-angular>
+    </button>
+  </div>
+
 
   <div class="mt-4 d-flex align-items-center">
     <div class="flex-grow-1">
@@ -7,7 +13,7 @@
       <div class="opacity-8">{{ procedureStep.name }}</div>
     </div>
 
-    <button MyButton class="primary" (click)="editName()">
+    <button MyButton class="alpha-primary" (click)="editName()">
       <lucide-angular [img]="icons.PencilIcon"></lucide-angular>
       Modifier
     </button>
@@ -23,7 +29,7 @@
       </div>
     </div>
 
-    <button MyButton class="primary" (click)="editPrice()">
+    <button MyButton class="alpha-primary" (click)="editPrice()">
       <lucide-angular [img]="icons.PencilIcon"></lucide-angular>
       Modifier
     </button>
@@ -38,7 +44,7 @@
       <div class="opacity-8">{{ procedureStep.description }}</div>
     </div>
 
-    <button MyButton class="primary" (click)="editDescription()">
+    <button MyButton class="alpha-primary" (click)="editDescription()">
       <lucide-angular [img]="icons.PencilIcon"></lucide-angular>
       Modifier
     </button>
@@ -50,7 +56,7 @@
   <div class=" d-flex align-items-center">
     <div class="flex-grow-1">
       <div class="fontSize-16 fontWeight-semiBold">Supression</div>
-      <div class="opacity-8">Supprimer définitivement cette procédure</div>
+      <div class="opacity-8">Supprimer cette étape de la procédure</div>
     </div>
 
     <button MyButton class="warn" (click)="delete()">

@@ -11,6 +11,7 @@ import {Button} from "@app/ui";
 import {NgForOf, NgIf} from "@angular/common";
 import {Dialog} from "@angular/cdk/dialog";
 import {AdminPage} from "@app/pages/admin/admin.page";
+import {ProcedureStepSettings} from "@app/pages/admin/procedures/step-settings/procedure-step-settings";
 
 @Component({
   templateUrl: 'procedure-settings.page.html',
@@ -35,6 +36,11 @@ export class ProcedureSettingsPage {
     this.procedure.steps = await this._service.getStepsAsync(this.procedure);
   }
 
+  openStepSettings(procedureStep: ProcedureStep) {
+    const dialogRef = this._dialog.open(ProcedureStepSettings, {
+      data: {procedureStep}})
+  }
+
   editName() {
     const dialogRef = this._dialog.open(ProcedureChangeName, {
       data: {procedure: this.procedure}})
@@ -57,4 +63,6 @@ export class ProcedureSettingsPage {
       }
     })
   }
+
+  protected readonly open = open;
 }

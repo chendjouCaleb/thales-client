@@ -1,4 +1,4 @@
-import {Component} from "@angular/core";
+import {Component, Inject} from "@angular/core";
 import {ProcedureStep} from "@entities/procedure";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ProcedureService} from "@app/services";
@@ -7,31 +7,30 @@ import {ProcedureDelete} from "../delete/procedure-delete";
 import {ProcedureStepChangeName} from "../step-change-name/procedure-step-change-name";
 import {ProcedureStepChangeDescription} from "../step-change-description/procedure-step-change-description";
 import {ProcedureStepChangePrice} from "../step-change-price/procedure-step-change-price";
-import {Button} from "@app/ui";
-import {LucideAngularModule, PencilIcon, Trash2Icon} from "lucide-angular";
+import {Button, IconButton} from "@app/ui";
+import {LucideAngularModule, PencilIcon, Trash2Icon, XIcon} from "lucide-angular";
 import {NgIf} from "@angular/common";
-import {Dialog} from "@angular/cdk/dialog";
+import {Dialog, DIALOG_DATA, DialogRef} from "@angular/cdk/dialog";
 
 @Component({
-  templateUrl: 'procedure-step-settings.page.html',
+  templateUrl: 'procedure-step-settings.html',
   selector: 'ProcedureStepSettings',
   imports: [
-    Button, LucideAngularModule, NgIf
+    Button, LucideAngularModule, NgIf, IconButton
   ],
-  standalone: true
+  standalone: true,
+  styles: [`:host {display: block; width: 616px}`]
 })
-export class ProcedureStepSettingsPage {
-  icons = { PencilIcon, Trash2Icon}
+export class ProcedureStepSettings {
+  icons = { PencilIcon, Trash2Icon, XIcon }
   procedureStep: ProcedureStep;
 
-  constructor(private route: ActivatedRoute,
+  constructor(@Inject(DIALOG_DATA)public readonly data: any,
+              public readonly _dialogRef: DialogRef <any, ProcedureStepSettings>,
               private _dialog: Dialog,
               private _router: Router,
-              private _service: ProcedureService) {}
-
-  async ngOnInit() {
-    const procedureStepId = +this.route.snapshot.params['procedureStepId'];
-    this.procedureStep = await this._service.getStepAsync(procedureStepId);
+              private _service: ProcedureService) {
+    this.procedureStep = data.procedureStep;
   }
 
   editName() {

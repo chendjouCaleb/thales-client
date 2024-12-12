@@ -39,7 +39,7 @@ const routes: Routes = [
     CustomerPickerModule, ProcedureApplyModule, CleaveModule, TraceModule, ProcedureApplyList, Button,
     HorizontalPager, PaymentsList, ProcedureApplyHome, TabRow, TabRowItem],
 
-  declarations: [ProceduresPage, ProcedureStepChangeDescription]
+  declarations: [ProceduresPage ]
 })
 export class ProceduresPageModule {
 

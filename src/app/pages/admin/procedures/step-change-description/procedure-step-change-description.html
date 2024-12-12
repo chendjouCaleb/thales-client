@@ -3,13 +3,13 @@
 
 
 <div class="px-4">
-    <mat-form-field style="width: 100%">
-      <mat-label>Description de l'étape</mat-label>
-      <textarea  matInput [formControl]="formControl"></textarea>
-    </mat-form-field>
+    <TextField style="width: 100%">
+      <label TextFieldLabel for="procedure-step-description-field">Description de l'étape</label>
+      <textarea  TextFieldInput [formControl]="formControl" id="procedure-step-description-field"></textarea>
+    </TextField>
 </div>
 
 <div class="p-4 align-end">
-  <button mat-stroked-button mat-dialog-close="" class="me-4">Annuler</button>
-  <button mat-flat-button color="primary" (click)="changeDescription()">Modifier</button>
+  <button MyButton (click)="dialogRef.close()" class="me-3">Annuler</button>
+  <button MyButton class="primary" (click)="changeDescription()">Modifier</button>
 </div>

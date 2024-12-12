@@ -1,7 +1,7 @@
 <div class="p-4" *ngIf="procedureStep">
   <div class="d-flex align-items-center">
     <div class="fontWeight-semiBold fontSize-22 flex-grow-1">Paramètres d'étape</div>
-    <button MyIconButton>
+    <button MyIconButton (click)="_dialogRef.close()">
       <lucide-angular [img]="icons.XIcon"></lucide-angular>
     </button>
   </div>

@@ -43,9 +43,9 @@
 
     </div>
 
-    <div class="mt-4">
-      <a class="mt-3 br-4 p-3 surface hover divLink d-flex align-items-center cursor-pointer"
-           *ngFor="let step of steps" (click)="openStepSettings(step)">
+    <div class="mt-4" cdkDropList (cdkDropListDropped)="onDragStep($event)">
+      <div class="mt-3 surface hover  procedure-step-item d-flex align-items-center cursor-pointer"
+           *ngFor="let step of steps" (click)="openStepSettings(step)" cdkDrag>
 
 
         <div style="font-size: 32px; font-weight: 500">{{step.index + 1}}</div>
@@ -53,9 +53,10 @@
         <div class="ms-3 flex-grow-1">
           <div class="fontWeight-semiBold">{{step.name}}</div>
           <div>{{step.price.format() }} </div>
+          <div>{{step.description}}</div>
         </div>
 
-      </a>
+      </div>
     </div>
 
   </div>

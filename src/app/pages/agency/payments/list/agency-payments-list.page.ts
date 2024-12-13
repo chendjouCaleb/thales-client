@@ -5,9 +5,16 @@ import {PaymentUIService} from "@app/Components/payments";
 import {PaymentsList} from "@app/Components/payments/list/payments-list";
 import {AgencyPage} from "@app/pages/agency/agency.page";
 import {BreadcrumbItem} from "@app/Components";
+import {MatButton} from "@angular/material/button";
 
 @Component({
-  templateUrl: 'agency-payments-list.page.html'
+  templateUrl: 'agency-payments-list.page.html',
+  standalone: true,
+  imports: [
+    MatButton,
+    PaymentsList
+  ],
+  selector: 'AgencyPaymentListPage'
 })
 export class AgencyPaymentsListPage implements OnInit {
   payments: Payment[] = [];

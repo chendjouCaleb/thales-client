@@ -4,9 +4,20 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 import {EmployeeAdd} from "@app/Components/employees/add/employee-add";
 import {NavHost} from "@app/navigation";
 import {SnackbarLoader} from "@app/Components/snackbar-loader";
+import {MatFormField} from "@angular/material/form-field";
+import {MatInput} from "@angular/material/input";
+import {MatButton} from "@angular/material/button";
+import {ReactiveFormsModule} from "@angular/forms";
 
 @Component({
   selector: 'employee-add-user',
+  standalone: true,
+  imports: [
+    MatFormField,
+    MatInput,
+    MatButton,
+    ReactiveFormsModule
+  ],
   template: `
     <div class="fontSize-16">
       Renseignez l'E-mail de l'utilisateur que vous souhaitez ajouter comme employé

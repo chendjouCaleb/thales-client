@@ -1,4 +1,4 @@
-import {Component, NgModule} from "@angular/core";
+import {NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {RouterModule, Routes} from "@angular/router";
 import {AgencyPage} from "./agency.page";
@@ -13,7 +13,6 @@ import {MatTooltipModule} from "@angular/material/tooltip";
 import {AgencyPaymentsListPage} from "./payments/list/agency-payments-list.page";
 import {PaymentModule} from "@app/Components/payments";
 import {AgencyEmployeesPage} from "./employees/agency-employees.page";
-import {EmployeeModule} from "@app/Components/employees";
 import {AgencySettingsPage} from "./settings/agency-settings.page";
 import {AgencyModule} from "@app/Components/agencies";
 import {AgencyEventsPage} from "@app/pages/agency/events/agency-events-page";
@@ -45,10 +44,10 @@ const routes: Routes = [
     imports: [
         CommonModule, MatButtonModule, MatToolbarModule, RouterModule.forChild(routes), MatIconModule,
         MatSidenavModule, NavModule, MatFormFieldModule, MatInputModule, MatTooltipModule,
-        PaymentModule, EmployeeModule, AgencyModule, ProcedureApplyModule, BreadcrumbModule,
+        PaymentModule, AgencyModule, ProcedureApplyModule, BreadcrumbModule,
         TraceModule, PaymentsList, LucideAngularModule
     ],
-  declarations: [AgencyPaymentsListPage, AgencyEmployeesPage, AgencyEventsPage]
+  declarations: []
 })
 export class AgencyPageModule {
 

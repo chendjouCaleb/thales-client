@@ -18,9 +18,10 @@ import {
   UsersIcon,
   WalletCardsIcon
 } from "lucide-angular";
-import {NavModule, Scaffold } from "@app/Components";
+import {NavModule  } from "@app/Components";
 import {NgForOf, NgIf} from "@angular/common";
 import {MatIcon} from "@angular/material/icon";
+import {Scaffold} from "@app/Components/scaffold";
 
 @Component({
   templateUrl: 'admin.page.html',

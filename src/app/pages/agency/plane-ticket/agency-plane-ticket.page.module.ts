@@ -13,7 +13,7 @@ import {PlaneTicketAdd} from "@app/Components/plane-tickets/add/plane-ticket-add
 import {MatRadioModule} from "@angular/material/radio";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {CustomerPickerModule} from "@app/Components";
-import {PlaneTicketEditPage} from "./edit/plane-ticket-edit.page";
+import {PlaneTicketEdit} from "@app/Components/plane-tickets/edit/plane-ticket-edit";
 import {PaymentModule} from "@app/Components";
 import {CleaveModule} from "@app/cleave";
 import {AgencyPlaneTicketListPage} from "./list/agency-plane-ticket-list.page";
@@ -25,7 +25,7 @@ import {AgencyPlaneTicketPage} from "@app/pages/agency/plane-ticket/agency-plane
 const routes: Routes = [
   {path: 'add', component: PlaneTicketAdd },
   {path: ':planeTicketId', component: AgencyPlaneTicketPage },
-  {path: ':planeTicketId/edit', component: PlaneTicketEditPage },
+  {path: ':planeTicketId/edit', component: PlaneTicketEdit },
   {path: '', component: AgencyPlaneTicketListPage }
 ];
 
@@ -33,8 +33,7 @@ const routes: Routes = [
   imports: [CommonModule, RouterModule.forChild(routes), MatButtonModule, MatIconModule, ReactiveFormsModule,
     MatFormFieldModule, MatDialogModule, MatInputModule, MatMenuModule, MatRadioModule, MatCheckboxModule,
     CustomerPickerModule, PaymentModule, CleaveModule, BreadcrumbModule, PaymentsList, PlaneTicketList, MatProgressSpinner],
-  declarations: [
-  PlaneTicketEditPage ]
+  declarations: []
 })
 export class AgencyPlaneTicketPageModule {
 

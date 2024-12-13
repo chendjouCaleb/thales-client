@@ -1,17 +1,36 @@
 import {Component, OnInit} from "@angular/core";
 import {MatDialog} from "@angular/material/dialog";
-import {FormControl, FormGroup} from "@angular/forms";
+import {FormControl, FormGroup, ReactiveFormsModule} from "@angular/forms";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {ActivatedRoute, Router} from "@angular/router";
 import {PlaneTicketService} from "@app/services";
 import {PlaneTicket} from "@entities/index";
 import {BreadcrumbItem} from "@app/Components";
 import {AgencyPage} from "@app/pages/agency/agency.page";
+import {MatCheckbox} from "@angular/material/checkbox";
+import {MatRadioButton, MatRadioGroup} from "@angular/material/radio";
+import {MatFormField, MatLabel} from "@angular/material/form-field";
+import {MatInput} from "@angular/material/input";
+import {CleaveModule} from "@app/cleave";
+import {MatButton} from "@angular/material/button";
 
 @Component({
-  templateUrl: 'plane-ticket-edit.page.html'
+  templateUrl: 'plane-ticket-edit.html',
+  selector: 'PlaneTicketEdit',
+  imports: [
+    MatCheckbox,
+    MatRadioButton,
+    ReactiveFormsModule,
+    MatRadioGroup,
+    MatFormField,
+    MatInput,
+    MatLabel,
+    CleaveModule,
+    MatButton
+  ],
+  standalone: true
 })
-export class PlaneTicketEditPage implements OnInit {
+export class PlaneTicketEdit implements OnInit {
   formGroup: FormGroup;
   planeTicket: PlaneTicket;
 

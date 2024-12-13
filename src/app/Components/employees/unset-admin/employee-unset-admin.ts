@@ -9,9 +9,7 @@ import {Button} from "@app/ui";
 @Component({
   templateUrl: 'employee-unset-admin.html',
   selector: 'EmployeeUnsetAdmin',
-  imports: [
-    Button
-  ],
+  imports: [],
   standalone: true
 })
 export class EmployeeUnsetAdmin {

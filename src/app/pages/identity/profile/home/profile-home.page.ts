@@ -2,8 +2,9 @@ import {Component} from "@angular/core";
 import {AuthenticationService, User, UserService} from "@app/identity";
 import {MatDialog} from "@angular/material/dialog";
 import {ProfileChangeName} from "@app/pages/identity/profile/user-change-name/profile-change-name";
-import {Scaffold} from "@app/Components";
+
 import {MatButton} from "@angular/material/button";
+import { Scaffold } from "@app/Components/scaffold";
 
 @Component({
   templateUrl: 'profile-home.page.html',

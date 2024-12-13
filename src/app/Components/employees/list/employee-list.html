@@ -21,7 +21,8 @@
       </div>
 
       <div>
-        <button mat-icon-button [mat-menu-trigger-for]="menu"><mat-icon>more_vert</mat-icon></button>
+        <button mat-icon-button [mat-menu-trigger-for]="menu">
+          <mat-icon>more_vert</mat-icon></button>
         <mat-menu #menu>
           <button mat-menu-item (click)="setAdmin(employee)" *ngIf="!employee.isAdmin">
             <mat-icon></mat-icon>  Mettre comme administrateur

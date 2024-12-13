@@ -1,11 +1,18 @@
 import {Component, Inject} from "@angular/core";
-import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
+import {MAT_DIALOG_DATA, MatDialogClose, MatDialogRef} from "@angular/material/dialog";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {Employee} from "@entities/employee";
 import {EmployeeHttpClient} from "@app/services/employee-http-client.service";
+import {MatButton} from "@angular/material/button";
 
 @Component({
-  templateUrl: 'employee-delete.html'
+  templateUrl: 'employee-delete.html',
+  selector: 'EmployeeDelete',
+  imports: [
+    MatButton,
+    MatDialogClose
+  ],
+  standalone: true
 })
 export class EmployeeDelete {
   employee: Employee

@@ -35,6 +35,9 @@ export class AgencyPlaneTicketListPage implements OnInit {
               private _router: Router,
               private _uiService: PlaneTicketUIService) {
     this.agency = _parent.agency;
+    if(!this.agency) {
+      throw new Error("this.agency cannot be null")
+    }
   }
 
   ngOnInit() {

@@ -1,12 +1,12 @@
 import {Component, ViewEncapsulation} from "@angular/core";
 import {AuthenticationService, Session} from "@app/identity";
-import {Scaffold} from "@app/Components";
 import {LogOutIcon, LucideAngularModule, MenuIcon, UserIcon, CircleUserIcon, UserCogIcon } from "lucide-angular";
 import {NgIf} from "@angular/common";
 import {Button, IconButton, Menu, MenuItem} from "@app/ui";
 import {RouterLink} from "@angular/router";
 import {MatTooltip} from "@angular/material/tooltip";
 import {Dropdown} from "@app/NeoUI";
+import {Scaffold} from "../scaffold";
 
 @Component({
   templateUrl: 'scaffold-toolbar.html',

@@ -6,7 +6,6 @@ export * from './Nav';
 export * from './payments';
 export * from './plane-tickets';
 export * from './procedure-apply';
-export * from './scaffold';
 export * from './snackbar-loader';
 
 export * from './messages'

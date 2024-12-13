@@ -5,9 +5,18 @@ import {EmployeeHttpClient} from "@app/services/employee-http-client.service";
 import {EmployeeList} from "@app/Components/employees/list/employee-list";
 import {EmployeeUIService} from "@app/Components/employees/employee-UIService";
 import {BreadcrumbItem} from "@app/Components";
+import {MatIcon} from "@angular/material/icon";
+import {MatButton} from "@angular/material/button";
 
 @Component({
-  templateUrl: 'agency-employees.page.html'
+  templateUrl: 'agency-employees.page.html',
+  selector: 'AgencyEmployeesPage',
+  imports: [
+    EmployeeList,
+    MatIcon,
+    MatButton
+  ],
+  standalone: true
 })
 export class AgencyEmployeesPage implements OnInit {
   @ViewChild(EmployeeList)

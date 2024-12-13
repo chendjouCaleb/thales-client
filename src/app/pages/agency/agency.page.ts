@@ -4,7 +4,7 @@ import {AuthenticationService, Session} from "@app/identity";
 import {Agency} from "@entities/agency";
 import {AgencyHttpClient} from "@app/services/agency.http-client";
 import {ActivatedRoute, RouterLink, RouterOutlet} from "@angular/router";
-import {BreadcrumbItem, NavModule, Scaffold } from "@app/Components";
+import {BreadcrumbItem, NavModule } from "@app/Components";
 import {
   BuildingIcon,
   DollarSignIcon, FileTextIcon,
@@ -15,6 +15,7 @@ import {
   WalletCardsIcon
 } from "lucide-angular";
 import {NgIf} from "@angular/common";
+import {Scaffold, ScaffoldToolbar} from "@app/Components/scaffold";
 
 @Component({
   templateUrl: 'agency.page.html',
@@ -28,7 +29,8 @@ import {NgIf} from "@angular/common";
     LucideAngularModule,
     RouterOutlet,
     NgIf,
-    Scaffold
+    Scaffold,
+    ScaffoldToolbar
   ],
   standalone: true
 })

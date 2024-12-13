@@ -1,52 +1,55 @@
 <th-scaffold *ngIf="agency">
-  <mat-sidenav-container style="height: 100%">
-    <mat-sidenav class="sidenav-content" mode="side" [opened]="true">
-      <div  class="sidenav-content">
-        <div class="d-flex align-items-center py-3" style="padding-left: 16px">
-          <lucide-icon [img]="icons.BuildingIcon" [size]="32"></lucide-icon>
-          <div class="ms-3">
-            <div class="fontSize-16 fontWeight-semiBold" *ngIf="agency">{{agency.name}}</div>
-            <div class="fontSize-12" style="opacity: .6;">Agence</div>
+  <scaffold-toolbar style="box-sizing: border-box; border-bottom: 1px solid red;"></scaffold-toolbar>
+  @if(agency) {
+    <mat-sidenav-container style="height: 100%">
+      <mat-sidenav class="sidenav-content" mode="side" [opened]="true">
+        <div  class="sidenav-content">
+          <div class="d-flex align-items-center py-3" style="padding-left: 16px">
+            <lucide-icon [img]="icons.BuildingIcon" [size]="32"></lucide-icon>
+            <div class="ms-3">
+              <div class="fontSize-16 fontWeight-semiBold" *ngIf="agency">{{agency.name}}</div>
+              <div class="fontSize-12" style="opacity: .6;">Agence</div>
+            </div>
           </div>
+
+          <th-nav>
+
+            <div class="divider m-2"></div>
+            <a routerLink="employees" th-nav-item>
+              <lucide-icon [img]="icons.UsersIcon" th-nav-item-icon  strokeWidth="1.75"></lucide-icon>
+              Employées
+            </a>
+            <a routerLink="plane-tickets" th-nav-item>
+              <lucide-icon [img]="icons.TicketsPlaneIcon" th-nav-item-icon  strokeWidth="1.75"></lucide-icon>
+              Billets d'avion
+            </a>
+
+            <a href="#" th-nav-item routerLink="procedure-applies">
+              <lucide-icon [img]="icons.WalletCardsIcon" th-nav-item-icon  strokeWidth="1.75"></lucide-icon>
+              Procédures en cours
+            </a>
+
+            <a routerLink="payments" th-nav-item>
+              <lucide-icon [img]="icons.DollarSignIcon" th-nav-item-icon  strokeWidth="1.5"></lucide-icon>
+              Paiements</a>
+
+            <a routerLink="events" th-nav-item>
+              <lucide-icon [img]="icons.HistoryIcon" th-nav-item-icon  strokeWidth="1.5"></lucide-icon>
+              Historique</a>
+
+            <a routerLink="settings" th-nav-item>
+              <lucide-icon [img]="icons.SettingsIcon" th-nav-item-icon  strokeWidth="1.5"></lucide-icon>
+              Paramètres</a>
+          </th-nav>
+        </div>
+      </mat-sidenav>
+      <mat-sidenav-content>
+        <div style="background: var(--my-backgroundColor); color: var(--my-OnBackgroundColor); height: 100%;
+      overflow: auto">
+          <router-outlet></router-outlet>
         </div>
 
-        <th-nav>
-
-          <div class="divider m-2"></div>
-          <a routerLink="employees" th-nav-item>
-            <lucide-icon [img]="icons.UsersIcon" th-nav-item-icon  strokeWidth="1.75"></lucide-icon>
-            Employées
-          </a>
-          <a routerLink="plane-tickets" th-nav-item>
-            <lucide-icon [img]="icons.TicketsPlaneIcon" th-nav-item-icon  strokeWidth="1.75"></lucide-icon>
-            Billets d'avion
-          </a>
-
-          <a href="#" th-nav-item routerLink="procedure-applies">
-            <lucide-icon [img]="icons.WalletCardsIcon" th-nav-item-icon  strokeWidth="1.75"></lucide-icon>
-            Procédures en cours
-          </a>
-
-          <a routerLink="payments" th-nav-item>
-            <lucide-icon [img]="icons.DollarSignIcon" th-nav-item-icon  strokeWidth="1.5"></lucide-icon>
-            Paiements</a>
-
-          <a routerLink="events" th-nav-item>
-            <lucide-icon [img]="icons.HistoryIcon" th-nav-item-icon  strokeWidth="1.5"></lucide-icon>
-            Historique</a>
-
-          <a routerLink="settings" th-nav-item>
-            <lucide-icon [img]="icons.SettingsIcon" th-nav-item-icon  strokeWidth="1.5"></lucide-icon>
-            Paramètres</a>
-        </th-nav>
-      </div>
-    </mat-sidenav>
-    <mat-sidenav-content>
-      <div style="background: var(--my-backgroundColor); color: var(--my-OnBackgroundColor); height: 100%;
-      overflow: auto">
-        <router-outlet></router-outlet>
-      </div>
-
-    </mat-sidenav-content>
-  </mat-sidenav-container>
+      </mat-sidenav-content>
+    </mat-sidenav-container>
+  }
 </th-scaffold>

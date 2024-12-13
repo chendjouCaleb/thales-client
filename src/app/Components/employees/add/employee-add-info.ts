@@ -6,14 +6,28 @@ import {NavHost} from "@app/navigation";
 import {SnackbarLoader} from "@app/Components/snackbar-loader";
 import {EmployeeHttpClient} from "@app/services/employee-http-client.service";
 import {EmployeeAddModel} from "@app/models";
+import {MatButton, MatIconButton} from "@angular/material/button";
+import {MatIcon} from "@angular/material/icon";
+import {MatCheckbox} from "@angular/material/checkbox";
+import {ReactiveFormsModule} from "@angular/forms";
 
 @Component({
   selector: 'employee-add-info',
+  standalone: true,
+  imports: [
+    MatIconButton,
+    MatIcon,
+    MatCheckbox,
+    ReactiveFormsModule,
+    MatButton
+  ],
   template: `
 
     <div class="d-flex align-items-center">
-      <button mat-icon-button (click)="back()"><mat-icon>arrow_back</mat-icon></button>
-      <div class="fw-semibold ms-2">{{parent.user.fullName}}</div>
+      <button mat-icon-button (click)="back()">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+      <div class="fw-semibold ms-2">{{ parent.user.fullName }}</div>
     </div>
 
 
@@ -25,7 +39,8 @@ import {EmployeeAddModel} from "@app/models";
 
     <div class="mt-3 align-end">
       <button mat-flat-button color="primary" [disabled]="isLoading"
-              (click)="next()">Ajouter</button>
+              (click)="next()">Ajouter
+      </button>
     </div>
   `
 })

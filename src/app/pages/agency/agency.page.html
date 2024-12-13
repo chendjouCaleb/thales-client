@@ -1,31 +1,45 @@
 <th-scaffold *ngIf="agency">
   <mat-sidenav-container style="height: 100%">
-    <mat-sidenav mode="side" [opened]="true">
-      <th-nav>
-        <div class="px-3 pb-2">{{agency.name}}</div>
-        <div class="divider"></div>
-        <a routerLink="employees" th-nav-item>
-          <mat-icon th-nav-item-icon>person</mat-icon>Employées
-        </a>
-        <a routerLink="plane-tickets" th-nav-item>
-          <mat-icon th-nav-item-icon>airplane_ticket</mat-icon>Billets d'avion
-        </a>
+    <mat-sidenav class="sidenav-content" mode="side" [opened]="true">
+      <div  class="sidenav-content">
+        <div class="d-flex align-items-center py-3" style="padding-left: 16px">
+          <lucide-icon [img]="icons.BuildingIcon" [size]="32"></lucide-icon>
+          <div class="ms-3">
+            <div class="fontSize-16 fontWeight-semiBold" *ngIf="agency">{{agency.name}}</div>
+            <div class="fontSize-12" style="opacity: .6;">Agence</div>
+          </div>
+        </div>
 
-        <a href="#" th-nav-item routerLink="procedure-applies">
-          <mat-icon th-nav-item-icon>route</mat-icon>Procédures en cours
-        </a>
+        <th-nav>
 
-        <a routerLink="payments" th-nav-item>
-          <mat-icon th-nav-item-icon>payments</mat-icon>
-          Paiements</a>
+          <div class="divider m-2"></div>
+          <a routerLink="employees" th-nav-item>
+            <lucide-icon [img]="icons.UsersIcon" th-nav-item-icon  strokeWidth="1.75"></lucide-icon>
+            Employées
+          </a>
+          <a routerLink="plane-tickets" th-nav-item>
+            <lucide-icon [img]="icons.TicketsPlaneIcon" th-nav-item-icon  strokeWidth="1.75"></lucide-icon>
+            Billets d'avion
+          </a>
 
-        <a routerLink="events" th-nav-item>
-          <mat-icon th-nav-item-icon>history</mat-icon>
-          Historique</a>
+          <a href="#" th-nav-item routerLink="procedure-applies">
+            <lucide-icon [img]="icons.WalletCardsIcon" th-nav-item-icon  strokeWidth="1.75"></lucide-icon>
+            Procédures en cours
+          </a>
 
-        <a routerLink="settings" th-nav-item>
-          <mat-icon th-nav-item-icon>settings</mat-icon> Paramètres</a>
-      </th-nav>
+          <a routerLink="payments" th-nav-item>
+            <lucide-icon [img]="icons.DollarSignIcon" th-nav-item-icon  strokeWidth="1.5"></lucide-icon>
+            Paiements</a>
+
+          <a routerLink="events" th-nav-item>
+            <lucide-icon [img]="icons.HistoryIcon" th-nav-item-icon  strokeWidth="1.5"></lucide-icon>
+            Historique</a>
+
+          <a routerLink="settings" th-nav-item>
+            <lucide-icon [img]="icons.SettingsIcon" th-nav-item-icon  strokeWidth="1.5"></lucide-icon>
+            Paramètres</a>
+        </th-nav>
+      </div>
     </mat-sidenav>
     <mat-sidenav-content>
       <div style="background: var(--my-backgroundColor); color: var(--my-OnBackgroundColor); height: 100%;

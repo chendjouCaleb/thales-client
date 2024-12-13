@@ -2,9 +2,8 @@ import {Component, OnInit, ViewChild} from "@angular/core";
 import {PlaneTicketService} from "@app/services";
 import {Agency, PlaneTicket} from "../../../../../entities";
 import {PlaneTicketList} from "@app/Components/plane-tickets/list/plane-ticket-list";
-import {BreadcrumbModule, PlaneTicketUIService} from "@app/Components";
+import {BreadcrumbItem, BreadcrumbModule, PlaneTicketUIService} from "@app/Components";
 import {AgencyPage} from "@app/pages/agency/agency.page";
-import {BreadcrumbItem} from "@app/Components";
 import {Router, RouterLink} from "@angular/router";
 import {MatIcon} from "@angular/material/icon";
 import {Button} from "@app/ui";
@@ -39,9 +38,7 @@ export class AgencyPlaneTicketListPage implements OnInit {
   }
 
   ngOnInit() {
-    this.breadcrumbItems = [...this._parent.breadcrumbItems,
-      new BreadcrumbItem('Paiements')
-    ];
+
   }
 
   addPlaneTicket() {

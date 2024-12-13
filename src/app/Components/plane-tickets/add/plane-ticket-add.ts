@@ -20,7 +20,7 @@ import {Button} from "@app/ui";
 import {ChevronDown, LucideAngularModule} from "lucide-angular";
 
 @Component({
-  templateUrl: 'plane-ticket-add.page.html',
+  templateUrl: 'plane-ticket-add.html',
   selector: 'PlaneTicketAdd',
   standalone: true,
   imports: [
@@ -37,7 +37,7 @@ import {ChevronDown, LucideAngularModule} from "lucide-angular";
     LucideAngularModule
   ]
 })
-export class PlaneTicketAddPage implements OnInit {
+export class PlaneTicketAdd implements OnInit {
   icons = { ChevronDown }
   model = new ProcedureFormModel();
   remember: PlaneTicketAddRemember;

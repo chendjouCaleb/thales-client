@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
-import {SessionStore} from "../../../../utils";
-import {ProcedureStepFormModel} from "../../../../models";
+import {SessionStore} from "../../../utils";
+import {ProcedureStepFormModel} from "../../../models";
 
 
 export class PlaneTicketAddRemember {

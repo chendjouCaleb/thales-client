@@ -3,20 +3,20 @@ import {MatSidenav, MatSidenavContainer, MatSidenavContent} from "@angular/mater
 import {AuthenticationService, Session} from "@app/identity";
 import {Agency} from "@entities/agency";
 import {AgencyHttpClient} from "@app/services/agency.http-client";
-import {MessageHttpClient} from "@app/services/message.service";
-import {MessageCountModel} from "@app/models/message-count.model";
 import {Space} from "@entities/space";
 import {SpaceHttpClient} from "@app/services";
 import {Task} from "@app/utils";
 import {ActivatedRoute, RouterLink, RouterOutlet} from "@angular/router";
 import {
-  LucideAngularModule,
   BuildingIcon,
-  UserIcon,
-  UsersIcon,
+  DollarSignIcon,
+  FileTextIcon,
   HistoryIcon,
+  LucideAngularModule,
   SettingsIcon,
-  DollarSignIcon, TicketsPlaneIcon, WalletCardsIcon, FileTextIcon
+  TicketsPlaneIcon,
+  UsersIcon,
+  WalletCardsIcon
 } from "lucide-angular";
 import {NavModule, ScaffoldModule} from "@app/Components";
 import {NgForOf, NgIf} from "@angular/common";
@@ -33,8 +33,7 @@ import {MatIcon} from "@angular/material/icon";
 export class AdminPage implements AfterViewInit, OnInit {
   icons = {BuildingIcon, UsersIcon, HistoryIcon, SettingsIcon,
   TicketsPlaneIcon, DollarSignIcon, WalletCardsIcon, FileTextIcon }
-  messageCount: MessageCountModel;
-  // @ts-ignore
+
   @ViewChild(MatSidenav)
   sideNav: MatSidenav | undefined;
 
@@ -51,8 +50,7 @@ export class AdminPage implements AfterViewInit, OnInit {
   constructor(private authService: AuthenticationService,
               private agencyService: AgencyHttpClient,
               private spaceService: SpaceHttpClient,
-              private route: ActivatedRoute,
-              private messageHttpClient: MessageHttpClient) {
+              private route: ActivatedRoute) {
     this.authService.stateChange.subscribe(isAuth => {
       if (isAuth) {
         this.session = this.authService.session;

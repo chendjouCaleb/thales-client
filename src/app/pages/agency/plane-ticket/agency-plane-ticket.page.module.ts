@@ -9,7 +9,7 @@ import {MatDialogModule} from "@angular/material/dialog";
 import {MatInputModule} from "@angular/material/input";
 import {MatMenuModule} from "@angular/material/menu";
 import {BreadcrumbModule, PlaneTicketModule} from "@app/Components";
-import {PlaneTicketAddPage} from "./add/plane-ticket-add.page";
+import {PlaneTicketAdd} from "@app/Components/plane-tickets/add/plane-ticket-add";
 import {MatRadioModule} from "@angular/material/radio";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {CustomerPickerModule} from "@app/Components";
@@ -23,7 +23,7 @@ import {MatProgressSpinner} from "@angular/material/progress-spinner";
 import {AgencyPlaneTicketPage} from "@app/pages/agency/plane-ticket/agency-plane-ticket.page";
 
 const routes: Routes = [
-  {path: 'add', component: PlaneTicketAddPage },
+  {path: 'add', component: PlaneTicketAdd },
   {path: ':planeTicketId', component: AgencyPlaneTicketPage },
   {path: ':planeTicketId/edit', component: PlaneTicketEditPage },
   {path: '', component: AgencyPlaneTicketListPage }

@@ -1,16 +1,41 @@
 import {AfterViewInit, Component, OnInit, ViewChild} from "@angular/core";
-import {MatSidenav} from "@angular/material/sidenav";
+import {MatSidenav, MatSidenavContainer, MatSidenavContent} from "@angular/material/sidenav";
 import {AuthenticationService, Session} from "@app/identity";
 import {Agency} from "@entities/agency";
 import {AgencyHttpClient} from "@app/services/agency.http-client";
-import {ActivatedRoute} from "@angular/router";
-import {BreadcrumbItem} from "@app/Components";
+import {ActivatedRoute, RouterLink, RouterOutlet} from "@angular/router";
+import {BreadcrumbItem, NavModule, ScaffoldModule} from "@app/Components";
+import {
+  BuildingIcon,
+  DollarSignIcon, FileTextIcon,
+  HistoryIcon, LucideAngularModule,
+  SettingsIcon,
+  TicketsPlaneIcon,
+  UsersIcon,
+  WalletCardsIcon
+} from "lucide-angular";
+import {NgIf} from "@angular/common";
 
 @Component({
-  templateUrl: 'agency.page.html'
+  templateUrl: 'agency.page.html',
+  selector: 'AgencyPage',
+  imports: [
+    ScaffoldModule,
+    MatSidenavContainer,
+    MatSidenavContent,
+    MatSidenav,
+    NavModule,
+    RouterLink,
+    LucideAngularModule,
+    RouterOutlet,
+    NgIf
+  ],
+  standalone: true
 })
 export class AgencyPage implements AfterViewInit, OnInit {
-  // @ts-ignore
+  icons = {BuildingIcon, UsersIcon, HistoryIcon, SettingsIcon,
+    TicketsPlaneIcon, DollarSignIcon, WalletCardsIcon, FileTextIcon }
+
   @ViewChild(MatSidenav)
   sideNav: MatSidenav | undefined;
 

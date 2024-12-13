@@ -13,7 +13,7 @@
   </div>
 
   <div class="p-4 align-end">
-    <button MyButton mat-dialog-close="" class="me-4">Annuler</button>
+    <button MyButton (click)="_dialogRef.close()" class="me-4">Annuler</button>
     <button MyButton class="primary" (click)="addPayment()">Ajouter</button>
   </div>
 

@@ -1,2 +1,2 @@
-export * from './scaffold.module'
+export * from './toolbar/scaffold-toolbar'
 export * from './scaffold'

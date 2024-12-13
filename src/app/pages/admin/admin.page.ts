@@ -18,7 +18,7 @@ import {
   UsersIcon,
   WalletCardsIcon
 } from "lucide-angular";
-import {NavModule, ScaffoldModule} from "@app/Components";
+import {NavModule, Scaffold } from "@app/Components";
 import {NgForOf, NgIf} from "@angular/common";
 import {MatIcon} from "@angular/material/icon";
 
@@ -26,9 +26,9 @@ import {MatIcon} from "@angular/material/icon";
   templateUrl: 'admin.page.html',
   selector: 'AdminPage',
   standalone: true,
-  imports: [LucideAngularModule, ScaffoldModule, MatSidenavContainer, MatSidenav, NgIf,
+  imports: [LucideAngularModule, MatSidenavContainer, MatSidenav, NgIf,
     MatSidenavContent,
-    NavModule, MatIcon, RouterLink, RouterOutlet, NgForOf]
+    NavModule, MatIcon, RouterLink, RouterOutlet, NgForOf, Scaffold]
 })
 export class AdminPage implements AfterViewInit, OnInit {
   icons = {BuildingIcon, UsersIcon, HistoryIcon, SettingsIcon,

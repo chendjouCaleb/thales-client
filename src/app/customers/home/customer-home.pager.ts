@@ -21,7 +21,7 @@ import {Task} from "@app/utils";
 import {CustomerService} from "@app/services";
 import {HorizontalPager, PageContentDef, TabRow, TabRowItem} from "@app/NeoUI";
 import {CustomerDetails} from "@app/customers/details/customer-details";
-import {PaymentModule, PlaneTicketModule, ProcedureApplyModule} from "@app/Components";
+import {PaymentModule, ProcedureApplyModule} from "@app/Components";
 import {TraceModule} from "@app/trace";
 import {PaymentsList} from "@app/Components/payments/list/payments-list";
 import {PlaneTicketList} from "@app/Components/plane-tickets/list/plane-ticket-list";
@@ -47,7 +47,6 @@ import {ProcedureApplyList} from "@app/Components/procedure-apply/list/procedure
     PageContentDef,
     CustomerDetails,
     ProcedureApplyModule,
-    PlaneTicketModule,
     TraceModule,
     PaymentModule,
     PaymentsList,

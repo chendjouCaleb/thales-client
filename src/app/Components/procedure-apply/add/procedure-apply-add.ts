@@ -6,10 +6,10 @@ import {ProcedureApplyService} from "@app/services";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {MatIconButton} from "@angular/material/button";
 import {MatIcon} from "@angular/material/icon";
-import {NavigationModule} from "@app/navigation";
 import {ProcedureApplyAddProcedure} from "@app/Components/procedure-apply/add/procedure-apply-add-procedure";
 import {ProcedureApplyAddCustomer} from "@app/Components/procedure-apply/add/procedure-apply-add-customer";
 import {ProcedureApplyAddConfirm} from "@app/Components/procedure-apply/add/procedure-apply-add-confirm";
+import {NavHost, NavRouteDef} from "@app/navigation";
 
 @Component({
   templateUrl: 'procedure-apply-add.html',
@@ -18,10 +18,11 @@ import {ProcedureApplyAddConfirm} from "@app/Components/procedure-apply/add/proc
     MatIconButton,
     MatDialogClose,
     MatIcon,
-    NavigationModule,
     ProcedureApplyAddProcedure,
     ProcedureApplyAddCustomer,
-    ProcedureApplyAddConfirm
+    ProcedureApplyAddConfirm,
+    NavHost,
+    NavRouteDef
   ],
   standalone: true
 })

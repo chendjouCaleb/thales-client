@@ -1,14 +1,12 @@
 import {Component, Input, OnInit, ViewChild} from "@angular/core";
 import {PlaneTicketService} from "@app/services";
-import {ActivatedRoute, Router, RouterLink} from "@angular/router";
+import {RouterLink} from "@angular/router";
 import {PlaneTicket} from "@entities/index";
-import {BreadcrumbItem, PlaneTicketUIService} from "@app/Components";
-import {CurrencyPipe, Location, NgIf} from "@angular/common";
+import {PlaneTicketUIService} from "@app/Components";
+import {CurrencyPipe, NgIf} from "@angular/common";
 import {MatDialog} from "@angular/material/dialog";
 import {PaymentsList} from "@app/Components/payments/list/payments-list";
 import {Money} from "@entities/money";
-import {AgencyPage} from "@app/pages/agency/agency.page";
-import {Task} from "@app/utils";
 import {PlaneTicketPaymentAdd} from "@app/Components/plane-tickets/add-payment/plane-ticket-payment-add";
 import {MatIcon} from "@angular/material/icon";
 import {MatAnchor, MatButton} from "@angular/material/button";

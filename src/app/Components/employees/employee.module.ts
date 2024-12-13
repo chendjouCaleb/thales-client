@@ -16,15 +16,14 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
 import {MatMenuModule} from "@angular/material/menu";
 import {MatRippleModule} from "@angular/material/core";
-import {NavigationModule} from "@app/navigation";
 import {EmployeeSetAdmin} from "./set-admin/employee-set-admin";
-import {EmployeeUnsetAdmin} from "./unset-admin/employee-unset-admin";
 import {EmployeeDelete} from "./delete/employee-delete";
+import {NavHost, NavRouteDef} from "@app/navigation";
 
 @NgModule({
   imports: [CommonModule, MatCheckboxModule, MatFormFieldModule, MatInputModule, MatDialogModule, MatCheckboxModule,
-    MatProgressSpinnerModule, MatStepperModule, ReactiveFormsModule, MatButtonModule, FormsModule, NavigationModule,
-    MatIconModule, MatMenuModule, MatRippleModule, NavigationModule],
+    MatProgressSpinnerModule, MatStepperModule, ReactiveFormsModule, MatButtonModule, FormsModule,
+    MatIconModule, MatMenuModule, MatRippleModule, NavHost, NavRouteDef],
   declarations: [ EmployeeList, EmployeeAdd, EmployeeAddUser, EmployeeAddInfo, EmployeeSetAdmin, EmployeeDelete ],
   exports: [ EmployeeList ],
   providers: [ EmployeeUIService ]

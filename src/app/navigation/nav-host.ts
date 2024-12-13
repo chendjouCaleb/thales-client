@@ -2,18 +2,23 @@ import {
   AfterViewInit,
   Component,
   ContentChildren,
-  EventEmitter, forwardRef, Inject,
-  Input, Optional,
+  EventEmitter,
+  forwardRef,
+  Inject,
+  Input,
+  Optional,
   Output,
-  QueryList, SkipSelf,
+  QueryList,
+  SkipSelf,
   ViewChild,
-  ViewChildren, ViewContainerRef
+  ViewContainerRef
 } from "@angular/core";
-import {NavRouteDef, NavRouteContext} from "./route";
+import {NavRouteContext, NavRouteDef} from "./route";
 import {NavHistory} from "./nav-history";
 
 @Component({
   selector: 'nav-host',
+  standalone: true,
   template: `
     <ng-container #container></ng-container>
   `

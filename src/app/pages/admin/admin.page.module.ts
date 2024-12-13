@@ -1,4 +1,4 @@
-import {Component, NgModule} from "@angular/core";
+import {NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {RouterModule, Routes} from "@angular/router";
 import {AdminPage} from "./admin.page";
@@ -7,7 +7,6 @@ import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatIconModule} from "@angular/material/icon";
 import {MatSidenavModule} from "@angular/material/sidenav";
 import {NavModule} from "@app/Components";
-import {ScaffoldModule} from "@app/Components";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MatTooltipModule} from "@angular/material/tooltip";
@@ -15,7 +14,6 @@ import {EventsPage} from "./events/events-page";
 import {TraceModule} from "@app/trace";
 import {PlaneTicketListPage} from "@app/pages/admin/plane-ticket/list/plane-ticket-list.page";
 import {SpacePlaneTicketPage} from "@app/pages/admin/plane-ticket/space-plane-ticket.page";
-import {ProcedureApply} from "@entities/procedure-apply";
 import {SpaceProcedureApply} from "@app/pages/admin/procedure-applies/space-procedure-apply";
 import {SpaceProcedureAppliesListPage} from "@app/pages/admin/procedure-applies/space-procedure-applies-list-page";
 
@@ -41,7 +39,7 @@ const routes: Routes = [
 @NgModule({
   imports: [
     CommonModule, MatButtonModule, MatToolbarModule, RouterModule.forChild(routes), MatIconModule,
-    MatSidenavModule, NavModule, ScaffoldModule, MatFormFieldModule, MatInputModule, MatTooltipModule, TraceModule,
+    MatSidenavModule, NavModule, MatFormFieldModule, MatInputModule, MatTooltipModule, TraceModule,
   ],
   declarations: [ EventsPage ]
 })

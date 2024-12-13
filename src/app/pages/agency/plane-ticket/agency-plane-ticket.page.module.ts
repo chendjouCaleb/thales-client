@@ -8,7 +8,7 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatInputModule} from "@angular/material/input";
 import {MatMenuModule} from "@angular/material/menu";
-import {BreadcrumbModule, PlaneTicketModule} from "@app/Components";
+import {BreadcrumbModule } from "@app/Components";
 import {PlaneTicketAdd} from "@app/Components/plane-tickets/add/plane-ticket-add";
 import {MatRadioModule} from "@angular/material/radio";
 import {MatCheckboxModule} from "@angular/material/checkbox";
@@ -31,7 +31,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [CommonModule, RouterModule.forChild(routes), MatButtonModule, MatIconModule, ReactiveFormsModule,
-    MatFormFieldModule, MatDialogModule, MatInputModule, MatMenuModule, MatRadioModule, PlaneTicketModule, MatCheckboxModule,
+    MatFormFieldModule, MatDialogModule, MatInputModule, MatMenuModule, MatRadioModule, MatCheckboxModule,
     CustomerPickerModule, PaymentModule, CleaveModule, BreadcrumbModule, PaymentsList, PlaneTicketList, MatProgressSpinner],
   declarations: [
   PlaneTicketEditPage ]

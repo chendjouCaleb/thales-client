@@ -3,7 +3,6 @@ import {RouterModule, Routes} from "@angular/router";
 import {ProfileHomePage} from "./home/profile-home.page";
 import {CommonModule} from "@angular/common";
 import {MatButtonModule} from "@angular/material/button";
-import {ScaffoldModule} from "@app/Components";
 import {ProfileChangeName} from "./user-change-name/profile-change-name";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
@@ -15,8 +14,9 @@ const routes: Routes = [
 ]
 
 @NgModule({
-  imports: [CommonModule, RouterModule.forChild(routes), MatButtonModule, ScaffoldModule, MatFormFieldModule, MatInputModule, ReactiveFormsModule, MatDialogModule],
-  declarations: [ ProfileHomePage, ProfileChangeName ]
+  imports: [CommonModule, RouterModule.forChild(routes), MatButtonModule,
+    MatFormFieldModule, MatInputModule, ReactiveFormsModule, MatDialogModule ],
+  declarations: [ ProfileChangeName ]
 })
 export class ProfilePageModule {
 

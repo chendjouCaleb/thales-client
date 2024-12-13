@@ -16,7 +16,6 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatTableModule} from "@angular/material/table";
 import {MatTabsModule} from "@angular/material/tabs";
 import {PaymentModule} from "../../../Components/payments";
-import {PlaneTicketModule} from "../../../Components/plane-tickets";
 import {ProcedureApplyModule} from "@app/Components";
 import {CleaveModule} from "@app/cleave";
 import {TraceModule} from "@app/trace";
@@ -36,7 +35,6 @@ const routes: Routes = [
     imports: [CommonModule, RouterModule.forChild(routes), FormsModule, MatButtonModule, MatIconModule,
         MatInputModule, MatFormFieldModule, MatDialogModule, MatCheckboxModule, MatRadioModule, MatSelectModule,
         MatStepperModule, ReactiveFormsModule, MatDatepickerModule, MatTableModule, MatTabsModule, PaymentModule,
-      PlaneTicketModule,
         ProcedureApplyModule, CleaveModule, TraceModule,  CustomerList],
 
   declarations: [

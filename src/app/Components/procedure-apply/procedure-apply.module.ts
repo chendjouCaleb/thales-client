@@ -7,7 +7,6 @@ import {MatButtonModule} from "@angular/material/button";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {RouterModule} from "@angular/router";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
-import {NavigationModule} from "@app/navigation";
 import {ProcedureApplyController} from "./procedure-apply.controller";
 import {MatIconModule} from "@angular/material/icon";
 import {MatDialogModule} from "@angular/material/dialog";
@@ -17,7 +16,8 @@ import {CleaveModule} from "@app/cleave";
 import {ProcedureApplyStepPaymentAdd} from "./add-payment/procedure-apply-step-payment-add";
 
 @NgModule({
-  imports: [CommonModule, DialogModule, MatSelectModule, MatListModule, MatButtonModule, FormsModule, RouterModule, MatProgressSpinnerModule, NavigationModule, MatIconModule, MatDialogModule, MatInputModule, ReactiveFormsModule, CleaveModule],
+  imports: [CommonModule, DialogModule, MatSelectModule, MatListModule, MatButtonModule,
+    FormsModule, RouterModule, MatProgressSpinnerModule, MatIconModule, MatDialogModule, MatInputModule, ReactiveFormsModule, CleaveModule],
   declarations: [
   ProcedureApplyStepValidate, ProcedureApplyStepPaymentAdd ],
   providers: [ ProcedureApplyController ]

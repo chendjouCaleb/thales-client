@@ -1,4 +1,4 @@
-import {Directive, EmbeddedViewRef, EventEmitter, Input, Output, TemplateRef} from "@angular/core";
+import {Directive, EmbeddedViewRef, Input, TemplateRef} from "@angular/core";
 
 export class NavRouteContext {
   constructor(public readonly isActive: boolean) {
@@ -6,7 +6,8 @@ export class NavRouteContext {
 }
 
 @Directive({
-  selector: '[nav-route]'
+  selector: '[nav-route]',
+  standalone: true
 })
 export class NavRouteDef {
   _viewRef: EmbeddedViewRef<NavRouteContext>;

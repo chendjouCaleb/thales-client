@@ -4,7 +4,7 @@ import {AuthenticationService, Session} from "@app/identity";
 import {Agency} from "@entities/agency";
 import {AgencyHttpClient} from "@app/services/agency.http-client";
 import {ActivatedRoute, RouterLink, RouterOutlet} from "@angular/router";
-import {BreadcrumbItem, NavModule, ScaffoldModule} from "@app/Components";
+import {BreadcrumbItem, NavModule, Scaffold } from "@app/Components";
 import {
   BuildingIcon,
   DollarSignIcon, FileTextIcon,
@@ -20,7 +20,6 @@ import {NgIf} from "@angular/common";
   templateUrl: 'agency.page.html',
   selector: 'AgencyPage',
   imports: [
-    ScaffoldModule,
     MatSidenavContainer,
     MatSidenavContent,
     MatSidenav,
@@ -28,7 +27,8 @@ import {NgIf} from "@angular/common";
     RouterLink,
     LucideAngularModule,
     RouterOutlet,
-    NgIf
+    NgIf,
+    Scaffold
   ],
   standalone: true
 })

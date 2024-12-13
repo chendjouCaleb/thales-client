@@ -34,8 +34,7 @@ export class PlaneTicketHome implements OnInit {
   @Input()
   planeTicket: PlaneTicket;
 
-  @ViewChild(PaymentsList)
-  paymentList: PaymentsList;
+
 
   constructor(private _service: PlaneTicketService,
               private _dialog: MatDialog,
@@ -44,30 +43,6 @@ export class PlaneTicketHome implements OnInit {
 
   async ngOnInit() {
 
-  }
-
-  delete() {
-    this._uiService.deletePlaneTicket(this.planeTicket).subscribe(deleted => {
-      // if (deleted) {
-      //   this._location.back();
-      // }
-    })
-  }
-
-  addPayment() {
-    const dialogRef = this._dialog.open(PlaneTicketPaymentAdd,
-      {panelClass: 'panel-class', data: {planeTicket: this.planeTicket}});
-    dialogRef.afterClosed().subscribe(value => {
-      if (value) {
-        this.paymentList.unshift(value);
-      }
-    })
-  }
-
-  get total(): Money | null {
-    if(!this.paymentList?.payments)
-      return null;
-    return new Money(0, 'XAF').add(...this.paymentList.payments.map(p => p.amount));
   }
 
 }

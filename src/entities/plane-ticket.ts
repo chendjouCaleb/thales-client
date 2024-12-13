@@ -34,6 +34,7 @@ export class PlaneTicket extends BaseEntity<number> {
 
   payments: Payment[] = [];
   paymentAmount: number;
+  totalPayment: Money
 
   price: Money;
 
@@ -46,6 +47,7 @@ export class PlaneTicket extends BaseEntity<number> {
       this.travelClass = value.travelClass;
 
       this.price = Money.parse(value.price);
+      this.totalPayment = Money.parse(value.totalPayment);
 
       this.departureCountry = value.departureCountry;
       this.departureCity = value.departureCity;

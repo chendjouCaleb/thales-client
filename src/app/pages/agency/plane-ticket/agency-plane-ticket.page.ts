@@ -6,7 +6,7 @@ import {AgencyPage} from "@app/pages/agency/agency.page";
 @Component({
   selector: 'AgencyPlaneTicketPage',
   template: `
-    <div PlaneTicketDetails [planeTicketId]="planeTicketId"></div>`,
+    <div PlaneTicketDetails [planeTicketId]="planeTicketId" class="p-4"></div>`,
   imports: [
     PlaneTicketDetails
   ],

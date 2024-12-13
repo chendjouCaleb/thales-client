@@ -6,7 +6,7 @@ import {ActivatedRoute} from "@angular/router";
 @Component({
   selector: 'SpacePlaneTicketPage',
   template: `
-    <div PlaneTicketDetails [planeTicketId]="planeTicketId"></div>`,
+    <div PlaneTicketDetails [planeTicketId]="planeTicketId" class="p-4"></div>`,
   imports: [
     PlaneTicketDetails
   ],

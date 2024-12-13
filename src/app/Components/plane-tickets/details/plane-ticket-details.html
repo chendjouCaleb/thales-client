@@ -3,5 +3,36 @@
 </div>
 
 @if(getPlaneTicketTask.success) {
+  <div class="fontSize-24">Billet d'avion</div>
+
+  <div class="my-2">
+    <button MyButton >
+      <lucide-angular [img]="icons.PencilIcon" ></lucide-angular>
+      Modifier
+    </button>
+
+    <button (click)="delete()" MyButton class="ml-3">
+      <lucide-angular [img]="icons.Trash2Icon"  ></lucide-angular>
+      Supprimer
+    </button>
+
+    <div class="vertical-divider mx-3"></div>
+
+    <button (click)="addPayment()" MyButton class="primary">
+      <lucide-angular [img]="icons.DollarSignIcon"  ></lucide-angular>
+      Ajouter un paiement
+    </button>
+
+  </div>
+
   <PlaneTicketHome [planeTicket]="planeTicket"></PlaneTicketHome>
+
+  <div class="divider my-3"></div>
+
+  <div class="fontSize-18 fontWeight-semiBold mb-3">Paiements effectués</div>
+  <PaymentList [params]="{planeTicketId: planeTicket.id}"
+               [displayedColumns]="[ 'code',  'amount',  'agency', 'employee', 'createdAt', 'action']"
+  >
+
+  </PaymentList>
 }

@@ -1,98 +1,102 @@
-
-
-<div class="px-4 br-8 " >
-
-
-  <div class="divider"></div>
-  <div class="my-2">
-    <button MyButton >
-      <lucide-angular [img]="icons.PencilIcon" ></lucide-angular>
-      Modifier
-    </button>
-
-    <button (click)="delete()" MyButton class="ml-3">
-      <lucide-angular [img]="icons.Trash2Icon"  ></lucide-angular>
-      Supprimer
-    </button>
-
-    <div class="vertical-divider mx-3"></div>
-
-    <button (click)="addPayment()" MyButton class="primary">
-      <lucide-angular [img]="icons.DollarSignIcon"  ></lucide-angular>
-      Ajouter un paiement
-    </button>
+<div>
+  <div class="mt-3">
 
   </div>
-  <div class="divider"></div>
 
-  <div class="mt-3">
-    <div>
-      <div class="label">Agence</div>
-      <div><a [routerLink]="['/agencies', planeTicket.agencyId]">{{planeTicket.agency?.name}}</a></div>
+  <div class="divider my-3"></div>
+
+
+  <div>
+
+    <dt>Client</dt>
+    <dd>
+      <a routerLink="/spaces/{{planeTicket.space.identifier}}/customers/{{planeTicket.customer.id}}">
+        {{ planeTicket.customer?.fullName }}</a>
+    </dd>
+  </div>
+
+
+  <div class="mt-4">
+    <div style="display: grid; grid-template-columns: 1fr 1fr; column-gap: 24px">
+      <div>
+        <div>Aller et retour</div>
+        <div class="opacity-8">{{ planeTicket.backAndForth ? 'Oui' : 'Non' }}</div>
+      </div>
+
+      <div>
+        <div>Classe</div>
+        <div class="opacity-8">
+          <span *ngIf="planeTicket.travelClass == 'economic'">Classe économique</span>
+          <span *ngIf="planeTicket.travelClass == 'business'">Classe affaire</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-4"  style="display: grid; grid-template-columns: 1fr 1fr; column-gap: 24px">
+      <div>
+        <div>Pays & ville de départ</div>
+        <div class="opacity-8">{{ planeTicket.departureCountry }}, {{ planeTicket.departureCity }}</div>
+      </div>
+
+      <div>
+        <div>Pays & ville de d'arrivée</div>
+        <div class="opacity-8">{{ planeTicket.arrivalCountry }}, {{ planeTicket.arrivalCity }}</div>
+      </div>
+    </div>
+
+
+    <div class="mt-4" style="display: grid; grid-template-columns: 1fr 1fr; column-gap: 24px">
+      <div>
+        <dt>Date de départ</dt>
+        <dd class="opacity-8">{{ planeTicket.departureDate.toFormat('DDD') }}</dd>
+      </div>
+
+      <div>
+        <dt>Date de retour</dt>
+        <dd class="opacity-8">{{ planeTicket.returnDate.toFormat('DDD') }}</dd>
+      </div>
+    </div>
+
+    <div class="mt-4"  style="display: grid; grid-template-columns: 1fr 1fr; column-gap: 24px">
+      <div>
+        <dt>Prix</dt>
+        <dd class="opacity-8">{{ planeTicket.price.format() }}</dd>
+      </div>
+
+      <div>
+        <dt>Montant versé</dt>
+        <dd class="opacity-8">{{ planeTicket.totalPayment.format() }}</dd>
+      </div>
     </div>
   </div>
 
   <div class="divider my-3"></div>
 
-  <dl class="description-list">
-    <dt>Code</dt>
-    <dd> {{planeTicket.code}} </dd>
-    <dt>Client</dt>
-    <dd>
-      <a routerLink="/spaces/{{planeTicket.space.identifier}}/customers/{{planeTicket.customer.id}}">
-        {{planeTicket.customer?.fullName}}</a>
-    </dd>
 
-    <dt>Aller et retour</dt>
-    <dd>{{planeTicket.backAndForth ? 'Oui' : 'Non'}}</dd>
+  <div style="display: flex; column-gap: 32px">
+    <div class="flex-grow-1">
+      <div class="label">Agence</div>
+      <div>
+        <a [routerLink]="['/agencies', planeTicket.agencyId]">{{ planeTicket.agency?.name }}</a>
+      </div>
+    </div>
 
-    <dt>Classe</dt>
-    <dd>
-      <span *ngIf="planeTicket.travelClass == 'economic'">Classe économique</span>
-      <span *ngIf="planeTicket.travelClass == 'business'">Classe affaire</span>
+    <div class="flex-grow-1">
+      <div class="label">Employé</div>
+      <div class="opacity-8">{{ planeTicket.employee.user.fullName }}</div>
+    </div>
 
-    </dd>
+    <div class="flex-grow-1">
+      <div class="label">Code</div>
+      <div class="opacity-8"> {{ planeTicket.code }}</div>
+    </div>
 
-    <dt>Pays & ville de départ</dt>
-    <dd>{{planeTicket.departureCountry}}, {{planeTicket.departureCity}}</dd>
-
-    <dt>Date de départ</dt>
-    <dd>{{planeTicket.departureDate.toFormat('DDD')}}</dd>
-
-    <dt>Pays & ville de d'arrivée</dt>
-    <dd>{{planeTicket.arrivalCountry}}, {{planeTicket.arrivalCity}}</dd>
-
-    <dt class="mt-3">Date de retour</dt>
-    <dd>{{planeTicket.returnDate.toFormat('DDD')}}</dd>
-
-    <dt>Prix</dt>
-    <dd >{{planeTicket.price.amount | currency: planeTicket.price.currency}}</dd>
-
-    <dt>Montant versé</dt>
-    <dd *ngIf="total">{{total.amount | currency: total.currency}}</dd>
-  </dl>
-
-  <div class="divider my-3"></div>
-  <div>
-    <div class="label">Employé</div>
-    <div class="value">{{planeTicket.employee.user.fullName}}</div>
+    <div class="flex-grow-1">
+      <div class="label">Date</div>
+      <div class="opacity-8">{{ planeTicket.createdAt.moment() }}</div>
+    </div>
   </div>
 
-  <div class="mt-3">
-    <div class="label">Date</div>
-    <div class="value">{{planeTicket.createdAt.toFormat('DD')}}</div>
-  </div>
-
-
-  <div class="divider my-3"></div>
-
-  <div class="fontSize-18 fontWeight-semiBold mb-3">Paiements effectués</div>
-  <PaymentList [params]="{planeTicketId: planeTicket.id}"
-               [displayedColumns]="[ 'code',  'amount',  'agency', 'employee', 'createdAt', 'action']"
-  >
-
-  </PaymentList>
-
-  </div>
+</div>
 
 

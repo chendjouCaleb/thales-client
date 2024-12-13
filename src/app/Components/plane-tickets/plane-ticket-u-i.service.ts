@@ -13,13 +13,13 @@ export class PlaneTicketUIService {
   constructor(private _dialog: Dialog) {}
   deletePlaneTicket(planeTicket: PlaneTicket): Observable<boolean> {
     const dialogRef = this._dialog.open<boolean>(PlaneTicketDelete,
-      {panelClass: 'dialog-panel', data: {planeTicket}});
+      { data: {planeTicket}});
     return dialogRef.closed
   }
 
   addPlaneTicket(agency: Agency): Observable<PlaneTicket> {
     const dialogRef = this._dialog.open<PlaneTicket>(PlaneTicketAdd,
-      {panelClass: 'dialog-panel', data: {agency}});
+      { data: {agency}});
     return dialogRef.closed;
   }
 }

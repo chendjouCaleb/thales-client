@@ -1,4 +1,4 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, Inject, OnInit} from "@angular/core";
 import {ProcedureFormModel} from "@app/models";
 import {MatDialog} from "@angular/material/dialog";
 import {PlaneTicketAddRemember} from "./plane-ticket-add-remember";
@@ -16,8 +16,10 @@ import {NgIf} from "@angular/common";
 import {MatCheckbox} from "@angular/material/checkbox";
 import {MatRadioButton, MatRadioGroup} from "@angular/material/radio";
 import {CleaveModule} from "@app/cleave";
-import {Button} from "@app/ui";
-import {ChevronDown, LucideAngularModule} from "lucide-angular";
+import {Button, IconButton} from "@app/ui";
+import {ChevronDown, ChevronDownIcon, LucideAngularModule, XIcon} from "lucide-angular";
+import {DIALOG_DATA, DialogRef} from "@angular/cdk/dialog";
+import {PlaneTicket} from "@entities/plane-ticket";
 
 @Component({
   templateUrl: 'plane-ticket-add.html',
@@ -34,11 +36,13 @@ import {ChevronDown, LucideAngularModule} from "lucide-angular";
     TextFieldLabel,
     CleaveModule,
     Button,
-    LucideAngularModule
-  ]
+    LucideAngularModule,
+    IconButton
+  ],
+  providers: [ CustomerPickerDialog ]
 })
 export class PlaneTicketAdd implements OnInit {
-  icons = { ChevronDown }
+  icons = {ChevronDownIcon, XIcon}
   model = new ProcedureFormModel();
   remember: PlaneTicketAddRemember;
   formGroup: FormGroup;
@@ -46,15 +50,12 @@ export class PlaneTicketAdd implements OnInit {
   customer: Customer;
   agency: Agency;
 
-  constructor(private _dialog: MatDialog,
+  constructor(public _dialogRef: DialogRef<PlaneTicket>,
+              @Inject(DIALOG_DATA) private data: any,
               private _snackbar: MatSnackBar,
-              private _router: Router,
-              private _parent: AgencyPage,
-              private _route: ActivatedRoute,
-              private _agencyHttpClient: AgencyHttpClient,
               private _customerPicker: CustomerPickerDialog,
               private _service: PlaneTicketService) {
-
+    this.agency = data.agency;
     this.remember = new PlaneTicketAddRemember();
 
     this.formGroup = new FormGroup({
@@ -76,7 +77,7 @@ export class PlaneTicketAdd implements OnInit {
   }
 
   async ngOnInit() {
-    this.agency = this._parent.agency;
+
 
   }
 
@@ -96,7 +97,7 @@ export class PlaneTicketAdd implements OnInit {
       .onAction().subscribe(() => {
 
     });
-    this._router.navigateByUrl(`/agencies/${this.agency.id}/plane-tickets/${planeTicket.id}`).then()
+    this._dialogRef.close(planeTicket);
   }
 
 }

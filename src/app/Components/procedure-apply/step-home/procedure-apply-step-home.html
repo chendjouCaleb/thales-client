@@ -20,7 +20,7 @@
       </div>
 
       <button MyButton class="warn ms-3" *ngIf="applyStep.validated" (click)="invalidateStep()">
-        <mat-icon>unpublished</mat-icon>
+        <lucide-icon [img]="icons.BanIcon"></lucide-icon>
         Invalider l'étape
       </button>
 

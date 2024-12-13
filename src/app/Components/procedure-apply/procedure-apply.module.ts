@@ -14,10 +14,12 @@ import {MatInputModule} from "@angular/material/input";
 import {ProcedureApplyStepValidate} from "./validate/procedure-apply-step-validate";
 import {CleaveModule} from "@app/cleave";
 import {ProcedureApplyStepPaymentAdd} from "./add-payment/procedure-apply-step-payment-add";
+import {Button} from "@app/ui";
+import {TextField, TextFieldInput, TextFieldLabel} from "@app/NeoUI";
 
 @NgModule({
   imports: [CommonModule, DialogModule, MatSelectModule, MatListModule, MatButtonModule,
-    FormsModule, RouterModule, MatProgressSpinnerModule, MatIconModule, MatDialogModule, MatInputModule, ReactiveFormsModule, CleaveModule],
+    FormsModule, RouterModule, MatProgressSpinnerModule, MatIconModule, MatDialogModule, MatInputModule, ReactiveFormsModule, CleaveModule, Button, TextField, TextFieldLabel, TextFieldInput],
   declarations: [
   ProcedureApplyStepValidate, ProcedureApplyStepPaymentAdd ],
   providers: [ ProcedureApplyController ]

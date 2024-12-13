@@ -13,7 +13,6 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {AgencyDelete} from "./delete/agency-delete";
 import {RouterModule} from "@angular/router";
 import {MatSelectModule} from "@angular/material/select";
-import {CustomerPickerModule} from "../customer-picker";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {AgencyChangeName} from "./change-name/agency-change-name";
 import {AgencyEdit} from "@app/Components/agencies/edit/agency-edit";
@@ -22,7 +21,7 @@ import {CleaveModule} from "@app/cleave";
 @NgModule({
   imports: [CommonModule, MatButtonModule, MatDialogModule, MatTableModule, MatFormFieldModule, MatInputModule,
     MatIconModule, MatMenuModule, ReactiveFormsModule, RouterModule, MatSelectModule, FormsModule,
-    CustomerPickerModule, MatProgressSpinnerModule, CleaveModule],
+    MatProgressSpinnerModule, CleaveModule],
   declarations: [ AgencyAdd, AgencyDelete, AgencyChangeName, AgencyEdit ],
   exports: [ AgencyAdd, AgencyDelete, AgencyChangeName ],
   providers: [ AgencyService]

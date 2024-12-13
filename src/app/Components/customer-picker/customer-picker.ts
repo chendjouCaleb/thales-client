@@ -1,24 +1,42 @@
 import {
   AfterViewInit,
-  ChangeDetectionStrategy,
   ChangeDetectorRef,
-  Component, ElementRef,
+  Component,
+  ElementRef,
   OnInit,
   ViewChild,
   ViewEncapsulation
 } from "@angular/core";
-import {CustomerService} from "../../services";
+import {CustomerService} from "@app/services";
 import {Customer} from "../../../entities";
-import {MatDialogRef} from "@angular/material/dialog";
+import {MatDialogContent, MatDialogRef} from "@angular/material/dialog";
 
-import {SearchIcon,} from "lucide-angular";
+import {LucideAngularModule, SearchIcon,} from "lucide-angular";
 import {Task} from "@app/utils";
+import {FormsModule} from "@angular/forms";
+import {MatListOption, MatSelectionList} from "@angular/material/list";
+import {MatProgressSpinner} from "@angular/material/progress-spinner";
+import {NgForOf, NgIf} from "@angular/common";
+import {Button} from "@app/ui";
+import {DialogRef} from "@angular/cdk/dialog";
 
 const TAKE = 5;
 @Component({
   templateUrl: 'customer-picker.html',
   styleUrl: 'customer-picker.scss',
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  imports: [
+    LucideAngularModule,
+    FormsModule,
+    MatSelectionList,
+    MatListOption,
+    MatDialogContent,
+    MatProgressSpinner,
+    NgIf,
+    Button,
+    NgForOf
+  ],
+  standalone: true
 })
 export class CustomerPicker implements OnInit, AfterViewInit {
   icons = { SearchIcon }
@@ -70,7 +88,7 @@ export class CustomerPicker implements OnInit, AfterViewInit {
 
   constructor(private _customerService: CustomerService,
               private _changeDetector: ChangeDetectorRef,
-              private _dialogRef: MatDialogRef<CustomerPicker>) {
+              private _dialogRef: DialogRef<Customer, CustomerPicker>) {
   }
 
 

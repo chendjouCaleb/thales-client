@@ -1,9 +1,9 @@
 .search-field {
   display: flex;
   gap: 8px;
-  //border: 1px solid #c8c6c4;
+  border: 1px solid var(--my-dividerColor);
   border-radius: 4px;
-  background-color: #f3f2f1;
+  background-color: var(--my-SurfaceColor);
   padding: 4px 8px;
 
   & input {
@@ -13,12 +13,14 @@
     border: none;
     outline: none;
     background-color: transparent;
-
+    color: var(--my-OnSurfaceColor)
   }
 }
 
 .picker-dialog-panel {
-  max-height: 512px;
+  height: 512px;
+  border-radius: 8px;
+  background-color: var(--my-backgroundColor);
 }
 
 .range-observer {

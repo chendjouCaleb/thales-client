@@ -8,7 +8,7 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatInputModule} from "@angular/material/input";
 import {MatMenuModule} from "@angular/material/menu";
-import {BreadcrumbModule, CustomerPickerModule, ProcedureApplyModule} from "@app/Components";
+import {BreadcrumbModule,  ProcedureApplyModule} from "@app/Components";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {CleaveModule} from "@app/cleave";
 import {AgencyProcedureAppliesListPage} from "./list/agency-procedure-applies-list.page";
@@ -27,7 +27,7 @@ const routes: Routes = [
 @NgModule({
   imports: [CommonModule, RouterModule.forChild(routes), MatButtonModule, MatIconModule,
     ReactiveFormsModule, MatFormFieldModule, MatDialogModule, MatInputModule, MatMenuModule,
-    CustomerPickerModule, ProcedureApplyModule, MatProgressSpinnerModule, CleaveModule, PaymentModule, BreadcrumbModule, PaymentsList, ProcedureApplyList],
+     ProcedureApplyModule, MatProgressSpinnerModule, CleaveModule, PaymentModule, BreadcrumbModule, PaymentsList, ProcedureApplyList],
 
   declarations: [AgencyProcedureAppliesListPage, ProcedureApplyStepHomePage]
 })

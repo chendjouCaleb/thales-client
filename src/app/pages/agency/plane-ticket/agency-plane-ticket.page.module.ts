@@ -12,7 +12,6 @@ import {BreadcrumbModule } from "@app/Components";
 import {PlaneTicketAdd} from "@app/Components/plane-tickets/add/plane-ticket-add";
 import {MatRadioModule} from "@angular/material/radio";
 import {MatCheckboxModule} from "@angular/material/checkbox";
-import {CustomerPickerModule} from "@app/Components";
 import {PlaneTicketEdit} from "@app/Components/plane-tickets/edit/plane-ticket-edit";
 import {PaymentModule} from "@app/Components";
 import {CleaveModule} from "@app/cleave";
@@ -32,7 +31,7 @@ const routes: Routes = [
 @NgModule({
   imports: [CommonModule, RouterModule.forChild(routes), MatButtonModule, MatIconModule, ReactiveFormsModule,
     MatFormFieldModule, MatDialogModule, MatInputModule, MatMenuModule, MatRadioModule, MatCheckboxModule,
-    CustomerPickerModule, PaymentModule, CleaveModule, BreadcrumbModule, PaymentsList, PlaneTicketList, MatProgressSpinner],
+     PaymentModule, CleaveModule, BreadcrumbModule, PaymentsList, PlaneTicketList, MatProgressSpinner],
   declarations: []
 })
 export class AgencyPlaneTicketPageModule {

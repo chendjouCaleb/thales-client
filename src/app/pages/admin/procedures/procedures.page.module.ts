@@ -12,11 +12,8 @@ import {MatDialogModule} from "@angular/material/dialog";
 import {MatTabsModule} from "@angular/material/tabs";
 import {ProcedureIndexPage} from "./index/procedure-index.page";
 import {MatListModule} from "@angular/material/list";
-import {CustomerPickerModule, ProcedureApplyModule} from "@app/Components";
+import { ProcedureApplyModule} from "@app/Components";
 import {ProcedureSettingsPage} from "./settings/procedure-settings.page";
-import {ProcedureStepChangePrice} from "./step-change-price/procedure-step-change-price";
-import {ProcedureStepChangeDescription} from "./step-change-description/procedure-step-change-description";
-import {ProcedureStepSettings} from "./step-settings/procedure-step-settings";
 import {CleaveModule} from "@app/cleave";
 import {TraceModule} from "@app/trace";
 import {ProcedureApplyList} from "@app/Components/procedure-apply/list/procedure-apply-list";
@@ -35,7 +32,7 @@ const routes: Routes = [
 @NgModule({
   imports: [CommonModule, MatButtonModule, MatIconModule, ReactiveFormsModule,
     RouterModule.forChild(routes), MatFormFieldModule, MatInputModule, MatDialogModule, MatTabsModule, MatListModule,
-    CustomerPickerModule, ProcedureApplyModule, CleaveModule, TraceModule, ProcedureApplyList, Button,
+    ProcedureApplyModule, CleaveModule, TraceModule, ProcedureApplyList, Button,
     HorizontalPager, PaymentsList, ProcedureApplyHome, TabRow, TabRowItem],
 
   declarations: [ProceduresPage ]

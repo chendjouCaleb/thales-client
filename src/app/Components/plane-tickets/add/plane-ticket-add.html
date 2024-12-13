@@ -2,7 +2,7 @@
   <div [formGroup]="formGroup">
     <div class="d-flex align-items-center mb-3">
       <div class="title-20 flex-grow-1">Achat de billet d'avion</div>
-      <button MyIconButton>
+      <button MyIconButton (click)="_dialogRef.close()">
         <lucide-icon [img]="icons.XIcon" ></lucide-icon>
       </button>
     </div>

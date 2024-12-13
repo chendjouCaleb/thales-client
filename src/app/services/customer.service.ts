@@ -45,8 +45,9 @@ export class CustomerService {
 
   constructor(private _httpClient: HttpClient) {}
 
-  async addAsync(model: CustomerInfoModel): Promise<Customer> {
-    const call = this._httpClient.post<Customer>(`${this.url}`, model);
+  async addAsync(space: Space, model: CustomerInfoModel): Promise<Customer> {
+    const params = {spaceId: space.id}
+    const call = this._httpClient.post<Customer>(`${this.url}`, model, {params});
     return new Customer(await firstValueFrom(call));
   }
 

@@ -63,6 +63,14 @@ export class PlaneTicketDetails implements OnInit {
     })
   }
 
+  edit() {
+    this._uiService.editPlaneTicket(this.planeTicket).subscribe(deleted => {
+      // if (deleted) {
+      //   this._location.back();
+      // }
+    })
+  }
+
   addPayment() {
     const dialogRef = this._dialog.open<Payment>(PlaneTicketPaymentAdd,
       { data: {planeTicket: this.planeTicket} });

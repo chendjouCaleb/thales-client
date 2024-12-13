@@ -5,6 +5,7 @@ import {Observable} from "rxjs";
 import {PlaneTicketDelete} from "./delete/plane-ticket-delete";
 import {Dialog} from "@angular/cdk/dialog";
 import {PlaneTicketAdd} from "@app/Components/plane-tickets/add/plane-ticket-add";
+import {PlaneTicketEdit} from "@app/Components/plane-tickets/edit/plane-ticket-edit";
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,12 @@ export class PlaneTicketUIService {
   constructor(private _dialog: Dialog) {}
   deletePlaneTicket(planeTicket: PlaneTicket): Observable<boolean> {
     const dialogRef = this._dialog.open<boolean>(PlaneTicketDelete,
+      { data: {planeTicket}});
+    return dialogRef.closed
+  }
+
+  editPlaneTicket(planeTicket: PlaneTicket): Observable<boolean> {
+    const dialogRef = this._dialog.open<boolean>(PlaneTicketEdit,
       { data: {planeTicket}});
     return dialogRef.closed
   }

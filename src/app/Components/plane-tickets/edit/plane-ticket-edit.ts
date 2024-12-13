@@ -1,4 +1,4 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, Inject, OnInit} from "@angular/core";
 import {MatDialog} from "@angular/material/dialog";
 import {FormControl, FormGroup, ReactiveFormsModule} from "@angular/forms";
 import {MatSnackBar} from "@angular/material/snack-bar";
@@ -13,6 +13,12 @@ import {MatFormField, MatLabel} from "@angular/material/form-field";
 import {MatInput} from "@angular/material/input";
 import {CleaveModule} from "@app/cleave";
 import {MatButton} from "@angular/material/button";
+import {DIALOG_DATA, DialogRef} from "@angular/cdk/dialog";
+import {Button, IconButton} from "@app/ui";
+import {TextField, TextFieldInput, TextFieldLabel} from "@app/NeoUI";
+import {LucideAngularModule, XIcon} from "lucide-angular";
+import {DateTime} from "luxon";
+import {Money} from "@entities/money";
 
 @Component({
   templateUrl: 'plane-ticket-edit.html',
@@ -26,29 +32,33 @@ import {MatButton} from "@angular/material/button";
     MatInput,
     MatLabel,
     CleaveModule,
-    MatButton
+    MatButton,
+    Button,
+    TextField,
+    TextFieldInput,
+    TextFieldLabel,
+    IconButton,
+    LucideAngularModule
   ],
   standalone: true
 })
 export class PlaneTicketEdit implements OnInit {
+  icons = {XIcon}
   formGroup: FormGroup;
   planeTicket: PlaneTicket;
 
-  breadcrumbItems: BreadcrumbItem[]
-
-  constructor(private _dialog: MatDialog,
+  constructor(public dialogRef: DialogRef<PlaneTicket>,
+              @Inject(DIALOG_DATA) data: any,
               private _snackbar: MatSnackBar,
-              private _activatedRoute: ActivatedRoute,
-              private _router: Router,
-              private _parent: AgencyPage,
               private _service: PlaneTicketService) {
+    this.planeTicket = data.planeTicket;
   }
 
   async ngOnInit() {
-    const planeTicketId = +this._activatedRoute.snapshot.params['planeTicketId'];
-    this.planeTicket = await this._service.getByIdAsync(planeTicketId);
+
     this.formGroup = new FormGroup({
-      placeCount : new FormControl(this.planeTicket.placeCount),
+      placeCount: new FormControl(this.planeTicket.placeCount),
+      price: new FormControl(this.planeTicket.price.amount),
       backAndForth: new FormControl(this.planeTicket.backAndForth),
       travelClass: new FormControl(this.planeTicket.travelClass),
       departureCountry: new FormControl(this.planeTicket.departureCountry),
@@ -58,21 +68,26 @@ export class PlaneTicketEdit implements OnInit {
       arrivalCity: new FormControl(this.planeTicket.arrivalCity),
       returnDate: new FormControl(this.planeTicket.returnDate.toJSDate()),
     });
-
-    this.breadcrumbItems = [...this._parent.breadcrumbItems,
-      new BreadcrumbItem('Billets d\'avion', `/agencies/${this.planeTicket.agencyId}/plane-tickets`),
-      new BreadcrumbItem(`Billet N° ${this.planeTicket.id}`, `/agencies/${this.planeTicket.agencyId}/plane-tickets/${this.planeTicket.id}`),
-      new BreadcrumbItem('Modifier')
-    ]
-   }
+  }
 
 
   async editPlaneTicket() {
     const model = this.formGroup.value;
-    const planeTicket = await this._service.editAsync(this.planeTicket, model);
+    await this._service.editAsync(this.planeTicket, model);
 
+    this.planeTicket.placeCount = model.placeCount
+    this.planeTicket.price = new Money(+model.price, 'XAF')
+    this.planeTicket.backAndForth = model.backAndForth
+    this.planeTicket.travelClass = model.travelClass
+    this.planeTicket.departureCountry = model.departureCountry
+    this.planeTicket.departureCity = model.departureCity
+    this.planeTicket.departureDate = DateTime.fromJSDate(model.departureDate)
+    this.planeTicket.arrivalCountry = model.arrivalCountry
+    this.planeTicket.arrivalCity = model.arrivalCity
+    this.planeTicket.returnDate = DateTime.fromJSDate(model.returnDate)
+
+    this.dialogRef.close()
     this._snackbar.open(`La commande de billet d'avion a été modifiée.`, '', {duration: 5000});
-    this._router.navigateByUrl(`/agencies/${planeTicket.agencyId}/plane-tickets/${planeTicket.id}`).then()
   }
 
 }

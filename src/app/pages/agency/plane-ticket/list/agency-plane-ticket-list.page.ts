@@ -7,6 +7,7 @@ import {AgencyPage} from "@app/pages/agency/agency.page";
 import {Router, RouterLink} from "@angular/router";
 import {MatIcon} from "@angular/material/icon";
 import {Button} from "@app/ui";
+import {LucideAngularModule, PlusIcon} from "lucide-angular";
 
 @Component({
   templateUrl: 'agency-plane-ticket-list.page.html',
@@ -16,17 +17,16 @@ import {Button} from "@app/ui";
     RouterLink,
     MatIcon,
     PlaneTicketList,
-    Button
+    Button,
+    LucideAngularModule
   ],
   standalone: true
 })
 export class AgencyPlaneTicketListPage implements OnInit {
-  planeTickets: PlaneTicket[] = [];
+  icons = { PlusIcon }
 
   @ViewChild(PlaneTicketList)
-  planeTicketList: PlaneTicketList
-
-  breadcrumbItems: BreadcrumbItem[];
+  planeTicketList: PlaneTicketList;
 
   agency: Agency;
 
@@ -45,11 +45,11 @@ export class AgencyPlaneTicketListPage implements OnInit {
   }
 
   addPlaneTicket() {
-    // this._uiService.addPlaneTicket(null).subscribe(planeTicket => {
-    //   if (planeTicket) {
-    //     this.planeTicketList.unshift(planeTicket);
-    //   }
-    // })
+    this._uiService.addPlaneTicket(this.agency).subscribe(planeTicket => {
+      if (planeTicket) {
+        this.planeTicketList.unshift(planeTicket);
+      }
+    })
   }
 
   onClick(planeTicket: PlaneTicket) {

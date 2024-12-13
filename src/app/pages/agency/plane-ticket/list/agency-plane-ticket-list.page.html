@@ -1,15 +1,13 @@
-<div class="px-4">
+<div class="p-4">
 
-  <div>Billets d'avions</div>
-  <div class="divider my-3"></div>
-  <div>
-    <a MyButton class="primary" [routerLink]="['/agencies', agency.id, 'plane-tickets', 'add']">
-      <mat-icon>add</mat-icon>
-      Ajouter un billet d'avion </a>
+  <div class="d-flex align-items-center">
+    <div class="fontSize-22 fontWeight-semiBold flex-grow-1">Billets d'avions</div>
+    <button MyButton class="primary" (click)="addPlaneTicket()">
+      <lucide-icon [img]="icons.PlusIcon"></lucide-icon>
+      Ajouter un billet d'avion </button>
   </div>
-  <div class="divider my-3"></div>
 
-  <PlaneTicketList [params]="{agencyId:agency.id}"
+  <PlaneTicketList class=" d-block mt-3" [params]="{ agencyId:agency.id }"
                    (rowClick)="onClick($event)"
                    [displayedColumns]=" [ 'customer']"
   ></PlaneTicketList>

@@ -7,6 +7,7 @@ import {MatOption, MatSelect} from "@angular/material/select";
 import {FormsModule} from "@angular/forms";
 import {NgForOf} from "@angular/common";
 import {MatButton} from "@angular/material/button";
+import {Button} from "@app/ui";
 
 @Component({
   selector: 'procedure-apply-add-procedure',
@@ -17,7 +18,8 @@ import {MatButton} from "@angular/material/button";
     MatOption,
     FormsModule,
     NgForOf,
-    MatButton
+    MatButton,
+    Button
   ],
   template: `
     <div class="fontWeight-semiBold fontSize-16">Choisir une procédure</div>
@@ -32,7 +34,7 @@ import {MatButton} from "@angular/material/button";
     </div>
 
     <div class="align-end py-3">
-      <button mat-flat-button color="primary" (click)="next()" [disabled]="!selectedProcedure">Suivant</button>
+      <button MyButton class="primary" (click)="next()" [disabled]="!selectedProcedure">Suivant</button>
     </div>
   `
 })

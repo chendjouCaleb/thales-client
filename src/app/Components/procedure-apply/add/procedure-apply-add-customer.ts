@@ -6,6 +6,9 @@ import {MatButton, MatIconButton} from "@angular/material/button";
 import {MatFormField} from "@angular/material/form-field";
 import {MatInput} from "@angular/material/input";
 import {MatIcon} from "@angular/material/icon";
+import {Button, IconButton} from "@app/ui";
+import {ChevronDownIcon, ChevronLeftIcon, LucideAngularModule} from "lucide-angular";
+import {NgIf} from "@angular/common";
 
 @Component({
   selector: 'procedure-apply-add-customer',
@@ -15,28 +18,39 @@ import {MatIcon} from "@angular/material/icon";
     MatFormField,
     MatInput,
     MatButton,
-    MatIcon
+    MatIcon,
+    Button,
+    LucideAngularModule,
+    IconButton,
+    NgIf
   ],
+  providers: [ CustomerPickerDialog],
   template: `
     <div class="d-flex align-items-center">
-      <button mat-icon-button (click)="back()">
-        <mat-icon>arrow_back</mat-icon>
+      <button MyIconButton (click)="back()">
+        <lucide-icon [img]="icons.ChevronLeftIcon"></lucide-icon>
       </button>
       <div class="ms-3 fontWeight-semiBold fontSize-16">{{ parent.procedure.name }}</div>
     </div>
 
     <div class="fontSize-16 mt-3 mb-2">Choisir un client</div>
-    <mat-form-field class="w-100">
-      <input type="text" matInput [value]="customer?.fullName" placeholder="Choisir un client"
-             (click)="selectCustomer($event)">
-    </mat-form-field>
+    <div style="background-color: var(--my-SurfaceColor); padding: 8px; border-radius: 8px;
+      display: flex; align-items: center; cursor: pointer" tabindex="1" (click)="selectCustomer($event)">
+      <div class="flex-grow-1">
+        <div *ngIf="customer"  >{{ customer.fullName }}</div>
+        <div *ngIf="!customer" class="opacity-5">Choisir un client</div>
+      </div>
+
+      <lucide-angular class="opacity-5" [img]="icons.ChevronDownIcon"></lucide-angular>
+    </div>
 
     <div class="align-end py-3">
-      <button mat-flat-button color="primary" (click)="next()" [disabled]="!customer">Suivant</button>
+      <button MyButton class="primary" (click)="next()" [disabled]="!customer">Suivant</button>
     </div>
   `
 })
 export class ProcedureApplyAddCustomer {
+  icons = { ChevronLeftIcon, ChevronDownIcon }
   customer:Customer;
   constructor(public parent: ProcedureApplyAdd,
               private _picker: CustomerPickerDialog,

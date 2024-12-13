@@ -10,6 +10,7 @@ import {ProcedureApplyAddProcedure} from "@app/Components/procedure-apply/add/pr
 import {ProcedureApplyAddCustomer} from "@app/Components/procedure-apply/add/procedure-apply-add-customer";
 import {ProcedureApplyAddConfirm} from "@app/Components/procedure-apply/add/procedure-apply-add-confirm";
 import {NavHost, NavRouteDef} from "@app/navigation";
+import {DIALOG_DATA, DialogRef} from "@angular/cdk/dialog";
 
 @Component({
   templateUrl: 'procedure-apply-add.html',
@@ -35,9 +36,9 @@ export class ProcedureApplyAdd implements OnInit {
 
   constructor(private _service: ProcedureApplyService,
               private _procedureService: ProcedureService,
-              private _dialogRef: MatDialogRef<any>,
+              private _dialogRef: DialogRef<any>,
               private _snackbar: MatSnackBar,
-              @Inject(MAT_DIALOG_DATA) data) {
+              @Inject(DIALOG_DATA) data) {
     this.customer = data.customer;
     this.procedure = data.procedure;
     this.agency = data.agency;

@@ -25,7 +25,7 @@
         {{ applyStep.procedureStep?.name }}
       </div>
       <div *ngIf="applyStep.validated">
-        {{ applyStep.paymentAmount | number }}  FCFA
+        {{ applyStep.totalPayment.format() }}
       </div>
 
       <div *ngIf="!applyStep.validated">

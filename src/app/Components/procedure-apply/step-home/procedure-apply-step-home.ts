@@ -39,16 +39,14 @@ export class ProcedureApplyStepHome implements OnInit {
   @ViewChild(PaymentsList)
   paymentList: PaymentsList;
 
-  get total(): Money | null {
-    if(!this.paymentList?._payments)
-      return null;
-    return new Money(0, 'XAF').add(...this.paymentList._payments.map(p => p.amount));
-  }
+  // get total(): Money | null {
+  //   if(!this.paymentList?._payments)
+  //     return null;
+  //   return new Money(0, 'XAF').add(...this.paymentList._payments.map(p => p.amount));
+  // }
 
-  get remaining(): Money | null {
-    if(!this.paymentList?._payments)
-      return null;
-    return this.applyStep.procedureStep.price.subtract(...this.paymentList._payments.map(p => p.amount));
+  get remaining(): Money{
+    return this.applyStep.procedureStep.price.subtract(this.applyStep.totalPayment);
   }
 
   constructor(private _service: ProcedureApplyService,
@@ -67,6 +65,7 @@ export class ProcedureApplyStepHome implements OnInit {
   addPayment() {
     const modalRef = this._controller.addPayment(this.applyStep).subscribe(payment => {
       if (payment) {
+        this.applyStep.totalPayment = this.applyStep.totalPayment.add(payment.amount);
         this.paymentList.unshift(payment);
       }
     });

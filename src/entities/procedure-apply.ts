@@ -5,6 +5,7 @@ import {Payment} from "./payment";
 import {Agency} from "./agency";
 import {Employee} from "@entities/employee";
 import { Space } from "./space";
+import {Money} from "@entities/money";
 
 export class ProcedureApply extends BaseEntity<number> {
   customer: Customer;
@@ -24,6 +25,8 @@ export class ProcedureApply extends BaseEntity<number> {
 
   steps: ProcedureApplyStep[] = [];
 
+  totalPayment: Money
+
   constructor(value: any = {}) {
     super(value);
     if (value) {
@@ -40,6 +43,8 @@ export class ProcedureApply extends BaseEntity<number> {
       this.space = value.space ? new Space(value.space) : undefined;
 
       this.steps = value.steps ? value.steps.map(s => new ProcedureApply(s)) : undefined;
+
+      this.totalPayment = value.totalPayment ? Money.parse(value.totalPayment) : undefined;
     }
   }
 }
@@ -60,6 +65,7 @@ export class ProcedureApplyStep extends BaseEntity<number> {
 
   validated: boolean;
   paymentAmount: number = 0;
+  totalPayment: Money
 
   payments: Payment[] = []
 
@@ -76,6 +82,8 @@ export class ProcedureApplyStep extends BaseEntity<number> {
 
       this.validated = value.validated;
       this.paymentAmount = value.paymentAmount;
+
+      this.totalPayment = value.totalPayment ? Money.parse(value.totalPayment) : undefined;
 
       this.employeeId = value.employeeId;
       this.employee = value.employee ? new Employee(value.employee) : null;

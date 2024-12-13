@@ -35,7 +35,7 @@
       <div>
         <div class="opacity-8">Montant versé</div>
         <div class="fontWeight-semiBold">
-          <span *ngIf="total">{{total.format()}}</span>
+          {{applyStep.totalPayment.format()}} sur {{applyStep.procedureStep.price.format() }}
         </div>
       </div>
       <button MyButton class="primary" (click)="addPayment()" *ngIf="applyStep.validated">
@@ -48,8 +48,7 @@
   <div>
     <div class="opacity-8">Montant restant</div>
     <div class="fontWeight-semiBold">
-      <span *ngIf="total">{{ remaining.format() }}
-        sur {{applyStep.procedureStep.price.format() }}
+      <span>{{ remaining.format() }}
       </span>
     </div>
   </div>

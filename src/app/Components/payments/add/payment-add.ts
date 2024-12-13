@@ -1,17 +1,36 @@
 import {Component, Inject} from "@angular/core";
-import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {FormControl, FormGroup} from "@angular/forms";
+import {FormControl, FormGroup, ReactiveFormsModule} from "@angular/forms";
 import {Customer} from "@entities/customer";
 import {PaymentService} from "@app/services";
 import {PaymentAddFormModel} from "@app/models/forms/payment.form-model";
-import {CustomerPicker, CustomerPickerDialog} from "@app/Components";
+import {CustomerPickerDialog} from "@app/Components";
 import {Agency} from "@entities/agency";
+import {ChevronDownIcon, LucideAngularModule} from "lucide-angular";
+import {DIALOG_DATA, DialogRef} from "@angular/cdk/dialog";
+import {Payment} from "@entities/payment";
+import {TextField, TextFieldInput} from "@app/NeoUI";
+import {CleaveModule} from "@app/cleave";
+import {Button} from "@app/ui";
+import {NgIf} from "@angular/common";
 
 @Component({
-  templateUrl: 'payment-add.html'
+  templateUrl: 'payment-add.html',
+  selector: 'PaymentAdd',
+  imports: [
+    LucideAngularModule,
+    TextField,
+    CleaveModule,
+    TextFieldInput,
+    ReactiveFormsModule,
+    Button,
+    NgIf
+  ],
+  standalone: true,
+  providers: [ CustomerPickerDialog ]
 })
 export class PaymentAdd {
+  icons = { ChevronDownIcon }
   customer: Customer;
   agency: Agency;
 
@@ -21,9 +40,9 @@ export class PaymentAdd {
     reason: new FormControl<string>('')
   })
 
-  constructor(@Inject(MAT_DIALOG_DATA) data,
+  constructor(@Inject(DIALOG_DATA) data: any,
               private _picker: CustomerPickerDialog,
-              private _dialogRef: MatDialogRef<PaymentAdd>,
+              public _dialogRef: DialogRef<Payment, PaymentAdd>,
 
               private _service: PaymentService,
               private _snackbar: MatSnackBar) {

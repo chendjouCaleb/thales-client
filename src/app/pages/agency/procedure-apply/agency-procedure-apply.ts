@@ -8,7 +8,8 @@ import {ProcedureApplyDetails} from "@app/Components/procedure-apply/details/pro
   encapsulation: ViewEncapsulation.None,
   template: `
     <div class="p-4">
-      <ProcedureApplyDetails [procedureApplyId]="procedureApplyId"></ProcedureApplyDetails>
+      <div class="fontSize-22">Procédure en cours</div>
+      <ProcedureApplyDetails class="mt-4" [procedureApplyId]="procedureApplyId"></ProcedureApplyDetails>
     </div>
 
   `,

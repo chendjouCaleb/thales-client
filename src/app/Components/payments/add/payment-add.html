@@ -2,24 +2,32 @@
 
 
 <div class="px-4" [formGroup]="formGroup">
-  <mat-form-field class="w-100">
-    <mat-label>Client</mat-label>
-    <input type="text" matInput [value]="customer?.fullName" placeholder="Choisir un client" (click)="selectCustomer($event)">
-  </mat-form-field>
+  <div class="w-100">
+    <div class="opacity-8">Client</div>
+    <div style="background-color: var(--my-SurfaceColor); padding: 8px; border-radius: 8px;
+      display: flex; align-items: center; cursor: pointer" tabindex="1" (click)="selectCustomer($event)">
+      <div class="flex-grow-1">
+        <div *ngIf="customer"  >{{ customer.fullName }}</div>
+        <div *ngIf="!customer" class="opacity-5">Choisir un client</div>
+      </div>
+
+      <lucide-angular class="opacity-5" [img]="icons.ChevronDownIcon"></lucide-angular>
+    </div>
+  </div>
 
 
-    <mat-form-field style="width: 100%">
-      <mat-label>Montant versé</mat-label>
-      <input  CleaveNumberInput  matInput formControlName="amount" required>
-    </mat-form-field>
+  <TextField class="mt-2" style="width: 100%">
+    <label TextFieldLabel for="amount-field">Montant versé</label>
+    <input CleaveNumberInput TextFieldInput formControlName="amount" id="amount-field" required>
+  </TextField>
 
-  <mat-form-field style="width: 100%">
-    <mat-label>Raison du paiement</mat-label>
-    <textarea  matInput formControlName="reason"></textarea>
-  </mat-form-field>
+  <TextField class="mt-2" style="width: 100%">
+    <label TextFieldLabel for="reason-field">Raison du paiement</label>
+    <textarea TextFieldInput formControlName="reason" id="reason-field"></textarea>
+  </TextField>
 </div>
 
 <div class="p-4 align-end">
-  <button mat-button mat-dialog-close="" class="me-4">Annuler</button>
-  <button mat-flat-button color="primary" [disabled]="formGroup.invalid" (click)="validate()">Ajouter</button>
+  <button MyButton (click)="_dialogRef.close()" class="me-3">Annuler</button>
+  <button MyButton class="primary" [disabled]="formGroup.invalid" (click)="validate()">Ajouter</button>
 </div>

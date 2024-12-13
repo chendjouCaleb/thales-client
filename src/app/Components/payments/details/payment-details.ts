@@ -4,7 +4,8 @@ import {Payment} from "@entities/payment";
 
 @Component({
   templateUrl: 'payment-details.html',
-  selector: 'PaymentDetails'
+  selector: 'PaymentDetails',
+  standalone: true
 })
 export class PaymentDetails {
   @Input()

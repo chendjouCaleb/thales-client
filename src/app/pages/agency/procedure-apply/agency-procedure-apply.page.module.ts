@@ -29,7 +29,7 @@ const routes: Routes = [
     ReactiveFormsModule, MatFormFieldModule, MatDialogModule, MatInputModule, MatMenuModule,
      ProcedureApplyModule, MatProgressSpinnerModule, CleaveModule, PaymentModule, BreadcrumbModule, PaymentsList, ProcedureApplyList],
 
-  declarations: [AgencyProcedureAppliesListPage, ProcedureApplyStepHomePage]
+  declarations: [ ProcedureApplyStepHomePage]
 })
 export class AgencyProcedureApplyPageModule {
 

@@ -5,12 +5,23 @@ import {Agency} from "@entities/agency";
 import {AgencyPage} from "../../agency.page";
 import {ProcedureApplyList} from "@app/Components/procedure-apply/list/procedure-apply-list";
 import {ProcedureApply} from "@entities/procedure-apply";
+import {LucideAngularModule, PlusIcon} from "lucide-angular";
+import {Button} from "@app/ui";
 
 
 @Component({
   templateUrl: 'agency-procedure-applies-list.page.html',
+  selector: 'AgencyProcedureAppliesListPage',
+  standalone: true,
+
+  imports: [
+    LucideAngularModule,
+    Button,
+    ProcedureApplyList
+  ]
 })
 export class AgencyProcedureAppliesListPage implements OnInit {
+  icons = {PlusIcon}
   agency: Agency;
 
   @ViewChild(ProcedureApplyList)

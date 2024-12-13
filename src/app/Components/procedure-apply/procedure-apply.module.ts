@@ -20,8 +20,7 @@ import {TextField, TextFieldInput, TextFieldLabel} from "@app/NeoUI";
 @NgModule({
   imports: [CommonModule, DialogModule, MatSelectModule, MatListModule, MatButtonModule,
     FormsModule, RouterModule, MatProgressSpinnerModule, MatIconModule, MatDialogModule, MatInputModule, ReactiveFormsModule, CleaveModule, Button, TextField, TextFieldLabel, TextFieldInput],
-  declarations: [
-  ProcedureApplyStepValidate, ProcedureApplyStepPaymentAdd ],
+  declarations: [ ],
   providers: [ ProcedureApplyController ]
 })
 export class ProcedureApplyModule { }

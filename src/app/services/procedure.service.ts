@@ -23,8 +23,7 @@ export class ProcedureService {
     return this._onStepAdd.asObservable()
   }
 
-  constructor(private _httpClient: HttpClient) {
-  }
+  constructor(private _httpClient: HttpClient) {}
 
   async listAsync(params: any): Promise<Procedure[]> {
     const call = this._httpClient.get<Procedure[]>(`${this.url}`, {params});

@@ -1,11 +1,12 @@
 import {Component, Input, OnInit, ViewEncapsulation} from "@angular/core";
-import {ProcedureApply} from "@entities/procedure-apply";
+import {ProcedureApply, ProcedureApplyStep} from "@entities/procedure-apply";
 import {ProcedureApplyService} from "@app/services";
 import {Task} from "@app/utils";
 import {MatProgressSpinner} from "@angular/material/progress-spinner";
 import {NgIf} from "@angular/common";
 import {ProcedureApplyHome} from "@app/Components/procedure-apply/details/home/procedure-apply-home";
 import {ProcedureApplyPager} from "@app/Components/procedure-apply/details/procedure-apply-pager";
+import {ProcedureApplyController} from "@app/Components";
 
 @Component({
   templateUrl: 'procedure-apply-details.html',
@@ -32,10 +33,15 @@ export class ProcedureApplyDetails implements OnInit {
     });
   });
 
-  constructor(private _service: ProcedureApplyService) {}
+  constructor(private _service: ProcedureApplyService,
+              private _controller: ProcedureApplyController) {}
 
   async ngOnInit() {
     this.getProcedureApply.launch()
 
+  }
+
+  openDetails(step: ProcedureApplyStep) {
+    this._controller.openStep(step)
   }
 }

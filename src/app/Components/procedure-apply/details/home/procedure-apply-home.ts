@@ -1,8 +1,8 @@
 import {Component, Input, OnInit} from "@angular/core";
 import {ProcedureApplyService} from "@app/services";
 import {ActivatedRoute, RouterLink} from "@angular/router";
-import {ProcedureApply} from "@entities/index";
-import {BreadcrumbItem} from "@app/Components";
+import {ProcedureApply, ProcedureApplyStep} from "@entities/index";
+import {BreadcrumbItem, ProcedureApplyController} from "@app/Components";
 import {AgencyPage} from "@app/pages/agency/agency.page";
 import {DecimalPipe, NgForOf, NgIf} from "@angular/common";
 import {PaymentsList} from "@app/Components/payments/list/payments-list";
@@ -23,10 +23,15 @@ export class ProcedureApplyHome implements OnInit {
   @Input()
   procedureApply: ProcedureApply;
 
-  constructor(private _service: ProcedureApplyService) {}
+  constructor(private _service: ProcedureApplyService,
+              private _controller: ProcedureApplyController) {}
 
   async ngOnInit() {
 
+  }
+
+  openDetails(step: ProcedureApplyStep) {
+    this._controller.openStep(step)
   }
 
 }

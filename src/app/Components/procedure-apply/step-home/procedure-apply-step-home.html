@@ -1,0 +1,67 @@
+<div class="p-4" *ngIf="applyStep">
+
+  <div class="d-flex">
+    <div class="fontSize-22 flex-grow-1">{{applyStep.procedureStep.name}}</div>
+    <button MyIconButton (click)="_dialogRef.close()">
+      <lucide-icon [img]="icons.XIcon"></lucide-icon>
+    </button>
+  </div>
+
+  <div class="mt-3">
+    <div class="d-flex justify-content-between">
+      <div>
+        <div class="opacity-8">État</div>
+        <div class="fontWeight-semiBold">
+      <span *ngIf="applyStep.validated" style="padding: 0px 4px; border: 1px solid; border-radius: 4px"
+            class="borderColor-green fontColor-green fontSize-12">Validée</span>
+
+          <span *ngIf="!applyStep.validated">En attente</span>
+        </div>
+      </div>
+
+      <button MyButton class="warn ms-3" *ngIf="applyStep.validated" (click)="invalidateStep()">
+        <mat-icon>unpublished</mat-icon>
+        Invalider l'étape
+      </button>
+
+      <button MyButton class="primary" *ngIf="!applyStep.validated" (click)="validateStep()">
+        <lucide-icon [img]="icons.CheckIcon"></lucide-icon>
+        Valider l'étape
+      </button>
+    </div>
+    <div class="divider my-3"></div>
+
+    <div class="d-flex justify-content-between">
+      <div>
+        <div class="opacity-8">Montant versé</div>
+        <div class="fontWeight-semiBold">
+          <span *ngIf="total">{{total.format()}}</span>
+        </div>
+      </div>
+      <button MyButton class="primary" (click)="addPayment()" *ngIf="applyStep.validated">
+        <mat-icon>paid</mat-icon>
+        Ajouter un paiement
+      </button>
+    </div>
+  </div>
+  <div class="divider my-3"></div>
+  <div>
+    <div class="opacity-8">Montant restant</div>
+    <div class="fontWeight-semiBold">
+      <span *ngIf="total">{{ remaining.format() }}
+        sur {{applyStep.procedureStep.price.format() }}
+      </span>
+    </div>
+  </div>
+
+  <div class="divider my-3"></div>
+
+  <div *ngIf="applyStep.payments" class="mt-5">
+    <div class="fontSize-16 fontWeight-semiBold mb-3">Paiements</div>
+
+    <PaymentList [params]="{procedureApplyStepId:applyStep.id}"
+                 [displayedColumns]="[ 'code',  'amount', 'employee', 'createdAt', 'action']"></PaymentList>
+
+  </div>
+
+</div>

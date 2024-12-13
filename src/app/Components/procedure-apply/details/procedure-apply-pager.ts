@@ -21,13 +21,12 @@ import {ProcedureApplyHome} from "@app/Components/procedure-apply/details/home/p
   ]
 })
 export class ProcedureApplyPager implements OnInit {
-  ngOnInit(): void {
-      if(this.procedureApply) {
-        throw new Error("procedureApply should not be null")
-      }
-  }
   @Input()
   procedureApply: ProcedureApply
 
-
+  ngOnInit(): void {
+    if (!this.procedureApply) {
+      throw new Error("procedureApply should not be null")
+    }
+  }
 }

@@ -10,6 +10,7 @@ import {
   ProcedureApplyStepPaymentAdd
 } from "@app/Components/procedure-apply/add-payment/procedure-apply-step-payment-add";
 import { Dialog } from "@angular/cdk/dialog";
+import {ProcedureApplyStepHome} from "@app/Components/procedure-apply/step-home/procedure-apply-step-home";
 
 @Injectable({
   providedIn: 'root'
@@ -29,10 +30,15 @@ export class ProcedureApplyController {
     return dialogRef.closed;
   }
 
+  openStep(applyStep: ProcedureApplyStep): Observable<Payment> {
+    const dialogRef = this._dialog.open<Payment>(ProcedureApplyStepHome, {
+      autoFocus: false, data: {applyStep}});
+    return dialogRef.closed;
+  }
+
   addPayment(applyStep: ProcedureApplyStep): Observable<Payment> {
     const dialogRef = this._dialog.open<Payment>(ProcedureApplyStepPaymentAdd, {
-      autoFocus: false,
-      panelClass: 'dialog-panel', data: {applyStep}});
+      autoFocus: false, data: {applyStep}});
     return dialogRef.closed;
   }
 }

@@ -1,6 +1,6 @@
 ﻿import {
-  AfterContentInit, AfterViewInit,
-  Component, ComponentFactoryResolver, ComponentRef,
+  AfterContentInit, AfterViewInit, ChangeDetectorRef,
+  Component, ComponentRef,
   ContentChildren, ElementRef,
   forwardRef, Injector, Input,
   QueryList, StaticProvider,
@@ -50,9 +50,20 @@ export class HorizontalPager implements AfterViewInit {
   get selectedIndex(): number { return this._selectedIndex }
   private _selectedIndex: number = 0;
 
+  resizeObserver = new ResizeObserver(entries => {
+
+    for (const entry of entries) {
+      if(entry.contentRect) {
+        this.boxHeight = entry.contentRect.height
+        this._changeDetector.detectChanges()
+      }
+    }
+  })
+
 
   constructor(private _elementRef: ElementRef<HTMLElement>,
               private parentInjector: Injector,
+              private _changeDetector: ChangeDetectorRef,
 
   ) {
   }
@@ -70,6 +81,7 @@ export class HorizontalPager implements AfterViewInit {
     }
 
     if(this._currentContentDef != null) {
+      this.resizeObserver.unobserve(this._currentContentDef.contentCache.instance.host);
       this.hideCurrent(index).then()
     }
 
@@ -83,6 +95,8 @@ export class HorizontalPager implements AfterViewInit {
     }else{
       contentDef.contentCache.instance.host.classList.remove('hidden')
     }
+    this.resizeObserver.observe(contentDef.contentCache.instance.host);
+
     if(animate) {
       this.animatePageIn(contentDef.contentCache.instance, index).then()
     }

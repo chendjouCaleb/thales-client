@@ -1,15 +1,18 @@
-<div class="px-4 py-2">
+<div class="p-4">
 
   <div class="d-flex align-items-center">
-    <div>Paiements</div>
-    <div class="flex-grow-1"></div>
+
+    <div class="flex-grow-1">
+      <div class="fontSize-24">Paiements</div>
+    </div>
     <div>
-      <button mat-flat-button color="primary" (click)="addPayment()">
-          Ajouter un paiement </button>
+      <button MyButton class="primary" (click)="addPayment()">
+        <lucide-icon [img]="icons.PlusIcon"></lucide-icon>
+        Ajouter un paiement
+      </button>
     </div>
   </div>
-  <div class="divider my-3"></div>
 
-  <PaymentList [params]="{agencyId:agency.id}"
-  [displayedColumns]="[ 'code',  'amount',  'reason', 'customer', 'employee', 'createdAt', 'action']"></PaymentList>
+  <PaymentList class="mt-3" [params]="{agencyId:agency.id}"
+               [displayedColumns]="[ 'code',  'amount',  'reason', 'customer', 'employee', 'createdAt', 'action']"></PaymentList>
 </div>

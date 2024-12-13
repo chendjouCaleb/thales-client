@@ -4,19 +4,23 @@ import {Agency, Payment} from "../../../../../entities";
 import {PaymentUIService} from "@app/Components/payments";
 import {PaymentsList} from "@app/Components/payments/list/payments-list";
 import {AgencyPage} from "@app/pages/agency/agency.page";
-import {BreadcrumbItem} from "@app/Components";
 import {MatButton} from "@angular/material/button";
+import {LucideAngularModule, PlusIcon} from "lucide-angular";
+import {Button} from "@app/ui";
 
 @Component({
   templateUrl: 'agency-payments-list.page.html',
   standalone: true,
   imports: [
     MatButton,
-    PaymentsList
+    PaymentsList,
+    LucideAngularModule,
+    Button
   ],
   selector: 'AgencyPaymentListPage'
 })
 export class AgencyPaymentsListPage implements OnInit {
+  icons = { PlusIcon }
   payments: Payment[] = [];
   displayedColumns: string[] = ['id', 'amount', 'createdAt', 'reason', 'customer', 'action'];
 
@@ -24,7 +28,6 @@ export class AgencyPaymentsListPage implements OnInit {
   paymentList: PaymentsList
 
   agency: Agency;
-  breadcrumbItems: BreadcrumbItem[];
 
   constructor(private _service: PaymentService,
               private _parent: AgencyPage,
@@ -32,13 +35,7 @@ export class AgencyPaymentsListPage implements OnInit {
     this.agency = _parent.agency;
   }
 
-  ngOnInit() {
-
-
-    this.breadcrumbItems = [...this._parent.breadcrumbItems,
-      new BreadcrumbItem('Paiements')
-    ];
-  }
+  ngOnInit() { }
 
   addPayment() {
     this._uiService.addPayment(this.agency, null).subscribe(payment => {
@@ -46,9 +43,5 @@ export class AgencyPaymentsListPage implements OnInit {
         this.paymentList.unshift(payment);
       }
     })
-  }
-
-  onClick(row) {
-    console.log(row)
   }
 }

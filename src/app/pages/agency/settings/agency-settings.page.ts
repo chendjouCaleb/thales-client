@@ -4,11 +4,22 @@ import {Agency} from "@entities/agency";
 import {AgencyHttpClient} from "@app/services/agency.http-client";
 import {AgencyService} from "@app/Components/agencies";
 import {AgencyPage} from "@app/pages/agency/agency.page";
+import {LucideAngularModule, PencilIcon, Trash2Icon} from "lucide-angular";
+import {Button} from "@app/ui";
+import {NgIf} from "@angular/common";
 
 @Component({
-  templateUrl: 'agency-settings.page.html'
+  templateUrl: 'agency-settings.page.html',
+  selector: 'AgencySettingsPage',
+  imports: [
+    Button,
+    LucideAngularModule,
+    NgIf
+  ],
+  standalone: true
 })
 export class AgencySettingsPage {
+  icons = { PencilIcon, Trash2Icon }
   agency: Agency;
 
   constructor(private route: ActivatedRoute,

@@ -14,7 +14,6 @@ import {MatTooltipModule} from "@angular/material/tooltip";
 import {AgencyPaymentsListPage} from "./payments/list/agency-payments-list.page";
 import {AgencyPlaneTicketListPage} from "./plane-ticket/list/agency-plane-ticket-list.page";
 import {PaymentModule} from "@app/Components/payments";
-import {PlaneTicketModule} from "@app/Components/plane-tickets";
 import {AgencyEmployeesPage} from "./employees/agency-employees.page";
 import {EmployeeModule} from "@app/Components/employees";
 import {AgencySettingsPage} from "./settings/agency-settings.page";
@@ -48,10 +47,10 @@ const routes: Routes = [
     imports: [
         CommonModule, MatButtonModule, MatToolbarModule, RouterModule.forChild(routes), MatIconModule,
         MatSidenavModule, NavModule, ScaffoldModule, MatFormFieldModule, MatInputModule, MatTooltipModule,
-        PaymentModule, PlaneTicketModule, EmployeeModule, AgencyModule, ProcedureApplyModule, BreadcrumbModule,
+        PaymentModule, EmployeeModule, AgencyModule, ProcedureApplyModule, BreadcrumbModule,
         TraceModule, PaymentsList, LucideAngularModule
     ],
-  declarations: [AgencyPaymentsListPage, AgencyEmployeesPage, AgencySettingsPage, AgencyEventsPage]
+  declarations: [AgencyPaymentsListPage, AgencyEmployeesPage, AgencyEventsPage]
 })
 export class AgencyPageModule {
 

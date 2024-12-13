@@ -7,8 +7,8 @@
       <div class="ms-opacity-8">{{ agency.name }}</div>
     </div>
 
-    <button mat-button color="primary" (click)="editName()">
-      <mat-icon>edit</mat-icon>
+    <button MyButton class="alpha-primary" (click)="editName()">
+      <lucide-icon [img]="icons.PencilIcon"></lucide-icon>
      Changer le nom
     </button>
   </div>
@@ -18,8 +18,8 @@
   <div>
     <div class="d-flex align-items-center">
       <div class="fontSize-16 fontWeight-semiBold flex-grow-1">Informations</div>
-      <button mat-button color="primary" (click)="editInfo()">
-        <mat-icon>edit</mat-icon>
+      <button MyButton class="alpha-primary" (click)="editInfo()">
+        <lucide-icon [img]="icons.PencilIcon"></lucide-icon>
         Changer les info
       </button>
     </div>
@@ -54,8 +54,8 @@
       <div class="fontColor-140">Supprimer définitivement cette agence</div>
     </div>
 
-    <button mat-flat-button color="warn" (click)="delete()">
-      <mat-icon>delete</mat-icon>
+    <button MyButton class="warn" (click)="delete()">
+      <lucide-icon [img]="icons.Trash2Icon"></lucide-icon>
       Supprimer
     </button>
   </div>

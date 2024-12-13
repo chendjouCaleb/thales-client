@@ -5,7 +5,7 @@
 @if(getFirstRangeTask.success) {
   <div *ngFor="let apply of procedureApplies; let i=index"
      (click)="rowClick.emit(apply)"
-     class="p-3"
+     class="p-3 cursor-pointer"
        [class.mt-3]="i > 0"
        style="background-color: var(--my-SurfaceColor); color: var(--my-OnSurfaceColor); border-radius: 8px">
     <div class="fontWeight-bold fontSize-16">{{apply.customer.fullName}}</div>

@@ -54,6 +54,7 @@ export class AgencyProcedureAppliesListPage implements OnInit {
   }
 
   click(apply: ProcedureApply) {
+    console.log(apply)
     this.router.navigate(['/agencies', apply.agencyId, 'procedure-applies', apply.id])
   }
 

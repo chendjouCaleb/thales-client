@@ -7,7 +7,11 @@ import {ProcedureApplyDetails} from "@app/Components/procedure-apply/details/pro
   selector: 'AgencyProcedureApply',
   encapsulation: ViewEncapsulation.None,
   template: `
-    <ProcedureApplyDetails></ProcedureApplyDetails>`,
+    <div class="p-4">
+      <ProcedureApplyDetails [procedureApplyId]="procedureApplyId"></ProcedureApplyDetails>
+    </div>
+
+  `,
   imports: [
     ProcedureApplyDetails
   ],

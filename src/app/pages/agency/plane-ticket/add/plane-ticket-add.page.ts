@@ -2,7 +2,7 @@ import {Component, OnInit} from "@angular/core";
 import {ProcedureFormModel} from "@app/models";
 import {MatDialog} from "@angular/material/dialog";
 import {PlaneTicketAddRemember} from "./plane-ticket-add-remember";
-import {FormControl, FormGroup} from "@angular/forms";
+import {FormControl, FormGroup, ReactiveFormsModule} from "@angular/forms";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {ActivatedRoute, Router} from "@angular/router";
 import {PlaneTicketService} from "@app/services";
@@ -11,11 +11,34 @@ import {Customer} from "@entities/customer";
 import {AgencyHttpClient} from "@app/services/agency.http-client";
 import {Agency} from "@entities/agency";
 import {AgencyPage} from "@app/pages/agency/agency.page";
+import {TextField, TextFieldInput, TextFieldLabel} from "@app/NeoUI";
+import {NgIf} from "@angular/common";
+import {MatCheckbox} from "@angular/material/checkbox";
+import {MatRadioButton, MatRadioGroup} from "@angular/material/radio";
+import {CleaveModule} from "@app/cleave";
+import {Button} from "@app/ui";
+import {ChevronDown, LucideAngularModule} from "lucide-angular";
 
 @Component({
-  templateUrl: 'plane-ticket-add.page.html'
+  templateUrl: 'plane-ticket-add.page.html',
+  selector: 'PlaneTicketAdd',
+  standalone: true,
+  imports: [
+    TextField,
+    ReactiveFormsModule,
+    NgIf,
+    MatCheckbox,
+    MatRadioGroup,
+    MatRadioButton,
+    TextFieldInput,
+    TextFieldLabel,
+    CleaveModule,
+    Button,
+    LucideAngularModule
+  ]
 })
 export class PlaneTicketAddPage implements OnInit {
+  icons = { ChevronDown }
   model = new ProcedureFormModel();
   remember: PlaneTicketAddRemember;
   formGroup: FormGroup;
@@ -54,6 +77,10 @@ export class PlaneTicketAddPage implements OnInit {
 
   async ngOnInit() {
     this.agency = this._parent.agency;
+
+  }
+
+  openCustomerPicker() {
     this._customerPicker.open().subscribe(customer => {
       if (customer) {
         this.customer = customer;
@@ -61,12 +88,11 @@ export class PlaneTicketAddPage implements OnInit {
     })
   }
 
-
   async addPlaneTicket() {
     const model = this.formGroup.value;
     const planeTicket = await this._service.addAsync(this.agency, this.customer, model);
     this.remember.clear()
-    this._snackbar.open(`La commande de billet d'avion a été ajoutée.`, 'VOIR', {})
+    this._snackbar.open(`La commande de billet d'avion a été ajoutée.`, 'VOIR', {duration: 3000})
       .onAction().subscribe(() => {
 
     });

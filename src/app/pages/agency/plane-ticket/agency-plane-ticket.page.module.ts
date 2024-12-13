@@ -33,7 +33,7 @@ const routes: Routes = [
   imports: [CommonModule, RouterModule.forChild(routes), MatButtonModule, MatIconModule, ReactiveFormsModule,
     MatFormFieldModule, MatDialogModule, MatInputModule, MatMenuModule, MatRadioModule, PlaneTicketModule, MatCheckboxModule,
     CustomerPickerModule, PaymentModule, CleaveModule, BreadcrumbModule, PaymentsList, PlaneTicketList, MatProgressSpinner],
-  declarations: [ PlaneTicketAddPage,
+  declarations: [
   PlaneTicketEditPage ]
 })
 export class AgencyPlaneTicketPageModule {

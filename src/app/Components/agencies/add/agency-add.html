@@ -2,35 +2,34 @@
 
 
 <div class="px-4" [formGroup]="formGroup">
+    <TextField style="width: 100%">
+      <label TextFieldLabel for="name-field">Nom de l'agence</label>
+      <input TextFieldInput formControlName="name" required id="name-field">
+    </TextField>
 
-    <mat-form-field style="width: 100%">
-      <mat-label>Nom de l'agence</mat-label>
-      <input matInput formControlName="name" required>
-    </mat-form-field>
+  <TextField style="width: 100%">
+    <label TextFieldLabel for="address-field">Adresse</label>
+    <input TextFieldInput formControlName="address" required id="address-field">
+  </TextField>
 
-  <mat-form-field style="width: 100%">
-    <mat-label>Adresse</mat-label>
-    <input matInput formControlName="address" required>
-  </mat-form-field>
+  <TextField style="width: 100%">
+    <label TextFieldLabel for="postalCode-field">Code postal</label>
+    <input TextFieldInput formControlName="postalCode" required id="postalCode-field">
+  </TextField>
 
-  <mat-form-field style="width: 100%">
-    <mat-label>Code postal</mat-label>
-    <input matInput formControlName="postalCode" required>
-  </mat-form-field>
+  <TextField style="width: 100%">
+    <label TextFieldLabel for="phoneNumber1-field">Numéro de téléphone 1</label>
+    <input TextFieldInput CleavePhoneNumberInput formControlName="phoneNumber1" required id="phoneNumber1-field">
+  </TextField>
 
-  <mat-form-field style="width: 100%">
-    <mat-label>Numéro de téléphone 1</mat-label>
-    <input matInput CleavePhoneNumberInput formControlName="phoneNumber1" required>
-  </mat-form-field>
-
-  <mat-form-field style="width: 100%">
-    <mat-label>Numéro de téléphone 2</mat-label>
-    <input matInput CleavePhoneNumberInput formControlName="phoneNumber2" required>
-  </mat-form-field>
+  <TextField style="width: 100%">
+    <label TextFieldLabel for="phoneNumber2-field">Numéro de téléphone 2</label>
+    <input TextFieldInput CleavePhoneNumberInput formControlName="phoneNumber2" required id="phoneNumber2-field">
+  </TextField>
 
 </div>
 
 <div class="p-4 align-end">
-  <button mat-button mat-dialog-close="" class="me-4">Annuler</button>
-  <button mat-flat-button color="primary" [disabled]="formGroup.invalid" (click)="add()">Ajouter</button>
+  <button MyButton (click)="dialogRef.close()" class="me-4">Annuler</button>
+  <button MyButton class="primary" [disabled]="formGroup.invalid" (click)="add()">Ajouter</button>
 </div>

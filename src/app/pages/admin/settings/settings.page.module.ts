@@ -7,7 +7,6 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatTableModule} from "@angular/material/table";
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatIconModule} from "@angular/material/icon";
-import {AgencyModule} from "@app/Components/agencies";
 
 const routes: Routes = [
   { path: '', component: SettingsHomePage },
@@ -16,7 +15,7 @@ const routes: Routes = [
 @NgModule({
   imports: [
     CommonModule, RouterModule.forChild(routes), MatMenuModule, MatButtonModule, MatTableModule,
-    MatDialogModule, MatIconModule, AgencyModule ],
+    MatDialogModule, MatIconModule ],
   declarations: [  ]
 })
 export class SettingsPageModule {

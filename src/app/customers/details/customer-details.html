@@ -35,7 +35,7 @@
           • en {{ customer.family.marriedAt.getFullYear() }}
         }
         @if (customer.family.childrenCount > 0) {
-          • en {{ customer.family.childrenCount }} enfant@if (customer.family.childrenCount > 1) {
+          • {{ customer.family.childrenCount }} enfant@if (customer.family.childrenCount > 1) {
             s
           }
         } @else {

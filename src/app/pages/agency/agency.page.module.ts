@@ -14,7 +14,6 @@ import {AgencyPaymentsListPage} from "./payments/list/agency-payments-list.page"
 import {PaymentModule} from "@app/Components/payments";
 import {AgencyEmployeesPage} from "./employees/agency-employees.page";
 import {AgencySettingsPage} from "./settings/agency-settings.page";
-import {AgencyModule} from "@app/Components/agencies";
 import {AgencyEventsPage} from "@app/pages/agency/events/agency-events-page";
 import {TraceModule} from "@app/trace";
 import {PaymentsList} from "@app/Components/payments/list/payments-list";
@@ -44,7 +43,7 @@ const routes: Routes = [
     imports: [
         CommonModule, MatButtonModule, MatToolbarModule, RouterModule.forChild(routes), MatIconModule,
         MatSidenavModule, NavModule, MatFormFieldModule, MatInputModule, MatTooltipModule,
-        PaymentModule, AgencyModule, ProcedureApplyModule, BreadcrumbModule,
+        PaymentModule, ProcedureApplyModule, BreadcrumbModule,
         TraceModule, PaymentsList, LucideAngularModule
     ],
   declarations: []

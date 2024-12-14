@@ -4,6 +4,7 @@ import {SERVER_URL} from "@app/http";
 import {Agency} from "@entities/agency";
 import {firstValueFrom} from "rxjs";
 import {AgencyAddModel, AgencyChangeInfoModel} from "@app/models";
+import {Space} from "@entities/space";
 
 @Injectable({
   providedIn: 'root'
@@ -30,8 +31,9 @@ export class AgencyHttpClient {
     return firstValueFrom(call);
   }
 
-  async addAsync(model: AgencyAddModel): Promise<Agency> {
-    const call = this._httpClient.post<Agency>(`${this.url}`, model);
+  async addAsync(space: Space, model: AgencyAddModel): Promise<Agency> {
+    const params = { spaceId : space.id }
+    const call = this._httpClient.post<Agency>(`${this.url}`, model, {params});
     const value = await firstValueFrom(call);
     return new Agency(value);
   }

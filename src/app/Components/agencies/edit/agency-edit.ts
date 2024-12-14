@@ -1,21 +1,35 @@
 import {Component, Inject} from "@angular/core";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {FormControl, FormGroup} from "@angular/forms";
+import {FormControl, FormGroup, ReactiveFormsModule} from "@angular/forms";
 import {AgencyAddModel, AgencyChangeInfoModel} from "@app/models";
 import {AgencyHttpClient} from "@app/services/agency.http-client";
 import {Agency} from "@entities/agency";
+import {DIALOG_DATA, DialogRef} from "@angular/cdk/dialog";
+import {TextField, TextFieldInput, TextFieldLabel} from "@app/NeoUI";
+import {CleaveModule} from "@app/cleave";
+import {Button} from "@app/ui";
 
 @Component({
-  templateUrl: 'agency-edit.html'
+  templateUrl: 'agency-edit.html',
+  selector: 'AgencyEdit',
+  imports: [
+    TextField,
+    TextFieldLabel,
+    TextFieldInput,
+    CleaveModule,
+    ReactiveFormsModule,
+    Button
+  ],
+  standalone: true
 })
 export class AgencyEdit {
   agency: Agency = null;
 
   formGroup: FormGroup;
 
-  constructor(@Inject(MAT_DIALOG_DATA) data,
-              private _dialogRef: MatDialogRef<AgencyEdit>,
+  constructor(@Inject(DIALOG_DATA) data,
+              public _dialogRef: DialogRef<AgencyEdit>,
               private _service: AgencyHttpClient,
               private _snackbar: MatSnackBar) {
     this.agency = data.agency;
@@ -43,6 +57,6 @@ export class AgencyEdit {
     this.agency.postalCode = model.postalCode
 
     this._dialogRef.close();
-    this._snackbar.open(`L'agence a été modifiée.`, '', {duration: 5000})
+    this._snackbar.open(`L'agence a été modifiée.`, '', {duration: 3000})
   }
 }

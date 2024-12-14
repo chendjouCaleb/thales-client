@@ -3,12 +3,13 @@
 
 
 <div class="px-4">
-    <mat-form-field style="width: 100%">
-      <input type="text" matInput [formControl]="formControl">
-    </mat-form-field>
+    <TextField  style="width: 100%">
+      <label for="name-field" TextFieldLabel>Nom de l'agence</label>
+      <input type="text" TextFieldInput [formControl]="formControl" id="name-field">
+    </TextField>
 </div>
 
 <div class="p-4 align-end">
-  <button mat-stroked-button mat-dialog-close="" class="me-4">Annuler</button>
-  <button mat-flat-button color="primary" (click)="changeName()">Modifier</button>
+  <button MyButton (click)="_dialogRef.close()" class="me-3">Annuler</button>
+  <button MyButton color="primary" (click)="changeName()">Modifier</button>
 </div>

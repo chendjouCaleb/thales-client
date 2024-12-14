@@ -1,29 +1,33 @@
 import {Component, Inject} from "@angular/core";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {FormControl, FormGroup} from "@angular/forms";
-import {Customer, Payment} from "../../../../entities";
-import {PaymentService} from "../../../services";
-import {PaymentAddFormModel} from "../../../models/forms/payment.form-model";
+import {Agency} from "@entities/agency";
+import {AgencyService} from "@app/Components";
+import {DIALOG_DATA, DialogRef} from "@angular/cdk/dialog";
+import {Button} from "@app/ui";
 
 @Component({
   templateUrl: 'agency-delete.html',
-  selector: 'AgencyDelete'
+  selector: 'AgencyDelete',
+  imports: [
+    Button
+  ],
+  standalone: true
 })
 export class AgencyDelete {
-  payment: Payment
+  agency: Agency
 
-  constructor(@Inject(MAT_DIALOG_DATA) data,
-              private _dialogRef: MatDialogRef<AgencyDelete>,
-              private _service: PaymentService,
+  constructor(@Inject(DIALOG_DATA) data,
+              public _dialogRef: DialogRef<boolean, AgencyDelete>,
+              private _service: AgencyService,
               private _snackbar: MatSnackBar) {
-    this.payment = data.payment;
+    this.agency = data.agency;
 
   }
 
   async delete() {
-    await this._service.deleteAsync(this.payment);
+    await this._service.deleteAgency(this.agency);
     this._dialogRef.close(true);
-    this._snackbar.open(`Le paiement a supprimé`, '', {duration: 5000})
+    this._snackbar.open(`L'agence a été supprimée.`, '', {duration: 3000})
   }
 }

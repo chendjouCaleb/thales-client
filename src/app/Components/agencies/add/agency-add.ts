@@ -1,12 +1,28 @@
 import {Component, Inject} from "@angular/core";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {FormControl, FormGroup} from "@angular/forms";
+import {FormControl, FormGroup, ReactiveFormsModule} from "@angular/forms";
 import {AgencyAddModel} from "@app/models";
 import {AgencyHttpClient} from "@app/services/agency.http-client";
+import {DIALOG_DATA, DialogRef} from "@angular/cdk/dialog";
+import {Agency} from "@entities/agency";
+import {Space} from "@entities/space";
+import {Button} from "@app/ui";
+import {TextField, TextFieldInput, TextFieldLabel} from "@app/NeoUI";
+import {CleaveModule} from "@app/cleave";
 
 @Component({
-  templateUrl: 'agency-add.html'
+  templateUrl: 'agency-add.html',
+  selector: 'AgencyAdd',
+  imports: [
+    ReactiveFormsModule,
+    Button,
+    TextField,
+    TextFieldLabel,
+    TextFieldInput,
+    CleaveModule
+  ],
+  standalone: true
 })
 export class AgencyAdd {
   formGroup = new FormGroup({
@@ -15,12 +31,19 @@ export class AgencyAdd {
     postalCode: new FormControl<string>(''),
     phoneNumber1: new FormControl<string>(''),
     phoneNumber2: new FormControl<string>(''),
-  })
+  });
 
-  constructor(@Inject(MAT_DIALOG_DATA) data,
-              private _dialogRef: MatDialogRef<AgencyAdd>,
+  space: Space
+
+  constructor(@Inject(DIALOG_DATA) data: any,
+              public dialogRef: DialogRef<Agency, AgencyAdd>,
               private _service: AgencyHttpClient,
-              private _snackbar: MatSnackBar) { }
+              private _snackbar: MatSnackBar) {
+    this.space = data.space;
+    if(!this.space) {
+      throw new Error('Space should not be null!');
+    }
+  }
 
   async add() {
     const model = new AgencyAddModel();
@@ -30,8 +53,8 @@ export class AgencyAdd {
     model.phoneNumber2 = this.formGroup.value.phoneNumber2;
     model.postalCode = this.formGroup.value.postalCode;
 
-    const agency = await this._service.addAsync(model);
-    this._dialogRef.close(agency);
+    const agency = await this._service.addAsync(this.space, model);
+    this.dialogRef.close(agency);
     this._snackbar.open(`L'agence a été ajoutée.`, '', {duration: 5000})
   }
 }

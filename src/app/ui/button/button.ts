@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, ViewEncapsulation} from "@angular/core";
+import {ChangeDetectionStrategy, Component, Input, ViewEncapsulation} from "@angular/core";
 
 @Component({
   template: `
@@ -12,9 +12,12 @@ import {ChangeDetectionStrategy, Component, ViewEncapsulation} from "@angular/co
   standalone: true,
   host: {
     class: 'my-button',
-    role: 'menu'
+    role: 'menu',
+    '[class.primary]' : "color == 'primary'",
+    '[class.warn]' : "color == 'warn'"
   }
 })
 export class Button {
-
+  @Input()
+  color: 'primary' | 'warn'
 }

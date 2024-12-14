@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {Agency} from "../../../entities";
+import {Agency, Space} from "../../../entities";
 import {Observable} from "rxjs";
 import {AgencyAdd} from "./add/agency-add";
 import {AgencyDelete} from "./delete/agency-delete";
@@ -13,8 +13,8 @@ import {Dialog} from "@angular/cdk/dialog";
 export class AgencyService {
   constructor(private _dialog: Dialog) {}
 
-  addAgency(): Observable<Agency> {
-    const dialogRef = this._dialog.open<Agency>(AgencyAdd,);
+  addAgency(space: Space): Observable<Agency> {
+    const dialogRef = this._dialog.open<Agency>(AgencyAdd, {data: {space}});
     return dialogRef.closed;
   }
 

@@ -6,6 +6,8 @@ import {BuildingIcon, LucideAngularModule, PlusIcon} from "lucide-angular";
 import {Button} from "@app/ui";
 import {NgForOf, NgIf} from "@angular/common";
 import {RouterLink} from "@angular/router";
+import {Space} from "@entities/space";
+import {AdminPage} from "@app/pages/admin/admin.page";
 
 @Component({
   templateUrl: 'settings-home.page.html',
@@ -21,10 +23,13 @@ import {RouterLink} from "@angular/router";
 })
 export class SettingsHomePage implements OnInit {
   icons = { PlusIcon, BuildingIcon }
-  agencies: Agency[]
+  agencies: Agency[];
+  space: Space
 
   constructor(private agencyService: AgencyService,
-              private agencyHttpClient: AgencyHttpClient) {
+              private agencyHttpClient: AgencyHttpClient,
+              private parentPage: AdminPage) {
+    this.space = parentPage.space;
   }
 
   ngOnInit() {
@@ -36,7 +41,7 @@ export class SettingsHomePage implements OnInit {
   }
 
   addAgency() {
-    this.agencyService.addAgency().subscribe(agency => {
+    this.agencyService.addAgency(this.space).subscribe(agency => {
       if (agency) {
         this.agencies.unshift(agency);
       }

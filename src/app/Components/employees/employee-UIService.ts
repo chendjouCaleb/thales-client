@@ -7,34 +7,34 @@ import {Agency} from "@entities/agency";
 import {EmployeeSetAdmin} from "./set-admin/employee-set-admin";
 import {EmployeeUnsetAdmin} from "./unset-admin/employee-unset-admin";
 import {EmployeeDelete} from "@app/Components/employees/delete/employee-delete";
+import {Dialog} from "@angular/cdk/dialog";
 
 @Injectable()
 export class EmployeeUIService {
-  constructor(private _dialog: MatDialog) {
+  constructor(private _dialog: Dialog) {
   }
 
   add(agency: Agency): Observable<Employee> {
-    const dialogRef = this._dialog.open(EmployeeAdd, {
+    const dialogRef = this._dialog.open<Employee>(EmployeeAdd, {
       data: {agency},
-      autoFocus: false,
+      autoFocus: true,
       disableClose: true,
-      panelClass: 'dialog-panel'
     });
-    return dialogRef.afterClosed();
+    return dialogRef.closed;
   }
 
   setAdmin(employee: Employee): Observable<boolean> {
-    const dialogRef = this._dialog.open(EmployeeSetAdmin, {panelClass: 'dialog-panel', data: {employee}});
-    return dialogRef.afterClosed();
+    const dialogRef = this._dialog.open<boolean>(EmployeeSetAdmin, {data: {employee}});
+    return dialogRef.closed;
   }
 
   unsetAdmin(employee: Employee): Observable<boolean> {
-    const dialogRef = this._dialog.open(EmployeeUnsetAdmin, {panelClass: 'dialog-panel', data: {employee}});
-    return dialogRef.afterClosed();
+    const dialogRef = this._dialog.open<boolean>(EmployeeUnsetAdmin, {data: {employee}});
+    return dialogRef.closed;
   }
 
   delete(employee: Employee): Observable<boolean> {
-    const dialogRef = this._dialog.open(EmployeeDelete, {panelClass: 'dialog-panel', autoFocus: false, data: {employee}});
-    return dialogRef.afterClosed();
+    const dialogRef = this._dialog.open<boolean>(EmployeeDelete, {autoFocus: false, data: {employee}});
+    return dialogRef.closed;
   }
 }

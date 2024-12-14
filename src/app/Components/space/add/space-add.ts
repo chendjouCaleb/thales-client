@@ -9,12 +9,10 @@ import {NavHost, NavRouteDef} from "@app/navigation";
 import {EmployeeAddUser} from "@app/Components/employees/add/employee-add-user";
 import {EmployeeAddInfo} from "@app/Components/employees/add/employee-add-info";
 import {DIALOG_DATA, DialogRef} from "@angular/cdk/dialog";
-import {Employee} from "@entities/employee";
-import {LucideAngularModule, XIcon} from "lucide-angular";
-import {IconButton} from "@app/ui";
+import {Space} from "@entities/space";
 
 @Component({
-  templateUrl: 'employee-add.html',
+  templateUrl: 'space-add.html',
   selector: 'SpaceAdd',
   imports: [
     MatIconButton,
@@ -23,24 +21,18 @@ import {IconButton} from "@app/ui";
     NavHost,
     EmployeeAddUser,
     EmployeeAddInfo,
-    NavRouteDef,
-    IconButton,
-    LucideAngularModule
+    NavRouteDef
   ],
   standalone: true
 })
-export class EmployeeAdd {
-  icons = { XIcon }
-  agency: Agency;
-  user: User;
+export class SpaceAdd {
 
   formGroup = new FormGroup({
-    userId: new FormControl<string>(''),
-    isAdmin: new FormControl(false)
+    identifier: new FormControl<string>(''),
+    name: new FormControl<string>(''),
+    description: new FormControl<string>('')
   });
 
-  constructor(@Inject(DIALOG_DATA) data,
-              public dialogRef: DialogRef<Employee, EmployeeAdd>) {
-    this.agency = data.agency;
-  }
+  constructor(@Inject(DIALOG_DATA) data: any,
+              public dialogRef: DialogRef<Space, SpaceAdd>) { }
 }

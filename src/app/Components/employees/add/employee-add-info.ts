@@ -10,6 +10,8 @@ import {MatButton, MatIconButton} from "@angular/material/button";
 import {MatIcon} from "@angular/material/icon";
 import {MatCheckbox} from "@angular/material/checkbox";
 import {ReactiveFormsModule} from "@angular/forms";
+import { ChevronLeftIcon, LucideAngularModule} from "lucide-angular";
+import {Button, IconButton} from "@app/ui";
 
 @Component({
   selector: 'employee-add-info',
@@ -19,13 +21,16 @@ import {ReactiveFormsModule} from "@angular/forms";
     MatIcon,
     MatCheckbox,
     ReactiveFormsModule,
-    MatButton
+    MatButton,
+    LucideAngularModule,
+    Button,
+    IconButton
   ],
   template: `
 
     <div class="d-flex align-items-center">
-      <button mat-icon-button (click)="back()">
-        <mat-icon>arrow_back</mat-icon>
+      <button MyIconButton (click)="back()">
+        <lucide-icon [img]="icons.ChevronLeftIcon"></lucide-icon>
       </button>
       <div class="fw-semibold ms-2">{{ parent.user.fullName }}</div>
     </div>
@@ -38,13 +43,14 @@ import {ReactiveFormsModule} from "@angular/forms";
 
 
     <div class="mt-3 align-end">
-      <button mat-flat-button color="primary" [disabled]="isLoading"
+      <button MyButton color="primary" [disabled]="isLoading"
               (click)="next()">Ajouter
       </button>
     </div>
   `
 })
 export class EmployeeAddInfo {
+  icons = { ChevronLeftIcon }
   isLoading = false;
   constructor(public parent: EmployeeAdd,
               private _navHost: NavHost,

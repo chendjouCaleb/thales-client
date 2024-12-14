@@ -2,9 +2,7 @@
   <div class="d-flex align-items-center mb-3 ">
     <div class="fontSize-18 fontWeight-semiBold flex-grow-1">Ajouter un membre</div>
 
-    <button MyIconButton (click)="dialogRef.close()">
-      <lucide-icon [img]="icons.XIcon"></lucide-icon>
-    </button>
+    <button mat-icon-button mat-dialog-close><mat-icon>close</mat-icon></button>
   </div>
 
   <nav-host startUrl="user">

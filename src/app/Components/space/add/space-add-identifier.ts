@@ -8,31 +8,30 @@ import {MatFormField} from "@angular/material/form-field";
 import {MatInput} from "@angular/material/input";
 import {MatButton} from "@angular/material/button";
 import {ReactiveFormsModule} from "@angular/forms";
-import {TextField, TextFieldInput} from "@app/NeoUI";
+import {TextField, TextFieldInput, TextFieldLabel} from "@app/NeoUI";
 import {Button} from "@app/ui";
+import {Space} from "@entities/space";
+import {SpaceHttpClient} from "@app/services";
+import {SpaceAdd} from "@app/Components/space/add/space-add";
 
 @Component({
   selector: 'employee-add-user',
   standalone: true,
   imports: [
-    MatFormField,
-    MatInput,
-    MatButton,
     ReactiveFormsModule,
     TextField,
-    Button,
-    TextFieldInput
+    TextFieldInput,
+    TextFieldLabel,
+    Button
   ],
   template: `
     <div class="fontSize-16">
-      Utilisateur
-    </div>
-    <div class="opacity-8">
-      Renseignez l'E-mail de l'utilisateur que vous <br> souhaitez ajouter comme employé
+      Renseignez l'identifiant de votre espace
     </div>
     <div class="mt-2">
       <TextField class="w-100">
-        <input TextFieldInput type="text" required [formControl]="formControl" placeholder="E-mail de l'utilisateur">
+        <label TextFieldLabel for="identifier-field">"E-mail de l'utilisateur"</label>
+        <input TextFieldInput type="text" required [formControl]="formControl" id="identifier-field">
       </TextField>
     </div>
 
@@ -43,28 +42,26 @@ import {Button} from "@app/ui";
     </div>
   `
 })
-export class EmployeeAddUser {
+export class SpaceAddIdentifier {
   isLoading = false
-  get formControl() { return this.parent.formGroup.controls.userId ;}
+  get formControl() { return this.parent.formGroup.controls.identifier; }
 
-  constructor(private parent: EmployeeAdd,
+  constructor(private parent: SpaceAdd,
               private _navHost: NavHost,
-              private _userService: UserService,
+              private _spaceService: SpaceHttpClient,
               private _snackbarBar: MatSnackBar,
               private _loader: SnackbarLoader) {
   }
 
   async next() {
     this.isLoading = true;
-    const loaderRef = this._loader.open("Recherche de l'utilisateur...");
-    const contains = await this._userService.containsByEmailAsync(this.formControl.value);
+    const loaderRef = this._loader.open("Vérification de l'identifiant...");
+    const contains = await this._spaceService.containsIdentifierAsync(this.formControl.value);
 
     if (contains) {
-      this.parent.user = await this._userService.getByEmailAsync(this.formControl.value);
-      console.log(this.parent.user);
-      this._navHost.navigateByUrl('info');
+      this._snackbarBar.open("Identifiant déjà utilisé par un autre espace.", 'Fermer', {duration: 5000});
     } else {
-      this._snackbarBar.open("Utilisateur introuvable.", 'Fermer', {duration: 5000})
+      this._navHost.navigateByUrl('info');
     }
 
     loaderRef.dismiss();

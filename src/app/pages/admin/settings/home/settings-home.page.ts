@@ -2,7 +2,7 @@ import {Component, OnInit} from "@angular/core";
 import {Agency} from "@entities/agency";
 import {AgencyHttpClient} from "@app/services/agency.http-client";
 import {AgencyService} from "@app/Components/agencies";
-import {LucideAngularModule, PlusIcon} from "lucide-angular";
+import {BuildingIcon, LucideAngularModule, PlusIcon} from "lucide-angular";
 import {Button} from "@app/ui";
 import {NgForOf, NgIf} from "@angular/common";
 import {RouterLink} from "@angular/router";
@@ -20,7 +20,7 @@ import {RouterLink} from "@angular/router";
   standalone: true
 })
 export class SettingsHomePage implements OnInit {
-  icons = { PlusIcon }
+  icons = { PlusIcon, BuildingIcon }
   agencies: Agency[]
 
   constructor(private agencyService: AgencyService,

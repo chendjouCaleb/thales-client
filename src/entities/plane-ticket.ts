@@ -46,8 +46,8 @@ export class PlaneTicket extends BaseEntity<number> {
       this.backAndForth = value.backAndForth;
       this.travelClass = value.travelClass;
 
-      this.price = Money.parse(value.price);
-      this.totalPayment = Money.parse(value.totalPayment);
+      this.price = value.price ? Money.parse(value.price) : undefined;
+      this.totalPayment = value.totalPayment ? Money.parse(value.totalPayment) : undefined;
 
       this.departureCountry = value.departureCountry;
       this.departureCity = value.departureCity;

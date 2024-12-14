@@ -25,11 +25,11 @@ export class PaymentRangeViewModel {
       this.agencies = value.agencies.map(p => new Agency(p));
       this.employees = value.employees.map(p => new Employee(p));
       this.customers = value.customers?.map(p => new Customer(p));
-      this.procedures = value.procedures.map(p => new Procedure(p));
-      this.procedureSteps = value.procedureSteps.map(p => new ProcedureStep(p));
-      this.procedureApplies = value.procedureApplies.map(p => new ProcedureApply(p));
-      this.procedureApplySteps = value.procedureApplySteps.map(p => new ProcedureApplyStep(p));
-      this.planeTickets = value.planeTickets.map(p => new PlaneTicket(p));
+      this.procedures = value.procedures?.map(p => new Procedure(p));
+      this.procedureSteps = value.procedureSteps?.map(p => new ProcedureStep(p));
+      this.procedureApplies = value.procedureApplies?.map(p => new ProcedureApply(p));
+      this.procedureApplySteps = value.procedureApplySteps?.map(p => new ProcedureApplyStep(p));
+      this.planeTickets = value.planeTickets?.map(p => new PlaneTicket(p));
       this.total = value.total
     }
   }

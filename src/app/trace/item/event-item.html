@@ -3,7 +3,7 @@
        icon="paid"
        title="Nouveau paiement">
     <span class="">{{payment.customer.fullName}}</span> vous a versé
-    <span class="">{{payment.amount.amount | currency: payment.amount.currency}}</span>.
+    <span class="">{{payment.amount.format()}}</span>.
   </div>
 } @else if (event.name == 'PAYMENT__DELETE') {
   <div event-item-template [event]="event" [user]="user" [agency]="payment.agency"

@@ -1,4 +1,4 @@
-<div class="page-card">
+<div class="p-4">
   <div class="d-flex align-items-center">
     <div class="page-title flex-grow-1">Paramètres</div>
 
@@ -12,9 +12,8 @@
   <div>
     <div class="d-flex align-items-center justify-content-between">
       <div class="fontWeight-semiBold fontSize-22">Agences</div>
-      <button mat-flat-button color="primary" (click)="addAgency()">
-        <mat-icon>add</mat-icon>
-        Ajouter une agence
+      <button MyButton class="primary" (click)="addAgency()">
+        <lucide-icon [img]="icons.PlusIcon"></lucide-icon> Ajouter une agence
       </button>
     </div>
 

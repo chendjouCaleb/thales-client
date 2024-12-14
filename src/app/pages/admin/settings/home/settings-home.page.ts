@@ -1,15 +1,26 @@
-import {Component, OnInit, ViewChild} from "@angular/core";
-import {PaymentService} from "../../../../services";
-import {Agency, Payment} from "../../../../../entities";
-import {PaymentUIService} from "../../../../Components/payments";
-import {PaymentsList} from "../../../../Components/payments/list/payments-list";
+import {Component, OnInit} from "@angular/core";
+import {Agency} from "@entities/agency";
 import {AgencyHttpClient} from "@app/services/agency.http-client";
 import {AgencyService} from "@app/Components/agencies";
+import {LucideAngularModule, PlusIcon} from "lucide-angular";
+import {Button} from "@app/ui";
+import {NgForOf, NgIf} from "@angular/common";
+import {RouterLink} from "@angular/router";
 
 @Component({
-  templateUrl: 'settings-home.page.html'
+  templateUrl: 'settings-home.page.html',
+  selector: 'SettingsHomePage',
+  imports: [
+    Button,
+    LucideAngularModule,
+    NgIf,
+    NgForOf,
+    RouterLink
+  ],
+  standalone: true
 })
 export class SettingsHomePage implements OnInit {
+  icons = { PlusIcon }
   agencies: Agency[]
 
   constructor(private agencyService: AgencyService,

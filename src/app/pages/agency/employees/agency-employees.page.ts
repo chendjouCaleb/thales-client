@@ -7,6 +7,8 @@ import {EmployeeUIService} from "@app/Components/employees/employee-UIService";
 import {BreadcrumbItem} from "@app/Components";
 import {MatIcon} from "@angular/material/icon";
 import {MatButton} from "@angular/material/button";
+import {LucideAngularModule, UserPlusIcon} from "lucide-angular";
+import {Button} from "@app/ui";
 
 @Component({
   templateUrl: 'agency-employees.page.html',
@@ -14,11 +16,15 @@ import {MatButton} from "@angular/material/button";
   imports: [
     EmployeeList,
     MatIcon,
-    MatButton
+    MatButton,
+    Button,
+    LucideAngularModule
   ],
+  providers: [EmployeeUIService],
   standalone: true
 })
 export class AgencyEmployeesPage implements OnInit {
+  icons = { UserPlusIcon }
   @ViewChild(EmployeeList)
   employeeList: EmployeeList
 

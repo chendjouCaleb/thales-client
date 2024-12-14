@@ -8,6 +8,8 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatButtonModule} from "@angular/material/button";
 import {MatInputModule} from "@angular/material/input";
 import {IsAuthGuardFunc, IsNotAuthGuardFunc} from "@app/identity";
+import {TextField, TextFieldInput, TextFieldLabel} from "@app/NeoUI";
+import {Button} from "@app/ui";
 
 const routes: Routes = [
   {path: 'login', component: LoginPage, canActivate: [IsNotAuthGuardFunc]},
@@ -25,7 +27,7 @@ const routes: Routes = [
 ]
 
 @NgModule({
-  imports: [CommonModule, RouterModule.forChild(routes), ReactiveFormsModule, MatFormFieldModule, MatButtonModule, MatInputModule],
+  imports: [CommonModule, RouterModule.forChild(routes), ReactiveFormsModule, MatFormFieldModule, MatButtonModule, MatInputModule, TextField, TextFieldLabel, TextFieldInput, Button],
   declarations: [LoginPage, LogoutPage]
 })
 export class IdentityPageModule {

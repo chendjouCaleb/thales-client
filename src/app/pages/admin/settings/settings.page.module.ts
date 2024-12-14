@@ -17,7 +17,7 @@ const routes: Routes = [
   imports: [
     CommonModule, RouterModule.forChild(routes), MatMenuModule, MatButtonModule, MatTableModule,
     MatDialogModule, MatIconModule, AgencyModule ],
-  declarations: [ SettingsHomePage ]
+  declarations: [  ]
 })
 export class SettingsPageModule {
 

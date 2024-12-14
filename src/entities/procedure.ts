@@ -15,7 +15,7 @@ export class Procedure extends BaseEntity<number>  {
     if(value) {
       this.name = value.name;
       this.normalizedName = value.normalizedName;
-      this.price = Money.parse(value.price);
+      this.price = value.price ? Money.parse(value.price) : undefined;
       this.description = value.description;
     }
   }

@@ -7,7 +7,7 @@ import {MatButton} from "@angular/material/button";
 
 @Component({
   templateUrl: 'employee-delete.html',
-  selector: 'EmployeeDelete',
+  selector: 'MemberDelete',
   imports: [
     MatButton,
     MatDialogClose

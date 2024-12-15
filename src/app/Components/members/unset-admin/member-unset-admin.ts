@@ -7,16 +7,18 @@ import {DIALOG_DATA, DialogRef} from "@angular/cdk/dialog";
 import {Button} from "@app/ui";
 
 @Component({
-  templateUrl: 'employee-unset-admin.html',
+  templateUrl: 'member-unset-admin.html',
   selector: 'MemberUnsetAdmin',
-  imports: [],
+  imports: [
+    Button
+  ],
   standalone: true
 })
-export class EmployeeUnsetAdmin {
+export class MemberUnsetAdmin {
   employee: Employee
 
   constructor(@Inject(DIALOG_DATA) data: any,
-              public _dialogRef: DialogRef<boolean, EmployeeUnsetAdmin>,
+              public _dialogRef: DialogRef<boolean, MemberUnsetAdmin>,
               private _httpClient: EmployeeHttpClient,
               private _snackbar: MatSnackBar) {
     this.employee = data.employee;

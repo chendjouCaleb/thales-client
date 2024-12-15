@@ -1,0 +1,14 @@
+<div class="p-4">
+
+
+  <div class="d-flex align-items-center">
+    <div class="fontSize-22 flex-grow-1">Membres</div>
+    <button MyButton class="primary" (click)="addMember()">
+      <lucide-icon [img]="icons.UserPlusIcon"></lucide-icon> Ajouter un member
+    </button>
+  </div>
+
+  <div class="mt-3">
+    <MemberList [params]="{spaceId: space.id}" #memberList></MemberList>
+  </div>
+</div>

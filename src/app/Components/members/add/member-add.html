@@ -1,0 +1,25 @@
+<div class="p-4">
+  <div class="d-flex align-items-center mb-3 ">
+    <div class="fontSize-18 fontWeight-semiBold flex-grow-1">Ajouter un membre</div>
+
+    <button MyIconButton (click)="dialogRef.close()">
+      <lucide-icon [img]="icons.XIcon"></lucide-icon>
+    </button>
+  </div>
+
+  <nav-host startUrl="user">
+    <ng-template nav-route="user" nav-routeName="user">
+      <div MemberAddUser></div>
+    </ng-template>
+
+    <ng-template nav-route="info" nav-routeName="info">
+      <div MemberAddInfo ></div>
+    </ng-template>
+
+    <ng-template nav-route="confirm" nav-routeName="confirm">
+      <div MemberAddConfirm ></div>
+    </ng-template>
+  </nav-host>
+
+
+</div>

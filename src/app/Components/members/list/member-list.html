@@ -1,0 +1,42 @@
+<div *ngIf="isLoading" class="page-center-container">
+  <mat-spinner></mat-spinner>
+</div>
+
+<div *ngIf="members" class="mt-3">
+  <div *ngFor="let member of members">
+
+
+    <div class="d-flex align-items-center px-3 py-2 cursor-pointer bg-color-10--hover" matRipple>
+      <div style="width: 48px; height: 48px; overflow: hidden; ">
+        <img src="/assets/photo_silhouette.png" alt="" width="48">
+      </div>
+      <div class="ms-3 flex-grow-1">
+        <div>
+          <span class="fw-semibold fontSize-16"> {{member.user.fullName}} </span>
+          <span class="opacity-75"> &#64;{{member.user.userName}}</span>
+        </div>
+        <div>
+          <span class="inline-badge ms-bgColor-cyan-20 me-3" *ngIf="member.isAdmin">Admin</span>
+        </div>
+      </div>
+
+      <div>
+        <button mat-icon-button [mat-menu-trigger-for]="menu">
+          <mat-icon>more_vert</mat-icon></button>
+        <mat-menu #menu>
+          <button mat-menu-item (click)="setAdmin(member)" *ngIf="!member.isAdmin">
+            <mat-icon></mat-icon>  Mettre comme administrateur
+          </button>
+          <button mat-menu-item (click)="unsetAdmin(member)" *ngIf="member.isAdmin">
+            <mat-icon></mat-icon> Enlever comme administrateur
+          </button>
+          <button mat-menu-item (click)="delete(member)">
+            <mat-icon>delete</mat-icon>Supprimer</button>
+        </mat-menu>
+      </div>
+
+
+    </div>
+
+  </div>
+</div>

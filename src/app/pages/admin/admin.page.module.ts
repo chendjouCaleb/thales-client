@@ -16,6 +16,7 @@ import {PlaneTicketListPage} from "@app/pages/admin/plane-ticket/list/plane-tick
 import {SpacePlaneTicketPage} from "@app/pages/admin/plane-ticket/space-plane-ticket.page";
 import {SpaceProcedureApply} from "@app/pages/admin/procedure-applies/space-procedure-apply";
 import {SpaceProcedureAppliesListPage} from "@app/pages/admin/procedure-applies/space-procedure-applies-list-page";
+import {SpaceMembersPage} from "@app/pages/admin/members/space-members.page";
 
 const routes: Routes = [
   {
@@ -28,6 +29,9 @@ const routes: Routes = [
       { path: 'plane-tickets/:planeTicketId', component: SpacePlaneTicketPage },
       { path: 'procedure-applies', component: SpaceProcedureAppliesListPage},
       { path: 'procedure-applies/:procedureApplyId', component: SpaceProcedureApply},
+
+      {path: 'members', component: SpaceMembersPage},
+
       { path: 'users', loadChildren: () => import('./users/users.page.module').then(m => m.UsersPageModule ) },
       { path: 'settings', loadChildren: () => import('./settings/settings.page.module').then(m => m.SettingsPageModule ) },
       { path: 'events', component: EventsPage },

@@ -1,6 +1,14 @@
 import {Component, ViewEncapsulation} from "@angular/core";
 import {AuthenticationService, Session} from "@app/identity";
-import {LogOutIcon, LucideAngularModule, MenuIcon, UserIcon, CircleUserIcon, UserCogIcon } from "lucide-angular";
+import {
+  LogOutIcon,
+  LucideAngularModule,
+  MenuIcon,
+  UserIcon,
+  CircleUserIcon,
+  UserCogIcon,
+  PlusIcon
+} from "lucide-angular";
 import {NgIf} from "@angular/common";
 import {Button, IconButton, Menu, MenuItem} from "@app/ui";
 import {RouterLink} from "@angular/router";
@@ -17,7 +25,7 @@ import {Scaffold} from "../scaffold";
   encapsulation: ViewEncapsulation.None
 })
 export class ScaffoldToolbar {
-  icons = {LogOutIcon, MenuIcon, UserIcon, CircleUserIcon, UserCogIcon }
+  icons = {LogOutIcon, MenuIcon, UserIcon, CircleUserIcon, UserCogIcon, PlusIcon }
   constructor(private _authenticationService: AuthenticationService,
               public scaffold: Scaffold) {
 

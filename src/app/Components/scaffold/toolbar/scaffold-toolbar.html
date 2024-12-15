@@ -17,28 +17,34 @@
 
 
     @if(session) {
-      <button style="border-radius: 50%; border: none;
+     <div class="d-flex align-items-center">
+       <button MyButton class="me-3">
+         <lucide-icon [img]="icons.PlusIcon"></lucide-icon>
+         Créer
+       </button>
+       <button style="border-radius: 50%; border: none;
       display: flex; align-items: center; justify-content: center;
       cursor: pointer;
         overflow: hidden; height: 36px; width: 36px; margin-left: 8px"
-              #menuTrigger
-              (click)="dropdown.open(); $event.stopPropagation()"
-              [matTooltip]="session.user.fullName" >
-        <img src="/assets/user.png" alt="profile image" height="36" width="36">
-      </button>
+               #menuTrigger
+               (click)="dropdown.open(); $event.stopPropagation()"
+               [matTooltip]="session.user.fullName" >
+         <img src="/assets/user.png" alt="profile image" height="36" width="36">
+       </button>
 
-      <Dropdown #dropdown [trigger]="menuTrigger"
-                (onBackdropClick)="dropdown.close()">
-        <MyMenu class="my-light-theme">
+       <Dropdown #dropdown [trigger]="menuTrigger"
+                 (onBackdropClick)="dropdown.close()">
+         <MyMenu class="my-light-theme">
 
-          <a MenuItem routerLink="/identity/profile">
-            <lucide-icon [img]="icons.UserCogIcon"  strokeWidth="1.5"></lucide-icon>
-            Profile</a>
-          <a  MenuItem routerLink="/identity/logout">
-            <lucide-icon [img]="icons.LogOutIcon"  strokeWidth="1.5"></lucide-icon>  Se déconnecter
-          </a>
-        </MyMenu>
-      </Dropdown>
+           <a MenuItem routerLink="/identity/profile">
+             <lucide-icon [img]="icons.UserCogIcon"  strokeWidth="1.5"></lucide-icon>
+             Profile</a>
+           <a  MenuItem routerLink="/identity/logout">
+             <lucide-icon [img]="icons.LogOutIcon"  strokeWidth="1.5"></lucide-icon>  Se déconnecter
+           </a>
+         </MyMenu>
+       </Dropdown>
+     </div>
     }
   </div>
 </div>

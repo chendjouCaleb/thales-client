@@ -12,7 +12,7 @@ import {Button} from "@app/ui";
 
 @Component({
   templateUrl: 'agency-employees.page.html',
-  selector: 'AgencyEmployeesPage',
+  selector: 'SpaceMembersPage',
   imports: [
     EmployeeList,
     MatIcon,

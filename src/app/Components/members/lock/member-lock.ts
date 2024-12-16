@@ -9,7 +9,7 @@ import {Button} from "@app/ui";
 
 @Component({
   templateUrl: 'member-lock.html',
-  selector: 'MemberLock',
+  selector: 'MemberUnlock',
   imports: [
     Button
   ],

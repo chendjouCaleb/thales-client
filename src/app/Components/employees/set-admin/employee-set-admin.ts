@@ -7,7 +7,7 @@ import {MatButton} from "@angular/material/button";
 
 @Component({
   templateUrl: 'employee-set-admin.html',
-  selector: 'MemberLock',
+  selector: 'MemberUnlock',
   imports: [
     MatButton,
     MatDialogClose

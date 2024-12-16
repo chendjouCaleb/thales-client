@@ -79,7 +79,7 @@ export class MemberList implements OnInit {
 
   toggleLock(member: Member) {
     if(member.isLocked) {
-
+      this.uiService.unlock(member);
     }else {
       this.uiService.lock(member)
     }

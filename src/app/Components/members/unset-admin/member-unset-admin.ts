@@ -26,8 +26,7 @@ export class MemberUnsetAdmin {
 
   async unsetAdmin() {
     await this._httpClient.toggleAdminAsync(this.member);
-    this.member.isAdmin = false;
     this._dialogRef.close(true);
-    this._snackbar.open(`Cet employé n'est plus un administrateur.`, '', {duration: 3000})
+    this._snackbar.open(`Ce membre n'est plus un administrateur.`, '', {duration: 3000})
   }
 }

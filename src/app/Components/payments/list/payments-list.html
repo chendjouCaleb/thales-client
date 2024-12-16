@@ -61,7 +61,13 @@
           {{ payment.reason }}
         </td>
 
-        <td *ngIf="display('customer')">{{ payment.customer?.fullName }}</td>
+        <td *ngIf="display('customer')">
+          <span style="display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 1;
+            overflow: hidden;">{{ payment.customer?.fullName }}</span>
+
+        </td>
         <td *ngIf="display('agency')">{{ payment.agency?.name }}</td>
         <td *ngIf="display('employee')">{{ payment.employee?.user?.fullName }}</td>
         <td *ngIf="display('createdAt')">

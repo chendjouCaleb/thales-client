@@ -8,6 +8,17 @@ import {MatIcon} from "@angular/material/icon";
 import {MatRipple} from "@angular/material/core";
 import {MemberUIService} from "@app/Components/members";
 import {MemberHttpClient} from "@app/services";
+import {
+  EllipsisVerticalIcon,
+  LockIcon,
+  LockOpen,
+  LucideAngularModule,
+  ShieldCheck,
+  ShieldXIcon,
+  Trash2Icon
+} from "lucide-angular";
+import {IconButton, Menu, MenuItem} from "@app/ui";
+import {Dropdown} from "@app/NeoUI";
 
 @Component({
   templateUrl: 'member-list.html',
@@ -21,11 +32,17 @@ import {MemberHttpClient} from "@app/services";
     MatMenuItem,
     MatMenuTrigger,
     MatIcon,
-    MatRipple
+    MatRipple,
+    MenuItem,
+    LucideAngularModule,
+    IconButton,
+    Dropdown,
+    Menu
   ],
   standalone: true
 })
 export class MemberList implements OnInit {
+  icons = { Trash2Icon, EllipsisVerticalIcon, ShieldCheck, ShieldXIcon, LockIcon, LockOpen }
   @Input()
   params: any = {}
 
@@ -58,6 +75,14 @@ export class MemberList implements OnInit {
 
   unsetAdmin(member: Member) {
     this.uiService.unsetAdmin(member);
+  }
+
+  toggleLock(member: Member) {
+    if(member.isLocked) {
+
+    }else {
+      this.uiService.lock(member)
+    }
   }
 
   delete(member: Member) {

@@ -62,13 +62,19 @@ export class MemberHttpClient {
     this._memberDelete.next(member);
   }
 
-  async setAdminAsync(member: Member): Promise<void> {
-    const call = this._httpClient.put(`${this.url}/${member.id}/set-admin`, {});
+  async toggleAdminAsync(member: Member): Promise<void> {
+    const call = this._httpClient.put(`${this.url}/${member.id}/admin`, {});
     await firstValueFrom(call);
+    member.isAdmin = !member.isAdmin;
+    this._memberEdit.next(member)
   }
 
-  async unSetAdminAsync(member: Member): Promise<void> {
-    const call = this._httpClient.put(`${this.url}/${member.id}/unset-admin`, {});
+  async toggleLockAsync(member: Member): Promise<void> {
+    const call = this._httpClient.put(`${this.url}/${member.id}/lock`, {});
     await firstValueFrom(call);
+    member.isLocked = !member.isLocked;
+    this._memberEdit.next(member)
   }
+
+
 }

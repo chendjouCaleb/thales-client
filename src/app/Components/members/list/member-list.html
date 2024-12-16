@@ -12,8 +12,8 @@
       </div>
       <div class="ms-3 flex-grow-1">
         <div>
-          <span class="fw-semibold fontSize-16"> {{member.user.fullName}} </span>
-          <span class="opacity-75"> &#64;{{member.user.userName}}</span>
+          <span class="fw-semibold fontSize-16"> {{ member.user.fullName }} </span>
+          <span class="opacity-75"> &#64;{{ member.user.userName }}</span>
         </div>
         <div>
           <span class="inline-badge me-3" *ngIf="member.isAdmin" style="background-color: #107c10">Admin</span>
@@ -21,18 +21,37 @@
       </div>
 
       <div>
-        <button mat-icon-button [mat-menu-trigger-for]="menu">
-          <mat-icon>more_vert</mat-icon></button>
-        <mat-menu #menu>
-          <button mat-menu-item (click)="setAdmin(member)" *ngIf="!member.isAdmin">
-            <mat-icon></mat-icon>  Mettre comme administrateur
-          </button>
-          <button mat-menu-item (click)="unsetAdmin(member)" *ngIf="member.isAdmin">
-            <mat-icon></mat-icon> Enlever comme administrateur
-          </button>
-          <button mat-menu-item (click)="delete(member)">
-            <mat-icon>delete</mat-icon>Supprimer</button>
-        </mat-menu>
+        <button MyIconButton #menuTrigger (click)="dropdown.open(); $event.stopPropagation()">
+          <lucide-icon [img]="icons.EllipsisVerticalIcon"></lucide-icon>
+        </button>
+
+        <Dropdown #dropdown [trigger]="menuTrigger.host"
+                  (onBackdropClick)="dropdown.close()">
+          <MyMenu>
+
+            <button MenuItem (click)="setAdmin(member)" *ngIf="!member.isAdmin">
+              <lucide-icon [img]="icons.ShieldCheck"></lucide-icon>
+              Nommer admin...
+            </button>
+            <button MenuItem (click)="unsetAdmin(member)" *ngIf="member.isAdmin">
+              <lucide-icon [img]="icons.ShieldXIcon"></lucide-icon>
+              Révoquer le droit d'admin...
+            </button>
+            <button MenuItem (click)="toggleLock(member)" *ngIf="member.isLocked">
+              <lucide-icon [img]="icons.LockOpen"></lucide-icon>
+              Débloquer
+            </button>
+            <button MenuItem (click)="toggleLock(member)" *ngIf="!member.isLocked">
+              <lucide-icon [img]="icons.LockIcon"></lucide-icon>
+              Bloquer
+            </button>
+            <button MenuItem (click)="delete(member)">
+              <lucide-icon [img]="icons.Trash2Icon"></lucide-icon>
+              Supprimer
+            </button>
+
+          </MyMenu>
+        </Dropdown>
       </div>
 
 

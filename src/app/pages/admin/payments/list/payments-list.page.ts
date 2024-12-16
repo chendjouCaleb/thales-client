@@ -7,7 +7,8 @@ import {AdminPage} from "@app/pages/admin/admin.page";
 import {Space} from "@entities/space";
 
 @Component({
-  templateUrl: 'payments-list.page.html'
+  templateUrl: 'payments-list.page.html',
+  selector: 'PaymentsSpaceListPage'
 })
 export class PaymentsListPage implements OnInit {
   payments: Payment[] = [];

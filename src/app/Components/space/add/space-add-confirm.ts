@@ -35,9 +35,7 @@ import {TextField, TextFieldInput, TextFieldLabel} from "@app/NeoUI";
   template: `
 
     <div class="d-flex align-items-center">
-      <button MyIconButton (click)="back()">
-        <lucide-icon [img]="icons.ChevronLeftIcon"></lucide-icon>
-      </button>
+      <lucide-icon [img]="icons.ChevronLeftIcon" (click)="back()"></lucide-icon>
       <div class="fw-semibold ms-2">Confirmation</div>
     </div>
 

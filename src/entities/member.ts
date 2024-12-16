@@ -4,6 +4,7 @@ import {Space} from "@entities/space";
 
 export class Member extends BaseEntity<number> {
   isAdmin: boolean
+  isLocked: boolean
 
   space:Space;
   spaceId: number;
@@ -15,6 +16,7 @@ export class Member extends BaseEntity<number> {
     super(value);
     if (value) {
       this.isAdmin = value.isAdmin;
+      this.isLocked = value.isLocked;
 
       this.spaceId = value.spaceId;
       this.space = value.space ? new Space(value.space) : undefined;
@@ -23,5 +25,6 @@ export class Member extends BaseEntity<number> {
       this.user = value.user ? new User(value.user) : undefined;
     }
   }
+
 }
 

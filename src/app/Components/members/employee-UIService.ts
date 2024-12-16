@@ -1,14 +1,13 @@
-import {MatDialog} from "@angular/material/dialog";
 import {Observable} from "rxjs";
 import {MemberAdd} from "@app/Components/members/add/member-add";
 import {Injectable} from "@angular/core";
 import {Member} from "@entities/member";
-import {Agency} from "@entities/agency";
 import {MemberDelete} from "@app/Components/members/delete/member-delete";
 import {Dialog} from "@angular/cdk/dialog";
 import {MemberSetAdmin} from "@app/Components/members/set-admin/member-set-admin";
 import {MemberUnsetAdmin} from "@app/Components/members/unset-admin/member-unset-admin";
 import {Space} from "@entities/space";
+import {MemberLock} from "@app/Components/members/lock/member-lock";
 
 @Injectable()
 export class MemberUIService {
@@ -31,6 +30,11 @@ export class MemberUIService {
 
   unsetAdmin(member: Member): Observable<boolean> {
     const dialogRef = this._dialog.open<boolean>(MemberUnsetAdmin, {data: {member}});
+    return dialogRef.closed;
+  }
+
+  lock(member: Member): Observable<boolean> {
+    const dialogRef = this._dialog.open<boolean>(MemberLock, {data: {member}});
     return dialogRef.closed;
   }
 

@@ -35,10 +35,7 @@ import {TextField, TextFieldInput, TextFieldLabel} from "@app/NeoUI";
   template: `
 
     <div class="d-flex align-items-center">
-<!--      <button MyIconButton (click)="back()">-->
-<!--        -->
-<!--      </button>-->
-      <lucide-icon [img]="icons.ChevronLeftIcon"></lucide-icon>
+      <lucide-icon [img]="icons.ChevronLeftIcon" (click)="back()"></lucide-icon>
       <div class="fontWeight-semiBold ms-2">Informations du l'espace</div>
     </div>
 

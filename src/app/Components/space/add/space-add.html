@@ -1,17 +1,21 @@
 <div class="p-4">
   <div class="d-flex align-items-center mb-3 ">
-    <div class="fontSize-18 fontWeight-semiBold flex-grow-1">Ajouter un membre</div>
+    <div class="fontSize-18 fontWeight-semiBold flex-grow-1">Ajouter un espace</div>
 
     <button mat-icon-button mat-dialog-close><mat-icon>close</mat-icon></button>
   </div>
 
-  <nav-host startUrl="user">
-    <ng-template nav-route="user" nav-routeName="user">
-      <employee-add-user></employee-add-user>
+  <nav-host startUrl="identifier">
+    <ng-template nav-route="identifier" nav-routeName="identifier">
+      <div SpaceAddIdentifier></div>
     </ng-template>
 
     <ng-template nav-route="info" nav-routeName="info">
-      <employee-add-info ></employee-add-info>
+      <div SpaceAddInfo ></div>
+    </ng-template>
+
+    <ng-template nav-route="confirm" nav-routeName="confirm">
+      <div SpaceAddConfirm ></div>
     </ng-template>
   </nav-host>
 

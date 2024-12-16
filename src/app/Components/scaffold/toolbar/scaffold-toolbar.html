@@ -18,7 +18,7 @@
 
     @if(session) {
      <div class="d-flex align-items-center">
-       <button MyButton class="me-3">
+       <button MyButton class="me-3" (click)="spaceAddLauncher.launch()">
          <lucide-icon [img]="icons.PlusIcon"></lucide-icon>
          Créer
        </button>

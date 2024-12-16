@@ -15,6 +15,7 @@ import {RouterLink} from "@angular/router";
 import {MatTooltip} from "@angular/material/tooltip";
 import {Dropdown} from "@app/NeoUI";
 import {Scaffold} from "../scaffold";
+import {SpaceAddLauncher} from "@app/Components/space/add/space-add-launcher";
 
 @Component({
   templateUrl: 'scaffold-toolbar.html',
@@ -27,6 +28,7 @@ import {Scaffold} from "../scaffold";
 export class ScaffoldToolbar {
   icons = {LogOutIcon, MenuIcon, UserIcon, CircleUserIcon, UserCogIcon, PlusIcon }
   constructor(private _authenticationService: AuthenticationService,
+              public readonly spaceAddLauncher: SpaceAddLauncher,
               public scaffold: Scaffold) {
 
   }

@@ -7,7 +7,7 @@ import {SnackbarLoader} from "@app/Components/snackbar-loader";
 import {MatFormField} from "@angular/material/form-field";
 import {MatInput} from "@angular/material/input";
 import {MatButton} from "@angular/material/button";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormControl, ReactiveFormsModule} from "@angular/forms";
 import {TextField, TextFieldInput, TextFieldLabel} from "@app/NeoUI";
 import {Button} from "@app/ui";
 import {Space} from "@entities/space";
@@ -15,7 +15,7 @@ import {SpaceHttpClient} from "@app/services";
 import {SpaceAdd} from "@app/Components/space/add/space-add";
 
 @Component({
-  selector: 'employee-add-user',
+  selector: '[SpaceAddIdentifier]',
   standalone: true,
   imports: [
     ReactiveFormsModule,
@@ -30,7 +30,7 @@ import {SpaceAdd} from "@app/Components/space/add/space-add";
     </div>
     <div class="mt-2">
       <TextField class="w-100">
-        <label TextFieldLabel for="identifier-field">"E-mail de l'utilisateur"</label>
+        <label TextFieldLabel for="identifier-field">Identifiant de l'espace</label>
         <input TextFieldInput type="text" required [formControl]="formControl" id="identifier-field">
       </TextField>
     </div>
@@ -44,7 +44,7 @@ import {SpaceAdd} from "@app/Components/space/add/space-add";
 })
 export class SpaceAddIdentifier {
   isLoading = false
-  get formControl() { return this.parent.formGroup.controls.identifier; }
+  formControl = new FormControl<string>('')
 
   constructor(private parent: SpaceAdd,
               private _navHost: NavHost,
@@ -61,6 +61,7 @@ export class SpaceAddIdentifier {
     if (contains) {
       this._snackbarBar.open("Identifiant déjà utilisé par un autre espace.", 'Fermer', {duration: 5000});
     } else {
+      this.parent.model.identifier = this.formControl.value
       this._navHost.navigateByUrl('info');
     }
 

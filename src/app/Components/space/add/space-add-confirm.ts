@@ -17,7 +17,7 @@ import {Button, IconButton} from "@app/ui";
 import {TextField, TextFieldInput, TextFieldLabel} from "@app/NeoUI";
 
 @Component({
-  selector: '[SpaceAddInfo]',
+  selector: '[SpaceAddConfirm]',
   standalone: true,
   imports: [
     MatIconButton,
@@ -35,51 +35,49 @@ import {TextField, TextFieldInput, TextFieldLabel} from "@app/NeoUI";
   template: `
 
     <div class="d-flex align-items-center">
-<!--      <button MyIconButton (click)="back()">-->
-<!--        -->
-<!--      </button>-->
-      <lucide-icon [img]="icons.ChevronLeftIcon"></lucide-icon>
-      <div class="fontWeight-semiBold ms-2">Informations du l'espace</div>
+      <button MyIconButton (click)="back()">
+        <lucide-icon [img]="icons.ChevronLeftIcon"></lucide-icon>
+      </button>
+      <div class="fw-semibold ms-2">Confirmation</div>
     </div>
 
-    <div [formGroup]="formGroup">
-      <TextField class="w-100 mt-2">
-        <label TextFieldLabel for="name-field">Nom de l'espace</label>
-        <input TextFieldInput type="text" required formControlName="name" id="name-field">
-      </TextField>
 
-      <TextField class="w-100 mt-2">
-        <label TextFieldLabel for="description-field">Description de l'espace</label>
-        <input TextFieldInput type="text" required formControlName="description" id="description-field">
-      </TextField>
+    <div class="fontSize-16 mt-2">
+      <div>
+        <div class="opacity-8">Identifiant</div>
+        <div>&#64;{{model.identifier}}</div>
+      </div>
+
+      <div class="mt-3">
+        <div class="opacity-8">Nom</div>
+        <div>{{model.name}}</div>
+      </div>
+
+      <div class="mt-3">
+        <div class="opacity-8">Description</div>
+        <div>{{model.description}}</div>
+      </div>
     </div>
+
 
 
     <div class="mt-3 align-end">
       <button MyButton color="primary" [disabled]="isLoading"
-              (click)="next()">Ajouter
+              (click)="next()">Créer l'espace
       </button>
     </div>
   `
 })
-export class SpaceAddInfo {
+export class SpaceAddConfirm {
   icons = {ChevronLeftIcon}
   isLoading = false;
-
-  formGroup = new FormGroup({
-    name: new FormControl<string>(''),
-    description: new FormControl<string>('')
-  });
 
   get model(): SpaceAddModel {
     return this.parent.model
   }
 
   constructor(public parent: SpaceAdd,
-              private _navHost: NavHost,
-              private _spaceService: SpaceHttpClient,
-              private _snackbarBar: MatSnackBar,
-              private _loader: SnackbarLoader) {
+              private _navHost: NavHost) {
   }
 
   back() {
@@ -87,12 +85,7 @@ export class SpaceAddInfo {
   }
 
   async next() {
-    const value = this.formGroup.value;
-
-    this.model.description = value.description;
-    this.model.name = value.name
-
-    this._navHost.navigateByUrl('confirm')
+    this.parent.next()
   }
 
 

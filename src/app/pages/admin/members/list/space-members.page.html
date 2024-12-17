@@ -9,6 +9,6 @@
   </div>
 
   <div class="mt-3">
-    <MemberList [params]="{spaceId: space.id}" #memberList></MemberList>
+    <MemberList [params]="{spaceId: space.id}" #memberList (onClick)="onClick($event)"></MemberList>
   </div>
 </div>

@@ -16,7 +16,8 @@ import {PlaneTicketListPage} from "@app/pages/admin/plane-ticket/list/plane-tick
 import {SpacePlaneTicketPage} from "@app/pages/admin/plane-ticket/space-plane-ticket.page";
 import {SpaceProcedureApply} from "@app/pages/admin/procedure-applies/space-procedure-apply";
 import {SpaceProcedureAppliesListPage} from "@app/pages/admin/procedure-applies/space-procedure-applies-list-page";
-import {SpaceMembersPage} from "@app/pages/admin/members/space-members.page";
+import {SpaceMembersPage} from "@app/pages/admin/members/list/space-members.page";
+import {MemberHomePage} from "@app/pages/admin/members/home/member-home.page";
 
 const routes: Routes = [
   {
@@ -31,6 +32,7 @@ const routes: Routes = [
       { path: 'procedure-applies/:procedureApplyId', component: SpaceProcedureApply},
 
       {path: 'members', component: SpaceMembersPage},
+      {path: 'members/:memberId', component: MemberHomePage },
 
       { path: 'users', loadChildren: () => import('./users/users.page.module').then(m => m.UsersPageModule ) },
       { path: 'settings', loadChildren: () => import('./settings/settings.page.module').then(m => m.SettingsPageModule ) },

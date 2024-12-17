@@ -1,0 +1,97 @@
+<div class="w-100 d-flex align-items-center justify-content-center p-5" *ngIf="loadMemberTask.loading">
+  <mat-spinner [diameter]="64" [strokeWidth]="4"></mat-spinner>
+</div>
+
+<div *ngIf="loadMemberTask.error">
+  <AlertError class="m-4" *ngIf="loadMemberTask.error?.error?.errorCode == 'MemberNotFound'; else generalError">
+    <lucide-angular [img]="icons.AlertCircleIcon" my-alert-icon></lucide-angular>
+
+    <div my-alert-title>Membre introuvable</div>
+    <div my-alert-text>Le membre avec l'Id={{ memberId }} n'existe pas.
+
+    </div>
+  </AlertError>
+
+  <ng-template #generalError>
+    <AlertError  class="m-4">
+      <lucide-angular [img]="icons.AlertCircleIcon" my-alert-icon></lucide-angular>
+
+      <div my-alert-title>Erreur</div>
+      <div my-alert-text>
+
+        <div>
+          Une erreur s'est produite lors du chargement de ce membre. Vérifiez votre connexion
+          internet et réésayer.
+        </div>
+
+        <div>
+          <button MyButton (click)="loadMemberTask.launch()" class="mt-3 primary">Réessayer</button>
+        </div>
+
+      </div>
+    </AlertError>
+  </ng-template>
+</div>
+
+
+<ng-container *ngIf="loadMemberTask.success">
+  <div class="d-flex align-items-center p-3" *ngIf="member">
+    <button MyIconButton (click)="location.back()">
+      <lucide-angular [img]="icons.ArrowLeftIcon" class="my-icon"></lucide-angular>
+    </button>
+
+    <div class="flex-grow-1"></div>
+
+    <div>
+      <button MyIconButton class="me-1" matTooltip="Donner les droits d'administrateur" *ngIf="!member.isAdmin"
+              (click)="toggleAdmin(member)"
+      >
+        <lucide-angular [img]="icons.ShieldCheckIcon"></lucide-angular>
+      </button>
+
+      <button MyIconButton class="me-1" *ngIf="member.isAdmin"
+              (click)="toggleAdmin(member)"
+              matTooltip="Enlever les droits d'administrateur">
+        <lucide-angular [img]="icons.ShieldXIcon" class="primary-fill"></lucide-angular>
+      </button>
+
+      <button MyIconButton class="me-1" *ngIf="member.isLocked"
+              matTooltip="Débloquer ce membre"
+              (click)="toggleLock(member)"
+      >
+        <lucide-angular [img]="icons.LockOpen"></lucide-angular>
+      </button>
+
+      <button MyIconButton class="me-1" *ngIf="!member.isLocked"
+              matTooltip="Bloquer ce client"
+              (click)="toggleLock(member)"
+      >
+        <lucide-angular [img]="icons.LockIcon"></lucide-angular>
+      </button>
+
+      <button MyIconButton class="me-1" matTooltip="Supprimer ce membre"
+              (click)="delete(member)">
+        <lucide-angular [img]="icons.Trash2Icon" class="my-icon"></lucide-angular>
+      </button>
+    </div>
+  </div>
+
+
+  <div class="d-flex align-items-center px-4" *ngIf="member">
+    <div style="width: 96px; height: 96px; overflow: hidden; ">
+      <img src="/assets/photo_silhouette.png" alt="" width="96">
+    </div>
+    <div class="ms-4">
+      <div class="fontSize-24" style="line-height: 24px">{{ member.user.fullName }} </div>
+      <div class="opacity-5">&#64;{{member.user.userName}} </div>
+      <div class="mt-1">
+        <span class="inline-badge me-3" *ngIf="member.isAdmin" style="background-color: #107c10">Admin</span>
+        <span class="inline-badge me-3" *ngIf="member.isLocked" style="background-color: #a4262c">Bloqué</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div MemberHomePager [member]="member" class="mt-3"></div>
+
+</ng-container>

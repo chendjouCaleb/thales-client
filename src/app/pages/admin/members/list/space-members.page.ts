@@ -1,5 +1,5 @@
 import {Component, ViewChild} from "@angular/core";
-import {Space} from "@entities/index";
+import {Member, Space} from "@entities/index";
 import {MatIcon} from "@angular/material/icon";
 import {MatButton} from "@angular/material/button";
 import {LucideAngularModule, UserPlusIcon} from "lucide-angular";
@@ -7,14 +7,13 @@ import {Button} from "@app/ui";
 import {AdminPage} from "@app/pages/admin/admin.page";
 import {MemberList, MemberUIService} from "@app/Components/members";
 import {MemberHttpClient} from "@app/services";
+import {Router} from "@angular/router";
 
 @Component({
   templateUrl: 'space-members.page.html',
   selector: 'SpaceMembersPage',
   imports: [
     MemberList,
-    MatIcon,
-    MatButton,
     Button,
     LucideAngularModule
   ],
@@ -30,6 +29,7 @@ export class SpaceMembersPage {
 
   constructor(private _service: MemberHttpClient,
               private _parent: AdminPage,
+              private _router: Router,
               private _uiService: MemberUIService) {
     this.space = _parent.space;
   }
@@ -42,7 +42,7 @@ export class SpaceMembersPage {
     })
   }
 
-  onClick(row) {
-    console.log(row)
+  onClick(member: Member) {
+    this._router.navigate(['/admin', this.space.identifier, 'members', member.id])
   }
 }

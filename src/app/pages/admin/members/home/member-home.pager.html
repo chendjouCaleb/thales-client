@@ -1,0 +1,54 @@
+<div>
+  <TabRow #tabRow [selectedIndex]="0">
+    <button TabRowItem
+            (click)="tabRow.selectIndex(0, true); pager.selectIndex(0)"
+            (mouseenter)="tabRow.activateHover(0)"
+            (mouseleave)="tabRow.deactivateHover()"
+            [active] = "tabRow.selectedIndex == 0"
+    >Vue d'ensemble
+    </button>
+    <button TabRowItem
+            (click)="tabRow.selectIndex(1, true); pager.selectIndex(1)"
+            (mouseenter)="tabRow.activateHover(1)"
+            (mouseleave)="tabRow.deactivateHover()"
+            [active] = "tabRow.selectedIndex == 1"
+    >Paiements
+    </button>
+    <button TabRowItem (click)="tabRow.selectIndex(2, true); pager.selectIndex(2)"
+            (mouseenter)="tabRow.activateHover(2)"
+            (mouseleave)="tabRow.deactivateHover()"
+            [active] = "tabRow.selectedIndex == 2"
+
+    >Billets d'avions
+    </button>
+
+    <button TabRowItem
+            (click)="tabRow.selectIndex(4, true); pager.selectIndex(4)"
+            (mouseenter)="tabRow.activateHover(4)"
+            (mouseleave)="tabRow.deactivateHover()"
+            [active] = "tabRow.selectedIndex == 4"
+    >Historique
+    </button>
+  </TabRow>
+</div>
+
+<HorizontalPager #pager [selectedIndex]="0">
+  <div *PageDef>
+    <div MemberDetails [member]="member"></div>
+  </div>
+  <div *PageDef class="p-3">
+    <PaymentList class="d-block w-100"  [params]="{memberId: member.id}"
+                  [displayedColumns]="[ 'code',  'amount',  'reason', 'agency', 'createdAt', 'action']">
+
+    </PaymentList>
+  </div>
+  <div *PageDef class="p-3">
+    <PlaneTicketList  [params]="{memberId: member.id}"
+                     [displayedColumns]="['id', 'departureCountry', 'arrivalCountry', 'agency', 'createdAt', 'action']"
+    ></PlaneTicketList>
+  </div>
+
+  <div *PageDef class="p-3">
+    <event-list [params]="{actorId: member.actorId}"></event-list>
+  </div>
+</HorizontalPager>

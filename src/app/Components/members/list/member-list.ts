@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from "@angular/core";
+import {Component, EventEmitter, Input, OnInit, Output} from "@angular/core";
 import {Member} from "@entities/member";
 import {MatProgressSpinner} from "@angular/material/progress-spinner";
 import {NgForOf, NgIf} from "@angular/common";
@@ -49,6 +49,9 @@ export class MemberList implements OnInit {
   members: Member[];
 
   isLoading = true;
+
+  @Output()
+  onClick = new EventEmitter<Member>()
 
   constructor(private _memberService: MemberHttpClient,
               private uiService: MemberUIService) {

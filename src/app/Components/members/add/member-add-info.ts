@@ -40,20 +40,20 @@ import {MemberJobInfo} from "@entities/member";
     </div>
 
 
-    <div>
+    <div [formGroup]="jobFormGroup">
       <TextField class="w-100 mt-2">
         <label for="job-title-field" TextFieldLabel>Poste</label>
-        <input type="text" TextFieldInput id="job-title-field">
+        <input type="text" TextFieldInput formControlName="jobTitle" id="job-title-field">
       </TextField>
 
       <TextField class="w-100 mt-2">
         <label for="service-name-field" TextFieldLabel>Service</label>
-        <input type="text" TextFieldInput id="service-name-field">
+        <input type="text" TextFieldInput formControlName="serviceName" id="service-name-field">
       </TextField>
 
       <TextField class="w-100 mt-2">
         <label for="job-description-field" TextFieldLabel>Description de la mission</label>
-        <input type="text" TextFieldInput id="job-description-field">
+        <input type="text" TextFieldInput formControlName="jobDescription" id="job-description-field">
       </TextField>
     </div>
 
@@ -94,6 +94,8 @@ export class MemberAddInfo {
     jobModel.jobDescription = value.jobDescription
     jobModel.jobTitle = value.jobTitle;
     jobModel.serviceName = value.serviceName
+
+    this.parent.model.jobInfo = jobModel
 
     this._navHost.navigateByUrl('confirm');
   }

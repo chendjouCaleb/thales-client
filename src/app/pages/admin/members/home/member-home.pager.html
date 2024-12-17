@@ -1,4 +1,4 @@
-<div>
+<div class="px-1">
   <TabRow #tabRow [selectedIndex]="0">
     <button TabRowItem
             (click)="tabRow.selectIndex(0, true); pager.selectIndex(0)"
@@ -23,10 +23,10 @@
     </button>
 
     <button TabRowItem
-            (click)="tabRow.selectIndex(4, true); pager.selectIndex(4)"
-            (mouseenter)="tabRow.activateHover(4)"
+            (click)="tabRow.selectIndex(3, true); pager.selectIndex(3)"
+            (mouseenter)="tabRow.activateHover(3)"
             (mouseleave)="tabRow.deactivateHover()"
-            [active] = "tabRow.selectedIndex == 4"
+            [active] = "tabRow.selectedIndex == 3"
     >Historique
     </button>
   </TabRow>
@@ -34,7 +34,7 @@
 
 <HorizontalPager #pager [selectedIndex]="0">
   <div *PageDef>
-    <div class="p-3" MemberDetails [member]="member"></div>
+    <div class="p-4" MemberDetails [member]="member"></div>
   </div>
   <div *PageDef class="p-3">
     <PaymentList class="d-block w-100"  [params]="{memberId: member.id}"

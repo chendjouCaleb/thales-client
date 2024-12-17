@@ -17,10 +17,12 @@
           <span class="fw-semibold fontSize-16"> {{ member.user.fullName }} </span>
           <span class="opacity-75"> &#64;{{ member.user.userName }}</span>
         </div>
+
         <div>
           <span class="inline-badge me-3" *ngIf="member.isAdmin" style="background-color: #107c10">Admin</span>
           <span class="inline-badge me-3" *ngIf="member.isLocked" style="background-color: #a4262c">Bloqué</span>
         </div>
+        <div class="opacity-8">{{member.jobInfo.jobTitle}}</div>
       </div>
 
       <div>

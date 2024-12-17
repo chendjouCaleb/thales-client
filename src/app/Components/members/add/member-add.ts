@@ -59,14 +59,16 @@ export class MemberAdd {
 
     this.isLoading = true;
     const loaderRef = this._loader.open("Ajout du membre...");
-    const employee = await this._memberService.addAsync(this.space, this.model);
-
-    if(employee) {
+    try {
       this._snackbarBar.open("Membre correctement ajouté.", '', {duration: 5000});
-      this.dialogRef.close(employee);
-    }
+      const member = await this._memberService.addAsync(this.space, this.model);
+      this.dialogRef.close(member);
+    }catch (e) {
 
-    loaderRef.dismiss();
-    this.isLoading = false;
+    }finally {
+      loaderRef.dismiss();
+      this.isLoading = false;
+    }
   }
+
 }

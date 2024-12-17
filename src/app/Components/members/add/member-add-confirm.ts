@@ -33,34 +33,34 @@ import {MemberAddModel} from "@app/models";
     </div>
     <div class="opacity-8">
       Confirmer ces renseignements
+
+      <div class="mt-2">
+        <div class="opacity-8 fontSize-12">Utilisateur</div>
+        <div>
+          {{parent.user.fullName}}
+        </div>
+      </div>
     </div>
 
 
     <div class="mt-3 align-end">
-      <button MyButton color="primary" [disabled]="isLoading "
+      <button MyButton color="primary" [disabled]="parent.isLoading "
               (click)="next()">Ajouter
       </button>
     </div>
   `
 })
 export class MemberAddConfirm {
-  isLoading = false
+
 
  get model(): MemberAddModel {
     return this.parent.model
  }
 
-  constructor(public readonly parent: MemberAdd,
-              private _navHost: NavHost,
-              private _userService: UserService,
-              private _snackbarBar: MatSnackBar,
-              private _loader: SnackbarLoader) {
+  constructor(public readonly parent: MemberAdd) {
   }
 
-  checkUserAsync = new Task(async () => {
-
-  })
-
-  async next() {
+  next() {
+    this.parent.add()
   }
 }

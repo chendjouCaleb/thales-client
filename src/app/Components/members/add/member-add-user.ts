@@ -81,7 +81,7 @@ export class MemberAddUser {
     if (contains) {
       this.parent.user = await this._userService.getByEmailAsync(value.userId);
       console.log(this.parent.user);
-      this.parent.model.userId = value.userId;
+      this.parent.model.userId = this.parent.user.id;
       this.parent.model.isAdmin = value.isAdmin;
       this._navHost.navigateByUrl('info');
     } else {
@@ -91,4 +91,6 @@ export class MemberAddUser {
     loaderRef.dismiss();
     this.isLoading = false;
   }
+
+
 }

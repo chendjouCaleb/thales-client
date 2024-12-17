@@ -7,7 +7,7 @@ import {
   ArrowLeftIcon,
   LockIcon,
   LockOpen,
-  LucideAngularModule,
+  LucideAngularModule, PencilIcon,
   ShieldCheckIcon,
   ShieldXIcon,
   Trash2Icon
@@ -38,7 +38,7 @@ import {MemberHomePager} from "@app/pages/admin/members/home/member-home.pager";
   templateUrl: 'member-home.page.html'
 })
 export class MemberHomePage implements OnInit {
-  icons = { ArrowLeftIcon, Trash2Icon, ShieldXIcon, ShieldCheckIcon, LockIcon, LockOpen, AlertCircleIcon }
+  icons = { ArrowLeftIcon, Trash2Icon, ShieldXIcon, ShieldCheckIcon, LockIcon, LockOpen, AlertCircleIcon, PencilIcon }
   member: Member;
   memberId: number;
   loadMemberTask = new Task<Member>(async () => {
@@ -74,6 +74,10 @@ export class MemberHomePage implements OnInit {
     }else{
       this._memberUIService.setAdmin(member);
     }
+  }
+
+  changeJobInfo() {
+    this._memberUIService.changeJobInfo(this.member)
   }
 
   delete(member: Member) {

@@ -1,11 +1,10 @@
 import {Injectable} from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import {HttpClient} from "@angular/common/http";
 import {SERVER_URL} from "@app/http";
-import {Member} from "@entities/member";
+import {Member, MemberJobInfo} from "@entities/member";
 import {firstValueFrom, Observable, Subject} from "rxjs";
-import {MemberAddModel} from "@app/models";
+import {MemberAddModel } from "@app/models";
 import {Space} from "@entities/space";
-import {Customer} from "@entities/customer";
 
 @Injectable({
   providedIn: 'root'
@@ -60,6 +59,13 @@ export class MemberHttpClient {
     const call = this._httpClient.delete(`${this.url}/${member.id}`);
     await firstValueFrom(call);
     this._memberDelete.next(member);
+  }
+
+  async changeJobInfoAsync(member: Member, jobInfo: MemberJobInfo): Promise<void> {
+    const call = this._httpClient.put(`${this.url}/${member.id}/job-info`, jobInfo);
+    await firstValueFrom(call);
+    member.jobInfo = jobInfo
+    this._memberEdit.next(member)
   }
 
   async toggleAdminAsync(member: Member): Promise<void> {

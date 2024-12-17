@@ -34,7 +34,7 @@
 
 <HorizontalPager #pager [selectedIndex]="0">
   <div *PageDef>
-    <div MemberDetails [member]="member"></div>
+    <div class="p-3" MemberDetails [member]="member"></div>
   </div>
   <div *PageDef class="p-3">
     <PaymentList class="d-block w-100"  [params]="{memberId: member.id}"

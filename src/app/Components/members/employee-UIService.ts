@@ -1,7 +1,7 @@
 import {Observable} from "rxjs";
 import {MemberAdd} from "@app/Components/members/add/member-add";
 import {Injectable} from "@angular/core";
-import {Member} from "@entities/member";
+import {Member, MemberJobInfo} from "@entities/member";
 import {MemberDelete} from "@app/Components/members/delete/member-delete";
 import {Dialog} from "@angular/cdk/dialog";
 import {MemberSetAdmin} from "@app/Components/members/set-admin/member-set-admin";
@@ -9,6 +9,7 @@ import {MemberUnsetAdmin} from "@app/Components/members/unset-admin/member-unset
 import {Space} from "@entities/space";
 import {MemberLock} from "@app/Components/members/lock/member-lock";
 import {MemberUnlock} from "@app/Components/members/unlock/member-unlock";
+import {MemberChangeJobInfo} from "@app/Components/members/job-info/member-change-job-info";
 
 @Injectable()
 export class MemberUIService {
@@ -31,6 +32,11 @@ export class MemberUIService {
 
   unsetAdmin(member: Member): Observable<boolean> {
     const dialogRef = this._dialog.open<boolean>(MemberUnsetAdmin, {data: {member}});
+    return dialogRef.closed;
+  }
+
+  changeJobInfo(member: Member): Observable<MemberJobInfo> {
+    const dialogRef = this._dialog.open<MemberJobInfo>(MemberChangeJobInfo, {data: {member}});
     return dialogRef.closed;
   }
 

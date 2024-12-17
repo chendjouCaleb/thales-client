@@ -1,19 +1,18 @@
 import {Component} from "@angular/core";
-import {EmployeeAdd} from "@app/Components/employees/add/employee-add";
 import {UserService} from "@app/identity";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {NavHost} from "@app/navigation";
 import {SnackbarLoader} from "@app/Components/snackbar-loader";
 import {EmployeeHttpClient} from "@app/services/employee-http-client.service";
-import {EmployeeAddModel, MemberJobInfo} from "@app/models";
 import {MatButton, MatIconButton} from "@angular/material/button";
 import {MatIcon} from "@angular/material/icon";
 import {MatCheckbox} from "@angular/material/checkbox";
 import {FormControl, FormGroup, ReactiveFormsModule} from "@angular/forms";
-import { ChevronLeftIcon, LucideAngularModule} from "lucide-angular";
+import {ChevronLeftIcon, LucideAngularModule} from "lucide-angular";
 import {Button, IconButton} from "@app/ui";
 import {MemberAdd} from "@app/Components/members/add/member-add";
 import {TextField, TextFieldInput, TextFieldLabel} from "@app/NeoUI";
+import {MemberJobInfo} from "@entities/member";
 
 @Component({
   selector: '[MemberAddInfo]',

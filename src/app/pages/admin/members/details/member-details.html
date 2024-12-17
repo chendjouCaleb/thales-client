@@ -1,1 +1,13 @@
-RAS
+<div>
+  <div class="opacity-8">Poste</div>
+  <div>{{member.jobInfo.jobTitle}}  •  {{member.jobInfo.serviceName}}</div>
+  <div class="fontSize-12 opacity-8">
+    {{member.jobInfo.jobDescription}}
+  </div>
+</div>
+
+
+<div class="mt-3">
+  <div class="opacity-8">Ajouté le</div>
+  <div>{{member.createdAt.toFormat('DD')}}</div>
+</div>

@@ -43,9 +43,9 @@
     <div class="flex-grow-1"></div>
 
     <div>
+
       <button MyIconButton class="me-1" matTooltip="Donner les droits d'administrateur" *ngIf="!member.isAdmin"
-              (click)="toggleAdmin(member)"
-      >
+              (click)="toggleAdmin(member)">
         <lucide-angular [img]="icons.ShieldCheckIcon"></lucide-angular>
       </button>
 
@@ -67,6 +67,11 @@
               (click)="toggleLock(member)"
       >
         <lucide-angular [img]="icons.LockIcon"></lucide-angular>
+      </button>
+
+      <button MyIconButton class="me-1" matTooltip="Modifier"
+              (click)="changeJobInfo()">
+        <lucide-angular [img]="icons.PencilIcon"></lucide-angular>
       </button>
 
       <button MyIconButton class="me-1" matTooltip="Supprimer ce membre"

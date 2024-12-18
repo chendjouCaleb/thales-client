@@ -26,6 +26,6 @@ export class ProfileChangeName {
     const value = this.formControl.value;
      await this._service.changeNameAsync(value)
     this._dialogRef.close(value);
-    this._snackbar.open(`Le nom a été changé.`, 'Fermer', {duration: 5000})
+    this._snackbar.open(`Le nom a été changé.`, 'Fermer', { duration: 5000 })
   }
 }

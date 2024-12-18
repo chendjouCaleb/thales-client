@@ -41,6 +41,10 @@
     background-color: rgba(10, 120, 213, 0.1);
   }
 
+  &[disabled] {
+    opacity: .5;
+  }
+
   .button-layout {
     display: flex;
     align-items: center;

@@ -107,6 +107,8 @@ $ms-color-pinkRed-20: #750b1c;
 }
 
 .my-dark-theme {
+  --my-primaryColor: rgb(10, 120, 213);;
+  --my-linkColor: #0078d4;
   --my-backgroundColor: #000;
   --my-dividerColor: #252423;
   --my-backgroundColor__hover: #252423;
@@ -135,4 +137,13 @@ $ms-color-pinkRed-20: #750b1c;
   &.hover:hover {
     background-color: var(--my-SurfaceColor__hover);
   }
+}
+
+.warn {
+  background-color: var(--my-warnColor);
+  color: var(--my-onWarnColor)
+}
+
+.warn-text {
+  color: var(--my-warnColor);
 }

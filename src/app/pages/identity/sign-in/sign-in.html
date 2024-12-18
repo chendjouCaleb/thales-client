@@ -1,0 +1,16 @@
+<div class="w-100 h-100 d-flex align-items-center justify-content-center">
+  <div class="surface br-8 py-4" style="width: 496px">
+
+    <div class="px-4 fontWeight-semiBold fontSize-24">Créer un compte</div>
+
+    @if (addUserTask.success && addUserTask.result) {
+      <div class="d-flex align-items-center br-4 surface mt-3">
+        <mat-spinner strokeWidth="1" diameter="24"></mat-spinner>
+        <div class="ms-3 opacity-8">Création de votre compte...</div>
+      </div>
+    }
+
+    <router-outlet></router-outlet>
+
+  </div>
+</div>

@@ -1,0 +1,26 @@
+<div class="ms-2  d-flex align-items-center">
+  <button MyIconButton>
+    <lucide-icon [img]="icons.ArrowLeftIcon"></lucide-icon>
+  </button>
+  <div class="ms-2 fontWeight-semiBold fontSize-16 flex-grow-1">Informations personnelles</div>
+</div>
+
+<div class="mx-4 opacity-8 mt-3">Renseignez vos informations personnelles.</div>
+
+<div class="mt-3 mx-4">
+  <TextField class="w-100">
+    <label TextFieldLabel for="name-field">Nom & prénom</label>
+    <input type="text" autofocus TextFieldInput [formControl]="formControl" id="name-field" required minlength="4">
+  </TextField>
+
+  @if (formControl.invalid && (formControl.dirty || !formControl.untouched)) {
+    <div *ngIf="formControl.errors?.['required']" class="warn-text">Veuillez renseigner vos nom et prénom.</div>
+    <div *ngIf="formControl.errors?.['minlength']" class="warn-text">
+      Votre nom doit contenir au moins 4 caractères.
+    </div>
+  }
+</div>
+
+<div class="p-4 align-end">
+  <button MyButton color="primary" (click)="next()" [disabled]="formControl.invalid">Suivant</button>
+</div>

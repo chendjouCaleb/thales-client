@@ -1,12 +1,24 @@
 import {Component} from "@angular/core";
 import {UserService} from "../../../../identity";
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute, Router, RouterLink} from "@angular/router";
 import {ResetPasswordState} from "../reset-password-state";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {FormControl, Validators} from "@angular/forms";
+import {FormControl, ReactiveFormsModule, Validators} from "@angular/forms";
+import {Button} from "@app/ui";
+import {TextField, TextFieldInput, TextFieldLabel} from "@app/NeoUI";
 
 @Component({
-  templateUrl: 'reset-password-email.page.html'
+  templateUrl: 'reset-password-email.page.html',
+  selector: 'ResetPasswordEmailPage',
+  imports: [
+    Button,
+    RouterLink,
+    TextField,
+    TextFieldLabel,
+    TextFieldInput,
+    ReactiveFormsModule
+  ],
+  standalone: true
 })
 export class ResetPasswordEmailPage {
   emailControl: FormControl<string>

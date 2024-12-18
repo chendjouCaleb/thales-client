@@ -147,6 +147,12 @@ $button-typography: mat.m2-define-typography-config(
   text-decoration: none !important;
 }
 
+.link-button {
+  color: var(--my-linkColor);
+  cursor: pointer;
+  font-weight: 500;
+}
+
 .divLink {
   color: inherit !important;
   text-decoration: none;

@@ -1,14 +1,31 @@
-import {Component, inject, Injectable} from "@angular/core";
-import { ActivatedRoute, CanActivateFn, Router } from "@angular/router";
+import {Component, inject} from "@angular/core";
+import {ActivatedRoute, CanActivateFn, Router} from "@angular/router";
 import {ResetPasswordState} from "../reset-password-state";
-import {ResetPasswordModel, UserService} from "../../../../identity";
-import {FormControl, FormGroup} from "@angular/forms";
+import {UserService} from "@app/identity";
+import {FormControl, FormGroup, ReactiveFormsModule} from "@angular/forms";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {ChevronLeftIcon, LucideAngularModule} from "lucide-angular";
+import {Button, IconButton} from "@app/ui";
+import {MatCheckbox} from "@angular/material/checkbox";
+import {TextField, TextFieldInput, TextFieldLabel} from "@app/NeoUI";
 
 @Component({
-  templateUrl: 'reset-password-password.page.html'
+  templateUrl: 'reset-password-password.page.html',
+  selector: 'SignInPassword',
+  imports: [
+    IconButton,
+    LucideAngularModule,
+    MatCheckbox,
+    TextField,
+    TextFieldLabel,
+    TextFieldInput,
+    ReactiveFormsModule,
+    Button
+  ],
+  standalone: true
 })
 export class ResetPasswordPasswordPage {
+  icons = { ChevronLeftIcon }
   inputType = 'password';
 
   formGroup = new FormGroup({

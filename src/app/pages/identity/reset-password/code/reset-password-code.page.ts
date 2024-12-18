@@ -1,13 +1,29 @@
 import {Component, inject} from "@angular/core";
 import {ResetPasswordState} from "../reset-password-state";
 import {ActivatedRoute, CanActivateFn, Router} from "@angular/router";
-import {UserService} from "../../../../identity";
+import {UserService} from "@app/identity";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {ChevronLeftIcon, LucideAngularModule} from "lucide-angular";
+import {Button, IconButton} from "@app/ui";
+import {TextField, TextFieldInput, TextFieldLabel} from "@app/NeoUI";
+import {FormsModule} from "@angular/forms";
 
 @Component({
-  templateUrl: 'reset-password-code.page.html'
+  templateUrl: 'reset-password-code.page.html',
+  selector: 'ResetPasswordCodePage',
+  imports: [
+    Button,
+    TextField,
+    TextFieldLabel,
+    TextFieldInput,
+    FormsModule,
+    LucideAngularModule,
+    IconButton
+  ],
+  standalone: true
 })
 export class ResetPasswordCodePage {
+  icons = { ChevronLeftIcon }
   email: string;
   code: string = '';
 

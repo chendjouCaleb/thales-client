@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {SERVER_URL} from "../http";
 import { HttpClient } from "@angular/common/http";
-import {CheckPasswordModel, CheckResetPasswordModel, ResetPasswordModel, UserAddModel} from "./models/user.form-model";
+import {CheckPasswordModel, CheckVerificationModel, ResetPasswordModel, UserAddModel} from "./models/user.form-model";
 import {firstValueFrom, Observable} from "rxjs";
 import {User} from "./models";
 
@@ -74,12 +74,23 @@ export class UserService {
   }
 
 
+  public async signInCode(email: string): Promise<void> {
+    const params = {email}
+    const call = this._httpClient.post<void>(`${this.url}/signin-code`, {}, {params});
+    return firstValueFrom(call)
+  }
+
+  public async checkSignInCode(model: CheckVerificationModel): Promise<boolean> {
+    const call = this._httpClient.post<boolean>(`${this.url}/check-signin-code`, model);
+    return firstValueFrom(call)
+  }
+
   public async resetPasswordCode(userId: string): Promise<void> {
     const call = this._httpClient.post<void>(`${this.url}/reset-password-code?userId=${userId}`, {});
     return firstValueFrom(call)
   }
 
-  public async checkResetPasswordCode(model: CheckResetPasswordModel): Promise<boolean> {
+  public async checkResetPasswordCode(model: CheckVerificationModel): Promise<boolean> {
     const call = this._httpClient.post<boolean>(`${this.url}/check-reset-password-code`, model);
     return firstValueFrom(call)
   }

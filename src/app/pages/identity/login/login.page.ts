@@ -1,11 +1,22 @@
 import {Component} from "@angular/core";
-import {FormControl, FormGroup} from "@angular/forms";
-import {AuthenticationService, LoginModel, UserService} from "../../../identity";
+import {FormControl, FormGroup, ReactiveFormsModule} from "@angular/forms";
+import {AuthenticationService, LoginModel, UserService} from "@app/identity";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {Router} from "@angular/router";
+import {Router, RouterLink} from "@angular/router";
+import {TextField, TextFieldInput} from "@app/NeoUI";
+import {Button} from "@app/ui";
 
 @Component({
-  templateUrl: 'login.page.html'
+  templateUrl: 'login.page.html',
+  selector: 'LoginPage',
+  imports: [
+    TextField,
+    TextFieldInput,
+    ReactiveFormsModule,
+    RouterLink,
+    Button
+  ],
+  standalone: true
 })
 export class LoginPage {
   formGroup = new FormGroup({

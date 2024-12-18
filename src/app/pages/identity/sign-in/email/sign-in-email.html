@@ -1,0 +1,40 @@
+<div class="ms-2  d-flex align-items-center">
+  <button MyIconButton (click)="back()">
+    <lucide-icon [img]="icons.ArrowLeftIcon"></lucide-icon>
+  </button>
+  <div class="ms-2 fontWeight-semiBold fontSize-16 flex-grow-1">Adresse e-mail</div>
+</div>
+
+<div class="mx-4 opacity-8 mt-3">Un code vous sera envoyez à cette adresse pour vérifier qu'elle vous appartient bien.</div>
+
+<div class="mt-3 mx-4">
+  <TextField class="w-100">
+    <label TextFieldLabel for="email-field">E-mail</label>
+    <input type="email" autofocus [formControl]="formControl" required email TextFieldInput id="email-field">
+  </TextField>
+
+  @if(formControl.invalid && (formControl.dirty || !formControl.untouched)) {
+    <div *ngIf="formControl.errors?.['required']" class="warn-text">Veuillez renseigner une adresse e-mail.</div>
+    <div *ngIf="formControl.errors?.['email']" class="warn-text">
+      Adresse e-mail incorrect.
+    </div>
+  }
+
+  @if (checkEmailTask.loading) {
+    <div class="d-flex align-items-center br-4 surface mt-3">
+      <mat-spinner strokeWidth="1" diameter="24"></mat-spinner>
+      <div class="ms-3 opacity-8">Vérification de l'adresse e-mail</div>
+    </div>
+  }
+
+  @if (checkEmailTask.success && checkEmailTask.result) {
+    <div class="d-flex br-4 warn mt-3 p-3">
+      <lucide-icon [img]="icons.AlertCircleIcon"></lucide-icon>
+      <div class="ms-3 opacity-8">L'adresse e-mail renseignée est déjà utilisée par un autre compte.</div>
+    </div>
+  }
+</div>
+
+<div class="p-4 align-end">
+  <button MyButton color="primary" (click)="next()" [disabled]="formControl.invalid || checkEmailTask.loading">Suivant</button>
+</div>

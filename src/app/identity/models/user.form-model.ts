@@ -3,6 +3,12 @@ export interface UserAddModel {
   email: string;
 }
 
+export class SignInModel {
+  fullName: string;
+  email: string;
+  code: string;
+  password: string
+}
 
 export class ChangeInfoModel {
   fullName: string = '';
@@ -20,7 +26,7 @@ export interface ResetPasswordModel {
 }
 
 
-export interface CheckResetPasswordModel {
+export interface CheckVerificationModel {
   code: string;
   userId: string;
 }

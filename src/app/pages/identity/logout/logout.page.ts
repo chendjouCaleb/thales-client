@@ -3,7 +3,10 @@ import {AuthenticationService} from "@app/identity";
 import {Router} from "@angular/router";
 
 @Component({
-  template: `<h1>Logout</h1>`
+  template: `<h3>Logout</h3>`,
+  selector: 'LogoutPage',
+  standalone: true,
+
 })
 export class LogoutPage implements OnInit {
   constructor(private authService: AuthenticationService, private _router: Router) {}

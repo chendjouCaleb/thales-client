@@ -29,8 +29,6 @@ const routes: Routes = [
   imports: [CommonModule, RouterModule.forChild(routes), MatButtonModule, MatInputModule, MatFormFieldModule,
     ReactiveFormsModule, FormsModule, MatCheckboxModule, MatIconModule ],
 
-  declarations: [ResetPasswordPage, ResetPasswordCodePage, ResetPasswordEmailPage, ResetPasswordPasswordPage],
-
   providers: [ ResetPasswordState ]
 })
 export class ResetPasswordPageModule {

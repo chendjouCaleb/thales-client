@@ -13,6 +13,12 @@
     <mat-spinner diameter="48" strokeWidth="2"></mat-spinner>
   </div>
 
+  @if(getProcedureListTask.success && procedures.length == 0) {
+    <div class="surface p-4 mt-4 borderRadius-8 fontSize-18 fontWeight-light">
+      Aucune précédure de voyage proposée. Veuillez en ajouter
+    </div>
+  }
+
   <div class="mt-4" *ngIf="getProcedureListTask.success">
 
     @for (procedure of procedures; track procedure.id) {

@@ -64,6 +64,17 @@
             <div class="ms-3 py-2 fontWeight-semiBold fontSize-12">Agences</div>
             <a [routerLink]="['/agencies', agency.id]" th-nav-item *ngFor="let agency of agencies">
               {{agency.name}}</a>
+
+            @if(getAgencyListTask.success && agencies.length == 0) {
+              <div class="surface p-2 mx-3 borderRadius-8 fontSize-12 fontWeight-light">
+                Aucune agence dans cet espace.
+              </div>
+            }
+            @if(getAgencyListTask.loading) {
+              <div class="d-flex align-items-center justify-content-center p-3">
+                <mat-spinner strokeWidth="2" diameter="32"></mat-spinner>
+              </div>
+            }
           </div>
         </th-nav>
       </div>

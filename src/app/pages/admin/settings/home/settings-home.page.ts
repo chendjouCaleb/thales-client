@@ -8,6 +8,8 @@ import {NgForOf, NgIf} from "@angular/common";
 import {RouterLink} from "@angular/router";
 import {Space} from "@entities/space";
 import {AdminPage} from "@app/pages/admin/admin.page";
+import {Task} from "@app/utils";
+import {MatProgressSpinner} from "@angular/material/progress-spinner";
 
 @Component({
   templateUrl: 'settings-home.page.html',
@@ -17,7 +19,8 @@ import {AdminPage} from "@app/pages/admin/admin.page";
     LucideAngularModule,
     NgIf,
     NgForOf,
-    RouterLink
+    RouterLink,
+    MatProgressSpinner
   ],
   standalone: true
 })
@@ -37,7 +40,7 @@ export class SettingsHomePage implements OnInit {
   }
 
   async loadAgencies() {
-    this.agencies = await this.agencyHttpClient.listAsync();
+    this.getAgencyListTask.launch()
   }
 
   addAgency() {
@@ -47,6 +50,10 @@ export class SettingsHomePage implements OnInit {
       }
     })
   }
+
+  getAgencyListTask = new Task(async() => {
+    this.agencies = await this.agencyHttpClient.listAsync({spaceId: this.space.id});
+  })
 
   onClick(row) {
     console.log(row)

@@ -23,6 +23,7 @@ import {NgForOf, NgIf} from "@angular/common";
 import {MatIcon} from "@angular/material/icon";
 import {Scaffold, ScaffoldToolbar} from "@app/Components/scaffold";
 import {IconButton} from "@app/ui";
+import {MatProgressSpinner} from "@angular/material/progress-spinner";
 
 @Component({
   templateUrl: 'admin.page.html',
@@ -30,7 +31,7 @@ import {IconButton} from "@app/ui";
   standalone: true,
   imports: [LucideAngularModule, MatSidenavContainer, MatSidenav, NgIf,
     MatSidenavContent,
-    NavModule, MatIcon, RouterLink, RouterOutlet, NgForOf, Scaffold, ScaffoldToolbar, IconButton]
+    NavModule, MatIcon, RouterLink, RouterOutlet, NgForOf, Scaffold, ScaffoldToolbar, IconButton, MatProgressSpinner]
 })
 export class AdminPage implements AfterViewInit, OnInit {
   icons = {BuildingIcon, UsersIcon, HistoryIcon, SettingsIcon, MenuIcon,
@@ -66,10 +67,12 @@ export class AdminPage implements AfterViewInit, OnInit {
 
   async ngOnInit() {
     await this.getSpaceTask.launch()
-    this.agencyService.listAsync().then(items => {
-      this.agencies = items;
-    });
+    this.getAgencyListTask.launch()
   }
+
+  getAgencyListTask = new Task(async () => {
+    this.agencies = await this.agencyService.listAsync({spaceId: this.space.id});
+  })
 
 
   ngAfterViewInit() {

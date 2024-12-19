@@ -14,8 +14,8 @@ export class AgencyHttpClient {
 
   constructor(private _httpClient: HttpClient) {}
 
-  async listAsync(): Promise<Agency[]> {
-    const call = this._httpClient.get<Agency[]>(`${this.url}`);
+  async listAsync(params: any): Promise<Agency[]> {
+    const call = this._httpClient.get<Agency[]>(`${this.url}`, {params});
     const items = await firstValueFrom(call);
     return items.map(i => new Agency(i));
   }

@@ -1,0 +1,31 @@
+<div class="d-flex align-items-center">
+  <lucide-icon [img]="icons.ChevronLeftIcon" (click)="back()"></lucide-icon>
+  <div class="fontSize-16 fontWeight-semibold ms-2">Informations du l'espace</div>
+</div>
+
+<div [formGroup]="formGroup">
+ <div>
+   <TextField class="w-100 mt-2" [error]="!nameField.untouched && nameField.invalid">
+     <label TextFieldLabel for="name-field">Nom de l'espace</label>
+     <input TextFieldInput type="text" required formControlName="name" id="name-field">
+   </TextField>
+   @if(!nameField.untouched && nameField.invalid) {
+     <div *ngIf="nameField.errors?.['required']" class="warn-text">Veuillez renseigner le nom de l'espace.</div>
+     <div *ngIf="nameField.errors?.['minlength']" class="warn-text">
+       Le nom doit contenir au moins 3 caractères.
+     </div>
+   }
+ </div>
+
+  <TextField class="w-100 mt-2">
+    <label TextFieldLabel for="description-field">Description de l'espace</label>
+    <input TextFieldInput type="text" required formControlName="description" id="description-field">
+  </TextField>
+</div>
+
+
+<div class="mt-3 align-end">
+  <button MyButton color="primary" [disabled]="isLoading || formGroup.invalid"
+          (click)="next()">Créer l'espace
+  </button>
+</div>

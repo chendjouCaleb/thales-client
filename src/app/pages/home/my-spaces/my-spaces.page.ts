@@ -6,6 +6,8 @@ import {RouterLink} from "@angular/router";
 
 import {LucideAngularModule, BuildingIcon, PlusIcon } from 'lucide-angular';
 import {Button} from "@app/ui";
+import {SpaceAddLauncher} from "@app/Components/space/add/space-add-launcher";
+import {Scaffold, ScaffoldToolbar} from "@app/Components/scaffold";
 
 
 @Component({
@@ -16,12 +18,15 @@ import {Button} from "@app/ui";
   imports: [
     RouterLink,
     LucideAngularModule,
-    Button
+    Button,
+    Scaffold,
+    ScaffoldToolbar
   ],
   standalone: true
 })
 export class MySpacesPage implements OnInit {
   private _spaceService = inject(SpaceHttpClient);
+  public spaceAddLauncher = inject(SpaceAddLauncher)
   spaces: Space[] = [];
   icons = { BuildingIcon, PlusIcon }
 

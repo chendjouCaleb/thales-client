@@ -12,7 +12,7 @@ import {
   DollarSignIcon,
   FileTextIcon,
   HistoryIcon,
-  LucideAngularModule,
+  LucideAngularModule, MenuIcon,
   SettingsIcon,
   TicketsPlaneIcon,
   UsersIcon,
@@ -22,6 +22,7 @@ import {NavModule  } from "@app/Components";
 import {NgForOf, NgIf} from "@angular/common";
 import {MatIcon} from "@angular/material/icon";
 import {Scaffold, ScaffoldToolbar} from "@app/Components/scaffold";
+import {IconButton} from "@app/ui";
 
 @Component({
   templateUrl: 'admin.page.html',
@@ -29,10 +30,10 @@ import {Scaffold, ScaffoldToolbar} from "@app/Components/scaffold";
   standalone: true,
   imports: [LucideAngularModule, MatSidenavContainer, MatSidenav, NgIf,
     MatSidenavContent,
-    NavModule, MatIcon, RouterLink, RouterOutlet, NgForOf, Scaffold, ScaffoldToolbar]
+    NavModule, MatIcon, RouterLink, RouterOutlet, NgForOf, Scaffold, ScaffoldToolbar, IconButton]
 })
 export class AdminPage implements AfterViewInit, OnInit {
-  icons = {BuildingIcon, UsersIcon, HistoryIcon, SettingsIcon,
+  icons = {BuildingIcon, UsersIcon, HistoryIcon, SettingsIcon, MenuIcon,
   TicketsPlaneIcon, DollarSignIcon, WalletCardsIcon, FileTextIcon }
 
   @ViewChild(MatSidenav)

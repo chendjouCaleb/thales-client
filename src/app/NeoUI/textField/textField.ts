@@ -3,11 +3,11 @@
   ChangeDetectorRef,
   Component,
   ContentChild, ElementRef,
-  forwardRef,
+  forwardRef, Input,
   ViewEncapsulation
 } from '@angular/core';
-import {TextFieldLabel} from './textFieldLabel';
-import {TextFieldInput} from './textFieldInput';
+import {TextFieldLabel} from '@app/NeoUI';
+import {TextFieldInput} from '@app/NeoUI';
 
 @Component({
   selector: 'TextField',
@@ -19,6 +19,7 @@ import {TextFieldInput} from './textFieldInput';
     class: 'my-text-field',
     '[class.disabled]': 'disabled',
     '[class.focused]': 'focused',
+    '[class.error]': 'error'
   }
 })
 export class TextField implements AfterContentInit, AfterViewInit {
@@ -51,6 +52,8 @@ export class TextField implements AfterContentInit, AfterViewInit {
   @ContentChild(forwardRef(() => TextFieldInput))
   inputField: TextFieldInput;
 
+  @Input()
+  error: boolean
 
   constructor(private _elementRef: ElementRef<HTMLElement>,
               private changeDetectorRef: ChangeDetectorRef) {

@@ -1,10 +1,6 @@
 <div class="th-scaffold-toolbar" >
   <div style="display: flex; align-items: center">
-    <button style="margin-left: 8px; margin-right: 8px" MyIconButton aria-label="Open menu icon"
-            #sidebarToggleBtn (click)="scaffold.sidenav.toggle()">
-      <lucide-icon [img]="icons.MenuIcon"  strokeWidth="1.5"></lucide-icon>
-    </button>
-
+    <ng-content select="[sidenav-toggle]"></ng-content>
     <span class="cursor-pointer" routerLink="" matTooltip="Accueil">FAST App</span>
   </div>
 
@@ -18,10 +14,13 @@
 
     @if(session) {
      <div class="d-flex align-items-center">
-       <button MyButton class="me-3" (click)="spaceAddLauncher.launch()">
-         <lucide-icon [img]="icons.PlusIcon"></lucide-icon>
-         Créer
-       </button>
+       @if(showCreateButton) {
+         <button MyButton class="me-3" (click)="spaceAddLauncher.launch()">
+           <lucide-icon [img]="icons.PlusIcon"></lucide-icon>
+           Créer un espace
+         </button>
+       }
+
        <button style="border-radius: 50%; border: none;
       display: flex; align-items: center; justify-content: center;
       cursor: pointer;
@@ -34,7 +33,7 @@
 
        <Dropdown #dropdown [trigger]="menuTrigger"
                  (onBackdropClick)="dropdown.close()">
-         <MyMenu class="my-light-theme">
+         <MyMenu>
 
            <a MenuItem routerLink="/identity/profile">
              <lucide-icon [img]="icons.UserCogIcon"  strokeWidth="1.5"></lucide-icon>

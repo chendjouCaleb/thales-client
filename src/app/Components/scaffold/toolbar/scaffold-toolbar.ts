@@ -1,4 +1,4 @@
-import {Component, ViewEncapsulation} from "@angular/core";
+import {Component, Input, ViewEncapsulation} from "@angular/core";
 import {AuthenticationService, Session} from "@app/identity";
 import {
   LogOutIcon,
@@ -27,9 +27,13 @@ import {SpaceAddLauncher} from "@app/Components/space/add/space-add-launcher";
 })
 export class ScaffoldToolbar {
   icons = {LogOutIcon, MenuIcon, UserIcon, CircleUserIcon, UserCogIcon, PlusIcon }
+
+
+  @Input()
+  showCreateButton = false;
+
   constructor(private _authenticationService: AuthenticationService,
-              public readonly spaceAddLauncher: SpaceAddLauncher,
-              public scaffold: Scaffold) {
+              public readonly spaceAddLauncher: SpaceAddLauncher) {
 
   }
 

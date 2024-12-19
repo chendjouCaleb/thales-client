@@ -9,12 +9,13 @@ import {EmployeeAddModel, SpaceAddModel} from "@app/models";
 import {MatButton, MatIconButton} from "@angular/material/button";
 import {MatIcon} from "@angular/material/icon";
 import {MatCheckbox} from "@angular/material/checkbox";
-import {FormControl, FormGroup, ReactiveFormsModule} from "@angular/forms";
+import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {SpaceAdd} from "@app/Components/space/add/space-add";
 import {SpaceHttpClient} from "@app/services";
 import {ChevronLeftIcon, LucideAngularModule} from "lucide-angular";
 import {Button, IconButton} from "@app/ui";
 import {TextField, TextFieldInput, TextFieldLabel} from "@app/NeoUI";
+import {NgIf} from "@angular/common";
 
 @Component({
   selector: '[SpaceAddInfo]',
@@ -30,43 +31,23 @@ import {TextField, TextFieldInput, TextFieldLabel} from "@app/NeoUI";
     TextField,
     TextFieldInput,
     TextFieldLabel,
-    Button
+    Button,
+    NgIf
   ],
-  template: `
-
-    <div class="d-flex align-items-center">
-      <lucide-icon [img]="icons.ChevronLeftIcon" (click)="back()"></lucide-icon>
-      <div class="fontWeight-semiBold ms-2">Informations du l'espace</div>
-    </div>
-
-    <div [formGroup]="formGroup">
-      <TextField class="w-100 mt-2">
-        <label TextFieldLabel for="name-field">Nom de l'espace</label>
-        <input TextFieldInput type="text" required formControlName="name" id="name-field">
-      </TextField>
-
-      <TextField class="w-100 mt-2">
-        <label TextFieldLabel for="description-field">Description de l'espace</label>
-        <input TextFieldInput type="text" required formControlName="description" id="description-field">
-      </TextField>
-    </div>
-
-
-    <div class="mt-3 align-end">
-      <button MyButton color="primary" [disabled]="isLoading"
-              (click)="next()">Ajouter
-      </button>
-    </div>
-  `
+  templateUrl: 'space-add-info.html'
 })
 export class SpaceAddInfo {
   icons = {ChevronLeftIcon}
   isLoading = false;
 
   formGroup = new FormGroup({
-    name: new FormControl<string>(''),
+    name: new FormControl<string>('', [ Validators.minLength(3), Validators.required]),
     description: new FormControl<string>('')
   });
+
+  get nameField() {
+    return this.formGroup.controls.name
+  }
 
   get model(): SpaceAddModel {
     return this.parent.model

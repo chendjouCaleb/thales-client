@@ -8,13 +8,15 @@ import {EmployeeAddUser} from "@app/Components/employees/add/employee-add-user";
 import {EmployeeAddInfo} from "@app/Components/employees/add/employee-add-info";
 import {DIALOG_DATA, DialogRef} from "@angular/cdk/dialog";
 import {Space} from "@entities/space";
-import {SpaceAddInfo} from "@app/Components/space/add/space-add-info";
-import {SpaceAddIdentifier} from "@app/Components/space/add/space-add-identifier";
+import {SpaceAddInfo} from "@app/Components/space/add/info/space-add-info";
+import {SpaceAddIdentifier} from "@app/Components/space/add/identifier/space-add-identifier";
 import {SpaceAddModel} from "@app/models";
 import {SpaceHttpClient} from "@app/services";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {SnackbarLoader} from "@app/Components";
 import {SpaceAddConfirm} from "@app/Components/space/add/space-add-confirm";
+import {LucideAngularModule, XIcon} from "lucide-angular";
+import {IconButton} from "@app/ui";
 
 @Component({
   templateUrl: 'space-add.html',
@@ -29,12 +31,15 @@ import {SpaceAddConfirm} from "@app/Components/space/add/space-add-confirm";
     NavRouteDef,
     SpaceAddInfo,
     SpaceAddIdentifier,
-    SpaceAddConfirm
+    SpaceAddConfirm,
+    IconButton,
+    LucideAngularModule
   ],
-  standalone: true
+  standalone: true,
+  styles: [':host {display: block; width: 512px}']
 })
 export class SpaceAdd {
-
+  icons = { XIcon }
   model = new SpaceAddModel()
   identifier = new FormControl<string>('')
 

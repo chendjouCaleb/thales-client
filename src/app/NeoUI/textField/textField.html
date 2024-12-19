@@ -1,4 +1,6 @@
-﻿<div class="my-text-field-label-box" [class.focused]="focused" [class.floating]="floatingLabel">
+﻿<div class="my-text-field-label-box" [class.focused]="focused"
+     [class.error]="error"
+     [class.floating]="floatingLabel">
   <ng-content select="TextFieldLabel, [TextFieldLabel]"></ng-content>
 </div>
 
@@ -6,4 +8,4 @@
   <ng-content></ng-content>
 </div>
 
-<div class="my-text-field-underline" [class.focused]="focused"></div>
+<div class="my-text-field-underline" [class.focused]="focused" [class.error]="error" ></div>

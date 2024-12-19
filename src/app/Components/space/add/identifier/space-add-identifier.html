@@ -1,0 +1,48 @@
+<div class="fontSize-16 fontWeight-semiBold">
+  Identifiant de l'espace
+</div>
+
+
+<div class="opacity-8 mt-3">
+  Un identifiant permet de reconnaître de façon unique votre espace sur cette plateforme. <br>
+</div>
+
+
+<div class="mt-3">
+  <TextField class="w-100" [error]="formControl.invalid && (formControl.dirty || !formControl.untouched)">
+    <label TextFieldLabel for="identifier-field">Identifiant de l'espace</label>
+    <input TextFieldInput autofocus type="text" required minlength="3" [formControl]="formControl" id="identifier-field">
+  </TextField>
+
+  @if(formControl.invalid && (formControl.dirty || !formControl.untouched)) {
+    <div *ngIf="formControl.errors?.['required']" class="warn-text">Veuillez renseigner un identifiant.</div>
+    <div *ngIf="formControl.errors?.['minlength']" class="warn-text">
+      L'identifiant doit contenir au moins 3 caractères.
+    </div>
+  }
+
+  <span class="fontSize-12 mt-2 opacity-8">
+    L'identifiant doit être composé uniquement de lettres, de chiffres et du caractères '_'.
+  Ex: chendjou14, ets_violet, myriam_resteau.
+  </span>
+
+  @if (checkIdentifierTask.loading) {
+    <div class="d-flex align-items-center br-4 surface mt-3">
+      <mat-spinner strokeWidth="1" diameter="24"></mat-spinner>
+      <div class="ms-3 opacity-8">Vérification de l'identifiant de l'espace</div>
+    </div>
+  }
+
+  @if (checkIdentifierTask.success && checkIdentifierTask.result) {
+    <div class="d-flex br-4 warn mt-3 p-3">
+      <lucide-icon [img]="icons.AlertCircleIcon"></lucide-icon>
+      <div class="ms-3 opacity-8">L'identifiant renseigné est déjà utilisé par un autre espace.</div>
+    </div>
+  }
+</div>
+
+<div class="mt-3 align-end">
+  <button MyButton color="primary" [disabled]="checkIdentifierTask.loading || formControl.invalid"
+          (click)="next()">Continuer
+  </button>
+</div>

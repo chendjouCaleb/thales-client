@@ -31,6 +31,9 @@
     color: #0A78D5 !important;
     bottom: 20px;
   }
+  &.error {
+    color: var(--my-warnColor);
+  }
 
   &.floating {
     font-size: 12px;
@@ -70,5 +73,9 @@
   &.focused {
     height: 2px;
     background-color: #0A78D5;
+  }
+
+  &.error {
+    background-color: var(--my-warnColor);
   }
 }

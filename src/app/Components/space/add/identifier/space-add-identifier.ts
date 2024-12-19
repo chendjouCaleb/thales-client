@@ -13,8 +13,13 @@ import {Button} from "@app/ui";
 import {Space} from "@entities/space";
 import {SpaceHttpClient} from "@app/services";
 import {SpaceAdd} from "@app/Components/space/add/space-add";
+import {AlertCircleIcon, LucideAngularModule} from "lucide-angular";
+import {MatProgressSpinner} from "@angular/material/progress-spinner";
+import {NgIf} from "@angular/common";
+import {Task} from "@app/utils";
 
 @Component({
+  templateUrl: 'space-add-identifier.html',
   selector: '[SpaceAddIdentifier]',
   standalone: true,
   imports: [
@@ -22,50 +27,43 @@ import {SpaceAdd} from "@app/Components/space/add/space-add";
     TextField,
     TextFieldInput,
     TextFieldLabel,
-    Button
-  ],
-  template: `
-    <div class="fontSize-16">
-      Renseignez l'identifiant de votre espace
-    </div>
-    <div class="mt-2">
-      <TextField class="w-100">
-        <label TextFieldLabel for="identifier-field">Identifiant de l'espace</label>
-        <input TextFieldInput type="text" required [formControl]="formControl" id="identifier-field">
-      </TextField>
-    </div>
-
-    <div class="mt-3 align-end">
-      <button MyButton color="primary" [disabled]="isLoading || formControl.invalid"
-              (click)="next()">Continuer
-      </button>
-    </div>
-  `
+    Button,
+    LucideAngularModule,
+    MatProgressSpinner,
+    NgIf
+  ]
 })
 export class SpaceAddIdentifier {
+  icons = { AlertCircleIcon }
   isLoading = false
   formControl = new FormControl<string>('')
 
   constructor(private parent: SpaceAdd,
               private _navHost: NavHost,
-              private _spaceService: SpaceHttpClient,
-              private _snackbarBar: MatSnackBar,
-              private _loader: SnackbarLoader) {
+              private _spaceService: SpaceHttpClient) {
   }
 
   async next() {
     this.isLoading = true;
-    const loaderRef = this._loader.open("Vérification de l'identifiant...");
-    const contains = await this._spaceService.containsIdentifierAsync(this.formControl.value);
+    const contains = await this.checkIdentifierUsed();
 
-    if (contains) {
-      this._snackbarBar.open("Identifiant déjà utilisé par un autre espace.", 'Fermer', {duration: 5000});
-    } else {
+    if (!contains) {
       this.parent.model.identifier = this.formControl.value
       this._navHost.navigateByUrl('info');
     }
-
-    loaderRef.dismiss();
-    this.isLoading = false;
   }
+
+  async checkIdentifierUsed(): Promise<boolean> {
+    await this.checkIdentifierTask.launch()
+
+    if (this.checkIdentifierTask.success && this.checkIdentifierTask.result) {
+      return true
+    }
+    return false
+  }
+
+  checkIdentifierTask = new Task<boolean>(async () => {
+    const identifier = this.formControl.value;
+    return await this._spaceService.containsIdentifierAsync(identifier);
+  });
 }

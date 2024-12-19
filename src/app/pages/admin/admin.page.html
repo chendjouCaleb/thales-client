@@ -1,5 +1,11 @@
-<th-scaffold>
-  <scaffold-toolbar></scaffold-toolbar>
+<th-scaffold #scaffold>
+  <scaffold-toolbar>
+
+    <button sidenav-toggle style="margin-left: 8px; margin-right: 8px" MyIconButton aria-label="Open menu icon"
+            #sidebarToggleBtn (click)="scaffold.sidenav.toggle()">
+      <lucide-icon [img]="icons.MenuIcon"  strokeWidth="1.5"></lucide-icon>
+    </button>
+  </scaffold-toolbar>
   <mat-sidenav-container style="height: 100%">
     <mat-sidenav mode="side" [opened]="true">
 

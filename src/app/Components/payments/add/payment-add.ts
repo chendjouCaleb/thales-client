@@ -53,7 +53,7 @@ export class PaymentAdd {
   selectCustomer(event) {
     event?.preventDefault();
     event.stopPropagation();
-    this._picker.open().subscribe(customer => {
+    this._picker.open(this.agency.spaceId).subscribe(customer => {
 
       if(customer) {
         this.customer = customer;

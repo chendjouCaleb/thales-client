@@ -6,11 +6,15 @@ import {Dialog} from "@angular/cdk/dialog";
 
 @Injectable()
 export class CustomerPickerDialog {
-  constructor(private matDialog: Dialog) {}
+  constructor(private matDialog: Dialog) {
+  }
 
-  open(): Observable<Customer> {
+  open(spaceId: number): Observable<Customer> {
+    const data = {spaceId}
     const dialogRef = this.matDialog.open<Customer>(CustomerPicker, {
-      panelClass: 'picker-dialog-panel'}
+        panelClass: 'picker-dialog-panel',
+        data: {spaceId }
+      }
     );
     return dialogRef.closed
   }

@@ -1,0 +1,23 @@
+.my-search-box {
+  display: flex;
+  gap: 8px;
+  border: 1px solid var(--my-dividerColor);
+  border-radius: 4px;
+  background-color: transparent;
+  padding: 4px 8px;
+  box-sizing: border-box;
+
+  &.focus {
+    border: 2px solid #0078d4 !important;
+  }
+
+  & input {
+    flex-grow: 1;
+    height: 24px;
+    font-size: 14px;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    color: var(--my-OnSurfaceColor)
+  }
+}

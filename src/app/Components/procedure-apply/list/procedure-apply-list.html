@@ -2,6 +2,12 @@
   <mat-spinner diameter="48" strokeWidth="2"></mat-spinner>
 </div>
 
+@if(getFirstRangeTask.success && procedureApplies.length == 0) {
+  <div class="surface p-4 mt-4 borderRadius-8 fontSize-18 fontWeight-light">
+    Aucune précédure en cours.
+  </div>
+}
+
 @if(getFirstRangeTask.success) {
   <div *ngFor="let apply of procedureApplies; let i=index"
      (click)="rowClick.emit(apply)"

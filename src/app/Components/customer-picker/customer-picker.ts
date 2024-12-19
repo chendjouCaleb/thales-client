@@ -3,13 +3,14 @@ import {
   ChangeDetectorRef,
   Component,
   ElementRef,
+  Inject,
   OnInit,
   ViewChild,
   ViewEncapsulation
 } from "@angular/core";
 import {CustomerService} from "@app/services";
 import {Customer} from "../../../entities";
-import {MatDialogContent, MatDialogRef} from "@angular/material/dialog";
+import {MatDialogContent} from "@angular/material/dialog";
 
 import {LucideAngularModule, SearchIcon,} from "lucide-angular";
 import {Task} from "@app/utils";
@@ -18,7 +19,7 @@ import {MatListOption, MatSelectionList} from "@angular/material/list";
 import {MatProgressSpinner} from "@angular/material/progress-spinner";
 import {NgForOf, NgIf} from "@angular/common";
 import {Button} from "@app/ui";
-import {DialogRef} from "@angular/cdk/dialog";
+import {DIALOG_DATA, DialogRef} from "@angular/cdk/dialog";
 
 const TAKE = 5;
 @Component({
@@ -47,6 +48,8 @@ export class CustomerPicker implements OnInit, AfterViewInit {
 
   total: number = 0;
   params: any = {}
+
+  spaceId: number;
 
   @ViewChild(('parent'))
   contentViewRef: ElementRef<HTMLElement>
@@ -88,7 +91,13 @@ export class CustomerPicker implements OnInit, AfterViewInit {
 
   constructor(private _customerService: CustomerService,
               private _changeDetector: ChangeDetectorRef,
+              @Inject(DIALOG_DATA) data: any,
               private _dialogRef: DialogRef<Customer, CustomerPicker>) {
+    this.spaceId = data.spaceId;
+    if(!this.spaceId) {
+      throw new Error('Customer picker spaceId should not be null')
+    }
+    this.params = {...this.params, spaceId: this.spaceId}
   }
 
 
@@ -116,12 +125,12 @@ export class CustomerPicker implements OnInit, AfterViewInit {
 
   timeoutID;
   filter(event) {
-    this.params = { ...this.params, searchQuery : this.filterValue }
+    this.params = { ...this.params, q : this.filterValue }
     clearTimeout(this.timeoutID)
     this.timeoutID = setTimeout(() => {
       console.log('search query: ', this.filterValue)
       this.reset()
-    }, 1000)
+    }, 300)
     this._changeDetector.markForCheck();
   }
 

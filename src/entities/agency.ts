@@ -24,8 +24,8 @@ export class Agency extends BaseEntity<number> {
       this.phoneNumber1 = value.phoneNumber1;
       this.phoneNumber2 = value.phoneNumber2;
 
-      this.spaceId = value.SpaceId;
-      this.space = value.Space ? new Space(value.Space) : undefined;
+      this.spaceId = value.spaceId;
+      this.space = value.space ? new Space(value.space) : undefined;
     }
   }
 

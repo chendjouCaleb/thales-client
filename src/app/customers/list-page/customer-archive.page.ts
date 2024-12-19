@@ -5,6 +5,7 @@ import {Router} from "@angular/router";
 import {CustomerService} from "@app/services";
 import {Customer} from "@entities/customer";
 import {CustomerPage} from "@app/customers";
+import {Space} from "@entities/space";
 
 @Component({
   template: `
@@ -21,7 +22,7 @@ import {CustomerPage} from "@app/customers";
 })
 export class CustomerArchivePage implements OnInit, OnDestroy {
   displayedColumns: string[] = ['name', 'phone', 'email', 'updatedAt', 'action'];
-  params = {
+  params: any = {
     archived: true
   }
 
@@ -30,8 +31,12 @@ export class CustomerArchivePage implements OnInit, OnDestroy {
   @ViewChild(CustomerList)
   customerList: CustomerList
 
+  space: Space;
+
   constructor(private router: Router, private customerService: CustomerService,
               private parent: CustomerPage) {
+    this.space = this.parent.space;
+    this.params = {...this.params, spaceId: this.space.id }
   }
 
   navigate(customer: Customer) {

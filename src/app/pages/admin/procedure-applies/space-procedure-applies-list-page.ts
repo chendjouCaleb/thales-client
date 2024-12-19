@@ -4,6 +4,7 @@ import {ProcedureApplyService} from "@app/services";
 import {ProcedureApplyList} from "@app/Components/procedure-apply/list/procedure-apply-list";
 import {ProcedureApply} from "@entities/procedure-apply";
 import {AdminPage} from "@app/pages/admin/admin.page";
+import {Space} from "@entities/space";
 
 
 @Component({
@@ -12,7 +13,7 @@ import {AdminPage} from "@app/pages/admin/admin.page";
     <div class="p-4">
       <div class="fontSize-20 fontWeight-semiBold">Procédures en cours</div>
       <div class="mt-4">
-        <procedure-apply-list (rowClick)="click($event)"></procedure-apply-list>
+        <procedure-apply-list (rowClick)="click($event)" [params]="params"></procedure-apply-list>
       </div>
     </div>
   `,
@@ -22,9 +23,14 @@ import {AdminPage} from "@app/pages/admin/admin.page";
   standalone: true
 })
 export class SpaceProcedureAppliesListPage implements OnInit {
+  space: Space;
+  params: any
 
   constructor(private router: Router,
-              private _parent: AdminPage) {}
+              private _parent: AdminPage) {
+    this.space = _parent.space;
+    this.params = {spaceId: this.space.id }
+  }
 
   async ngOnInit() {
 

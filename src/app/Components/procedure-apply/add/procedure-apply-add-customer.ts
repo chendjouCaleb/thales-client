@@ -59,7 +59,7 @@ export class ProcedureApplyAddCustomer {
   selectCustomer(event) {
     event?.preventDefault();
     event.stopPropagation();
-    this._picker.open().subscribe(customer => {
+    this._picker.open(this.parent.agency.spaceId).subscribe(customer => {
       if(customer) {
         this.customer = customer;
       }

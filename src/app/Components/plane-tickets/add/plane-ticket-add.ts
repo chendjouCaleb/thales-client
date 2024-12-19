@@ -82,7 +82,7 @@ export class PlaneTicketAdd implements OnInit {
   }
 
   openCustomerPicker() {
-    this._customerPicker.open().subscribe(customer => {
+    this._customerPicker.open(this.agency.spaceId).subscribe(customer => {
       if (customer) {
         this.customer = customer;
       }

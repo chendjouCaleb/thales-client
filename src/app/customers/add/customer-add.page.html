@@ -7,7 +7,10 @@
       <button MyIconButton class="me-2" (click)="clear()">
         <lucide-angular [img]="icons.EraserIcon" ></lucide-angular>
       </button>
-      <button MyButton class="primary" (click)="add()">Ajouter le client</button>
+      <button MyButton class="primary" (click)="add()" [disabled]="addTask.loading">
+        <mat-spinner diameter="16" strokeWidth="1" *ngIf="addTask.loading"></mat-spinner>
+        Ajouter le client
+      </button>
     </div>
 
   </div>

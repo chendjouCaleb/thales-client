@@ -5,7 +5,7 @@ import {LANGUAGES} from "@app/models/langs";
 import {CustomerForm} from "@app/customers/add/form/customer.form";
 import {Button, IconButton} from "@app/ui";
 import {
-  Address,
+  Address, Customer,
   CustomerInfoModel,
   Email,
   FamilyInfo,
@@ -23,7 +23,9 @@ import {
 } from 'lucide-angular';
 import {CustomerPage} from "@app/customers";
 import {Space} from "@entities/space";
-import {Location} from "@angular/common";
+import {Location, NgIf} from "@angular/common";
+import {MatProgressSpinner} from "@angular/material/progress-spinner";
+import {Task} from "@app/utils";
 
 const SAVE_FORM_KEY = "CUSTOMER_ADD_FORM";
 @Component({
@@ -32,7 +34,9 @@ const SAVE_FORM_KEY = "CUSTOMER_ADD_FORM";
     CustomerForm,
     Button,
     LucideAngularModule,
-    IconButton
+    IconButton,
+    MatProgressSpinner,
+    NgIf
   ],
   templateUrl: 'customer-add.page.html'
 })
@@ -62,11 +66,19 @@ export class CustomerAddPage {
 
 
   async add() {
-    let model = this.formGroup.getModel();
-    const customer = await this.customerService.addAsync(this.space, model);
-    this.snackbar.open(`Le client ${customer.firstName} ${customer.lastName} a été ajouté.`, '', {duration: 5000});
-    this._location.back()
+    await this.addTask.launch()
+    if(this.addTask.success) {
+      const customer = this.addTask.result
+        this.snackbar.open(`Le client ${customer.firstName} ${customer.lastName} a été ajouté.`, '', {duration: 5000});
+      this._location.back()
+    }
+
   }
+
+  addTask = new Task<Customer>(async () => {
+    let model = this.formGroup.getModel();
+    return await this.customerService.addAsync(this.space, model);
+  })
 
 
   @HostListener('keyup', ['$event'])

@@ -7,77 +7,100 @@
     </button>
   </scaffold-toolbar>
   <mat-sidenav-container style="height: 100%">
-    <mat-sidenav mode="side" [opened]="true">
+    <mat-sidenav mode="side" [opened]="true" style="overflow-y: auto">
 
-      <div class="sidenav-content" style="">
-        <div class="d-flex align-items-center py-3" style="padding-left: 16px">
-          <lucide-icon [img]="icons.BuildingIcon" [size]="32"></lucide-icon>
-          <div class="ms-3">
-            <div class="fontSize-16 fontWeight-semiBold" *ngIf="space">{{space.name}}</div>
-            <div class="fontSize-12" style="opacity: .6;">Espace</div>
-          </div>
-        </div>
-
-
-        <th-nav style="padding: 4px" class="mt-2">
+     <div class="sidenav-content">
+       <div  style="">
+         <div class="d-flex align-items-center py-3" style="padding-left: 16px">
+           <lucide-icon [img]="icons.BuildingIcon" [size]="32"></lucide-icon>
+           <div class="ms-3">
+             <div class="fontSize-16 fontWeight-semiBold" *ngIf="space">{{space.name}}</div>
+             <div class="fontSize-12" style="opacity: .6;">Espace</div>
+           </div>
+         </div>
 
 
-          <a href="#" th-nav-item [routerLink]="['/spaces', space?.identifier, 'customers']">
-            <lucide-icon [img]="icons.UsersIcon" th-nav-item-icon  strokeWidth="1.75"></lucide-icon>
-            <span>Clients</span>
-          </a>
-
-          <a href="#" th-nav-item routerLink="procedures">
-            <lucide-icon [img]="icons.FileTextIcon" th-nav-item-icon  strokeWidth="1.75"></lucide-icon>
-            Procédures
-          </a>
-
-          <a href="#" th-nav-item routerLink="procedure-applies">
-            <lucide-icon [img]="icons.WalletCardsIcon" th-nav-item-icon  strokeWidth="1.75"></lucide-icon>
-            Procédures en cours
-          </a>
-
-          <a routerLink="plane-tickets" th-nav-item>
-            <lucide-icon [img]="icons.TicketsPlaneIcon" th-nav-item-icon  strokeWidth="1.75"></lucide-icon>
-            Billets d'avion</a>
-          <a routerLink="payments" th-nav-item>
-            <lucide-icon [img]="icons.DollarSignIcon" th-nav-item-icon  strokeWidth="1.5"></lucide-icon>
-            Paiements</a>
+         <th-nav style="padding: 4px" class="mt-2">
 
 
+           <a href="#" th-nav-item [routerLink]="['/spaces', space?.identifier, 'customers']">
+             <lucide-icon [img]="icons.UsersIcon" th-nav-item-icon  strokeWidth="1.75"></lucide-icon>
+             <span>Clients</span>
+           </a>
 
-          <a routerLink="events" th-nav-item>
-            <lucide-icon [img]="icons.HistoryIcon" th-nav-item-icon  strokeWidth="1.5"></lucide-icon>
-            Historique</a>
+           <a href="#" th-nav-item routerLink="procedures">
+             <lucide-icon [img]="icons.FileTextIcon" th-nav-item-icon  strokeWidth="1.75"></lucide-icon>
+             Procédures
+           </a>
 
-          <a th-nav-item routerLink="members">
-            <lucide-icon [img]="icons.UsersIcon" th-nav-item-icon  strokeWidth="2"></lucide-icon>
-            Membres</a>
+           <a href="#" th-nav-item routerLink="procedure-applies">
+             <lucide-icon [img]="icons.WalletCardsIcon" th-nav-item-icon  strokeWidth="1.75"></lucide-icon>
+             Procédures en cours
+           </a>
 
-          <a routerLink="settings" th-nav-item>
-            <lucide-icon [img]="icons.SettingsIcon" th-nav-item-icon  strokeWidth="1.5"></lucide-icon>
-            Paramètres</a>
+           <a routerLink="plane-tickets" th-nav-item>
+             <lucide-icon [img]="icons.TicketsPlaneIcon" th-nav-item-icon  strokeWidth="1.75"></lucide-icon>
+             Billets d'avion</a>
+           <a routerLink="payments" th-nav-item>
+             <lucide-icon [img]="icons.DollarSignIcon" th-nav-item-icon  strokeWidth="1.5"></lucide-icon>
+             Paiements</a>
 
-          <DIV class="divider m-2"></DIV>
 
-          <div>
-            <div class="ms-3 py-2 fontWeight-semiBold fontSize-12">Agences</div>
-            <a [routerLink]="['/agencies', agency.id]" th-nav-item *ngFor="let agency of agencies">
-              {{agency.name}}</a>
 
-            @if(getAgencyListTask.success && agencies.length == 0) {
-              <div class="surface p-2 mx-3 borderRadius-8 fontSize-12 fontWeight-light">
-                Aucune agence dans cet espace.
-              </div>
-            }
-            @if(getAgencyListTask.loading) {
-              <div class="d-flex align-items-center justify-content-center p-3">
-                <mat-spinner strokeWidth="2" diameter="32"></mat-spinner>
-              </div>
-            }
-          </div>
-        </th-nav>
-      </div>
+           <a routerLink="events" th-nav-item>
+             <lucide-icon [img]="icons.HistoryIcon" th-nav-item-icon  strokeWidth="1.5"></lucide-icon>
+             Historique</a>
+
+           <a th-nav-item routerLink="members">
+             <lucide-icon [img]="icons.UsersIcon" th-nav-item-icon  strokeWidth="2"></lucide-icon>
+             Membres</a>
+
+           <a routerLink="settings" th-nav-item>
+             <lucide-icon [img]="icons.SettingsIcon" th-nav-item-icon  strokeWidth="1.5"></lucide-icon>
+             Paramètres</a>
+
+           <DIV class="divider m-2"></DIV>
+           <div class="ms-3 py-2 fontWeight-semiBold fontSize-12 opacity-8">Finance</div>
+           <a routerLink="expenses" th-nav-item>
+             <img ngSrc="assets/icons/earnings-income-wallet-svgrepo-com.svg" height="24" width="24" th-nav-item-icon alt="" />
+             Dépenses</a>
+           <a routerLink="incomes" th-nav-item>
+             <img ngSrc="assets/icons/beauty-health-heart-svgrepo-com.svg" height="24" width="24" th-nav-item-icon alt="" />
+             Revenues</a>
+           <a routerLink="debts" th-nav-item>
+             <img ngSrc="assets/icons/money-svgrepo-com.svg" height="24" width="24" th-nav-item-icon alt="" />
+
+             Dettes</a>
+           <a routerLink="credits" th-nav-item>
+             <img ngSrc="assets/icons/credit-card-svgrepo-com.svg" height="24" width="24" th-nav-item-icon alt="" />
+             Crédits</a>
+           <a routerLink="purchases" th-nav-item>
+            <img ngSrc="assets/icons/bag-shopping-store-svgrepo-com.svg" height="24" width="24" th-nav-item-icon alt="" />
+             Achats</a>
+
+           <DIV class="divider m-2"></DIV>
+
+           <div>
+             <div class="ms-3 py-2 fontWeight-semiBold fontSize-12">Agences</div>
+             <a [routerLink]="['/agencies', agency.id]" th-nav-item *ngFor="let agency of agencies">
+               {{agency.name}}</a>
+
+             @if(getAgencyListTask.success && agencies.length == 0) {
+               <div class="surface p-2 mx-3 borderRadius-8 fontSize-12 fontWeight-light">
+                 Aucune agence dans cet espace.
+               </div>
+             }
+             @if(getAgencyListTask.loading) {
+               <div class="d-flex align-items-center justify-content-center p-3">
+                 <mat-spinner strokeWidth="2" diameter="32"></mat-spinner>
+               </div>
+             }
+           </div>
+
+           <div class="py-4"></div>
+         </th-nav>
+       </div>
+     </div>
     </mat-sidenav>
     <mat-sidenav-content>
       <div style="background: var(--my-backgroundColor); color: var(--my-OnBackgroundColor); height: 100%;

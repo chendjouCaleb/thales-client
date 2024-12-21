@@ -19,7 +19,7 @@ import {
   WalletCardsIcon
 } from "lucide-angular";
 import {NavModule  } from "@app/Components";
-import {NgForOf, NgIf} from "@angular/common";
+import {NgForOf, NgIf, NgOptimizedImage} from "@angular/common";
 import {MatIcon} from "@angular/material/icon";
 import {Scaffold, ScaffoldToolbar} from "@app/Components/scaffold";
 import {IconButton} from "@app/ui";
@@ -31,7 +31,7 @@ import {MatProgressSpinner} from "@angular/material/progress-spinner";
   standalone: true,
   imports: [LucideAngularModule, MatSidenavContainer, MatSidenav, NgIf,
     MatSidenavContent,
-    NavModule, MatIcon, RouterLink, RouterOutlet, NgForOf, Scaffold, ScaffoldToolbar, IconButton, MatProgressSpinner]
+    NavModule, MatIcon, RouterLink, RouterOutlet, NgForOf, Scaffold, ScaffoldToolbar, IconButton, MatProgressSpinner, NgOptimizedImage]
 })
 export class AdminPage implements AfterViewInit, OnInit {
   icons = {BuildingIcon, UsersIcon, HistoryIcon, SettingsIcon, MenuIcon,

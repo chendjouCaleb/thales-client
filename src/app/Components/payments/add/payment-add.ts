@@ -13,6 +13,8 @@ import {TextField, TextFieldInput} from "@app/NeoUI";
 import {CleaveModule} from "@app/cleave";
 import {Button} from "@app/ui";
 import {NgIf} from "@angular/common";
+import {Task} from "@app/utils";
+import {MatProgressSpinner} from "@angular/material/progress-spinner";
 
 @Component({
   templateUrl: 'payment-add.html',
@@ -24,7 +26,8 @@ import {NgIf} from "@angular/common";
     TextFieldInput,
     ReactiveFormsModule,
     Button,
-    NgIf
+    NgIf,
+    MatProgressSpinner
   ],
   standalone: true,
   providers: [ CustomerPickerDialog ]
@@ -64,9 +67,16 @@ export class PaymentAdd {
   }
 
   async validate() {
-    const model = new PaymentAddFormModel(this.formGroup.value);
-    const payment = await this._service.addAsync(this.agency, this.customer, model);
-    this._dialogRef.close(payment);
-    this._snackbar.open(`Le paiement a été ajouté`, '', {duration: 5000});
+    await this.addTask.launch()
+    if(this.addTask.success) {
+      const payment = this.addTask.result;
+      this._dialogRef.close(payment);
+      this._snackbar.open(`Le paiement a été ajouté`, '', {duration: 5000});
+    }
   }
+
+  addTask = new Task(async () => {
+    const model = new PaymentAddFormModel(this.formGroup.value);
+    return await this._service.addAsync(this.agency, this.customer, model);
+  })
 }

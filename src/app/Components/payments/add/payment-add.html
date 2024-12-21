@@ -29,5 +29,7 @@
 
 <div class="p-4 align-end">
   <button MyButton (click)="_dialogRef.close()" class="me-3">Annuler</button>
-  <button MyButton class="primary" [disabled]="formGroup.invalid" (click)="validate()">Ajouter</button>
+  <button MyButton color="primary" (click)="validate()" [disabled]="formGroup.invalid && addTask.loading">
+    @if(addTask.loading) {  <mat-spinner diameter="16" strokeWidth="1"></mat-spinner> }
+    Ajouter le paiement</button>
 </div>

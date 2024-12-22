@@ -5,6 +5,7 @@ import {Space} from "@entities/space";
 export class Agency extends BaseEntity<number> {
   name: string = '';
   normalizedName: string = '';
+  ownerId: string
 
   space: Space;
   spaceId: number;
@@ -24,6 +25,7 @@ export class Agency extends BaseEntity<number> {
       this.phoneNumber1 = value.phoneNumber1;
       this.phoneNumber2 = value.phoneNumber2;
 
+      this.ownerId = value.ownerId;
       this.spaceId = value.spaceId;
       this.space = value.space ? new Space(value.space) : undefined;
     }

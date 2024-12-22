@@ -40,6 +40,26 @@
             <a routerLink="settings" th-nav-item>
               <lucide-icon [img]="icons.SettingsIcon" th-nav-item-icon  strokeWidth="1.5"></lucide-icon>
               Paramètres</a>
+
+            <DIV class="divider m-2"></DIV>
+            <div class="ms-3 py-2 fontWeight-semiBold fontSize-12 opacity-8">Finance</div>
+            <a routerLink="expenses" th-nav-item>
+              <img ngSrc="assets/icons/earnings-income-wallet-svgrepo-com.svg" height="24" width="24" th-nav-item-icon alt="" />
+              Dépenses</a>
+            <a routerLink="incomes" th-nav-item>
+              <img ngSrc="assets/icons/beauty-health-heart-svgrepo-com.svg" height="24" width="24" th-nav-item-icon alt="" />
+              Revenues</a>
+            <a routerLink="debts" th-nav-item>
+              <img ngSrc="assets/icons/money-svgrepo-com.svg" height="24" width="24" th-nav-item-icon alt="" />
+
+              Dettes</a>
+            <a routerLink="credits" th-nav-item>
+              <img ngSrc="assets/icons/credit-card-svgrepo-com.svg" height="24" width="24" th-nav-item-icon alt="" />
+              Crédits</a>
+            <a routerLink="purchases" th-nav-item>
+              <img ngSrc="assets/icons/bag-shopping-store-svgrepo-com.svg" height="24" width="24" th-nav-item-icon alt="" />
+              Achats</a>
+
           </th-nav>
         </div>
       </mat-sidenav>

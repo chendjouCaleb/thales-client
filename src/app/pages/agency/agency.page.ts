@@ -14,24 +14,25 @@ import {
   UsersIcon,
   WalletCardsIcon
 } from "lucide-angular";
-import {NgIf} from "@angular/common";
+import {NgIf, NgOptimizedImage} from "@angular/common";
 import {Scaffold, ScaffoldToolbar} from "@app/Components/scaffold";
 
 @Component({
   templateUrl: 'agency.page.html',
   selector: 'AgencyPage',
-  imports: [
-    MatSidenavContainer,
-    MatSidenavContent,
-    MatSidenav,
-    NavModule,
-    RouterLink,
-    LucideAngularModule,
-    RouterOutlet,
-    NgIf,
-    Scaffold,
-    ScaffoldToolbar
-  ],
+    imports: [
+        MatSidenavContainer,
+        MatSidenavContent,
+        MatSidenav,
+        NavModule,
+        RouterLink,
+        LucideAngularModule,
+        RouterOutlet,
+        NgIf,
+        Scaffold,
+        ScaffoldToolbar,
+        NgOptimizedImage
+    ],
   standalone: true
 })
 export class AgencyPage implements AfterViewInit, OnInit {

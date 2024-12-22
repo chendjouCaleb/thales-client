@@ -18,9 +18,8 @@
           <button class="th-button-1">Client</button>
         </th>
         <th *ngIf="display('agency')">Agence</th>
-        <th *ngIf="display('member')">
-          Ajouté par
-        </th>
+        <th *ngIf="display('member')">Ajouté par</th>
+        <th *ngIf="display('employee')">Ajouté par</th>
         <th *ngIf="display('createdAt')">
           <button class="th-button-1" (click)="changeOrderBy('ID')">
             Ajouté le
@@ -69,6 +68,7 @@
         </td>
         <td *ngIf="display('agency')">{{ expense.agency?.name }}</td>
         <td *ngIf="display('member')">{{ expense.member.user?.fullName }}</td>
+        <td *ngIf="display('employee')">{{ expense.employee.user?.fullName }}</td>
         <td *ngIf="display('createdAt')">
           <span class="fontSize-12">{{ expense.createdAt.moment() }}</span>
         </td>

@@ -14,10 +14,15 @@ export class Employee extends BaseEntity<number> {
   user: User
   userId: string = '';
 
+  personId: string;
+  actorId: string;
+
   constructor(value: any = {}) {
     super(value);
     if (value) {
       this.isAdmin = value.isAdmin;
+      this.personId = value.personId;
+      this.actorId = value.actorId;
 
       this.agencyId = value.agencyId;
       this.agency = value.agency ? new Agency(value.agency) : undefined;

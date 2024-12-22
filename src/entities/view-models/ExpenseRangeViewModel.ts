@@ -44,23 +44,37 @@ export class ExpenseRangeViewModel {
 
     this.members.forEach(member => {
       member.user = this.users.find(u => u.id == member.userId);
-    })
+    });
+
+    this.employees.forEach(employee => {
+      employee.user = this.users.find(u => u.id == employee.userId);
+    });
 
     this.expenses.forEach(expense => {
-      expense.customer = this.customers?.find(c => c.id == expense.customerId);
-      expense.employee = this.employees?.find(c => c.id == expense.employeeId);
-
-      expense.agency = this.agencies?.find(c => c.id == expense.agencyId);
-
-      console.log(expense.expensePersons)
       expense.expensePersons.forEach(ep => {
         const member = this.members.find(m => m.personId == ep.personId)
-        if(member != null) {
+        if (member != null) {
           expense.member = member;
         }
       });
 
-      if(expense.planeTicketId) {
+      console.log(this.employees)
+      expense.expensePersons.forEach(ep => {
+        const employee = this.employees.find(m => m.personId == ep.personId)
+        if (employee != null) {
+          expense.employee = employee;
+        }
+      });
+
+
+      expense.expenseOwners.forEach(eo => {
+        const agency = this.agencies.find(a => a.ownerId == eo.ownerId);
+        if (agency != null) {
+          expense.agency = agency;
+        }
+      });
+
+      if (expense.planeTicketId) {
         expense.planeTicket = this.planeTickets?.find(p => p.id == expense.planeTicketId);
       }
 

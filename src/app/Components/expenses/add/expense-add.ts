@@ -15,6 +15,7 @@ import {Task} from "@app/utils";
 import {MatProgressSpinner} from "@angular/material/progress-spinner";
 import {ExpenseService} from "@app/services/expense.service";
 import {ExpenseAddModel} from "@app/models";
+import {Space} from "@entities/space";
 
 @Component({
   templateUrl: 'expense-add.html',
@@ -35,7 +36,7 @@ import {ExpenseAddModel} from "@app/models";
 export class ExpenseAdd {
   icons = { ChevronDownIcon }
   customer: Customer;
-  agency: Agency;
+  space: Space
 
   formGroup = new FormGroup({
     customer: new FormControl<number>(null),
@@ -50,13 +51,13 @@ export class ExpenseAdd {
               private _service: ExpenseService,
               private _snackbar: MatSnackBar) {
     this.customer = data.customer;
-    this.agency = data.agency;
+    this.space = data.space;
   }
 
   selectCustomer(event) {
     event?.preventDefault();
     event.stopPropagation();
-    this._picker.open(this.agency.spaceId).subscribe(customer => {
+    this._picker.open(this.space.id).subscribe(customer => {
 
       if(customer) {
         this.customer = customer;
@@ -77,7 +78,7 @@ export class ExpenseAdd {
 
   addTask = new Task(async () => {
     const model = new ExpenseAddModel(this.formGroup.value);
-    return await this._service.addAsync(this.agency, this.customer, model);
+    return await this._service.addAsync(this.space, this.customer, model);
   })
 }
 

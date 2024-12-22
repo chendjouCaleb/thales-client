@@ -2,7 +2,9 @@
   <div class="d-flex align-items-center">
     <div class="page-title flex-grow-1">Dépenses</div>
 
-    <button>Ajouter une dépense</button>
+    <button MyButton color="primary" mat-ripple (click)="addLauncher.addExpense(this.space)">
+      <lucide-icon [img]="icons.PlusIcon"></lucide-icon>
+      Ajouter une dépense</button>
   </div>
 
 

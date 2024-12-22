@@ -4,12 +4,15 @@ import {Observable} from "rxjs";
 import {Space} from "@entities/space";
 import {Expense} from "@entities/expense";
 import {ExpenseAdd} from "@app/Components/expenses/add/expense-add";
+import {Injectable} from "@angular/core";
 
+
+@Injectable()
 export class ExpenseAddLauncher {
   constructor(private _dialog: Dialog) {
   }
 
-  addExpense(space: Space, customer: Customer): Observable<Expense> {
+  addExpense(space: Space, customer?: Customer): Observable<Expense> {
     const dialogRef = this._dialog.open<Expense>(ExpenseAdd, {data: {customer, space}});
     return dialogRef.closed;
   }

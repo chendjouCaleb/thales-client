@@ -33,7 +33,7 @@ export class ProcedureIndexPage implements OnInit {
   steps: ProcedureStep[] = [];
 
 
-  tabGroupRemember = new MatTabGroupRemember('procedure-index-tab');
+  tabGroupRemember = new MatTabGroupRemember('procedure-index.ts-tab');
 
   constructor(private route: ActivatedRoute,
               public parent: AdminPage,

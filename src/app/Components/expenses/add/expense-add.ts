@@ -2,22 +2,22 @@ import {Component, Inject} from "@angular/core";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {FormControl, FormGroup, ReactiveFormsModule} from "@angular/forms";
 import {Customer} from "@entities/customer";
-import {PaymentService} from "@app/services";
-import {PaymentAddFormModel} from "@app/models/forms/payment.form-model";
 import {CustomerPickerDialog} from "@app/Components";
 import {Agency} from "@entities/agency";
 import {ChevronDownIcon, LucideAngularModule} from "lucide-angular";
 import {DIALOG_DATA, DialogRef} from "@angular/cdk/dialog";
-import {Payment} from "@entities/payment";
+import {Expense} from "@entities/expense";
 import {TextField, TextFieldInput} from "@app/NeoUI";
 import {CleaveModule} from "@app/cleave";
 import {Button} from "@app/ui";
 import {NgIf} from "@angular/common";
 import {Task} from "@app/utils";
 import {MatProgressSpinner} from "@angular/material/progress-spinner";
+import {ExpenseService} from "@app/services/expense.service";
+import {ExpenseAddModel} from "@app/models";
 
 @Component({
-  templateUrl: 'payment-add.html',
+  templateUrl: 'expense-add.html',
   selector: 'ExpenseAdd',
   imports: [
     LucideAngularModule,
@@ -32,7 +32,7 @@ import {MatProgressSpinner} from "@angular/material/progress-spinner";
   standalone: true,
   providers: [ CustomerPickerDialog ]
 })
-export class PaymentAdd {
+export class ExpenseAdd {
   icons = { ChevronDownIcon }
   customer: Customer;
   agency: Agency;
@@ -40,14 +40,14 @@ export class PaymentAdd {
   formGroup = new FormGroup({
     customer: new FormControl<number>(null),
     amount: new FormControl<number>(null),
-    reason: new FormControl<string>('')
+    reason: new FormControl<string>(''),
+    details: new FormControl<string>(''),
   })
 
   constructor(@Inject(DIALOG_DATA) data: any,
               private _picker: CustomerPickerDialog,
-              public _dialogRef: DialogRef<Payment, PaymentAdd>,
-
-              private _service: PaymentService,
+              public _dialogRef: DialogRef<Expense, ExpenseAdd>,
+              private _service: ExpenseService,
               private _snackbar: MatSnackBar) {
     this.customer = data.customer;
     this.agency = data.agency;
@@ -69,14 +69,15 @@ export class PaymentAdd {
   async validate() {
     await this.addTask.launch()
     if(this.addTask.success) {
-      const payment = this.addTask.result;
-      this._dialogRef.close(payment);
-      this._snackbar.open(`Le paiement a été ajouté`, '', {duration: 5000});
+      const expense = this.addTask.result;
+      this._dialogRef.close(expense);
+      this._snackbar.open(`La dépense a été ajoutée.`, '', {duration: 3000});
     }
   }
 
   addTask = new Task(async () => {
-    const model = new PaymentAddFormModel(this.formGroup.value);
+    const model = new ExpenseAddModel(this.formGroup.value);
     return await this._service.addAsync(this.agency, this.customer, model);
   })
 }
+

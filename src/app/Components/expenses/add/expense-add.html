@@ -1,0 +1,40 @@
+<div class="fontWeight-semiBold fontSize-20 p-4">Ajouter une dépense</div>
+
+
+<div class="px-4" [formGroup]="formGroup">
+  <div class="w-100">
+    <div class="opacity-8">Client</div>
+    <div style="background-color: var(--my-SurfaceColor); padding: 8px; border-radius: 8px;
+      display: flex; align-items: center; cursor: pointer" tabindex="1" (click)="selectCustomer($event)">
+      <div class="flex-grow-1">
+        <div *ngIf="customer"  >{{ customer.fullName }}</div>
+        <div *ngIf="!customer" class="opacity-5">Choisir un client</div>
+      </div>
+
+      <lucide-angular class="opacity-5" [img]="icons.ChevronDownIcon"></lucide-angular>
+    </div>
+  </div>
+
+
+  <TextField class="mt-2" style="width: 100%">
+    <label TextFieldLabel for="amount-field">Montant versé</label>
+    <input CleaveNumberInput TextFieldInput formControlName="amount" id="amount-field" required>
+  </TextField>
+
+  <TextField class="mt-2" style="width: 100%">
+    <label TextFieldLabel for="reason-field">Raison de la dépense</label>
+    <textarea TextFieldInput formControlName="reason" id="reason-field"></textarea>
+  </TextField>
+
+  <TextField class="mt-2" style="width: 100%">
+    <label TextFieldLabel for="details-field">Détails du paiement</label>
+    <textarea TextFieldInput formControlName="reason" id="details-field"></textarea>
+  </TextField>
+</div>
+
+<div class="p-4 align-end">
+  <button MyButton (click)="_dialogRef.close()" class="me-3">Annuler</button>
+  <button MyButton color="primary" (click)="validate()" [disabled]="formGroup.invalid && addTask.loading">
+    @if(addTask.loading) {  <mat-spinner diameter="16" strokeWidth="1"></mat-spinner> }
+    Ajouter la dépense</button>
+</div>

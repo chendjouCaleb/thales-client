@@ -2,7 +2,7 @@ import {Injectable} from "@angular/core";
 import {SERVER_URL} from "../http";
 import {Agency, Customer, Expense} from "../../entities";
 import { HttpClient } from "@angular/common/http";
-import {firstValueFrom} from "rxjs";
+import {firstValueFrom, Observable, Subject} from "rxjs";
 import {ExpenseAddModel} from "@app/models";
 import {ExpenseRangeViewModel} from "@entities/view-models/ExpenseRangeViewModel";
 
@@ -11,6 +11,16 @@ import {ExpenseRangeViewModel} from "@entities/view-models/ExpenseRangeViewModel
 })
 export class ExpenseService {
   private url = `${SERVER_URL}/expenses`;
+
+  private _expenseAdd = new Subject<Expense>();
+  get expenseAdd(): Observable<Expense> { return this._expenseAdd.asObservable() }
+
+  private _expenseDelete = new Subject<Expense>();
+  get expenseDelete(): Observable<Expense> { return this._expenseDelete.asObservable() }
+
+  private _expenseUpdate = new Subject<Expense>();
+  get expenseUpdate(): Observable<Expense> { return this._expenseUpdate.asObservable() }
+
   constructor(private _httpClient: HttpClient) {}
 
   async addAsync(agency: Agency, customer: Customer, model: ExpenseAddModel): Promise<Expense> {

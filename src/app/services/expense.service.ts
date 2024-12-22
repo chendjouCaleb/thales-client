@@ -23,8 +23,13 @@ export class ExpenseService {
 
   constructor(private _httpClient: HttpClient) {}
 
-  async addAsync(space: Space, customer: Customer, model: ExpenseAddModel): Promise<Expense> {
-    const params = {customerId: customer.id, spaceId: space.id }
+  async addAsync(space: Space, agency: Agency, customer: Customer, model: ExpenseAddModel): Promise<Expense> {
+    const params = {
+      customerId: customer.id,
+      spaceId: space.id,
+      agencyId: agency?.id
+    };
+
     const call = this._httpClient.post<Expense>(`${this.url}`, model, {params});
     return new Expense(await firstValueFrom(call));
   }

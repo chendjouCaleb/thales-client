@@ -37,7 +37,7 @@ export class AgencyExpenseListPage implements OnInit {
               ) {
     this.agency = this.parent.agency;
     console.log(this.agency.space)
-    this.params = {ownerId: this.agency.name}
+    this.params = {ownerId: this.agency.ownerId}
   }
 
   ngOnInit() {
@@ -45,6 +45,6 @@ export class AgencyExpenseListPage implements OnInit {
   }
 
   addExpense() {
-
+    this.addLauncher.addExpense(this.agency.space, this.agency)
   }
 }

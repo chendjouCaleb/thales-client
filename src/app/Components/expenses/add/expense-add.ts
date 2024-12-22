@@ -36,7 +36,8 @@ import {Space} from "@entities/space";
 export class ExpenseAdd {
   icons = { ChevronDownIcon }
   customer: Customer;
-  space: Space
+  space: Space;
+  agency?: Agency;
 
   formGroup = new FormGroup({
     customer: new FormControl<number>(null),
@@ -52,6 +53,7 @@ export class ExpenseAdd {
               private _snackbar: MatSnackBar) {
     this.customer = data.customer;
     this.space = data.space;
+    this.agency = data.agency;
   }
 
   selectCustomer(event) {
@@ -78,7 +80,7 @@ export class ExpenseAdd {
 
   addTask = new Task(async () => {
     const model = new ExpenseAddModel(this.formGroup.value);
-    return await this._service.addAsync(this.space, this.customer, model);
+    return await this._service.addAsync(this.space, this.agency, this.customer, model);
   })
 }
 

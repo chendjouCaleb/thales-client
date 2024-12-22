@@ -7,6 +7,7 @@ import {ExpenseService} from "@app/services/expense.service";
 import {ExpenseAddLauncher} from "@app/Components/expenses/add/expense-add.launcher";
 import {Button} from "@app/ui";
 import {MatRipple} from "@angular/material/core";
+import {ExpensesList} from "@app/Components/expenses/list/expenses-list";
 
 @Component({
   templateUrl: 'expense-list.page.html',
@@ -14,7 +15,8 @@ import {MatRipple} from "@angular/material/core";
   imports: [
     Button,
     LucideAngularModule,
-    MatRipple
+    MatRipple,
+    ExpensesList
   ],
   providers: [ ExpenseAddLauncher],
   standalone: true
@@ -22,7 +24,8 @@ import {MatRipple} from "@angular/material/core";
 export class ExpenseListPage implements OnInit {
   icons = { PlusIcon }
   expenses: Expense[] = [];
-  displayedColumns: string[] = ['id', 'amount', 'createdAt', 'reason', 'agency', 'action'];
+  displayedColumns: string[] = ['id', 'amount', 'updatedAt', 'reason', 'agency', 'member', 'action'];
+  params: any
 
 
   space: Space
@@ -32,6 +35,7 @@ export class ExpenseListPage implements OnInit {
               private parent: AdminPage
               ) {
     this.space = this.parent.space;
+    this.params = {ownerId: this.space.ownerId}
   }
 
   ngOnInit() {

@@ -1,0 +1,109 @@
+<div #container>
+  <div class="d-flex justify-content-center p-5" *ngIf="getFirstRangeTask.loading">
+    <mat-spinner diameter="48" strokeWidth="2"></mat-spinner>
+  </div>
+
+  <div *ngIf="!getFirstRangeTask.loading">
+    <table class="my-table">
+      <thead>
+      <tr>
+        <th>#</th>
+        <th>
+          <button class="th-button-1">
+            Montant
+          </button>
+        </th>
+        <th >Raison</th>
+        <th *ngIf="display('customer')">
+          <button class="th-button-1">Client</button>
+        </th>
+        <th *ngIf="display('agency')">Agence</th>
+        <th *ngIf="display('member')">
+          Ajouté par
+        </th>
+        <th *ngIf="display('createdAt')">
+          <button class="th-button-1" (click)="changeOrderBy('ID')">
+            Ajouté le
+            <span *ngIf="orderby[0] == 'ID'" class="ps-2">
+            <lucide-angular *ngIf="orderby[1] == 'ASC'" [img]="icons.MoveUpIcon" size="16"></lucide-angular>
+            <lucide-angular *ngIf="orderby[1] == 'DESC'" [img]="icons.MoveDownIcon" size="16"></lucide-angular>
+              </span>
+          </button>
+        </th>
+
+        <th *ngIf="display('updatedAt')">
+          <button class="th-button-1" (click)="changeOrderBy('ID')">
+            Modifié le
+            <span *ngIf="orderby[0] == 'ID'" class="ps-2">
+            <lucide-angular *ngIf="orderby[1] == 'ASC'" [img]="icons.MoveUpIcon" size="16"></lucide-angular>
+            <lucide-angular *ngIf="orderby[1] == 'DESC'" [img]="icons.MoveDownIcon" size="16"></lucide-angular>
+              </span>
+          </button>
+        </th>
+        <th></th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <tr *ngFor="let expense of expenses; let i=index; trackBy: trackById" class="row-hover cursor-pointer">
+        <td>{{ i + 1 }}</td>
+
+        <td>{{ expense.amount.amount | currency: expense.amount.currency : 'symbol' : '1.0-0' : 'fr' }}</td>
+        <td >
+          <a *ngIf="expense.planeTicketId"
+             routerLink="/agencies/{{expense.agencyId}}/plane-tickets/{{expense.planeTicketId}}"
+             class="inline-badge ms-bgColor-cyan-10 ms-bgColor-cyan-20--hover">
+            Billet d'avion N°{{ expense.planeTicketId }}
+          </a>
+
+
+          {{ expense.reason }}
+        </td>
+
+        <td *ngIf="display('customer')">
+          <span style="display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 1;
+            overflow: hidden;">{{ expense.customer?.fullName }}</span>
+
+        </td>
+        <td *ngIf="display('agency')">{{ expense.agency?.name }}</td>
+        <td *ngIf="display('member')">{{ expense.member.user?.fullName }}</td>
+        <td *ngIf="display('createdAt')">
+          <span class="fontSize-12">{{ expense.createdAt.moment() }}</span>
+        </td>
+        <td *ngIf="display('updatedAt')">
+          <span class="fontSize-12">{{ expense.updatedAt.moment() }}</span>
+        </td>
+        <td>
+          <button MyIconButton style="margin-right: 16px" #menuTrigger
+                  (click)="dropdown.open(); $event.stopPropagation()">
+            <lucide-angular  [img]="icons.EllipsisVerticalIcon"  size="16"></lucide-angular>
+          </button>
+
+          <Dropdown #dropdown [trigger]="menuTrigger.host"
+                    (onBackdropClick)="dropdown.close()">
+            <MyMenu>
+              <button MenuItem (click)="printPDF(expense)">
+                <img src="/assets/icons/pdf-svgrepo-com.svg" alt="PdfIcon" height="24">
+                Imprimer
+              </button>
+
+
+              <button MenuItem (click)="delete(expense)">
+                <lucide-icon [img]="icons.Trash2Icon"  strokeWidth="1.5"></lucide-icon>
+                Supprimer </button>
+            </MyMenu>
+          </Dropdown>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="!hasMore && getFirstRangeTask.success" class="end-list-thumb"></div>
+  <div class="range-observer-thumb" #rangeObserverThumb ></div>
+  <div class="d-flex justify-content-center p-3" *ngIf="getRangeTask.loading">
+    <mat-spinner strokeWidth="2" diameter="48"></mat-spinner>
+  </div>
+</div>

@@ -1,5 +1,4 @@
 import {BaseEntity} from "./base-entity";
-import {formatPhoneNumber} from "@app/utils";
 
 export class Space extends BaseEntity<number> {
   name: string = '';
@@ -8,6 +7,8 @@ export class Space extends BaseEntity<number> {
   identifier: string = '';
   normalizedIdentifier: string = '';
 
+  ownerId: string;
+
   constructor(value: any = {}) {
     super(value);
     if (value) {
@@ -15,6 +16,7 @@ export class Space extends BaseEntity<number> {
       this.name = value.name;
       this.identifier = value.identifier;
       this.normalizedIdentifier = value.normalizedIdentifier;
+      this.ownerId = value.ownerId;
     }
   }
 }

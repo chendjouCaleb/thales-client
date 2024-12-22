@@ -6,6 +6,8 @@ export class Member extends BaseEntity<number> {
   isAdmin: boolean
   isLocked: boolean
 
+  personId: string;
+
   actorId: string
 
   space:Space;
@@ -22,6 +24,7 @@ export class Member extends BaseEntity<number> {
       this.isAdmin = value.isAdmin;
       this.isLocked = value.isLocked;
       this.actorId = value.actorId;
+      this.personId = value.personId;
 
       this.spaceId = value.spaceId;
       this.space = value.space ? new Space(value.space) : undefined;

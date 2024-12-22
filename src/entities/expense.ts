@@ -9,11 +9,14 @@ import {Member} from "@entities/member";
 import {Procedure} from "@entities/procedure";
 import {User} from "@app/identity";
 import {Space} from "@entities/space";
+import {DateTime} from "luxon";
 
 export class Expense extends BaseEntity<number> {
   amount: Money;
   reason: string = '';
   details: string = '';
+  updatedAt: DateTime;
+
   customer: Customer;
   customerId: number;
 
@@ -39,12 +42,19 @@ export class Expense extends BaseEntity<number> {
   memberId: number;
 
   user: User
-  userId: string
+  userId: string;
+
+  expenseOwners: ExpenseOwner[]
+  expenseElements: ExpenseElement[]
+  expensePersons: ExpensePerson[]
 
   constructor(value: any = {}) {
     super(value);
     if (value) {
+
+      this.updatedAt = value.updatedAt ? DateTime.fromISO(value.updatedAt) : null;
       this.amount = Money.parse(value.amount);
+
       this.reason = value.reason;
       this.details = value.details;
 
@@ -64,12 +74,69 @@ export class Expense extends BaseEntity<number> {
       this.employeeId = value.employeeId;
       this.employee = value.employee ? new Employee(value.employee) : undefined;
 
-      this.memberId = value.memberId;
-      this.member = value.member ? new Member(value.member) : undefined;
+      //this.memberId = value.memberId;
+      //this.member = value.member ? new Member(value.member) : undefined;
 
       this.userId = value.userId;
       this.user = value.user ? new User(value.user) : undefined;
+
+      console.log('Persons: ', value.expensePersons)
+      this.expenseOwners = value.expenseOwners?.map(eo => new ExpenseOwner(eo));
+      this.expenseElements = value.expenseElements?.map(eo => new ExpenseElement(eo));
+      this.expensePersons = value.expensePersons?.map(eo => new ExpensePerson(eo));
     }
   }
 }
 
+export class ExpenseOwner {
+  id: string;
+  createdAt: Date;
+  ownerId: string;
+
+  expenseId: string;
+
+  constructor(value: any = {}) {
+    if (value) {
+      this.id = value.id;
+      this.createdAt = value.createdAt;
+      this.ownerId = value.ownerId;
+      this.expenseId = value.expenseId;
+    }
+  }
+}
+
+
+export class ExpenseElement {
+  id: string;
+  createdAt: Date;
+  elementId: string;
+
+  expenseId: string;
+
+  constructor(value: any = {}) {
+    if (value) {
+      this.id = value.id;
+      this.createdAt = value.createdAt;
+      this.elementId = value.elementId;
+      this.expenseId = value.expenseId;
+    }
+  }
+}
+
+
+export class ExpensePerson {
+  id: string;
+  createdAt: Date;
+  personId: string;
+
+  expenseId: string;
+
+  constructor(value: any = {}) {
+    if (value) {
+      this.id = value.id;
+      this.createdAt = value.createdAt;
+      this.personId = value.personId;
+      this.expenseId = value.expenseId;
+    }
+  }
+}

@@ -15,7 +15,7 @@ import {ExpenseService} from "@app/services/expense.service";
 
 @Component({
   templateUrl: 'expense-change-details.html',
-  selector: 'ExpenseChangeDetails',
+  selector: 'ExpenseChangeReason',
   imports: [
     LucideAngularModule,
     TextField,
@@ -50,7 +50,7 @@ export class ExpenseChangeDetails {
     if(this.addTask.success) {
       const details = this.addTask.result;
       this._dialogRef.close(details);
-      this._snackbar.open(`Les détails de la dépense ont été changé.`, '', {duration: 3000});
+      this._snackbar.open(`Les détails de la dépense ont été changés.`, '', {duration: 3000});
     }
   }
 

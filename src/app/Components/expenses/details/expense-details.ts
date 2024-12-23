@@ -9,6 +9,7 @@ import {Button, IconButton} from "@app/ui";
 import {NgIf} from "@angular/common";
 import {ExpenseChangeAmountLauncher} from "@app/Components/expenses/amount/expense-change-amount.launcher";
 import {ExpenseChangeDetailsLauncher} from "@app/Components/expenses/change-details";
+import {ExpenseChangeReasonLauncher} from "@app/Components/expenses/change-reason";
 
 @Component({
   templateUrl: 'expense-details.html',
@@ -21,7 +22,9 @@ import {ExpenseChangeDetailsLauncher} from "@app/Components/expenses/change-deta
     NgIf,
     Button
   ],
-  providers: [ ExpenseChangeAmountLauncher, ExpenseChangeDetailsLauncher ],
+  providers: [ ExpenseChangeAmountLauncher,
+    ExpenseChangeReasonLauncher,
+    ExpenseChangeDetailsLauncher ],
   standalone: true
 })
 export class ExpenseDetails implements OnInit {
@@ -34,6 +37,7 @@ export class ExpenseDetails implements OnInit {
               public _dialogRef: DialogRef,
               private _changeAmountLauncher: ExpenseChangeAmountLauncher,
               private _changeDetailsLauncher: ExpenseChangeDetailsLauncher,
+              private _changeReasonLauncher: ExpenseChangeReasonLauncher,
               private _expenseService: ExpenseService) {
     this.expenseId = data.expenseId
   }
@@ -53,5 +57,9 @@ export class ExpenseDetails implements OnInit {
 
   changeDetails() {
     this._changeDetailsLauncher.launch(this.expense);
+  }
+
+  changeReason() {
+    this._changeReasonLauncher.launch(this.expense);
   }
 }

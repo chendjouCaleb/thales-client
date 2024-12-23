@@ -19,7 +19,7 @@ import {Space} from "@entities/space";
 
 @Component({
   templateUrl: 'expense-add.html',
-  selector: 'ExpenseChangeDetails',
+  selector: 'ExpenseChangeReason',
   imports: [
     LucideAngularModule,
     TextField,

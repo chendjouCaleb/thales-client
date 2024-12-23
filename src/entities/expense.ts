@@ -79,10 +79,13 @@ export class Expense extends BaseEntity<string> {
 
       //this.memberId = value.memberId;
       this.member = value.member ? new Member(value.member) : undefined;
+      this.employee = value.employee ? new Employee(value.employee) : undefined;
       if(this.user) {
         this.member.user = this.user;
       }
-
+      if(this.employee && this.user) {
+        this.employee.user = this.user;
+      }
 
 
       console.log('Persons: ', value.expensePersons)

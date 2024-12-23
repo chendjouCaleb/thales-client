@@ -28,6 +28,9 @@ export class AgencyExpenseListPage implements OnInit {
   displayedColumns: string[] = ['id', 'amount', 'updatedAt', 'reason', 'employee', 'action'];
   params: any
 
+  expenseFilter = (expense: Expense) => {
+    return !!expense.expenseOwners.find(eo => eo.ownerId == this.agency.ownerId)
+  }
 
   agency: Agency
   constructor(private _service: ExpenseService,

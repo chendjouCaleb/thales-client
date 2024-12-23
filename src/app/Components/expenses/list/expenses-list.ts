@@ -105,7 +105,7 @@ export class ExpensesList implements OnInit, AfterViewInit, OnDestroy {
     });
 
     this.addSubscription = this._service.expenseAdd.subscribe(newExpense => {
-      if(this.filter(newExpense)) {
+      if(this.filter(newExpense) && !this._expenses.find(e => e.id === newExpense.id)) {
         this._expenses.unshift(newExpense);
       }
     })

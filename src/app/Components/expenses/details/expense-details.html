@@ -1,0 +1,48 @@
+<div >
+  @if(getExpenseTask.loading) {
+    <div class="d-flex align-items-center justify-content-center p-5">
+      <mat-spinner [diameter]="64" strokeWidth="2"></mat-spinner>
+    </div>
+  }
+
+  @if(getExpenseTask.success) {
+
+    <div class="d-flex px-3 mt-3">
+      <button (click)="_dialogRef.close()" MyIconButton>
+        <lucide-icon [img]="icons.ArrowLeftIcon"></lucide-icon>
+      </button>
+      <div class="flex-grow"></div>
+
+      <div>
+        <button MyButton (click)="changeAmount()"> Modifier le montant </button>
+      </div>
+    </div>
+
+    <div class="p-4">
+      <div>
+        <div class="opacity-8 fontSize-12">Montant</div>
+        <div>{{expense.amount.format()}}</div>
+      </div>
+
+      <div class="mt-3">
+        <div class="opacity-8 fontSize-12">Raison</div>
+        <div>{{expense.reason}}</div>
+      </div>
+
+      <div class="mt-3">
+        <div class="opacity-8 fontSize-12">Détails du paiement</div>
+        <div>{{expense.details}}</div>
+      </div>
+
+      <div class="mt-3" *ngIf="expense.agency">
+        <div class="opacity-8 fontSize-12">Agence</div>
+        <div>{{expense.agency.name}}</div>
+      </div>
+
+      <div class="mt-3">
+        <div class="opacity-8 fontSize-12">Ajouté le {{expense.createdAt.moment()}}</div>
+        <div class="opacity-8 fontSize-12">Ajouté par {{expense.user.fullName }}</div>
+      </div>
+    </div>
+  }
+</div>

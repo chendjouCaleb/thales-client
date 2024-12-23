@@ -5,6 +5,7 @@ import { HttpClient } from "@angular/common/http";
 import {firstValueFrom, Observable, Subject} from "rxjs";
 import {ExpenseAddModel} from "@app/models";
 import {ExpenseRangeViewModel} from "@entities/view-models/ExpenseRangeViewModel";
+import {Money} from "@entities/money";
 
 @Injectable({
   providedIn: 'root'
@@ -31,7 +32,9 @@ export class ExpenseService {
     };
 
     const call = this._httpClient.post<Expense>(`${this.url}`, model, {params});
-    return new Expense(await firstValueFrom(call));
+    const expense = new Expense(await firstValueFrom(call));
+    this._expenseAdd.next(expense);
+    return expense;
   }
 
 
@@ -44,7 +47,7 @@ export class ExpenseService {
   }
 
 
-  async getAsync(id: number): Promise<Expense> {
+  async getAsync(id: string): Promise<Expense> {
     const call = this._httpClient.get<Expense>(`${this.url}/${id}`);
     return new Expense(await firstValueFrom(call));
   }
@@ -56,6 +59,16 @@ export class ExpenseService {
 
   async deleteAsync(expense: Expense): Promise<void> {
     const call = this._httpClient.delete<void>(`${this.url}/${expense.id}`);
-    return await firstValueFrom(call);
+    await firstValueFrom(call);
+    this._expenseDelete.next(expense);
+  }
+
+
+  async changeAmountAsync(expense: Expense, amount: Money): Promise<void> {
+    const params = { amount: amount.toString() }
+    const call = this._httpClient.put<void>(`${this.url}/${expense.id}/amount`, {}, {params});
+    await firstValueFrom(call);
+    expense.amount = amount;
+    this._expenseUpdate.next(expense);
   }
 }

@@ -13,7 +13,7 @@
             Montant
           </button>
         </th>
-        <th >Raison</th>
+        <th>Raison</th>
         <th *ngIf="display('customer')">
           <button class="th-button-1">Client</button>
         </th>
@@ -44,11 +44,14 @@
       </thead>
 
       <tbody>
-      <tr *ngFor="let expense of expenses; let i=index; trackBy: trackById" class="row-hover cursor-pointer">
+      <tr *ngFor="let expense of expenses; let i=index; trackBy: trackById" class="row-hover cursor-pointer"
+          (click)="details(expense)">
         <td>{{ i + 1 }}</td>
 
-        <td>{{ expense.amount.amount | currency: expense.amount.currency : 'symbol' : '1.0-0' : 'fr' }}</td>
-        <td >
+        <td class="align-end">
+          {{ expense.amount.format() }}
+        </td>
+        <td>
           <a *ngIf="expense.planeTicketId"
              routerLink="/agencies/{{expense.agencyId}}/plane-tickets/{{expense.planeTicketId}}"
              class="inline-badge ms-bgColor-cyan-10 ms-bgColor-cyan-20--hover">
@@ -75,10 +78,10 @@
         <td *ngIf="display('updatedAt')">
           <span class="fontSize-12 opacity-8">{{ expense.updatedAt.moment() }}</span>
         </td>
-        <td>
+        <td class="align-end">
           <button MyIconButton style="margin-right: 16px" #menuTrigger
                   (click)="dropdown.open(); $event.stopPropagation()">
-            <lucide-angular  [img]="icons.EllipsisVerticalIcon"  size="16"></lucide-angular>
+            <lucide-angular [img]="icons.EllipsisVerticalIcon" size="16"></lucide-angular>
           </button>
 
           <Dropdown #dropdown [trigger]="menuTrigger.host"
@@ -91,8 +94,9 @@
 
 
               <button MenuItem (click)="delete(expense)">
-                <lucide-icon [img]="icons.Trash2Icon"  strokeWidth="1.5"></lucide-icon>
-                Supprimer </button>
+                <lucide-icon [img]="icons.Trash2Icon" strokeWidth="1.5"></lucide-icon>
+                Supprimer
+              </button>
             </MyMenu>
           </Dropdown>
         </td>
@@ -102,7 +106,7 @@
   </div>
 
   <div *ngIf="!hasMore && getFirstRangeTask.success" class="end-list-thumb"></div>
-  <div class="range-observer-thumb" #rangeObserverThumb ></div>
+  <div class="range-observer-thumb" #rangeObserverThumb></div>
   <div class="d-flex justify-content-center p-3" *ngIf="getRangeTask.loading">
     <mat-spinner strokeWidth="2" diameter="48"></mat-spinner>
   </div>

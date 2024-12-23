@@ -21,6 +21,7 @@ import {MatProgressSpinner} from "@angular/material/progress-spinner";
 import {IconButton, Menu, MenuItem} from "@app/ui";
 import {Dropdown} from "@app/NeoUI";
 import {ExpenseService} from "@app/services/expense.service";
+import {ExpenseDetailsLauncher} from "@app/Components/expenses/details/expense-details.launcher";
 
 
 const EXPENSE_RANGE_SIZE = isDevMode() ? 10 : 30;
@@ -32,7 +33,7 @@ const EXPENSE_RANGE_SIZE = isDevMode() ? 10 : 30;
   imports: [LucideAngularModule,
     MatProgressSpinner, NgIf, NgForOf, IconButton, Dropdown, Menu, MenuItem, CurrencyPipe, RouterLink],
   providers: [
-    { provide: LOCALE_ID, useValue: 'fr'},
+    { provide: LOCALE_ID, useValue: 'fr'}, ExpenseDetailsLauncher,
   ]
 })
 export class ExpensesList implements OnInit, AfterViewInit {
@@ -87,6 +88,7 @@ export class ExpensesList implements OnInit, AfterViewInit {
 
   constructor(private _service: ExpenseService,
               private _router: Router,
+              public readonly detailsLauncher: ExpenseDetailsLauncher,
               @Inject(DOCUMENT) private _document: Document) {
   }
 
@@ -158,6 +160,10 @@ export class ExpensesList implements OnInit, AfterViewInit {
 
   remove(expense: Expense) {
     this.expenses = this.expenses.filter(p => p.id !== expense.id)
+  }
+
+  details(expense: Expense) {
+    this.detailsLauncher.launch(expense)
   }
 
 

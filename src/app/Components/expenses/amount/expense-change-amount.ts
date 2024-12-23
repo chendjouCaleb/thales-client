@@ -16,9 +16,10 @@ import {MatProgressSpinner} from "@angular/material/progress-spinner";
 import {ExpenseService} from "@app/services/expense.service";
 import {ExpenseAddModel} from "@app/models";
 import {Space} from "@entities/space";
+import {Money} from "@entities/money";
 
 @Component({
-  templateUrl: 'expense-add.html',
+  templateUrl: 'expense-change-amount.html',
   selector: 'ExpenseChangeAmount',
   imports: [
     LucideAngularModule,
@@ -33,54 +34,35 @@ import {Space} from "@entities/space";
   standalone: true,
   providers: [ CustomerPickerDialog ]
 })
-export class ExpenseAdd {
+export class ExpenseChangeAmount {
   icons = { ChevronDownIcon }
-  customer: Customer;
-  space: Space;
-  agency?: Agency;
+  expense: Expense
 
-  formGroup = new FormGroup({
-    customer: new FormControl<number>(null),
-    amount: new FormControl<number>(null),
-    reason: new FormControl<string>(''),
-    details: new FormControl<string>(''),
-  })
+  amountControl = new FormControl<number>(null)
 
   constructor(@Inject(DIALOG_DATA) data: any,
-              private _picker: CustomerPickerDialog,
-              public _dialogRef: DialogRef<Expense, ExpenseAdd>,
+              public _dialogRef: DialogRef<Money, ExpenseChangeAmount>,
               private _service: ExpenseService,
               private _snackbar: MatSnackBar) {
-    this.customer = data.customer;
-    this.space = data.space;
-    this.agency = data.agency;
+    this.expense = data.expense;
+    this.amountControl = new FormControl(this.expense.amount.amount)
   }
 
-  selectCustomer(event) {
-    event?.preventDefault();
-    event.stopPropagation();
-    this._picker.open(this.space.id).subscribe(customer => {
 
-      if(customer) {
-        this.customer = customer;
-        this.formGroup.controls.customer.setValue(customer.id)
-        console.log(this.formGroup.controls.customer.value)
-      }
-    })
-  }
 
-  async validate() {
+  async change() {
     await this.addTask.launch()
     if(this.addTask.success) {
-      const expense = this.addTask.result;
-      this._dialogRef.close(expense);
-      this._snackbar.open(`La dépense a été ajoutée.`, '', {duration: 3000});
+      const amount = this.addTask.result;
+      this._dialogRef.close(amount);
+      this._snackbar.open(`Le montant de la dépense a été changé.`, '', {duration: 3000});
     }
   }
 
-  addTask = new Task(async () => {
-    const model = new ExpenseAddModel(this.formGroup.value);
-    return await this._service.addAsync(this.space, this.agency, this.customer, model);
+  addTask = new Task<Money>(async () => {
+    const amount = new Money(this.amountControl.value, 'XAF');
+    await this._service.changeAmountAsync(this.expense, amount);
+    return amount;
   })
 }
 

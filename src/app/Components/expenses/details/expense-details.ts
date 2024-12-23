@@ -11,6 +11,7 @@ import {ExpenseChangeAmountLauncher} from "@app/Components/expenses/amount/expen
 import {ExpenseChangeDetailsLauncher} from "@app/Components/expenses/change-details";
 import {ExpenseChangeReasonLauncher} from "@app/Components/expenses/change-reason";
 import {MatTooltip} from "@angular/material/tooltip";
+import {ExpenseDeleteLauncher} from "@app/Components/expenses/delete";
 
 @Component({
   templateUrl: 'expense-details.html',
@@ -26,7 +27,9 @@ import {MatTooltip} from "@angular/material/tooltip";
   ],
   providers: [ ExpenseChangeAmountLauncher,
     ExpenseChangeReasonLauncher,
-    ExpenseChangeDetailsLauncher ],
+    ExpenseChangeDetailsLauncher,
+    ExpenseDeleteLauncher,
+  ],
   standalone: true
 })
 export class ExpenseDetails implements OnInit {
@@ -40,6 +43,7 @@ export class ExpenseDetails implements OnInit {
               private _changeAmountLauncher: ExpenseChangeAmountLauncher,
               private _changeDetailsLauncher: ExpenseChangeDetailsLauncher,
               private _changeReasonLauncher: ExpenseChangeReasonLauncher,
+              private _changeDeleteLauncher: ExpenseDeleteLauncher,
               private _expenseService: ExpenseService) {
     this.expenseId = data.expenseId
   }
@@ -63,5 +67,9 @@ export class ExpenseDetails implements OnInit {
 
   changeReason() {
     this._changeReasonLauncher.launch(this.expense);
+  }
+
+  delete() {
+    this._changeDeleteLauncher.launch(this.expense);
   }
 }

@@ -1,9 +1,7 @@
 import {Component, Inject} from "@angular/core";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {FormControl, FormGroup, ReactiveFormsModule} from "@angular/forms";
-import {Customer} from "@entities/customer";
+import {FormControl, ReactiveFormsModule} from "@angular/forms";
 import {CustomerPickerDialog} from "@app/Components";
-import {Agency} from "@entities/agency";
 import {ChevronDownIcon, LucideAngularModule} from "lucide-angular";
 import {DIALOG_DATA, DialogRef} from "@angular/cdk/dialog";
 import {Expense} from "@entities/expense";
@@ -14,12 +12,9 @@ import {NgIf} from "@angular/common";
 import {Task} from "@app/utils";
 import {MatProgressSpinner} from "@angular/material/progress-spinner";
 import {ExpenseService} from "@app/services/expense.service";
-import {ExpenseAddModel} from "@app/models";
-import {Space} from "@entities/space";
-import {Money} from "@entities/money";
 
 @Component({
-  templateUrl: 'expense-change-amount.html',
+  templateUrl: 'expense-delete.html',
   selector: 'ExpenseDelete',
   imports: [
     LucideAngularModule,
@@ -31,38 +26,32 @@ import {Money} from "@entities/money";
     NgIf,
     MatProgressSpinner
   ],
-  standalone: true,
-  providers: [ CustomerPickerDialog ]
+  standalone: true
 })
-export class ExpenseChangeAmount {
+export class ExpenseDelete {
   icons = { ChevronDownIcon }
   expense: Expense
 
-  amountControl = new FormControl<number>(null)
-
   constructor(@Inject(DIALOG_DATA) data: any,
-              public _dialogRef: DialogRef<Money, ExpenseChangeAmount>,
+              public _dialogRef: DialogRef<void, ExpenseDelete>,
               private _service: ExpenseService,
               private _snackbar: MatSnackBar) {
     this.expense = data.expense;
-    this.amountControl = new FormControl(this.expense.amount.amount)
   }
 
 
 
-  async change() {
-    await this.addTask.launch()
-    if(this.addTask.success) {
-      const amount = this.addTask.result;
-      this._dialogRef.close(amount);
-      this._snackbar.open(`Le montant de la dépense a été changé.`, '', {duration: 3000});
+  async delete() {
+    await this.deleteTask.launch()
+    if(this.deleteTask.success) {
+      this.deleteTask.result;
+      this._dialogRef.close();
+      this._snackbar.open(`La dépense a été supprimée.`, '', { duration: 3000 });
     }
   }
 
-  addTask = new Task<Money>(async () => {
-    const amount = new Money(this.amountControl.value, 'XAF');
-    await this._service.changeAmountAsync(this.expense, amount);
-    return amount;
+  deleteTask = new Task(async () => {
+    await this._service.deleteAsync(this.expense)
   })
 }
 

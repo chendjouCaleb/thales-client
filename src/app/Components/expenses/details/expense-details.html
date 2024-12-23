@@ -7,14 +7,14 @@
 
   @if(getExpenseTask.success) {
 
-    <div class="d-flex px-3 mt-3">
+    <div class="d-flex px-3 mt-4">
       <button (click)="_dialogRef.close()" MyIconButton>
         <lucide-icon [img]="icons.ArrowLeftIcon"></lucide-icon>
       </button>
       <div class="flex-grow-1"></div>
 
       <div>
-        <button MyButton color="warn" (click)="changeAmount()" matTooltip="Supprimer cette dépense">
+        <button MyButton color="warn" (click)="delete()" matTooltip="Supprimer cette dépense">
           <lucide-icon [img]="icons.Trash2Icon"></lucide-icon> Supprimer
         </button>
       </div>

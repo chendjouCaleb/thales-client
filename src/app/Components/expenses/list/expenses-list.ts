@@ -5,7 +5,7 @@ import {
   Inject,
   Input,
   isDevMode,
-  LOCALE_ID,
+  LOCALE_ID, OnDestroy,
   OnInit,
   ViewChild
 } from "@angular/core";
@@ -22,6 +22,7 @@ import {IconButton, Menu, MenuItem} from "@app/ui";
 import {Dropdown} from "@app/NeoUI";
 import {ExpenseService} from "@app/services/expense.service";
 import {ExpenseDetailsLauncher} from "@app/Components/expenses/details/expense-details.launcher";
+import {Subscription} from "rxjs";
 
 
 const EXPENSE_RANGE_SIZE = isDevMode() ? 10 : 30;
@@ -36,7 +37,7 @@ const EXPENSE_RANGE_SIZE = isDevMode() ? 10 : 30;
     { provide: LOCALE_ID, useValue: 'fr'}, ExpenseDetailsLauncher,
   ]
 })
-export class ExpensesList implements OnInit, AfterViewInit {
+export class ExpensesList implements OnInit, AfterViewInit, OnDestroy {
   columns: string[] = [ 'code',  'amount',  'reason', 'customer', 'agency', 'employee', 'createdAt', 'action'];
   icons = { MoveUpIcon, MoveDownIcon, EllipsisVerticalIcon, Trash2Icon }
 
@@ -55,6 +56,8 @@ export class ExpensesList implements OnInit, AfterViewInit {
     return this.expenses;
   }
 
+  deleteSubscription: Subscription
+  addSubscription: Subscription
   orderby: String[] = ["ID", "DESC"]
   expenses: Expense[] = []
   total: number = 0;
@@ -94,6 +97,13 @@ export class ExpensesList implements OnInit, AfterViewInit {
 
   async ngOnInit() {
     await this.loadFirstRange()
+    this.deleteSubscription = this._service.expenseDelete.subscribe(deleted => {
+      this.expenses = this._expenses.filter(e => e.id !== deleted.id)
+    })
+  }
+
+  ngOnDestroy() {
+    this.deleteSubscription.unsubscribe()
   }
 
   ngAfterViewInit() {

@@ -52,8 +52,8 @@ export class ExpenseDetails implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.getExpenseTask.launch();
-    this._expenseService.expenseDelete.subscribe((deletedExpense) => {
-      if(deletedExpense.id == this.expense.id) {
+    this.deleteSubscription = this._expenseService.expenseDelete.subscribe((deletedExpense) => {
+      if(deletedExpense.id === this.expense.id) {
         this._dialogRef.close()
       }
     })

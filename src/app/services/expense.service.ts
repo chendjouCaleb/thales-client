@@ -71,4 +71,20 @@ export class ExpenseService {
     expense.amount = amount;
     this._expenseUpdate.next(expense);
   }
+
+  async changeDetailsAsync(expense: Expense, details: string): Promise<void> {
+    const params = { details }
+    const call = this._httpClient.put<void>(`${this.url}/${expense.id}/details`, {}, {params});
+    await firstValueFrom(call);
+    expense.details = details;
+    this._expenseUpdate.next(expense);
+  }
+
+  async changeReasonAsync(expense: Expense, reason: string): Promise<void> {
+    const params = { reason }
+    const call = this._httpClient.put<void>(`${this.url}/${expense.id}/reason`, {}, {params});
+    await firstValueFrom(call);
+    expense.reason = reason;
+    this._expenseUpdate.next(expense);
+  }
 }

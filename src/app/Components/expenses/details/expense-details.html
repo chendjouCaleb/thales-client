@@ -15,6 +15,7 @@
 
       <div>
         <button MyButton (click)="changeAmount()"> Modifier le montant </button>
+        <button MyButton (click)="changeDetails()"> Modifier les détails </button>
       </div>
     </div>
 
@@ -40,8 +41,7 @@
       </div>
 
       <div class="mt-3">
-        <div class="opacity-8 fontSize-12">Ajouté le {{expense.createdAt.moment()}}</div>
-        <div class="opacity-8 fontSize-12">Ajouté par {{expense.user.fullName }}</div>
+        <div class="opacity-8 fontSize-12">Ajouté par {{expense.user.fullName }} le {{expense.createdAt.moment()}}</div>
       </div>
     </div>
   }

@@ -8,6 +8,7 @@ import {ArrowLeftIcon, LucideAngularModule, Trash2Icon} from "lucide-angular";
 import {Button, IconButton} from "@app/ui";
 import {NgIf} from "@angular/common";
 import {ExpenseChangeAmountLauncher} from "@app/Components/expenses/amount/expense-change-amount.launcher";
+import {ExpenseChangeDetailsLauncher} from "@app/Components/expenses/change-details";
 
 @Component({
   templateUrl: 'expense-details.html',
@@ -20,7 +21,7 @@ import {ExpenseChangeAmountLauncher} from "@app/Components/expenses/amount/expen
     NgIf,
     Button
   ],
-  providers: [ ExpenseChangeAmountLauncher ],
+  providers: [ ExpenseChangeAmountLauncher, ExpenseChangeDetailsLauncher ],
   standalone: true
 })
 export class ExpenseDetails implements OnInit {
@@ -32,6 +33,7 @@ export class ExpenseDetails implements OnInit {
   constructor(@Inject(DIALOG_DATA) data: any,
               public _dialogRef: DialogRef,
               private _changeAmountLauncher: ExpenseChangeAmountLauncher,
+              private _changeDetailsLauncher: ExpenseChangeDetailsLauncher,
               private _expenseService: ExpenseService) {
     this.expenseId = data.expenseId
   }
@@ -47,5 +49,9 @@ export class ExpenseDetails implements OnInit {
 
   changeAmount() {
     this._changeAmountLauncher.launch(this.expense);
+  }
+
+  changeDetails() {
+    this._changeDetailsLauncher.launch(this.expense);
   }
 }

@@ -47,6 +47,9 @@ export class ExpensesList implements OnInit, AfterViewInit, OnDestroy {
   @Input()
   displayedColumns: string [] = [];
 
+  @Input()
+  filter: (expense: Expense) => boolean = () => false
+
 
   @ViewChild('rangeObserverThumb')
   rangeObserverThumbRef: ElementRef<HTMLElement>
@@ -99,11 +102,18 @@ export class ExpensesList implements OnInit, AfterViewInit, OnDestroy {
     await this.loadFirstRange()
     this.deleteSubscription = this._service.expenseDelete.subscribe(deleted => {
       this.expenses = this._expenses.filter(e => e.id !== deleted.id)
+    });
+
+    this.addSubscription = this._service.expenseAdd.subscribe(newExpense => {
+      if(this.filter(newExpense)) {
+        this._expenses.unshift(newExpense);
+      }
     })
   }
 
   ngOnDestroy() {
-    this.deleteSubscription.unsubscribe()
+    this.deleteSubscription.unsubscribe();
+    this.addSubscription.unsubscribe();
   }
 
   ngAfterViewInit() {

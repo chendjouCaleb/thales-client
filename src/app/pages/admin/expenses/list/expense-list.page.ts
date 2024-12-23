@@ -28,6 +28,9 @@ export class ExpenseListPage implements OnInit {
   params: any
 
 
+  expenseFilter = (expense: Expense) => {
+    return !!expense.expenseOwners.find(eo => eo.ownerId == this.space.ownerId)
+  }
   space: Space
   constructor(private _service: ExpenseService,
               //private _uiService: ExpenseUIService,

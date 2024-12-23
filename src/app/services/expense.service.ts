@@ -32,7 +32,9 @@ export class ExpenseService {
     };
 
     const call = this._httpClient.post<Expense>(`${this.url}`, model, {params});
-    const expense = new Expense(await firstValueFrom(call));
+    let expense = new Expense(await firstValueFrom(call));
+    expense = await this.getAsync(expense.id)
+
     this._expenseAdd.next(expense);
     return expense;
   }

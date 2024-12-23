@@ -11,7 +11,7 @@ import {User} from "@app/identity";
 import {Space} from "@entities/space";
 import {DateTime} from "luxon";
 
-export class Expense extends BaseEntity<number> {
+export class Expense extends BaseEntity<string> {
   amount: Money;
   reason: string = '';
   details: string = '';
@@ -74,11 +74,16 @@ export class Expense extends BaseEntity<number> {
       this.employeeId = value.employeeId;
       this.employee = value.employee ? new Employee(value.employee) : undefined;
 
-      //this.memberId = value.memberId;
-      //this.member = value.member ? new Member(value.member) : undefined;
-
       this.userId = value.userId;
       this.user = value.user ? new User(value.user) : undefined;
+
+      //this.memberId = value.memberId;
+      this.member = value.member ? new Member(value.member) : undefined;
+      if(this.user) {
+        this.member.user = this.user;
+      }
+
+
 
       console.log('Persons: ', value.expensePersons)
       this.expenseOwners = value.expenseOwners?.map(eo => new ExpenseOwner(eo));

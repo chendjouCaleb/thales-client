@@ -4,12 +4,13 @@ import {DIALOG_DATA, DialogRef} from "@angular/cdk/dialog";
 import {Task} from "@app/utils";
 import {ExpenseService} from "@app/services/expense.service";
 import {MatProgressSpinner} from "@angular/material/progress-spinner";
-import {ArrowLeftIcon, LucideAngularModule, Trash2Icon} from "lucide-angular";
+import {ArrowLeftIcon, LucideAngularModule, PencilIcon, Trash2Icon} from "lucide-angular";
 import {Button, IconButton} from "@app/ui";
 import {NgIf} from "@angular/common";
 import {ExpenseChangeAmountLauncher} from "@app/Components/expenses/amount/expense-change-amount.launcher";
 import {ExpenseChangeDetailsLauncher} from "@app/Components/expenses/change-details";
 import {ExpenseChangeReasonLauncher} from "@app/Components/expenses/change-reason";
+import {MatTooltip} from "@angular/material/tooltip";
 
 @Component({
   templateUrl: 'expense-details.html',
@@ -20,7 +21,8 @@ import {ExpenseChangeReasonLauncher} from "@app/Components/expenses/change-reaso
     LucideAngularModule,
     IconButton,
     NgIf,
-    Button
+    Button,
+    MatTooltip
   ],
   providers: [ ExpenseChangeAmountLauncher,
     ExpenseChangeReasonLauncher,
@@ -28,7 +30,7 @@ import {ExpenseChangeReasonLauncher} from "@app/Components/expenses/change-reaso
   standalone: true
 })
 export class ExpenseDetails implements OnInit {
-  icons = { ArrowLeftIcon, Trash2Icon}
+  icons = { ArrowLeftIcon, Trash2Icon, PencilIcon, }
   expenseId: string
 
   expense: Expense

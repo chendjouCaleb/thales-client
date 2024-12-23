@@ -1,4 +1,4 @@
-import {Component, Inject, OnInit} from "@angular/core";
+import {Component, Inject, OnDestroy, OnInit} from "@angular/core";
 import {Expense} from "@entities/expense";
 import {DIALOG_DATA, DialogRef} from "@angular/cdk/dialog";
 import {Task} from "@app/utils";
@@ -12,6 +12,7 @@ import {ExpenseChangeDetailsLauncher} from "@app/Components/expenses/change-deta
 import {ExpenseChangeReasonLauncher} from "@app/Components/expenses/change-reason";
 import {MatTooltip} from "@angular/material/tooltip";
 import {ExpenseDeleteLauncher} from "@app/Components/expenses/delete";
+import {Subscription} from "rxjs";
 
 @Component({
   templateUrl: 'expense-details.html',
@@ -32,11 +33,12 @@ import {ExpenseDeleteLauncher} from "@app/Components/expenses/delete";
   ],
   standalone: true
 })
-export class ExpenseDetails implements OnInit {
+export class ExpenseDetails implements OnInit, OnDestroy {
   icons = { ArrowLeftIcon, Trash2Icon, PencilIcon, }
   expenseId: string
 
   expense: Expense
+  deleteSubscription: Subscription
 
   constructor(@Inject(DIALOG_DATA) data: any,
               public _dialogRef: DialogRef,
@@ -49,7 +51,16 @@ export class ExpenseDetails implements OnInit {
   }
 
   ngOnInit() {
-    this.getExpenseTask.launch()
+    this.getExpenseTask.launch();
+    this._expenseService.expenseDelete.subscribe((deletedExpense) => {
+      if(deletedExpense.id == this.expense.id) {
+        this._dialogRef.close()
+      }
+    })
+  }
+
+  ngOnDestroy() {
+    this.deleteSubscription.unsubscribe()
   }
 
 

@@ -89,9 +89,9 @@ export class Income extends BaseEntity<string> {
 
 
       console.log('Persons: ', value.IncomePersons)
-      this.incomeOwners = value.IncomeOwners?.map(eo => new IncomeOwner(eo));
-      this.incomeElements = value.IncomeElements?.map(eo => new IncomeElement(eo));
-      this.incomePersons = value.IncomePersons?.map(eo => new IncomePerson(eo));
+      this.incomeOwners = value.incomeOwners?.map(eo => new IncomeOwner(eo));
+      this.incomeElements = value.incomeElements?.map(eo => new IncomeElement(eo));
+      this.incomePersons = value.incomePersons?.map(eo => new IncomePerson(eo));
     }
   }
 }

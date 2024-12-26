@@ -42,11 +42,11 @@ export class IncomeRangeViewModel {
 
   hydrate() {
 
-    this.members.forEach(member => {
+    this.members?.forEach(member => {
       member.user = this.users.find(u => u.id == member.userId);
     });
 
-    this.employees.forEach(employee => {
+    this.employees?.forEach(employee => {
       employee.user = this.users.find(u => u.id == employee.userId);
     });
 

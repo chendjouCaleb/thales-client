@@ -19,6 +19,7 @@ import {SpaceProcedureAppliesListPage} from "@app/pages/admin/procedure-applies/
 import {SpaceMembersPage} from "@app/pages/admin/members/list/space-members.page";
 import {MemberHomePage} from "@app/pages/admin/members/home/member-home.page";
 import {ExpenseListPage} from "@app/pages/admin/expenses/list/expense-list.page";
+import {IncomeListPage} from "@app/pages/admin/incomes/list/income-list.page";
 
 const routes: Routes = [
   {
@@ -33,6 +34,8 @@ const routes: Routes = [
       { path: 'procedure-applies/:procedureApplyId', component: SpaceProcedureApply},
 
       {path: 'expenses', component: ExpenseListPage },
+
+      {path: 'incomes', component: IncomeListPage },
 
       {path: 'members', component: SpaceMembersPage},
       {path: 'members/:memberId', component: MemberHomePage },

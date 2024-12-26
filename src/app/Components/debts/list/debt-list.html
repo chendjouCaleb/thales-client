@@ -44,39 +44,39 @@
       </thead>
 
       <tbody>
-      <tr *ngFor="let income of incomes; let i=index; trackBy: trackById" class="row-hover cursor-pointer"
-          (click)="details(income)">
+      <tr *ngFor="let expense of expenses; let i=index; trackBy: trackById" class="row-hover cursor-pointer"
+          (click)="details(expense)">
         <td>{{ i + 1 }}</td>
 
         <td class="align-end">
-          {{ income.amount.format() }}
+          {{ expense.amount.format() }}
         </td>
         <td>
-          <a *ngIf="income.planeTicketId"
-             routerLink="/agencies/{{income.agencyId}}/plane-tickets/{{income.planeTicketId}}"
+          <a *ngIf="expense.planeTicketId"
+             routerLink="/agencies/{{expense.agencyId}}/plane-tickets/{{expense.planeTicketId}}"
              class="inline-badge ms-bgColor-cyan-10 ms-bgColor-cyan-20--hover">
-            Billet d'avion N°{{ income.planeTicketId }}
+            Billet d'avion N°{{ expense.planeTicketId }}
           </a>
 
 
-          {{ income.reason }}
+          {{ expense.reason }}
         </td>
 
         <td *ngIf="display('customer')">
           <span style="display: -webkit-box;
             -webkit-box-orient: vertical;
             -webkit-line-clamp: 1;
-            overflow: hidden;">{{ income.customer?.fullName }}</span>
+            overflow: hidden;">{{ expense.customer?.fullName }}</span>
 
         </td>
-        <td *ngIf="display('agency')">{{ income.agency?.name }}</td>
-        <td *ngIf="display('member')">{{ income.member.user?.fullName }}</td>
-        <td *ngIf="display('employee')">{{ income.employee.user?.fullName }}</td>
+        <td *ngIf="display('agency')">{{ expense.agency?.name }}</td>
+        <td *ngIf="display('member')">{{ expense.member.user?.fullName }}</td>
+        <td *ngIf="display('employee')">{{ expense.employee.user?.fullName }}</td>
         <td *ngIf="display('createdAt')">
-          <span class="fontSize-12">{{ income.createdAt.moment() }}</span>
+          <span class="fontSize-12">{{ expense.createdAt.moment() }}</span>
         </td>
         <td *ngIf="display('updatedAt')">
-          <span class="fontSize-12 opacity-8">{{ income.updatedAt.moment() }}</span>
+          <span class="fontSize-12 opacity-8">{{ expense.updatedAt.moment() }}</span>
         </td>
         <td class="align-end">
           <button MyIconButton style="margin-right: 16px" #menuTrigger
@@ -87,10 +87,13 @@
           <Dropdown #dropdown [trigger]="menuTrigger.host"
                     (onBackdropClick)="dropdown.close()">
             <MyMenu>
+              <button MenuItem (click)="printPDF(expense)">
+                <img src="/assets/icons/pdf-svgrepo-com.svg" alt="PdfIcon" height="24">
+                Imprimer
+              </button>
 
 
-
-              <button MenuItem (click)="delete(income)">
+              <button MenuItem (click)="delete(expense)">
                 <lucide-icon [img]="icons.Trash2Icon" strokeWidth="1.5"></lucide-icon>
                 Supprimer
               </button>

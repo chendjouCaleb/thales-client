@@ -1,7 +1,7 @@
-import {BaseEntity} from "./base-entity";
-import {Customer} from "./customer";
-import {PlaneTicket} from "./plane-ticket";
-import {ProcedureApply, ProcedureApplyStep} from "./procedure-apply";
+import {BaseEntity} from "../base-entity";
+import {Customer} from "../customer";
+import {PlaneTicket} from "../plane-ticket";
+import {ProcedureApply, ProcedureApplyStep} from "../procedure-apply";
 import {Agency} from "@entities/agency";
 import {Employee} from "@entities/employee";
 import {Money} from "@entities/money";
@@ -11,7 +11,7 @@ import {User} from "@app/identity";
 import {Space} from "@entities/space";
 import {DateTime} from "luxon";
 
-export class Expense extends BaseEntity<string> {
+export class Debt extends BaseEntity<string> {
   amount: Money;
   reason: string = '';
   details: string = '';
@@ -44,9 +44,9 @@ export class Expense extends BaseEntity<string> {
   user: User
   userId: string;
 
-  expenseOwners: ExpenseOwner[]
-  expenseElements: ExpenseElement[]
-  expensePersons: ExpensePerson[]
+  debtOwners: DebtOwner[]
+  debtElements: DebtElement[]
+  debtPersons: DebtPerson[]
 
   constructor(value: any = {}) {
     super(value);
@@ -88,63 +88,63 @@ export class Expense extends BaseEntity<string> {
       }
 
 
-      console.log('Persons: ', value.expensePersons)
-      this.expenseOwners = value.expenseOwners?.map(eo => new ExpenseOwner(eo));
-      this.expenseElements = value.expenseElements?.map(eo => new ExpenseElement(eo));
-      this.expensePersons = value.expensePersons?.map(eo => new ExpensePerson(eo));
+      console.log('Persons: ', value.debtPersons)
+      this.debtOwners = value.debtOwners?.map(eo => new DebtOwner(eo));
+      this.debtElements = value.debtElements?.map(eo => new DebtElement(eo));
+      this.debtPersons = value.debtPersons?.map(eo => new DebtPerson(eo));
     }
   }
 }
 
-export class ExpenseOwner {
+export class DebtOwner {
   id: string;
   createdAt: Date;
   ownerId: string;
 
-  expenseId: string;
+  debtId: string;
 
   constructor(value: any = {}) {
     if (value) {
       this.id = value.id;
       this.createdAt = value.createdAt;
       this.ownerId = value.ownerId;
-      this.expenseId = value.expenseId;
+      this.debtId = value.debtId;
     }
   }
 }
 
 
-export class ExpenseElement {
+export class DebtElement {
   id: string;
   createdAt: Date;
   elementId: string;
 
-  expenseId: string;
+  debtId: string;
 
   constructor(value: any = {}) {
     if (value) {
       this.id = value.id;
       this.createdAt = value.createdAt;
       this.elementId = value.elementId;
-      this.expenseId = value.expenseId;
+      this.debtId = value.debtId;
     }
   }
 }
 
 
-export class ExpensePerson {
+export class DebtPerson {
   id: string;
   createdAt: Date;
   personId: string;
 
-  expenseId: string;
+  debtId: string;
 
   constructor(value: any = {}) {
     if (value) {
       this.id = value.id;
       this.createdAt = value.createdAt;
       this.personId = value.personId;
-      this.expenseId = value.expenseId;
+      this.debtId = value.debtId;
     }
   }
 }

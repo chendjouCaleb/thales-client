@@ -1,5 +1,5 @@
 import {Dialog} from "@angular/cdk/dialog";
-import {Expense} from "@entities/expense";
+import {Expense} from "@entities/finance/expense";
 import {ExpenseDetails} from "@app/Components/expenses/details/expense-details";
 import {Injectable} from "@angular/core";
 

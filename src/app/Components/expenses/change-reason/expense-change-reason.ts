@@ -4,7 +4,7 @@ import {FormControl, ReactiveFormsModule} from "@angular/forms";
 import {CustomerPickerDialog} from "@app/Components";
 import {ChevronDownIcon, LucideAngularModule} from "lucide-angular";
 import {DIALOG_DATA, DialogRef} from "@angular/cdk/dialog";
-import {Expense} from "@entities/expense";
+import {Expense} from "@entities/finance/expense";
 import {TextField, TextFieldInput} from "@app/NeoUI";
 import {CleaveModule} from "@app/cleave";
 import {Button} from "@app/ui";
@@ -15,7 +15,7 @@ import {ExpenseService} from "@app/services/expense.service";
 
 @Component({
   templateUrl: 'expense-change-reason.html',
-  selector: 'ExpenseDelete',
+  selector: 'IncomeDelete',
   imports: [
     LucideAngularModule,
     TextField,

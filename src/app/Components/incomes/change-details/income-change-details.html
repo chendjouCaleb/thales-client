@@ -1,0 +1,17 @@
+<div class="fontWeight-semiBold fontSize-20 p-4">Détails d'une dépense</div>
+
+
+<div class="px-4">
+  <TextField class="mt-2" style="width: 100%">
+    <label TextFieldLabel for="details-field">Détails de la dépense</label>
+    <textarea TextFieldInput [formControl]="control" id="details-field" required>
+    </textarea>
+  </TextField>
+</div>
+
+<div class="p-4 align-end">
+  <button MyButton (click)="_dialogRef.close()" class="me-3">Annuler</button>
+  <button MyButton color="primary" (click)="change()" [disabled]="control.invalid && addTask.loading">
+    @if(addTask.loading) {  <mat-spinner diameter="16" strokeWidth="1"></mat-spinner> }
+    Modifier</button>
+</div>

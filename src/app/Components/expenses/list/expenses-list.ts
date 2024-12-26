@@ -10,7 +10,7 @@ import {
   ViewChild
 } from "@angular/core";
 
-import {Expense} from "@entities/expense";
+import {Expense} from "@entities/finance/expense";
 import {Router, RouterLink} from "@angular/router";
 import {CurrencyPipe, DOCUMENT, NgForOf, NgIf} from "@angular/common";
 import {sleep, Task} from "@app/utils";

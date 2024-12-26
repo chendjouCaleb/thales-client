@@ -1,0 +1,14 @@
+<div class="fontWeight-semiBold fontSize-20 p-4">Supprimer un revenu</div>
+
+
+<div class="px-4">
+  Voulez-vous supprimer ce revenu ? <br>Cette opération est irréversible.
+</div>
+
+<div class="p-4 align-end">
+  <button MyButton (click)="_dialogRef.close()" class="me-3">Annuler</button>
+  <button MyButton color="warn" (click)="delete()" [disabled]="deleteTask.loading">
+    @if(deleteTask.loading) {  <mat-spinner diameter="16" strokeWidth="1"></mat-spinner> }
+    Supprimer
+  </button>
+</div>

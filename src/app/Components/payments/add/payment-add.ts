@@ -18,7 +18,7 @@ import {MatProgressSpinner} from "@angular/material/progress-spinner";
 
 @Component({
   templateUrl: 'payment-add.html',
-  selector: 'ExpenseDelete',
+  selector: 'IncomeDelete',
   imports: [
     LucideAngularModule,
     TextField,

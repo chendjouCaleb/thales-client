@@ -6,3 +6,6 @@ export * from './agency.form-model';
 export * from './space.form-model';
 export * from './member.form-model';
 export * from './expense.model';
+export * from './income.model';
+export * from './debt.model';
+export * from './credit.model';

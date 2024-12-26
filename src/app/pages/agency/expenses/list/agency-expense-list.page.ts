@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild} from "@angular/core";
-import {Expense} from "@entities/expense";
+import {Expense} from "@entities/finance/expense";
 import {AdminPage} from "@app/pages/admin/admin.page";
 import {Agency} from "@entities/agency";
 import {LucideAngularModule, PlusIcon} from "lucide-angular";

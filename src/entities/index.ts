@@ -11,4 +11,4 @@ export * from './view-models';
 
 export * from './member';
 export * from './space';
-export * from './expense'
+export * from './finance'

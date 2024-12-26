@@ -1,5 +1,5 @@
 import {Component, Inject, OnDestroy, OnInit} from "@angular/core";
-import {Expense} from "@entities/expense";
+import {Expense} from "@entities/finance/expense";
 import {DIALOG_DATA, DialogRef} from "@angular/cdk/dialog";
 import {Task} from "@app/utils";
 import {ExpenseService} from "@app/services/expense.service";
@@ -16,7 +16,7 @@ import {Subscription} from "rxjs";
 
 @Component({
   templateUrl: 'expense-details.html',
-  selector: 'ExpenseDetails',
+  selector: 'IncomeDetails',
   styles: [':host { display: block; width: 616px }'],
   imports: [
     MatProgressSpinner,

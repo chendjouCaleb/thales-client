@@ -1,0 +1,16 @@
+<div class="fontWeight-semiBold fontSize-20 p-4">Changer le montant d'une dépense</div>
+
+
+<div class="px-4">
+  <TextField class="mt-2" style="width: 100%">
+    <label TextFieldLabel for="amount-field">Montant du revenue</label>
+    <input CleaveNumberInput TextFieldInput [formControl]="amountControl" id="amount-field" required>
+  </TextField>
+</div>
+
+<div class="p-4 align-end">
+  <button MyButton (click)="_dialogRef.close()" class="me-3">Annuler</button>
+  <button MyButton color="primary" (click)="change()" [disabled]="amountControl.invalid && addTask.loading">
+    @if(addTask.loading) {  <mat-spinner diameter="16" strokeWidth="1"></mat-spinner> }
+    Modifier</button>
+</div>

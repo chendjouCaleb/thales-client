@@ -1,4 +1,4 @@
-import {Expense} from "@entities/expense";
+import {Expense} from "@entities/finance/expense";
 import {Agency} from "@entities/agency";
 import {Employee} from "@entities/employee";
 import {Procedure, ProcedureStep} from "@entities/procedure";

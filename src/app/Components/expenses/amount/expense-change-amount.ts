@@ -6,7 +6,7 @@ import {CustomerPickerDialog} from "@app/Components";
 import {Agency} from "@entities/agency";
 import {ChevronDownIcon, LucideAngularModule} from "lucide-angular";
 import {DIALOG_DATA, DialogRef} from "@angular/cdk/dialog";
-import {Expense} from "@entities/expense";
+import {Expense} from "@entities/finance/expense";
 import {TextField, TextFieldInput} from "@app/NeoUI";
 import {CleaveModule} from "@app/cleave";
 import {Button} from "@app/ui";
@@ -20,7 +20,7 @@ import {Money} from "@entities/money";
 
 @Component({
   templateUrl: 'expense-change-amount.html',
-  selector: 'ExpenseDelete',
+  selector: 'IncomeDelete',
   imports: [
     LucideAngularModule,
     TextField,

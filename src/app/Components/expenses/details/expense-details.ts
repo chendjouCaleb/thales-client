@@ -16,7 +16,7 @@ import {Subscription} from "rxjs";
 
 @Component({
   templateUrl: 'expense-details.html',
-  selector: 'IncomeDetails',
+  selector: 'ExpenseDetails',
   styles: [':host { display: block; width: 616px }'],
   imports: [
     MatProgressSpinner,

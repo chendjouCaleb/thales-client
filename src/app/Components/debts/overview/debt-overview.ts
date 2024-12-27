@@ -4,7 +4,7 @@ import {DIALOG_DATA, DialogRef} from "@angular/cdk/dialog";
 import {Task} from "@app/utils";
 import {DebtService} from "@app/services/debt.service";
 import {MatProgressSpinner} from "@angular/material/progress-spinner";
-import {ArrowLeftIcon, LucideAngularModule, PencilIcon, Trash2Icon} from "lucide-angular";
+import {ArrowLeftIcon, LucideAngularModule, PencilIcon, Trash2Icon, XIcon} from "lucide-angular";
 import {Button, IconButton} from "@app/ui";
 import {NgIf} from "@angular/common";
 import {DebtChangeAmountLauncher} from "@app/Components/debts/amount/debt-change-amount.launcher";
@@ -32,7 +32,7 @@ import {Subscription} from "rxjs";
   standalone: true
 })
 export class DebtOverview implements OnInit, OnDestroy {
-  icons = { ArrowLeftIcon, Trash2Icon, PencilIcon, }
+  icons = { ArrowLeftIcon, Trash2Icon, PencilIcon, XIcon }
   debtId: string
 
   debt: Debt

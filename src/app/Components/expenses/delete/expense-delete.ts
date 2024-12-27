@@ -15,7 +15,7 @@ import {ExpenseService} from "@app/services/expense.service";
 
 @Component({
   templateUrl: 'expense-delete.html',
-  selector: 'IncomeDelete',
+  selector: 'ExpenseDelete',
   imports: [
     LucideAngularModule,
     TextField,

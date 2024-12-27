@@ -7,7 +7,7 @@ import {Agency} from "@entities/agency";
 import {ChevronDownIcon, LucideAngularModule} from "lucide-angular";
 import {DIALOG_DATA, DialogRef} from "@angular/cdk/dialog";
 import {Debt} from "@entities/finance/debt";
-import {TextField, TextFieldInput} from "@app/NeoUI";
+import {TextField, TextFieldInput, TextFieldLabel} from "@app/NeoUI";
 import {CleaveModule} from "@app/cleave";
 import {Button} from "@app/ui";
 import {NgIf} from "@angular/common";
@@ -28,7 +28,8 @@ import {Space} from "@entities/space";
     ReactiveFormsModule,
     Button,
     NgIf,
-    MatProgressSpinner
+    MatProgressSpinner,
+    TextFieldLabel
   ],
   standalone: true,
   providers: [ CustomerPickerDialog ]
@@ -44,6 +45,7 @@ export class DebtAdd {
     amount: new FormControl<number>(null),
     reason: new FormControl<string>(''),
     details: new FormControl<string>(''),
+    expireAt: new FormControl<Date>(null),
   })
 
   constructor(@Inject(DIALOG_DATA) data: any,

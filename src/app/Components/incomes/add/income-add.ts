@@ -19,7 +19,7 @@ import {IncomeService} from "@app/services/income.service";
 
 @Component({
   templateUrl: 'income-add.html',
-  selector: 'IncomeDelete',
+  selector: 'IncomeAdd',
   imports: [
     LucideAngularModule,
     TextField,

@@ -1,0 +1,14 @@
+<div class="p-4">
+  <div class="d-flex align-items-center">
+    <div class="page-title flex-grow-1">Dettes</div>
+
+    <button MyButton color="primary" mat-ripple (click)="addLauncher.launch(this.space)">
+      <lucide-icon [img]="icons.PlusIcon"></lucide-icon>
+      Ajouter une dette</button>
+  </div>
+
+  <div class="mt-3">
+    <DebtList [params]="params" [displayedColumns]="displayedColumns" [filter]="debtFilter"></DebtList>
+  </div>
+
+</div>

@@ -12,7 +12,7 @@ import {AgencyPage} from "@app/pages/agency/agency.page";
 
 @Component({
   templateUrl: 'agency-expense-list.page.html',
-  selector: 'AgencyExpenseListPage',
+  selector: 'AgencyIncomeListPage',
   imports: [
     Button,
     LucideAngularModule,

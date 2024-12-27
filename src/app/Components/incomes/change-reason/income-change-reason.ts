@@ -15,7 +15,7 @@ import {IncomeService} from "@app/services/income.service";
 
 @Component({
   templateUrl: 'income-change-reason.html',
-  selector: 'IncomeDelete',
+  selector: 'IncomeChangeReason',
   imports: [
     LucideAngularModule,
     TextField,

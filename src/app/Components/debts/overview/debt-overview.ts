@@ -15,7 +15,7 @@ import {Subscription} from "rxjs";
 
 @Component({
   templateUrl: 'debt-overview.html',
-  selector: 'IncomeDetails',
+  selector: 'DebtOverview',
   styles: [':host { display: block; width: 616px }'],
   imports: [
     MatProgressSpinner,

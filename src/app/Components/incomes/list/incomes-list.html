@@ -8,10 +8,8 @@
       <thead>
       <tr>
         <th>#</th>
-        <th>
-          <button class="th-button-1">
-            Montant
-          </button>
+        <th class="align-end">
+          Montant
         </th>
         <th>Raison</th>
         <th *ngIf="display('customer')">
@@ -52,14 +50,7 @@
           {{ income.amount.format() }}
         </td>
         <td>
-          <a *ngIf="income.planeTicketId"
-             routerLink="/agencies/{{income.agencyId}}/plane-tickets/{{income.planeTicketId}}"
-             class="inline-badge ms-bgColor-cyan-10 ms-bgColor-cyan-20--hover">
-            Billet d'avion N°{{ income.planeTicketId }}
-          </a>
-
-
-          {{ income.reason }}
+          <span class="opacity-6 fontSize-12"> {{ income.reason }}</span>
         </td>
 
         <td *ngIf="display('customer')">
@@ -76,7 +67,7 @@
           <span class="fontSize-12">{{ income.createdAt.moment() }}</span>
         </td>
         <td *ngIf="display('updatedAt')">
-          <span class="fontSize-12 opacity-8">{{ income.updatedAt.moment() }}</span>
+          <span class="fontSize-12 opacity-6">{{ income.updatedAt.moment() }}</span>
         </td>
         <td class="align-end">
           <button MyIconButton style="margin-right: 16px" #menuTrigger
@@ -87,7 +78,6 @@
           <Dropdown #dropdown [trigger]="menuTrigger.host"
                     (onBackdropClick)="dropdown.close()">
             <MyMenu>
-
 
 
               <button MenuItem (click)="delete(income)">

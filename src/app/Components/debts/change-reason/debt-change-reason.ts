@@ -15,7 +15,7 @@ import {DebtService} from "@app/services/debt.service";
 
 @Component({
   templateUrl: 'debt-change-reason.html',
-  selector: 'IncomeDelete',
+  selector: 'DebtChangeReason',
   imports: [
     LucideAngularModule,
     TextField,

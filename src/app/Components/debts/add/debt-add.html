@@ -1,4 +1,4 @@
-<div class="fontWeight-semiBold fontSize-20 p-4">Ajouter une dépense</div>
+<div class="fontWeight-semiBold fontSize-20 p-4">Ajouter une dette</div>
 
 
 <div class="px-4" [formGroup]="formGroup">
@@ -23,24 +23,20 @@
 
 
   <TextField class="mt-2" style="width: 100%">
-    <label TextFieldLabel for="amount-field">Montant dépensé</label>
+    <label TextFieldLabel for="amount-field">Montant de la dette</label>
     <input CleaveNumberInput TextFieldInput formControlName="amount" id="amount-field" required>
   </TextField>
 
   <TextField class="mt-2" style="width: 100%">
-    <label TextFieldLabel for="reason-field">Raison de la dépense</label>
+    <label TextFieldLabel for="reason-field">Raison</label>
     <textarea TextFieldInput formControlName="reason" id="reason-field"></textarea>
   </TextField>
 
-  <TextField class="mt-2" style="width: 100%">
-    <label TextFieldLabel for="details-field">Détails du paiement</label>
-    <textarea TextFieldInput formControlName="details" id="details-field"></textarea>
-  </TextField>
 </div>
 
 <div class="p-4 align-end">
   <button MyButton (click)="_dialogRef.close()" class="me-3">Annuler</button>
   <button MyButton color="primary" (click)="validate()" [disabled]="formGroup.invalid && addTask.loading">
     @if(addTask.loading) {  <mat-spinner diameter="16" strokeWidth="1"></mat-spinner> }
-    Ajouter la dépense</button>
+    Ajouter la dette</button>
 </div>

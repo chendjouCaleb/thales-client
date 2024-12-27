@@ -19,7 +19,7 @@ import {Space} from "@entities/space";
 
 @Component({
   templateUrl: 'debt-add.html',
-  selector: 'IncomeDelete',
+  selector: 'DebtAdd',
   imports: [
     LucideAngularModule,
     TextField,

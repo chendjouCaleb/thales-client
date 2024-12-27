@@ -1,11 +1,11 @@
 <div >
-  @if(getExpenseTask.loading) {
-    <div class="d-flex align-items-center justify-content-center p-5">
+  @if(getDebtTask.loading) {
+    <div class="d-flex align-items-center justify-content-center padding-24">
       <mat-spinner [diameter]="64" strokeWidth="2"></mat-spinner>
     </div>
   }
 
-  @if(getExpenseTask.success) {
+  @if(getDebtTask.success) {
 
     <div class="d-flex px-3 mt-4">
       <button (click)="_dialogRef.close()" MyIconButton>
@@ -24,17 +24,17 @@
       <div class="d-flex flex-column-gap-24">
         <div class="flex-grow-1">
           <div class="opacity-5 fontSize-12">Montant</div>
-          <div>{{expense.amount.format()}}</div>
+          <div>{{debt.amount.format()}}</div>
         </div>
         <button MyIconButton (click)="changeAmount()">
           <lucide-icon [img]="icons.PencilIcon"></lucide-icon>
         </button>
       </div>
 
-      <div class="mt-3 d-flex flex-column-gap-24">
+      <div class="marginTop-16 d-flex flex-column-gap-24">
         <div class="flex-grow-1">
           <div class="opacity-5 fontSize-12">Raison</div>
-          <div>{{expense.reason}}</div>
+          <div>{{debt.reason}}</div>
         </div>
 
         <button MyIconButton (click)="changeReason()">
@@ -42,25 +42,15 @@
         </button>
       </div>
 
-      <div class="mt-3 d-flex flex-column-gap-24">
-        <div class="flex-grow-1">
-          <div class="opacity-5 fontSize-12">Détails du paiement</div>
-          <div>{{expense.details}}</div>
-        </div>
-        <button MyIconButton (click)="changeDetails()">
-          <lucide-icon [img]="icons.PencilIcon"></lucide-icon>
-        </button>
-      </div>
 
 
-
-      <div class="mt-3" *ngIf="expense.agency">
+      <div class="mt-3" *ngIf="debt.agency">
         <div class="opacity-8 fontSize-12">Agence</div>
-        <div>{{expense.agency.name}}</div>
+        <div>{{debt.agency.name}}</div>
       </div>
 
       <div class="mt-3">
-        <div class="opacity-8 fontSize-12">Ajouté par {{expense.user.fullName }} le {{expense.createdAt.moment()}}</div>
+        <div class="opacity-8 fontSize-12">Ajouté par {{debt.user.fullName }} le {{debt.createdAt.moment()}}</div>
       </div>
     </div>
   }

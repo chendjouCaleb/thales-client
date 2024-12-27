@@ -9,7 +9,7 @@
 
 
 .my-dark-theme {
-  --my-my-table-color-divider:rgba(255, 255, 255, .1);
+  --my-table-color-divider:rgba(255, 255, 255, .1);
   --my-table-color-row__hover: rgba(255, 255, 255, .1);
 }
 
@@ -28,13 +28,13 @@ $my-table-color-row__hover: $my-color-divider;
 
   th {
     //padding: 16px 16px;
-    padding: 4px;
+    padding: 8px 16px;
     font-weight: 500;
     border-bottom: 1px solid var(--my-table-color-divider);
   }
 
   td {
-    padding: 8px;
+    padding: 8px 16px;
     font-weight: normal;
     border-bottom: 1px solid var(--my-table-color-divider);
   }

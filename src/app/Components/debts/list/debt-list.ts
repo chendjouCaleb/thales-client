@@ -22,7 +22,7 @@ import {IconButton, Menu, MenuItem} from "@app/ui";
 import {Dropdown} from "@app/NeoUI";
 import {DebtService} from "@app/services/debt.service";
 import {Subscription} from "rxjs";
-import {DebtOverviewLauncher} from "@app/Components/debts/details";
+import {DebtOverviewLauncher} from "src/app/Components/debts/overview";
 
 
 const DEBT_RANGE_SIZE = isDevMode() ? 10 : 30;

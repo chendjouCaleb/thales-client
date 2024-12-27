@@ -26,7 +26,7 @@ export class IncomeService {
 
   async addAsync(space: Space, agency: Agency, customer: Customer, model: IncomeAddModel): Promise<Income> {
     const params = {
-      customerId: customer.id,
+      customerId: customer?.id,
       spaceId: space.id,
       agencyId: agency?.id
     };

@@ -19,6 +19,7 @@ import {TraceModule} from "@app/trace";
 import {PaymentsList} from "@app/Components/payments/list/payments-list";
 import {LucideAngularModule} from "lucide-angular";
 import {AgencyExpenseListPage} from "@app/pages/agency/expenses/list/agency-expense-list.page";
+import {AgencyIncomeListPage} from "@app/pages/agency/incomes/list/agency-income-list.page";
 
 const routes: Routes = [
   {
@@ -36,6 +37,7 @@ const routes: Routes = [
       {path: 'settings', component: AgencySettingsPage},
       {path: 'events', component: AgencyEventsPage},
       {path: 'expenses', component: AgencyExpenseListPage },
+      {path: 'incomes', component: AgencyIncomeListPage },
       {path: '', redirectTo: 'payments', pathMatch: 'full'}
     ]
   }

@@ -20,6 +20,7 @@ import {SpaceMembersPage} from "@app/pages/admin/members/list/space-members.page
 import {MemberHomePage} from "@app/pages/admin/members/home/member-home.page";
 import {ExpenseListPage} from "@app/pages/admin/expenses/list/expense-list.page";
 import {IncomeListPage} from "@app/pages/admin/incomes/list/income-list.page";
+import {SpaceDebtListPage} from "@app/pages/admin/debts/list/space-debt-list-page.component";
 
 const routes: Routes = [
   {
@@ -36,6 +37,7 @@ const routes: Routes = [
       {path: 'expenses', component: ExpenseListPage },
 
       {path: 'incomes', component: IncomeListPage },
+      {path: 'debts', component: SpaceDebtListPage },
 
       {path: 'members', component: SpaceMembersPage},
       {path: 'members/:memberId', component: MemberHomePage },

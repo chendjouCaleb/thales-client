@@ -14,7 +14,7 @@ import {DebtService} from "@app/services/debt.service";
 
 @Component({
   templateUrl: 'debt-delete.html',
-  selector: 'IncomeDelete',
+  selector: 'DebtDelete',
   imports: [
     LucideAngularModule,
     TextField,

@@ -20,7 +20,7 @@ import {Money} from "@entities/money";
 
 @Component({
   templateUrl: 'income-change-amount.html',
-  selector: 'IncomeDelete',
+  selector: 'IncomeChangeAmount',
   imports: [
     LucideAngularModule,
     TextField,

@@ -1,0 +1,55 @@
+<div class="p-4">
+  <div>
+    <div class="fontSize-12">Montant</div>
+    <div class="opacity-8">{{debt.amount.format()}}</div>
+  </div>
+
+  <div class="marginTop-16">
+    <div class="opacity-5 fontSize-12">Raison</div>
+    <div class="opacity-6 " *ngIf="!debt.reason">Non renseignée</div>
+    <div>{{debt.reason}}</div>
+  </div>
+
+
+  <div class="marginTop-16">
+    <div class="opacity-5 fontSize-12">Date butoir</div>
+    <div class="opacity-6 " *ngIf="!debt.expireAt">Non renseignée</div>
+    <div>{{debt.expireAt?.toFormat('DD')}}</div>
+  </div>
+
+
+  <div class="marginTop-16">
+    <div class="opacity-5 fontSize-12">Contractée le</div>
+    <div class="opacity-6 " *ngIf="!debt.doneAt">Non renseignée</div>
+    <div>{{debt.doneAt?.toFormat('DD')}}</div>
+  </div>
+
+
+
+  <div class="mt-3" *ngIf="debt.agency">
+    <div class="opacity-8 fontSize-12">Agence</div>
+    <div>{{debt.agency.name}}</div>
+  </div>
+
+  <div class="divider marginVertical-16"></div>
+
+  <div style="display: grid; grid-template-columns: 1fr 1fr 1fr;">
+    <div>
+      <div class="fontSize-12">Ajoutée par</div>
+      <div class="opacity-8">{{ debt.user.fullName }}</div>
+    </div>
+
+    <div >
+      <div class="fontSize-12">Ajoutée le</div>
+      <div class="opacity-8">{{debt.createdAt.moment()}}</div>
+    </div>
+
+    <div>
+      <div class="fontSize-12">Modifiée le</div>
+      <div class="opacity-8">{{debt.updatedAt.moment()}}</div>
+    </div>
+  </div>
+
+
+
+</div>

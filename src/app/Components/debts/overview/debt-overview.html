@@ -7,7 +7,7 @@
 
   @if(getDebtTask.success) {
 
-    <div class="d-flex align-items-center paddingVertical-24 mt-4">
+    <div class="d-flex align-items-center paddingHorizontal-24 mt-4">
 
       <div class="flex-grow-1 fontSize-22 fontWeight-semiBold">Dette</div>
 
@@ -16,56 +16,17 @@
       </button>
     </div>
 
-    <div class="marginTop-16 paddingHorizontal-24 align-end">
-      <button MyButton  (click)="delete()" matTooltip="Supprimer cette dépense">
+    <div class="marginTop-16 paddingHorizontal-24">
+      <button MyButton  (click)="settingsLauncher.launch(debt)" matTooltip="Modifier les informations de cette dépense">
+        <lucide-icon [img]="icons.SettingsIcon"></lucide-icon> Paramètres
+      </button>
+
+      <button MyButton  (click)="delete()" matTooltip="Supprimer cette dette">
         <lucide-icon [img]="icons.Trash2Icon"></lucide-icon> Supprimer
       </button>
     </div>
 
-    <div class="p-4">
-      <div class="d-flex flex-column-gap-24">
-        <div class="flex-grow-1">
-          <div class="opacity-5 fontSize-12">Montant</div>
-          <div>{{debt.amount.format()}}</div>
-        </div>
-        <button MyIconButton (click)="changeAmount()">
-          <lucide-icon [img]="icons.PencilIcon"></lucide-icon>
-        </button>
-      </div>
+    <DebtPager [debt]="debt"></DebtPager>
 
-      <div class="marginTop-16 d-flex flex-column-gap-24">
-        <div class="flex-grow-1">
-          <div class="opacity-5 fontSize-12">Raison</div>
-          <div>{{debt.reason}}</div>
-        </div>
-
-        <button MyIconButton (click)="changeReason()">
-          <lucide-icon [img]="icons.PencilIcon"></lucide-icon>
-        </button>
-      </div>
-
-
-      <div class="marginTop-16 d-flex flex-column-gap-24">
-        <div class="flex-grow-1">
-          <div class="opacity-5 fontSize-12">Date butoir</div>
-          <div>{{debt.expireAt?.toFormat('DD')}}</div>
-        </div>
-
-        <button MyIconButton (click)="changeReason()">
-          <lucide-icon [img]="icons.PencilIcon"></lucide-icon>
-        </button>
-      </div>
-
-
-
-      <div class="mt-3" *ngIf="debt.agency">
-        <div class="opacity-8 fontSize-12">Agence</div>
-        <div>{{debt.agency.name}}</div>
-      </div>
-
-      <div class="mt-3">
-        <div class="opacity-8 fontSize-12">Ajouté par {{debt.user.fullName }} le {{debt.createdAt.moment()}}</div>
-      </div>
-    </div>
   }
 </div>

@@ -4,7 +4,7 @@ import {DIALOG_DATA, DialogRef} from "@angular/cdk/dialog";
 import {Task} from "@app/utils";
 import {DebtService} from "@app/services/debt.service";
 import {MatProgressSpinner} from "@angular/material/progress-spinner";
-import {ArrowLeftIcon, LucideAngularModule, PencilIcon, Trash2Icon, XIcon} from "lucide-angular";
+import {ArrowLeftIcon, LucideAngularModule, PencilIcon, SettingsIcon, Trash2Icon, XIcon} from "lucide-angular";
 import {Button, IconButton} from "@app/ui";
 import {NgIf} from "@angular/common";
 import {DebtChangeAmountLauncher} from "@app/Components/debts/amount/debt-change-amount.launcher";
@@ -12,6 +12,8 @@ import {DebtChangeReasonLauncher} from "@app/Components/debts/change-reason";
 import {MatTooltip} from "@angular/material/tooltip";
 import {DebtDeleteLauncher} from "@app/Components/debts/delete";
 import {Subscription} from "rxjs";
+import {DebtPager} from "@app/Components/debts/overview/debt.pager";
+import {DebtSettingsLauncher} from "@app/Components/debts/settings";
 
 @Component({
   templateUrl: 'debt-overview.html',
@@ -23,16 +25,17 @@ import {Subscription} from "rxjs";
     IconButton,
     NgIf,
     Button,
-    MatTooltip
+    MatTooltip,
+    DebtPager
   ],
   providers: [ DebtChangeAmountLauncher,
-    DebtChangeReasonLauncher,
+    DebtSettingsLauncher,
     DebtDeleteLauncher,
   ],
   standalone: true
 })
 export class DebtOverview implements OnInit, OnDestroy {
-  icons = { ArrowLeftIcon, Trash2Icon, PencilIcon, XIcon }
+  icons = { ArrowLeftIcon, Trash2Icon, PencilIcon, XIcon, SettingsIcon }
   debtId: string
 
   debt: Debt
@@ -40,8 +43,7 @@ export class DebtOverview implements OnInit, OnDestroy {
 
   constructor(@Inject(DIALOG_DATA) data: any,
               public _dialogRef: DialogRef,
-              private _changeAmountLauncher: DebtChangeAmountLauncher,
-              private _changeReasonLauncher: DebtChangeReasonLauncher,
+              public settingsLauncher: DebtSettingsLauncher,
               private _changeDeleteLauncher: DebtDeleteLauncher,
               private _debtService: DebtService) {
     this.debtId = data.debtId
@@ -65,13 +67,6 @@ export class DebtOverview implements OnInit, OnDestroy {
     this.debt = await this._debtService.getAsync(this.debtId);
   });
 
-  changeAmount() {
-    this._changeAmountLauncher.launch(this.debt);
-  }
-
-  changeReason() {
-    this._changeReasonLauncher.launch(this.debt);
-  }
 
   delete() {
     this._changeDeleteLauncher.launch(this.debt);

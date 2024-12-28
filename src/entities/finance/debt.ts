@@ -17,6 +17,7 @@ export class Debt extends BaseEntity<string> {
   details: string = '';
   updatedAt: DateTime;
   expireAt: DateTime;
+  doneAt: DateTime;
 
   customer: Customer;
   customerId: number;
@@ -55,6 +56,7 @@ export class Debt extends BaseEntity<string> {
 
       this.updatedAt = value.updatedAt ? DateTime.fromISO(value.updatedAt) : null;
       this.expireAt = value.expireAt ? DateTime.fromISO(value.expireAt) : null;
+      this.doneAt = value.doneAt ? DateTime.fromISO(value.doneAt) : null;
       this.amount = Money.parse(value.amount);
 
       this.reason = value.reason;

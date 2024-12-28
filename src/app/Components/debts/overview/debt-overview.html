@@ -17,6 +17,10 @@
     </div>
 
     <div class="marginTop-16 paddingHorizontal-24">
+      <button MyButton color="primary"  (click)="addIncome()" matTooltip="Enregistrer un remboursement de dette">
+        <lucide-icon [img]="icons.DollarSignIcon"></lucide-icon> Rembourser
+      </button>
+
       <button MyButton  (click)="settingsLauncher.launch(debt)" matTooltip="Modifier les informations de cette dépense">
         <lucide-icon [img]="icons.SettingsIcon"></lucide-icon> Paramètres
       </button>

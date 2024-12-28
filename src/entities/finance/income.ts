@@ -102,6 +102,7 @@ export class IncomeOwner {
   ownerId: string;
 
   IncomeId: string;
+  kind: string
 
   constructor(value: any = {}) {
     if (value) {
@@ -109,6 +110,7 @@ export class IncomeOwner {
       this.createdAt = value.createdAt;
       this.ownerId = value.ownerId;
       this.IncomeId = value.IncomeId;
+      this.kind = value.kind;
     }
   }
 }
@@ -120,6 +122,7 @@ export class IncomeElement {
   elementId: string;
 
   IncomeId: string;
+  kind: string
 
   constructor(value: any = {}) {
     if (value) {
@@ -127,6 +130,7 @@ export class IncomeElement {
       this.createdAt = value.createdAt;
       this.elementId = value.elementId;
       this.IncomeId = value.IncomeId;
+      this.kind = value.kind;
     }
   }
 }
@@ -139,12 +143,15 @@ export class IncomePerson {
 
   IncomeId: string;
 
+  kind: string;
+
   constructor(value: any = {}) {
     if (value) {
       this.id = value.id;
       this.createdAt = value.createdAt;
       this.personId = value.personId;
       this.IncomeId = value.IncomeId;
+      this.kind = value.kind;
     }
   }
 }

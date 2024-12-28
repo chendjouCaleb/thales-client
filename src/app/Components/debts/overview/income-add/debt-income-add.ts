@@ -13,12 +13,15 @@ import {Button} from "@app/ui";
 import {NgIf} from "@angular/common";
 import {Task} from "@app/utils";
 import {MatProgressSpinner} from "@angular/material/progress-spinner";
-import {IncomeAddModel} from "@app/models";
+import {DebtIncomeAddModel, IncomeAddModel} from "@app/models";
 import {Space} from "@entities/space";
 import {IncomeService} from "@app/services/income.service";
+import {Debt} from "@entities/finance";
+import {DebtIncome} from "@entities/finance/debt-income";
+import {DebtService} from "@app/services/debt.service";
 
 @Component({
-  templateUrl: 'income-add.html',
+  templateUrl: 'debt-income-add.html',
   selector: 'DebtIncomeAdd',
   imports: [
     LucideAngularModule,
@@ -30,56 +33,42 @@ import {IncomeService} from "@app/services/income.service";
     NgIf,
     MatProgressSpinner
   ],
-  standalone: true,
-  providers: [ CustomerPickerDialog ]
+  standalone: true
 })
-export class IncomeAdd {
+export class DebtIncomeAdd {
   icons = { ChevronDownIcon }
-  customer: Customer;
-  space: Space;
-  agency?: Agency;
+  debt: Debt
 
   formGroup = new FormGroup({
-    customer: new FormControl<number>(null),
     amount: new FormControl<number>(null),
-    reason: new FormControl<string>(''),
     details: new FormControl<string>(''),
   })
 
   constructor(@Inject(DIALOG_DATA) data: any,
-              private _picker: CustomerPickerDialog,
-              public _dialogRef: DialogRef<Income, IncomeAdd>,
-              private _service: IncomeService,
+              public _dialogRef: DialogRef<DebtIncome, DebtIncomeAdd>,
+              private _service: DebtService,
               private _snackbar: MatSnackBar) {
-    this.customer = data.customer;
-    this.space = data.space;
-    this.agency = data.agency;
+    this.debt = data.debt;
   }
 
-  selectCustomer(event) {
-    event?.preventDefault();
-    event.stopPropagation();
-    this._picker.open(this.space.id).subscribe(customer => {
 
-      if(customer) {
-        this.customer = customer;
-        this.formGroup.controls.customer.setValue(customer.id)
-      }
-    })
-  }
-
-  async validate() {
+  async addIncome() {
     await this.addTask.launch()
     if(this.addTask.success) {
       const income = this.addTask.result;
       this._dialogRef.close(income);
-      this._snackbar.open(`La revenue a été ajouté.`, '', {duration: 3000});
+      this._snackbar.open(`La recouvrement a été ajouté.`, '', {duration: 3000});
     }
   }
 
-  addTask = new Task(async () => {
-    const model = new IncomeAddModel(this.formGroup.value);
-    return await this._service.addAsync(this.space, this.agency, this.customer, model);
+  addTask = new Task<DebtIncome>(async () => {
+    const value = this.formGroup.value;
+
+    const model: DebtIncomeAddModel = {
+      amount : `${value.amount} XAF`,
+      details: value.details
+    }
+    return await this._service.addIncomeAsync(this.debt, model);
   })
 }
 

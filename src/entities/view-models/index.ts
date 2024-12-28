@@ -8,3 +8,4 @@ export * from './CreditRangeViewModel';
 export * from './DebtRangeViewModel';
 export * from './ExpenseRangeViewModel';
 export * from './IncomeRangeViewModel';
+export * from './DebtIncomeRangeViewModel';

@@ -3,9 +3,10 @@ import {SERVER_URL} from "../http";
 import {Agency, Customer, Debt, Space} from "../../entities";
 import { HttpClient } from "@angular/common/http";
 import {firstValueFrom, Observable, Subject} from "rxjs";
-import {DebtAddModel} from "@app/models";
+import {DebtAddModel, DebtIncomeAddModel} from "@app/models";
 import {DebtRangeViewModel} from "@entities/view-models/DebtRangeViewModel";
 import {Money} from "@entities/money";
+import {DebtIncome} from "@entities/finance/debt-income";
 
 @Injectable({
   providedIn: 'root'
@@ -37,6 +38,14 @@ export class DebtService {
 
     this._debtAdd.next(debt);
     return debt;
+  }
+
+
+  async addIncomeAsync(debt: Debt, model: DebtIncomeAddModel) {
+    const call = this._httpClient.post<DebtIncome>(`${this.url}/${debt.id}/incomes`, model, {});
+    let debtIncome = new DebtIncome(await firstValueFrom(call));
+
+    return debtIncome;
   }
 
 

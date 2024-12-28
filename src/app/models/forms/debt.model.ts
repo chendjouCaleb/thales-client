@@ -11,3 +11,8 @@ export class DebtAddModel {
     }
   }
 }
+
+export interface DebtIncomeAddModel {
+  details: string,
+  amount: string
+}

@@ -55,11 +55,15 @@
         </td>
 
         <td>
-          <MyBadge color="warn">Non réglée</MyBadge>
+          @if (!debt.isPay){  <MyBadge color="warn">Non réglée</MyBadge> }
+          @if (debt.isPay){  <MyBadge color="success">Réglée</MyBadge> }
         </td>
 
         <td>
-          <span class="fontSize-12 opacity-8">{{debt.expireAt?.toFormat('DD')}}</span>
+          <span class="fontSize-12 opacity-8">
+            {{debt.expireAt?.toFormat('DD')}}
+
+          </span>
         </td>
         <td>
           <a *ngIf="debt.planeTicketId"

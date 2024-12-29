@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from "@angular/core";
 import {Debt} from "@entities/finance";
 import {HorizontalPager, PageContentDef, TabRow, TabRowItem} from "@app/NeoUI";
 import {DebtDetails} from "@app/Components/debts/overview/details/debt-details";
+import {IncomesList} from "@app/Components/incomes";
 
 @Component({
   templateUrl: 'debt.pager.html',
@@ -12,7 +13,8 @@ import {DebtDetails} from "@app/Components/debts/overview/details/debt-details";
     HorizontalPager,
     TabRowItem,
     TabRow,
-    DebtDetails
+    DebtDetails,
+    IncomesList
   ]
 })
 export class DebtPager implements OnInit {

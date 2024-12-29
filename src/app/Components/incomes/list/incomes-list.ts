@@ -48,11 +48,16 @@ export class IncomesList implements OnInit, AfterViewInit, OnDestroy {
   displayedColumns: string [] = [];
 
   @Input()
+  mode: 'card' | 'table' = 'table'
+
+  @Input()
   filter: (income: Income) => boolean = () => false
 
 
   @ViewChild('rangeObserverThumb')
   rangeObserverThumbRef: ElementRef<HTMLElement>
+
+
 
 
   get _incomes(): Income[] {

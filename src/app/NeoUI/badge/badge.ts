@@ -2,7 +2,10 @@ import {Component, Input, ViewEncapsulation} from "@angular/core";
 
 type MyBadgeColor = 'neutral' | 'primary' | 'success' | 'warn' | 'error' | 'danger'
 @Component({
-  template: `<ng-content></ng-content>`,
+  template: `
+    <span class="my-badge-layout">
+    <ng-content></ng-content>
+  </span>`,
   selector: 'MyBadge, [MyBadge]',
   styleUrl: 'my-badge.scss',
   encapsulation: ViewEncapsulation.None,

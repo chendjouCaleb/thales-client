@@ -4,72 +4,116 @@
   </div>
 
   <div *ngIf="!getFirstRangeTask.loading">
-    <table class="my-table">
-      <thead>
-      <tr>
-        <th>#</th>
-        <th class="align-end">
-          Montant
-        </th>
-        <th>Raison</th>
-        <th *ngIf="display('customer')">
-          <button class="th-button-1">Client</button>
-        </th>
-        <th *ngIf="display('agency')">Agence</th>
-        <th *ngIf="display('member')">Ajouté par</th>
-        <th *ngIf="display('employee')">Ajouté par</th>
-        <th *ngIf="display('createdAt')">
-          <button class="th-button-1" (click)="changeOrderBy('ID')">
-            Ajouté le
-            <span *ngIf="orderby[0] == 'ID'" class="ps-2">
+
+    @if (mode == 'table') {
+      <table class="my-table">
+        <thead>
+        <tr>
+          <th>#</th>
+          <th class="align-end">
+            Montant
+          </th>
+          <th>Raison</th>
+          <th *ngIf="display('customer')">
+            <button class="th-button-1">Client</button>
+          </th>
+          <th *ngIf="display('agency')">Agence</th>
+          <th *ngIf="display('member')">Ajouté par</th>
+          <th *ngIf="display('employee')">Ajouté par</th>
+          <th *ngIf="display('createdAt')">
+            <button class="th-button-1" (click)="changeOrderBy('ID')">
+              Ajouté le
+              <span *ngIf="orderby[0] == 'ID'" class="ps-2">
             <lucide-angular *ngIf="orderby[1] == 'ASC'" [img]="icons.MoveUpIcon" size="16"></lucide-angular>
             <lucide-angular *ngIf="orderby[1] == 'DESC'" [img]="icons.MoveDownIcon" size="16"></lucide-angular>
               </span>
-          </button>
-        </th>
+            </button>
+          </th>
 
-        <th *ngIf="display('updatedAt')">
-          <button class="th-button-1" (click)="changeOrderBy('ID')">
-            Modifié le
-            <span *ngIf="orderby[0] == 'ID'" class="ps-2">
+          <th *ngIf="display('updatedAt')">
+            <button class="th-button-1" (click)="changeOrderBy('ID')">
+              Modifié le
+              <span *ngIf="orderby[0] == 'ID'" class="ps-2">
             <lucide-angular *ngIf="orderby[1] == 'ASC'" [img]="icons.MoveUpIcon" size="16"></lucide-angular>
             <lucide-angular *ngIf="orderby[1] == 'DESC'" [img]="icons.MoveDownIcon" size="16"></lucide-angular>
               </span>
-          </button>
-        </th>
-        <th></th>
-      </tr>
-      </thead>
+            </button>
+          </th>
+          <th></th>
+        </tr>
+        </thead>
 
-      <tbody>
-      <tr *ngFor="let income of incomes; let i=index; trackBy: trackById" class="row-hover cursor-pointer"
-          (click)="details(income)">
-        <td>{{ i + 1 }}</td>
+        <tbody>
+        <tr *ngFor="let income of incomes; let i=index; trackBy: trackById" class="row-hover cursor-pointer"
+            (click)="details(income)">
+          <td>{{ i + 1 }}</td>
 
-        <td class="align-end">
-          {{ income.amount.format() }}
-        </td>
-        <td>
-          <span class="opacity-6 fontSize-12"> {{ income.reason }}</span>
-        </td>
+          <td class="align-end">
+            {{ income.amount.format() }}
+          </td>
+          <td>
+            <span class="opacity-6 fontSize-12"> {{ income.reason }}</span>
+          </td>
 
-        <td *ngIf="display('customer')">
+          <td *ngIf="display('customer')">
           <span style="display: -webkit-box;
             -webkit-box-orient: vertical;
             -webkit-line-clamp: 1;
             overflow: hidden;">{{ income.customer?.fullName }}</span>
 
-        </td>
-        <td *ngIf="display('agency')">{{ income.agency?.name }}</td>
-        <td *ngIf="display('member')">{{ income.member.user?.fullName }}</td>
-        <td *ngIf="display('employee')">{{ income.employee.user?.fullName }}</td>
-        <td *ngIf="display('createdAt')">
-          <span class="fontSize-12">{{ income.createdAt.moment() }}</span>
-        </td>
-        <td *ngIf="display('updatedAt')">
-          <span class="fontSize-12 opacity-6">{{ income.updatedAt.moment() }}</span>
-        </td>
-        <td class="align-end">
+          </td>
+          <td *ngIf="display('agency')">{{ income.agency?.name }}</td>
+          <td *ngIf="display('member')">{{ income.member.user?.fullName }}</td>
+          <td *ngIf="display('employee')">{{ income.employee.user?.fullName }}</td>
+          <td *ngIf="display('createdAt')">
+            <span class="fontSize-12">{{ income.createdAt.moment() }}</span>
+          </td>
+          <td *ngIf="display('updatedAt')">
+            <span class="fontSize-12 opacity-6">{{ income.updatedAt.moment() }}</span>
+          </td>
+          <td class="align-end">
+            <button MyIconButton style="margin-right: 16px" #menuTrigger
+                    (click)="dropdown.open(); $event.stopPropagation()">
+              <lucide-angular [img]="icons.EllipsisVerticalIcon" size="16"></lucide-angular>
+            </button>
+
+            <Dropdown #dropdown [trigger]="menuTrigger.host"
+                      (onBackdropClick)="dropdown.close()">
+              <MyMenu>
+
+
+                <button MenuItem (click)="delete(income)">
+                  <lucide-icon [img]="icons.Trash2Icon" strokeWidth="1.5"></lucide-icon>
+                  Supprimer
+                </button>
+              </MyMenu>
+            </Dropdown>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    }
+
+    @if (mode == 'card') {
+      <div *ngFor="let income of incomes; let i=index; trackBy: trackById"
+           class="surface paddingHorizontal-16 paddingVertical-8 borderRadius-8 cursor-pointer d-flex" [class.marginTop-16]="i > 0"
+           (click)="details(income)">
+
+        <div class="flex-grow-1">
+          <div class="fontSize-18 fontWeight-bold">
+            {{ income.amount.format() }}
+          </div>
+
+          <div class="fontSize-12 opacity-6">
+
+            {{ income.member.user?.fullName }}
+            &bull;
+            {{ income.createdAt.moment() }}
+
+          </div>
+        </div>
+
+
           <button MyIconButton style="margin-right: 16px" #menuTrigger
                   (click)="dropdown.open(); $event.stopPropagation()">
             <lucide-angular [img]="icons.EllipsisVerticalIcon" size="16"></lucide-angular>
@@ -86,10 +130,11 @@
               </button>
             </MyMenu>
           </Dropdown>
-        </td>
-      </tr>
-      </tbody>
-    </table>
+
+      </div>
+    }
+
+
   </div>
 
   <div *ngIf="!hasMore && getFirstRangeTask.success" class="end-list-thumb"></div>

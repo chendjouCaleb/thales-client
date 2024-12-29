@@ -3,9 +3,14 @@
   font-weight: 500;
   border-radius: 16px;
   padding: 2px 8px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
+  box-sizing: border-box;
+  display: inline-block;
+
+  .my-badge-layout {
+    align-items: center;
+    display: flex;
+    gap: 4px;
+  }
 
   &.primary {
     color: var(--my-primaryColor);

@@ -9,7 +9,7 @@ import {Member} from "@entities/member";
 import {Procedure} from "@entities/procedure";
 import {User} from "@app/identity";
 import {Space} from "@entities/space";
-import {DateTime} from "luxon";
+import {DateTime, Duration} from "luxon";
 
 export class Debt extends BaseEntity<string> {
   amount: Money;
@@ -48,7 +48,22 @@ export class Debt extends BaseEntity<string> {
 
   debtOwners: DebtOwner[]
   debtElements: DebtElement[]
-  debtPersons: DebtPerson[]
+  debtPersons: DebtPerson[];
+
+  amountPaid: Money;
+
+  elementId: string;
+
+  get isPay() {
+    return this.amountPaid.amount >= this.amount.amount;
+  }
+
+  get late(): Duration | null {
+    if(!this.expireAt) {
+      return null;
+    }
+    return DateTime.now().diff(this.expireAt)
+  }
 
   constructor(value: any = {}) {
     super(value);
@@ -58,9 +73,11 @@ export class Debt extends BaseEntity<string> {
       this.expireAt = value.expireAt ? DateTime.fromISO(value.expireAt) : null;
       this.doneAt = value.doneAt ? DateTime.fromISO(value.doneAt) : null;
       this.amount = Money.parse(value.amount);
+      this.amountPaid = Money.parse(value.amountPaid);
 
       this.reason = value.reason;
       this.details = value.details;
+      this.elementId = value.elementId;
 
       this.customerId = value.customerId;
       this.planeTicketId = value.planeTicketId;

@@ -17,6 +17,7 @@ import {sleep, Task} from "@app/utils";
 import {isVisibleElement} from "@app/utils/dom";
 import {environment} from "../../../../environments/environment";
 import {
+  CheckIcon,
   CircleAlert,
   EllipsisVerticalIcon,
   LucideAngularModule,
@@ -46,7 +47,8 @@ const DEBT_RANGE_SIZE = isDevMode() ? 10 : 30;
 })
 export class DebtList implements OnInit, AfterViewInit, OnDestroy {
   columns: string[] = [ 'code',  'amount',  'reason', 'customer', 'agency', 'employee', 'createdAt', 'action'];
-  icons = { MoveUpIcon, MoveDownIcon, EllipsisVerticalIcon, Trash2Icon, CircleAlert  }
+  icons = { MoveUpIcon, MoveDownIcon, EllipsisVerticalIcon,
+    Trash2Icon, CircleAlert, CheckIcon  }
 
   @Input()
   params: any = {}

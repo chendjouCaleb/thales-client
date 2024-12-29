@@ -107,13 +107,15 @@ $ms-color-pinkRed-20: #750b1c;
 }
 
 .my-dark-theme {
-  --my-primaryColor: rgb(10, 123, 225);;
+  --my-primaryColor: rgb(10, 123, 225);
+  --my-primaryColor-alpha2: rgba(10, 123, 225, 0.2);
   --my-linkColor: #0078d4;
   --my-backgroundColor: #000;
   --my-dividerColor: #252423;
   --my-backgroundColor__hover: #252423;
 
   --my-OnBackgroundColor: #faf9f8;
+  --my-OnBackgroundColor-alpha2: rgba(250, 249, 248, 0.2);
   --my-SurfaceColor: #1d1d1d;
   --my-SurfaceColor__hover: #151515;
   --my-OnSurfaceColor: #faf9f8;
@@ -121,8 +123,16 @@ $ms-color-pinkRed-20: #750b1c;
   --my-CardBorderColor__hover: #323130;
 
   --my-warnColor: #a4262c;
+  --my-warnColor-alpha2: rgba(164, 38, 44, 0.2);
   --my-warnColor__hover: #750b1c;
   --my-onWarnColor:  #faf9f8;
+
+  --my-successColor: #107c10;
+  --my-successColor-alpha2: rgba(16, 124, 16, 0.2);
+
+  --my-warningColor: #da6410;
+  --my-warningColor-alpha2: rgba(218, 100, 16, 0.2);
+
 }
 
 .my-light-theme {

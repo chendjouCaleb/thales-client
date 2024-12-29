@@ -13,6 +13,8 @@
             Montant
           </button>
         </th>
+        <th>État</th>
+        <td>Échéance</td>
         <th>Raison</th>
         <th *ngIf="display('customer')">
           <button class="th-button-1">Client</button>
@@ -51,13 +53,20 @@
         <td class="align-end">
           {{ debt.amount.format() }}
         </td>
+
+        <td>
+          <MyBadge color="warn">Non réglée</MyBadge>
+        </td>
+
+        <td>
+          <span class="fontSize-12 opacity-8">{{debt.expireAt?.toFormat('DD')}}</span>
+        </td>
         <td>
           <a *ngIf="debt.planeTicketId"
              routerLink="/agencies/{{debt.agencyId}}/plane-tickets/{{debt.planeTicketId}}"
              class="inline-badge ms-bgColor-cyan-10 ms-bgColor-cyan-20--hover">
             Billet d'avion N°{{ debt.planeTicketId }}
           </a>
-
 
           {{ debt.reason }}
         </td>
@@ -67,7 +76,6 @@
             -webkit-box-orient: vertical;
             -webkit-line-clamp: 1;
             overflow: hidden;">{{ debt.customer?.fullName }}</span>
-
         </td>
         <td *ngIf="display('agency')">{{ debt.agency?.name }}</td>
         <td *ngIf="display('member')">{{ debt.member.user?.fullName }}</td>

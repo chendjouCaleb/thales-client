@@ -16,10 +16,17 @@ import {CurrencyPipe, DOCUMENT, NgForOf, NgIf} from "@angular/common";
 import {sleep, Task} from "@app/utils";
 import {isVisibleElement} from "@app/utils/dom";
 import {environment} from "../../../../environments/environment";
-import {EllipsisVerticalIcon, LucideAngularModule, MoveDownIcon, MoveUpIcon, Trash2Icon} from "lucide-angular";
+import {
+  CircleAlert,
+  EllipsisVerticalIcon,
+  LucideAngularModule,
+  MoveDownIcon,
+  MoveUpIcon,
+  Trash2Icon
+} from "lucide-angular";
 import {MatProgressSpinner} from "@angular/material/progress-spinner";
 import {IconButton, Menu, MenuItem} from "@app/ui";
-import {Dropdown} from "@app/NeoUI";
+import {Dropdown, MyBadge} from "@app/NeoUI";
 import {DebtService} from "@app/services/debt.service";
 import {Subscription} from "rxjs";
 import {DebtOverviewLauncher} from "src/app/Components/debts/overview";
@@ -32,14 +39,14 @@ const DEBT_RANGE_SIZE = isDevMode() ? 10 : 30;
   selector: 'DebtList, [DebtList]',
   standalone: true,
   imports: [LucideAngularModule,
-    MatProgressSpinner, NgIf, NgForOf, IconButton, Dropdown, Menu, MenuItem, CurrencyPipe, RouterLink],
+    MatProgressSpinner, NgIf, NgForOf, IconButton, Dropdown, Menu, MenuItem, CurrencyPipe, RouterLink, MyBadge],
   providers: [
     { provide: LOCALE_ID, useValue: 'fr'}, DebtOverviewLauncher,
   ]
 })
 export class DebtList implements OnInit, AfterViewInit, OnDestroy {
   columns: string[] = [ 'code',  'amount',  'reason', 'customer', 'agency', 'employee', 'createdAt', 'action'];
-  icons = { MoveUpIcon, MoveDownIcon, EllipsisVerticalIcon, Trash2Icon }
+  icons = { MoveUpIcon, MoveDownIcon, EllipsisVerticalIcon, Trash2Icon, CircleAlert  }
 
   @Input()
   params: any = {}

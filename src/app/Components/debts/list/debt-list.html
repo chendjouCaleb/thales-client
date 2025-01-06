@@ -55,12 +55,14 @@
         </td>
 
         <td>
-          @if (!debt.isPay){  <MyBadge color="warn">Non réglée</MyBadge> }
           @if (debt.isPay){  <MyBadge color="success">Réglée</MyBadge> }
+          @if (!debt.isPay && !debt.late){  <MyBadge color="warn">Non réglée</MyBadge> }
+          @if (!debt.isPay && debt.late){  <MyBadge color="error">En retard</MyBadge> }
         </td>
 
         <td>
-          <span class="fontSize-12 opacity-8">
+          <span class="fontSize-12" [class.opacity-6]="!debt.late" [class.warn-text]="debt.late">
+
             {{debt.expireAt?.toFormat('DD')}}
 
           </span>
@@ -85,10 +87,10 @@
         <td *ngIf="display('member')">{{ debt.member.user?.fullName }}</td>
         <td *ngIf="display('employee')">{{ debt.employee.user?.fullName }}</td>
         <td *ngIf="display('createdAt')">
-          <span class="fontSize-12">{{ debt.createdAt.moment() }}</span>
+          <span class="fontSize-12 opacity-6">{{ debt.createdAt.moment() }}</span>
         </td>
         <td *ngIf="display('updatedAt')">
-          <span class="fontSize-12 opacity-8">{{ debt.updatedAt.moment() }}</span>
+          <span class="fontSize-12 opacity-6">{{ debt.updatedAt.moment() }}</span>
         </td>
         <td class="align-end">
           <button MyIconButton style="margin-right: 16px" #menuTrigger

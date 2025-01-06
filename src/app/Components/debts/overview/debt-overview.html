@@ -1,11 +1,11 @@
-<div >
-  @if(getDebtTask.loading) {
+<div>
+  @if (getDebtTask.loading) {
     <div class="d-flex align-items-center justify-content-center padding-24">
       <mat-spinner [diameter]="64" strokeWidth="2"></mat-spinner>
     </div>
   }
 
-  @if(getDebtTask.success) {
+  @if (getDebtTask.success) {
 
     <div class="d-flex align-items-center paddingHorizontal-24 mt-4">
 
@@ -16,17 +16,24 @@
       </button>
     </div>
 
-    <div class="marginTop-16 paddingHorizontal-24">
-      <button MyButton color="primary"  (click)="addIncome()" matTooltip="Enregistrer un remboursement de dette">
-        <lucide-icon [img]="icons.DollarSignIcon"></lucide-icon> Rembourser
+    <div class="d-flex marginTop-16 paddingHorizontal-24">
+     <div class="flex-grow-1">
+       @if (!debt.isPay) {
+         <button MyButton color="primary" (click)="addIncome()" matTooltip="Enregistrer un remboursement de dette">
+           <lucide-icon [img]="icons.DollarSignIcon"></lucide-icon>
+           Rembourser
+         </button>
+       }
+     </div>
+
+      <button MyButton (click)="settingsLauncher.launch(debt)" matTooltip="Modifier les informations de cette dépense">
+        <lucide-icon [img]="icons.SettingsIcon"></lucide-icon>
+        Paramètres
       </button>
 
-      <button MyButton  (click)="settingsLauncher.launch(debt)" matTooltip="Modifier les informations de cette dépense">
-        <lucide-icon [img]="icons.SettingsIcon"></lucide-icon> Paramètres
-      </button>
-
-      <button MyButton  (click)="delete()" matTooltip="Supprimer cette dette">
-        <lucide-icon [img]="icons.Trash2Icon"></lucide-icon> Supprimer
+      <button MyButton (click)="delete()" matTooltip="Supprimer cette dette">
+        <lucide-icon [img]="icons.Trash2Icon"></lucide-icon>
+        Supprimer
       </button>
     </div>
 

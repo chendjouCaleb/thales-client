@@ -34,7 +34,12 @@
   <div class="marginTop-16">
     <div class="opacity-5 fontSize-12">Date butoir</div>
     <div class="opacity-6 " *ngIf="!debt.expireAt">Non renseignée</div>
-    <div>{{debt.expireAt?.toFormat('DD')}}</div>
+    <div>{{debt.expireAt?.toFormat('DD')}}
+    @if (debt.isLate) {
+      &bull;
+      <span class="warn-text">(En retard de {{ debt.late.months }} mois, {{debt.late.days.toFixed(0)}} jours)</span>
+    }
+    </div>
   </div>
 
 

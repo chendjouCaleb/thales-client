@@ -56,8 +56,8 @@
 
         <td>
           @if (debt.isPay){  <MyBadge color="success">Réglée</MyBadge> }
-          @if (!debt.isPay && !debt.late){  <MyBadge color="warn">Non réglée</MyBadge> }
-          @if (!debt.isPay && debt.late){  <MyBadge color="error">En retard</MyBadge> }
+          @if (!debt.isPay && !debt.isLate){  <MyBadge color="warn">Non réglée</MyBadge> }
+          @if (!debt.isPay && debt.isLate){  <MyBadge color="error">En retard</MyBadge> }
         </td>
 
         <td>

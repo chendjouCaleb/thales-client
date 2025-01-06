@@ -62,11 +62,15 @@ export class Debt extends BaseEntity<string> {
     return this.amountPaid.amount >= this.amount.amount;
   }
 
+  get isLate(): boolean {
+    return this.expireAt && this.late.as('days') >= 1;
+  }
+
   get late(): Duration | null {
     if(!this.expireAt) {
       return null;
     }
-    return DateTime.now().diff(this.expireAt)
+    return DateTime.now().diff(this.expireAt, ['months', 'days'])
   }
 
   constructor(value: any = {}) {

@@ -54,6 +54,10 @@ export class Debt extends BaseEntity<string> {
 
   elementId: string;
 
+  get remaining(): Money {
+    return this.amount.subtract(this.amountPaid)
+  }
+
   get isPay() {
     return this.amountPaid.amount >= this.amount.amount;
   }

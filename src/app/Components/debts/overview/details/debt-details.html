@@ -1,8 +1,28 @@
 <div class="p-4">
-  <div>
-    <div class="fontSize-12">Montant</div>
-    <div class="opacity-8">{{debt.amount.format()}}</div>
+
+  <div style="display: grid; grid-template-columns: 1fr 1fr 1fr;">
+    <div>
+      <div class="opacity-6 fontSize-12">Montant de la dette</div>
+      <div class="opacity-8">{{debt.amount.format()}}</div>
+    </div>
+
+    <div>
+      <div class="opacity-6 fontSize-12">Montant remboursé</div>
+      <div class="opacity-8">{{debt.amountPaid.format()}}</div>
+    </div>
+
+    <div>
+      <div class="opacity-6 fontSize-12">Montant restant</div>
+      @if(debt.remaining.amount >= 0){
+        <div class="warn-text">{{debt.remaining.format()}}</div>
+      } @else {
+        <MyBadge color="success">Réglée</MyBadge>
+      }
+    </div>
   </div>
+
+
+
 
   <div class="marginTop-16">
     <div class="opacity-5 fontSize-12">Raison</div>

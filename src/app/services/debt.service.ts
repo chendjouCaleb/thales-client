@@ -7,6 +7,7 @@ import {DebtAddModel, DebtIncomeAddModel} from "@app/models";
 import {DebtRangeViewModel} from "@entities/view-models/DebtRangeViewModel";
 import {Money} from "@entities/money";
 import {DebtIncome} from "@entities/finance/debt-income";
+import {DateTime} from "luxon";
 
 @Injectable({
   providedIn: 'root'
@@ -96,6 +97,32 @@ export class DebtService {
     const call = this._httpClient.put<void>(`${this.url}/${debt.id}/reason`, {}, {params});
     await firstValueFrom(call);
     debt.reason = reason;
+    this._debtUpdate.next(debt);
+  }
+
+  async changeExpireAtAsync(debt: Debt, expireAt?: Date): Promise<void> {
+    const params = { expireAt:expireAt.toString() }
+    const call = this._httpClient.put<void>(`${this.url}/${debt.id}/expire-at`, {}, {params});
+    await firstValueFrom(call);
+    if(expireAt){
+      debt.expireAt = DateTime.fromJSDate(expireAt)
+    }else {
+      debt.expireAt = null
+    }
+
+    this._debtUpdate.next(debt);
+  }
+
+  async changeDoneAtAsync(debt: Debt, doneAt?: Date): Promise<void> {
+    const params = { doneAt:doneAt.toString() }
+    const call = this._httpClient.put<void>(`${this.url}/${debt.id}/done-at`, {}, {params});
+    await firstValueFrom(call);
+    if(doneAt){
+      debt.doneAt = DateTime.fromJSDate(doneAt)
+    }else {
+      debt.doneAt = null
+    }
+
     this._debtUpdate.next(debt);
   }
 }

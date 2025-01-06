@@ -8,6 +8,7 @@ import {DebtService} from "@app/services/debt.service";
 import {Task} from "@app/utils";
 import {IconButton} from "@app/ui";
 import {NgIf} from "@angular/common";
+import {DebtChangeDueAtLauncher} from "@app/Components/debts/change-due-at";
 
 @Component({
   templateUrl: 'debt-settings.html',
@@ -19,9 +20,12 @@ import {NgIf} from "@angular/common";
     NgIf
   ],
   selector: '[DebtSettings], DebtSettings',
-  providers: [ DebtChangeAmountLauncher,
+  providers: [
+    DebtChangeAmountLauncher,
     DebtChangeReasonLauncher,
-    DebtDeleteLauncher ]
+    DebtDeleteLauncher,
+    DebtChangeDueAtLauncher
+  ]
 })
 export class DebtSettings {
   icons = { ArrowLeftIcon, Trash2Icon, PencilIcon, XIcon }
@@ -35,6 +39,7 @@ export class DebtSettings {
               private _changeAmountLauncher: DebtChangeAmountLauncher,
               private _changeReasonLauncher: DebtChangeReasonLauncher,
               private _changeDeleteLauncher: DebtDeleteLauncher,
+              private _changeExpireAtLauncher: DebtChangeDueAtLauncher,
               private _debtService: DebtService) {
     this.debtId = data.debtId;
     this.debt = data.debt;
@@ -64,6 +69,10 @@ export class DebtSettings {
 
   changeReason() {
     this._changeReasonLauncher.launch(this.debt);
+  }
+
+  changeExpireAt() {
+    this._changeExpireAtLauncher.launch(this.debt);
   }
 
   delete() {

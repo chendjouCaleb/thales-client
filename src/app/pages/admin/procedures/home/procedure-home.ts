@@ -8,7 +8,7 @@ import {Button} from "@app/ui";
 
 @Component({
   templateUrl: 'procedure-home.html',
-  selector: 'ProcedureHome',
+  selector: 'ProcedureHome, [ProcedureHome]',
   imports: [
     RouterLink,
     NgForOf,

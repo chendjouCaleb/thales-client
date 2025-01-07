@@ -7,9 +7,22 @@
 
 
 
-<div *ngIf="getProcedureTask.success">
-  <div class="fontSize-24">{{ procedure.name }}</div>
-  <div>
+<div *ngIf="getProcedureTask.success" class="marginVertical-16">
+
+  <div class="d-flex align-items-center marginVertical-8 marginHorizontal-12">
+    <button MyIconButton (click)="_location.back()">
+      <lucide-icon [img]="icons.ArrowLeftIcon"></lucide-icon>
+    </button>
+    <div class="flex-grow-1"></div>
+    <a MyButton [routerLink]="['/admin', parent.space.identifier, 'procedures', procedure.id, 'settings']"
+       class="alpha-primary">
+      <lucide-icon [img]="icons.SettingsIcon"></lucide-icon>
+      Paramètres
+    </a>
+  </div>
+
+  <div class="fontSize-24 marginTop-8 marginHorizontal-24">{{ procedure.name }}</div>
+  <div class="marginHorizontal-8 marginTop-16">
     <TabRow #tabRow [selectedIndex]="0">
       <button TabRowItem
               (click)="tabRow.selectIndex(0, true); pager.selectIndex(0)"
@@ -38,8 +51,9 @@
 
   <HorizontalPager #pager [selectedIndex]="0">
     <div *PageDef>
-      <ProcedureHome [procedure]="procedure"></ProcedureHome>
+      <div ProcedureHome [procedure]="procedure" class="padding-24"></div>
     </div>
+
     <div *PageDef class="p-3">
       <procedure-apply-list [params]="{procedureId: procedure.id}"></procedure-apply-list>
     </div>

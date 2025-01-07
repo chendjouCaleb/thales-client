@@ -8,8 +8,7 @@ import {AdminPage} from "@app/pages/admin/admin.page";
   selector: 'SpaceProcedureApply',
   encapsulation: ViewEncapsulation.None,
   template: `
-    <div class="p-4">
-      <div class="fontSize-22">Procédure en cours</div>
+    <div class="padding-16">
       <ProcedureApplyDetails [procedureApplyId]="procedureApplyId" class="mt-4"></ProcedureApplyDetails>
     </div>
 

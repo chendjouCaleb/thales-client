@@ -99,8 +99,9 @@ $button-typography: mat.m2-define-typography-config(
 
 .description-list {
   & dt {
-    font-size: 14px;
-    font-weight: 600;
+    font-size: 12px;
+    opacity: .6;
+    font-weight: 400 !important;
     margin-top: 16px;
   }
 

@@ -5,5 +5,9 @@
 }
 
 @if (getProcedureApply.success) {
-  <div ProcedureApplyPager [procedureApply]="procedureApply"></div>
+
+  <div>
+    <div class="fontSize-22 fontWeight-semiBold paddingHorizontal-16">Procédure en cours</div>
+    <div class="marginTop-8" ProcedureApplyPager [procedureApply]="procedureApply"></div>
+  </div>
 }

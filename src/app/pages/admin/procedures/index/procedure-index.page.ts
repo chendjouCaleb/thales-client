@@ -11,6 +11,8 @@ import {TraceModule} from "@app/trace";
 import {ProcedureApplyList} from "@app/Components/procedure-apply/list/procedure-apply-list";
 import {ProcedureHome} from "@app/pages/admin/procedures/home/procedure-home";
 import {NgIf} from "@angular/common";
+import {Task} from "@app/utils";
+import {MatProgressSpinner} from "@angular/material/progress-spinner";
 
 @Component({
   templateUrl: 'procedure-index.page.html',
@@ -23,7 +25,8 @@ import {NgIf} from "@angular/common";
     TraceModule,
     ProcedureApplyList,
     ProcedureHome,
-    NgIf
+    NgIf,
+    MatProgressSpinner
   ],
   standalone: true
 })
@@ -40,9 +43,14 @@ export class ProcedureIndexPage implements OnInit {
               private _service: ProcedureService) {}
 
   async ngOnInit() {
+    this.getProcedureTask.launch()
+  }
+
+
+  getProcedureTask = new Task<Procedure>(async () => {
     const procedureId = +this.route.snapshot.params['procedureId'];
     this.procedure = await this._service.getByIdAsync(procedureId);
     this.procedure.steps = await this._service.getStepsAsync(this.procedure);
-  }
-
+    return this.procedure
+  })
 }

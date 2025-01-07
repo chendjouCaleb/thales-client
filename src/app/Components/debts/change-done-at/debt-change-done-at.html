@@ -1,0 +1,17 @@
+<div class="fontWeight-semiBold fontSize-20 p-4">Création de la dette</div>
+
+
+<div class="px-4">
+  <TextField class="mt-2" style="width: 100%">
+    <label TextFieldLabel for="done-at-field">Date de création</label>
+    <textarea TextFieldInput CleaveDateInput [formControl]="control" id="done-at-field" required>
+    </textarea>
+  </TextField>
+</div>
+
+<div class="p-4 align-end">
+  <button MyButton (click)="_dialogRef.close()" class="me-3">Annuler</button>
+  <button MyButton color="primary" (click)="change()" [disabled]="control.invalid && addTask.loading">
+    @if(addTask.loading) {  <mat-spinner diameter="16" strokeWidth="1"></mat-spinner> }
+    Modifier</button>
+</div>

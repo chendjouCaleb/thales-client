@@ -9,6 +9,7 @@ import {Task} from "@app/utils";
 import {IconButton} from "@app/ui";
 import {NgIf} from "@angular/common";
 import {DebtChangeDueAtLauncher} from "@app/Components/debts/change-due-at";
+import {DebtChangeDoneAtLauncher} from "@app/Components/debts/change-done-at";
 
 @Component({
   templateUrl: 'debt-settings.html',
@@ -24,7 +25,8 @@ import {DebtChangeDueAtLauncher} from "@app/Components/debts/change-due-at";
     DebtChangeAmountLauncher,
     DebtChangeReasonLauncher,
     DebtDeleteLauncher,
-    DebtChangeDueAtLauncher
+    DebtChangeDueAtLauncher,
+    DebtChangeDoneAtLauncher
   ]
 })
 export class DebtSettings {
@@ -40,6 +42,7 @@ export class DebtSettings {
               private _changeReasonLauncher: DebtChangeReasonLauncher,
               private _changeDeleteLauncher: DebtDeleteLauncher,
               private _changeExpireAtLauncher: DebtChangeDueAtLauncher,
+              private _changeDoneAtLauncher: DebtChangeDoneAtLauncher,
               private _debtService: DebtService) {
     this.debtId = data.debtId;
     this.debt = data.debt;
@@ -75,6 +78,10 @@ export class DebtSettings {
 
   changeExpireAt() {
     this._changeExpireAtLauncher.launch(this.debt);
+  }
+
+  changeDoneAt() {
+    this._changeDoneAtLauncher.launch(this.debt);
   }
 
   delete() {

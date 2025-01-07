@@ -14,7 +14,7 @@ import {MatProgressSpinner} from "@angular/material/progress-spinner";
 import {DebtService} from "@app/services/debt.service";
 
 @Component({
-  templateUrl: 'debt-change-reason.html',
+  templateUrl: 'debt-change-done-at.html',
   selector: 'DebtChangeDoneAt',
   imports: [
     LucideAngularModule,
@@ -28,18 +28,18 @@ import {DebtService} from "@app/services/debt.service";
   ],
   standalone: true
 })
-export class DebtChangeReason {
+export class DebtChangeDoneAt {
   icons = { ChevronDownIcon }
   debt: Debt
 
-  control = new FormControl<string>('')
+  control: FormControl<Date>
 
   constructor(@Inject(DIALOG_DATA) data: any,
-              public _dialogRef: DialogRef<string, DebtChangeReason>,
+              public _dialogRef: DialogRef<Date, DebtChangeDoneAt>,
               private _service: DebtService,
               private _snackbar: MatSnackBar) {
     this.debt = data.debt;
-    this.control = new FormControl(this.debt.reason)
+    this.control = new FormControl(this.debt.doneAt?.toJSDate())
   }
 
 
@@ -47,16 +47,16 @@ export class DebtChangeReason {
   async change() {
     await this.addTask.launch()
     if(this.addTask.success) {
-      const details = this.addTask.result;
-      this._dialogRef.close(details);
-      this._snackbar.open(`La raison de la dépense a été changée.`, '', { duration: 3000 });
+      const doneAt = this.addTask.result;
+      this._dialogRef.close(doneAt);
+      this._snackbar.open(`La date de création a été changée.`, '', { duration: 3000 });
     }
   }
 
-  addTask = new Task<string>(async () => {
-    const reason = this.control.value;
-    await this._service.changeReasonAsync(this.debt, reason);
-    return reason;
+  addTask = new Task<Date | null>(async () => {
+    const dueAt = this.control.value;
+    await this._service.changeDoneAtAsync(this.debt, dueAt);
+    return dueAt;
   })
 }
 

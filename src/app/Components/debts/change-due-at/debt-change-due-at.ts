@@ -15,7 +15,7 @@ import {DebtService} from "@app/services/debt.service";
 
 @Component({
   templateUrl: 'debt-change-due-at.html',
-  selector: 'DebtChangeDueAt',
+  selector: 'DebtChangeDoneAt',
   imports: [
     LucideAngularModule,
     TextField,
@@ -39,7 +39,7 @@ export class DebtChangeDueAt {
               private _service: DebtService,
               private _snackbar: MatSnackBar) {
     this.debt = data.debt;
-    this.control = new FormControl(this.debt.expireAt.toJSDate())
+    this.control = new FormControl(this.debt.expireAt?.toJSDate())
   }
 
 

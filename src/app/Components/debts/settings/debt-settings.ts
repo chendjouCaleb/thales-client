@@ -46,7 +46,9 @@ export class DebtSettings {
   }
 
   ngOnInit() {
-    this.getDebtTask.launch();
+    if(!this.debt) {
+      this.getDebtTask.launch();
+    }
     this.deleteSubscription = this._debtService.debtDelete.subscribe((deletedDebt) => {
       if(deletedDebt.id === this.debt.id) {
         this._dialogRef.close()

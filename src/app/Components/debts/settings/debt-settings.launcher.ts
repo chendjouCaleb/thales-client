@@ -10,7 +10,7 @@ export class DebtSettingsLauncher {
   constructor(private _dialog: Dialog) {}
 
   launch(debt: Debt) {
-    const data = { debtId: debt.id }
+    const data = { debt: debt }
     const _dialogRef = this._dialog.open(DebtSettings, { data, disableClose: true });
   }
 }

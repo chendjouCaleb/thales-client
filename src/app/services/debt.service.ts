@@ -101,7 +101,7 @@ export class DebtService {
   }
 
   async changeExpireAtAsync(debt: Debt, expireAt?: Date): Promise<void> {
-    const params = { expireAt:expireAt.toString() }
+    const params = { expireAt:expireAt.toISOString() }
     const call = this._httpClient.put<void>(`${this.url}/${debt.id}/expire-at`, {}, {params});
     await firstValueFrom(call);
     if(expireAt){
@@ -114,7 +114,7 @@ export class DebtService {
   }
 
   async changeDoneAtAsync(debt: Debt, doneAt?: Date): Promise<void> {
-    const params = { doneAt:doneAt.toString() }
+    const params = { doneAt:doneAt.toISOString() }
     const call = this._httpClient.put<void>(`${this.url}/${debt.id}/done-at`, {}, {params});
     await firstValueFrom(call);
     if(doneAt){

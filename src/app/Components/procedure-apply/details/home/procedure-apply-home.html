@@ -1,4 +1,8 @@
 <dl class="description-list">
+
+  <dt>Code</dt>
+  <dd>#000000</dd>
+
   <dt>Procédure</dt>
   <dd>
     <a [routerLink]="['/admin', procedureApply.space?.identifier, 'procedures', procedureApply.procedureId]">
@@ -10,6 +14,13 @@
   <dd>
     <a [routerLink]="['/admin', procedureApply.space?.identifier, 'customers', procedureApply.customerId]">
     {{ procedureApply.customer.fullName }}
+    </a>
+  </dd>
+
+  <dt>Agence</dt>
+  <dd>
+    <a [routerLink]="['/agencies', procedureApply.agencyId]">
+      {{ procedureApply.agency?.name }}
     </a>
   </dd>
 
@@ -27,7 +38,7 @@
   >
 
     <div class="fontWeight-semiBold fontSize-22">
-      {{applyStep.procedureStep.index}}
+      {{applyStep.procedureStep.index + 1}}
     </div>
 
     <div>

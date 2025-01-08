@@ -5,6 +5,7 @@ import {SERVER_URL} from "@app/http";
 import {firstValueFrom} from "rxjs";
 import {ProcedureApplyStepValidateModel, ProcedureStepFormModel} from "../models";
 import {ProcedureApplyRangeViewModel} from "@entities/view-models/ProcedureApplyRangeViewModel";
+import {DateTime} from "luxon";
 
 @Injectable({
   providedIn: 'root'
@@ -33,6 +34,33 @@ export class ProcedureApplyService {
     const params = {customerId: customer.id, procedureId: procedure.id, agencyId: agency.id};
     const call = this._httpClient.post<Procedure>(`${this.url}`, {}, {params});
     return new ProcedureApply(await firstValueFrom(call));
+  }
+
+  async lockAsync(apply: ProcedureApply): Promise<void> {
+    const call = this._httpClient.put<void>(`${this.url}/${apply.id}/lock`, {});
+    await firstValueFrom(call);
+    apply.isLocked = true;
+  }
+
+  async unlockAsync(apply: ProcedureApply): Promise<void> {
+    const call = this._httpClient.put<void>(`${this.url}/${apply.id}/unlock`, {});
+    await firstValueFrom(call);
+    apply.isLocked = false;
+  }
+
+
+  async doneAsync(apply: ProcedureApply): Promise<void> {
+    const call = this._httpClient.put<void>(`${this.url}/${apply.id}/done`, {});
+    await firstValueFrom(call);
+    apply.doneAt = DateTime.now()
+  }
+
+  async undoneAsync(apply: ProcedureApply): Promise<void> {
+    const call = this._httpClient.put<void>(`${this.url}/${apply.id}/undone`, {});
+    await firstValueFrom(call);
+    apply.doneAt = null
+    apply.doneByMember = null
+    apply.doneByMemberId = null
   }
 
   async getApplyStepByIdAsync(id: number): Promise<ProcedureApplyStep> {

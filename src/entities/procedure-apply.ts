@@ -6,6 +6,8 @@ import {Agency} from "./agency";
 import {Employee} from "@entities/employee";
 import { Space } from "./space";
 import {Money} from "@entities/money";
+import {Member} from "@entities/member";
+import {DateTime} from "luxon";
 
 export class ProcedureApply extends BaseEntity<number> {
   customer: Customer;
@@ -23,6 +25,12 @@ export class ProcedureApply extends BaseEntity<number> {
   employee: Employee;
   employeeId: number;
 
+  isLocked: boolean
+  doneAt?: DateTime
+  get isDone(): boolean { return !!this.doneAt }
+  doneByMember?: Member
+  doneByMemberId?: number
+
   steps: ProcedureApplyStep[] = [];
 
   totalPayment: Money
@@ -30,6 +38,12 @@ export class ProcedureApply extends BaseEntity<number> {
   constructor(value: any = {}) {
     super(value);
     if (value) {
+      this.isLocked = value.isLocked;
+      this.doneAt = value.doneAt ? DateTime.fromISO(value.doneAt) : null;
+      this.doneByMember = value.doneByMember ? new Member(value.doneByMember) : undefined;
+      this.doneByMemberId = value.doneByMemberId;
+
+
       this.customerId = value.customerId;
       this.customer = value.customer ? new Customer(value.customer) : undefined;
 
@@ -43,6 +57,7 @@ export class ProcedureApply extends BaseEntity<number> {
       this.space = value.space ? new Space(value.space) : undefined;
 
       this.steps = value.steps ? value.steps.map(s => new ProcedureApply(s)) : undefined;
+      this.steps?.sort((a, b) => a.procedureStep?.index)
 
       this.totalPayment = value.totalPayment ? Money.parse(value.totalPayment) : undefined;
     }
@@ -64,6 +79,10 @@ export class ProcedureApplyStep extends BaseEntity<number> {
   agencyId: number;
 
   validated: boolean;
+  validatedAt: DateTime
+  validatedByEmployee: Employee
+  validatedByEmployeeId: number
+
   paymentAmount: number = 0;
   totalPayment: Money
 
@@ -81,6 +100,10 @@ export class ProcedureApplyStep extends BaseEntity<number> {
       this.payments = value.payments ? value.payments.map(p => new Payment(p)) : null;
 
       this.validated = value.validated;
+      this.validatedAt = value.validatedAt ? DateTime.fromISO(value.validatedAt) : null;
+      this.validatedByEmployeeId = value.validatedByEmployeeId;
+      this.validatedByEmployee = value.validatedByEmployee ? new Employee(value.validatedByEmployee) : null;
+
       this.paymentAmount = value.paymentAmount;
 
       this.totalPayment = value.totalPayment ? Money.parse(value.totalPayment) : undefined;

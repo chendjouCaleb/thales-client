@@ -56,7 +56,7 @@ export class ProcedureApply extends BaseEntity<number> {
       this.spaceId = value.spaceId;
       this.space = value.space ? new Space(value.space) : undefined;
 
-      this.steps = value.steps ? value.steps.map(s => new ProcedureApply(s)) : undefined;
+      this.steps = value.steps ? value.steps.map(s => new ProcedureApplyStep(s)) : undefined;
       this.steps?.sort((a, b) => a.procedureStep?.index)
 
       this.totalPayment = value.totalPayment ? Money.parse(value.totalPayment) : undefined;

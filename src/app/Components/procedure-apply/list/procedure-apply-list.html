@@ -16,10 +16,12 @@
        style="border-radius: 8px">
     <div class="fontWeight-bold fontSize-16">{{apply.customer.fullName}}</div>
     <div>
-      <span>{{apply.procedure.name}}</span>
+      <span>{{apply.procedure.name}} ({{apply.steps.length}})</span>
       <span class="mx-2"> </span>
       <span class="opacity-75 fontSize-12">Depuis le {{apply.createdAt.toFormat('ff')}}</span>
     </div>
+
+    <ProcedureApplyProgressBar [procedureApply]="apply" style="width: 128px" class="marginTop-4"></ProcedureApplyProgressBar>
   </div>
 }
 

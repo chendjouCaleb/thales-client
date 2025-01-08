@@ -11,9 +11,11 @@ import {Space} from "@entities/space";
   selector: 'ProcedureAppliesListPage',
   template: `
     <div class="p-4">
-      <div class="fontSize-20 fontWeight-semiBold">Procédures en cours</div>
+      <div class="fontSize-20 fontWeight-semiBold">Procédures en cours
+        @if(list.total){ ({{list.total}}) }
+      </div>
       <div class="mt-4">
-        <procedure-apply-list (rowClick)="click($event)" [params]="params"></procedure-apply-list>
+        <procedure-apply-list #list (rowClick)="click($event)" [params]="params"></procedure-apply-list>
       </div>
     </div>
   `,

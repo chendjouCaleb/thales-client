@@ -19,6 +19,7 @@ import {NgForOf, NgIf} from "@angular/common";
 import {RouterLink} from "@angular/router";
 import {sleep, Task} from "@app/utils";
 import {isVisibleElement} from "@app/utils/dom";
+import {ProcedureApplyProgressBar} from "@app/Components/procedure-apply/progress-bar/procedure-apply-progress-bar";
 
 
 const PROCEDURE_APPLIES_RANGE_SIZE = isDevMode() ? 5 : 30;
@@ -32,7 +33,8 @@ const PROCEDURE_APPLIES_RANGE_SIZE = isDevMode() ? 5 : 30;
     MatProgressSpinner,
     NgForOf,
     RouterLink,
-    NgIf
+    NgIf,
+    ProcedureApplyProgressBar
   ],
   standalone: true
 })

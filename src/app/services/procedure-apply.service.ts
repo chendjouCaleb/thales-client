@@ -99,8 +99,10 @@ export class ProcedureApplyService {
     applyStep.validatedAt = DateTime.now()
   }
 
-  invalidateStepAsync(procedureApplyStep: ProcedureApplyStep): Promise<void> {
-    const call = this._httpClient.put<void>(`${this.stepUrl}/${procedureApplyStep.id}/invalidate`, {});
+  invalidateStepAsync(applyStep: ProcedureApplyStep): Promise<void> {
+    const call = this._httpClient.put<void>(`${this.stepUrl}/${applyStep.id}/invalidate`, {});
+    applyStep.validated = false;
+    applyStep.validatedAt = null;
     return firstValueFrom(call);
   }
 

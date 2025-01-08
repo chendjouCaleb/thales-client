@@ -74,14 +74,11 @@ export class ProcedureApplyStepHome implements OnInit {
   }
 
   validateStep() {
-    const modalRef = this._controller.validate(this.applyStep)
-      .subscribe(payment => {
-        this.paymentList.unshift(payment);
-      });
+    const modalRef = this._controller.validate(this.applyStep);
   }
 
   invalidateStep() {
-
+    this._controller.invalidate(this.applyStep);
   }
 
 }

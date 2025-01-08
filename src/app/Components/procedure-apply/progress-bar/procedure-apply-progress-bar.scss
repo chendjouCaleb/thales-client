@@ -1,0 +1,14 @@
+:host {
+  display: flex;
+  gap:2px;
+
+  .progress-bar-step-item {
+    background-color: var(--my-SurfaceColor);
+    height: 6px;
+    border-radius: 3px;
+
+    &.validated {
+      background-color: var(--my-successColor);
+    }
+  }
+}

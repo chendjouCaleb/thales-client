@@ -9,7 +9,7 @@ import {CleaveModule} from "@app/cleave";
 import {Button} from "@app/ui";
 
 @Component({
-  templateUrl: 'procedure-apply-step-validate.html',
+  templateUrl: 'procedure-apply-step-invalidate.html',
   selector: 'ProcedureApplyStepInvalidate',
   imports: [
     TextFieldLabel,
@@ -21,20 +21,20 @@ import {Button} from "@app/ui";
   ],
   standalone: true
 })
-export class ProcedureApplyStepValidate {
+export class ProcedureApplyStepInvalidate {
   applyStep: ProcedureApplyStep;
 
   constructor(@Inject(DIALOG_DATA) data: any,
-              public _dialogRef: DialogRef<void, ProcedureApplyStepValidate>,
+              public _dialogRef: DialogRef<void, ProcedureApplyStepInvalidate>,
               private _service: ProcedureApplyService,
               private _snackbar: MatSnackBar) {
     this.applyStep = data.applyStep;
   }
 
-  async validate() {
-    const payment = await this._service.validateStepAsync(this.applyStep);
+  async invalidate() {
+    await this._service.invalidateStepAsync(this.applyStep);
 
     this._dialogRef.close();
-    this._snackbar.open(`L'étape a été validée.`, '', {duration: 3000})
+    this._snackbar.open(`La validation de l'étape a été annulée.`, '', {duration: 3000})
   }
 }

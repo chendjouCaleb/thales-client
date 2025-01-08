@@ -6,6 +6,8 @@ import {BreadcrumbItem, ProcedureApplyController} from "@app/Components";
 import {AgencyPage} from "@app/pages/agency/agency.page";
 import {DecimalPipe, NgForOf, NgIf} from "@angular/common";
 import {PaymentsList} from "@app/Components/payments/list/payments-list";
+import {MyBadge} from "@app/NeoUI";
+import {ProcedureApplyProgressBar} from "@app/Components/procedure-apply/progress-bar/procedure-apply-progress-bar";
 
 @Component({
   templateUrl: 'procedure-apply-home.html',
@@ -15,7 +17,9 @@ import {PaymentsList} from "@app/Components/payments/list/payments-list";
     NgIf,
     NgForOf,
     PaymentsList,
-    DecimalPipe
+    DecimalPipe,
+    MyBadge,
+    ProcedureApplyProgressBar
   ],
   standalone: true
 })

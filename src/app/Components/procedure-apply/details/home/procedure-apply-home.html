@@ -10,6 +10,7 @@
     </a>
   </dd>
 
+
   <dt>Client</dt>
   <dd>
     <a [routerLink]="['/admin', procedureApply.space?.identifier, 'customers', procedureApply.customerId]">
@@ -29,6 +30,12 @@
 
 </dl>
 
+<div class="marginTop-16">
+  <div class="fontSize-12 opacity-6">Progression</div>
+  <div>
+    <ProcedureApplyProgressBar [procedureApply]="procedureApply"></ProcedureApplyProgressBar>
+  </div>
+</div>
 <div *ngIf="procedureApply.steps" class="mt-4">
   <div class="fontSize-18 fontWeight-semiBold">Étapes</div>
 
@@ -50,7 +57,11 @@
       </div>
 
       <div *ngIf="!applyStep.validated">
-        <span class="inline-badge ms-bgColor-cyan-10">En attente</span>
+        <MyBadge color="warn">En attente</MyBadge>
+      </div>
+
+      <div *ngIf="applyStep.validated">
+        <MyBadge color="success">Validée</MyBadge>
       </div>
     </div>
   </div>

@@ -1,0 +1,6 @@
+
+@for (step of procedureApply.steps; track step.id) {
+  <div class="progress-bar-step-item"
+       [class.validated]="step.validated"
+       [style.width.px]="width/procedureApply.steps?.length"></div>
+}

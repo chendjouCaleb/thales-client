@@ -24,21 +24,17 @@ import {Button} from "@app/ui";
 export class ProcedureApplyStepValidate {
   applyStep: ProcedureApplyStep;
 
-  formControl = new FormControl<number>(null);
-
   constructor(@Inject(DIALOG_DATA) data: any,
-              public _dialogRef: DialogRef<Payment, ProcedureApplyStepValidate>,
+              public _dialogRef: DialogRef<void, ProcedureApplyStepValidate>,
               private _service: ProcedureApplyService,
               private _snackbar: MatSnackBar) {
     this.applyStep = data.applyStep;
   }
 
   async validate() {
-    const amount = this.formControl.value;
-    const model = {paymentAmount: amount}
-    const payment = await this._service.validateStepAsync(this.applyStep, model);
+    const payment = await this._service.validateStepAsync(this.applyStep);
 
-    this._dialogRef.close(payment);
-    this._snackbar.open(`L'étape a été validée..`, '', {duration: 3000})
+    this._dialogRef.close();
+    this._snackbar.open(`L'étape a été validée.`, '', {duration: 3000})
   }
 }

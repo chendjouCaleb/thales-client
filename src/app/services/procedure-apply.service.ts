@@ -92,13 +92,11 @@ export class ProcedureApplyService {
     return firstValueFrom(call);
   }
 
-  async validateStepAsync(applyStep: ProcedureApplyStep, model: ProcedureApplyStepValidateModel): Promise<Payment> {
-    const call = this._httpClient.put<Payment>(`${this.stepUrl}/${applyStep.id}/validate`, model);
-    const payment = new Payment(await firstValueFrom(call));
+  async validateStepAsync(applyStep: ProcedureApplyStep): Promise<void> {
+    const call = this._httpClient.put<void>(`${this.stepUrl}/${applyStep.id}/validate`, {});
+    await firstValueFrom(call)
     applyStep.validated = true;
-    applyStep.payments.unshift(payment);
-
-    return payment;
+    applyStep.validatedAt = DateTime.now()
   }
 
   invalidateStepAsync(procedureApplyStep: ProcedureApplyStep): Promise<void> {

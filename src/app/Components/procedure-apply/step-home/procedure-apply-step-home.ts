@@ -11,7 +11,8 @@ import {Dialog, DIALOG_DATA, DialogRef} from "@angular/cdk/dialog";
 import {NgIf} from "@angular/common";
 import {MatIcon} from "@angular/material/icon";
 import {Button, IconButton} from "@app/ui";
-import {BanIcon, CheckIcon, DollarSignIcon, LucideAngularModule, XIcon} from "lucide-angular";
+import {BanIcon, CheckIcon, CircleCheckBig, DollarSignIcon, LucideAngularModule, XIcon} from "lucide-angular";
+import {MyBadge} from "@app/NeoUI";
 
 @Component({
   templateUrl: 'procedure-apply-step-home.html',
@@ -24,11 +25,12 @@ import {BanIcon, CheckIcon, DollarSignIcon, LucideAngularModule, XIcon} from "lu
     Button,
     PaymentsList,
     IconButton,
-    LucideAngularModule
+    LucideAngularModule,
+    MyBadge
   ]
 })
 export class ProcedureApplyStepHome implements OnInit {
-  icons = { CheckIcon, XIcon, BanIcon, DollarSignIcon }
+  icons = { CheckIcon, XIcon, BanIcon, DollarSignIcon, CircleCheckBig }
   applyStep: ProcedureApplyStep;
   procedureApplyId: number;
 

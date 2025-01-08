@@ -1,15 +1,10 @@
 <div class="fontWeight-semiBold fontSize-20 p-4">Valider l'étape</div>
 
-
-
 <div class="px-4">
-    <TextField style="width: 100%">
-      <label TextFieldLabel for="payment-amount-field" >Montant versé</label>
-      <input CleaveNumberInput TextFieldInput [formControl]="formControl" id="payment-amount-field">
-    </TextField>
+    Marquer cette étape de la procédure comme validée.
 </div>
 
-<div class="px-4 pb-4 align-end">
+<div class="px-4 pb-4 align-end marginTop-16">
   <button MyButton (click)="_dialogRef.close()" class="me-3">Annuler</button>
   <button MyButton class="primary" (click)="validate()">Valider</button>
 </div>

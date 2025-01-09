@@ -12,6 +12,13 @@
   <dt>Code</dt>
   <dd>#000000</dd>
 
+  <dt>État</dt>
+  <dd>
+    <MyBadge *ngIf="!procedureApply.isDone" color="neutral">En cours</MyBadge>
+    <MyBadge *ngIf="procedureApply.isDone" color="success">Clôturée</MyBadge>
+
+  </dd>
+
   <dt>Procédure</dt>
   <dd>
     <a [routerLink]="['/admin', procedureApply.space?.identifier, 'procedures', procedureApply.procedureId]">

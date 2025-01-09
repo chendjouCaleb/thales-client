@@ -18,15 +18,15 @@
         <lucide-icon [img]="icons.CircleCheckBigIcon"></lucide-icon> Clôturer
       </button>
 
-      <button MyButton color="success" (click)="undone()" *ngIf="procedureApply.isDone">
+      <button MyButton (click)="undone()" *ngIf="procedureApply.isDone">
         <lucide-icon [img]="icons.UndoIcon"></lucide-icon> Réouvrir
       </button>
 
-      <button *ngIf="!procedureApply.isLocked" MyIconButton (click)="lock()" color="warn">
+      <button *ngIf="!procedureApply.isLocked" MyIconButton (click)="lock()" color="warn" class="marginHorizontal-8">
         <lucide-icon [img]="icons.LockIcon"></lucide-icon>
       </button>
 
-      <button *ngIf="procedureApply.isLocked" MyIconButton (click)="unlock()" class="marginHorizontal-4">
+      <button *ngIf="procedureApply.isLocked" MyIconButton (click)="unlock()" class="marginHorizontal-8">
         <lucide-icon [img]="icons.LockOpenIcon"></lucide-icon>
       </button>
 
@@ -40,7 +40,7 @@
 
 
   <div>
-    <div class="fontSize-22 fontWeight-semiBold paddingHorizontal-16">Procédure en cours</div>
+    <div class="fontSize-22 fontWeight-semiBold paddingHorizontal-16 marginTop-8">Procédure en cours</div>
     <div class="marginTop-8" ProcedureApplyPager [procedureApply]="procedureApply"></div>
   </div>
 }

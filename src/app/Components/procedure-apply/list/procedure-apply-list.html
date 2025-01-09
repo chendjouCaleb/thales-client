@@ -21,7 +21,15 @@
       <span class="opacity-75 fontSize-12">Depuis le {{apply.createdAt.toFormat('ff')}}</span>
     </div>
 
-    <ProcedureApplyProgressBar [procedureApply]="apply" style="width: 128px" class="marginTop-4"></ProcedureApplyProgressBar>
+    <div class="d-flex align-items-center marginTop-4">
+      <ProcedureApplyProgressBar [procedureApply]="apply" style="width: 128px" class="marginTop-4"></ProcedureApplyProgressBar>
+
+      <div class="marginStart-24">
+        <MyBadge *ngIf="apply.isLocked" color="error" class="margin-start32">Bloquée</MyBadge>
+        <MyBadge *ngIf="apply.isDone" color="success" class="margin-start32">Clôturée</MyBadge>
+      </div>
+    </div>
+
   </div>
 }
 

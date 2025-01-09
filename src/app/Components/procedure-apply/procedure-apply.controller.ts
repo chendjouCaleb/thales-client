@@ -14,6 +14,7 @@ import {ProcedureApplyStepHome} from "@app/Components/procedure-apply/step-home/
 import {ProcedureApplyStepInvalidate} from "@app/Components/procedure-apply/invalidate/procedure-apply-step-invalidate";
 import {ProcedureApplyLock} from "@app/Components/procedure-apply/lock/procedure-apply-lock";
 import {ProcedureApplyUnlock} from "@app/Components/procedure-apply/unlock/procedure-apply-unlock";
+import {ProcedureApplyLockedAlert} from "@app/Components/procedure-apply/procedure-apply-locked-alert";
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +26,14 @@ export class ProcedureApplyController {
     const dialogRef = this._dialog.open<ProcedureApply>(ProcedureApplyAdd, {
       autoFocus: false, data: {agency}});
     return dialogRef.closed;
+  }
+
+  checkLocked(procedureApply: ProcedureApply): boolean {
+    if(procedureApply.isLocked) {
+      this._dialog.open(ProcedureApplyLockedAlert)
+      return false
+    }
+    return true
   }
 
   lock(procedureApply: ProcedureApply): Observable<void> {
@@ -62,4 +71,5 @@ export class ProcedureApplyController {
       autoFocus: false, data: {applyStep}});
     return dialogRef.closed;
   }
+
 }

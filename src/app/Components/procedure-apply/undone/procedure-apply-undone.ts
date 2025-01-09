@@ -9,7 +9,7 @@ import {Button} from "@app/ui";
 import {ProcedureApply} from "@entities/procedure-apply";
 
 @Component({
-  templateUrl: 'procedure-apply-unlock.html',
+  templateUrl: 'procedure-apply-undone.html',
   selector: 'ProcedureApplyUndone',
   host: {
     class: 'dialog-width-small'
@@ -19,19 +19,19 @@ import {ProcedureApply} from "@entities/procedure-apply";
   ],
   standalone: true
 })
-export class ProcedureApplyUnlock {
+export class ProcedureApplyUndone {
   procedureApply: ProcedureApply
 
   constructor(@Inject(DIALOG_DATA) data,
-              public dialogRef: DialogRef<boolean, ProcedureApplyUnlock>,
+              public dialogRef: DialogRef<boolean, ProcedureApplyUndone>,
               private _httpClient: ProcedureApplyService,
               private _snackbar: MatSnackBar) {
     this.procedureApply = data.procedureApply;
   }
 
-  async unlock() {
-    await this._httpClient.unlockAsync(this.procedureApply);
+  async undone() {
+    await this._httpClient.undoneAsync(this.procedureApply);
     this.dialogRef.close(true);
-    this._snackbar.open(`Cette procédure est maintenant débloquée.`, '', {duration: 3000})
+    this._snackbar.open(`Cette procédure est maintenant réouverte.`, '', {duration: 3000})
   }
 }

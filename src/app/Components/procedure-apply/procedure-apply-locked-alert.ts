@@ -29,7 +29,7 @@ import {CircleAlertIcon, LucideAngularModule} from "lucide-angular";
       </div>
     </div>
   `,
-  selector: 'ProcedureApplyDone',
+  selector: 'ProcedureApplyUndone',
   host: {
     class: 'dialog-width-small'
   },

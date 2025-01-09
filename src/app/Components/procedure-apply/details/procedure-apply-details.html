@@ -14,8 +14,12 @@
     <div class="flex-grow-1"></div>
 
     <div>
-      <button MyButton color="success" (click)="done()">
+      <button MyButton color="success" (click)="done()" *ngIf="!procedureApply.isDone">
         <lucide-icon [img]="icons.CircleCheckBigIcon"></lucide-icon> Clôturer
+      </button>
+
+      <button MyButton color="success" (click)="undone()" *ngIf="procedureApply.isDone">
+        <lucide-icon [img]="icons.UndoIcon"></lucide-icon> Réouvrir
       </button>
 
       <button *ngIf="!procedureApply.isLocked" MyIconButton (click)="lock()" color="warn">

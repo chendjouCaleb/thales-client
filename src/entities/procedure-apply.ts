@@ -27,7 +27,7 @@ export class ProcedureApply extends BaseEntity<number> {
 
   isLocked: boolean
   doneAt?: DateTime
-  get isDone(): boolean { return !!this.doneAt }
+  get isDone(): boolean { return this.doneAt != null }
   doneByMember?: Member
   doneByMemberId?: number
 

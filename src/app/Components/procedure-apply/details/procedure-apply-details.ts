@@ -61,4 +61,8 @@ export class ProcedureApplyDetails implements OnInit {
   lock() {
     this._controller.lock(this.procedureApply)
   }
+
+  unlock() {
+    this._controller.unlock(this.procedureApply)
+  }
 }

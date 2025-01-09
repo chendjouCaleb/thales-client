@@ -17,9 +17,16 @@
       <button MyButton color="success">
         <lucide-icon [img]="icons.CircleCheckBigIcon"></lucide-icon> Cloturer
       </button>
-      <button MyIconButton (click)="lock()" color="warn">
+
+      <button *ngIf="!procedureApply.isLocked" MyIconButton (click)="lock()" color="warn">
         <lucide-icon [img]="icons.LockIcon"></lucide-icon>
       </button>
+
+      <button *ngIf="procedureApply.isLocked" MyIconButton (click)="unlock()" class="marginHorizontal-4">
+        <lucide-icon [img]="icons.LockOpenIcon"></lucide-icon>
+      </button>
+
+
       <button MyIconButton (click)="location.back()" class="warn">
         <lucide-icon [img]="icons.Trash2Icon"></lucide-icon>
       </button>

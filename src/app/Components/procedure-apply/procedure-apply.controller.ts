@@ -13,6 +13,7 @@ import { Dialog } from "@angular/cdk/dialog";
 import {ProcedureApplyStepHome} from "@app/Components/procedure-apply/step-home/procedure-apply-step-home";
 import {ProcedureApplyStepInvalidate} from "@app/Components/procedure-apply/invalidate/procedure-apply-step-invalidate";
 import {ProcedureApplyLock} from "@app/Components/procedure-apply/lock/procedure-apply-lock";
+import {ProcedureApplyUnlock} from "@app/Components/procedure-apply/unlock/procedure-apply-unlock";
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +29,12 @@ export class ProcedureApplyController {
 
   lock(procedureApply: ProcedureApply): Observable<void> {
     const dialogRef = this._dialog.open<void>(ProcedureApplyLock, {
+      autoFocus: false, data: {procedureApply}});
+    return dialogRef.closed;
+  }
+
+  unlock(procedureApply: ProcedureApply): Observable<void> {
+    const dialogRef = this._dialog.open<void>(ProcedureApplyUnlock, {
       autoFocus: false, data: {procedureApply}});
     return dialogRef.closed;
   }

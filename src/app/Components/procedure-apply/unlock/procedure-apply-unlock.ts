@@ -10,7 +10,7 @@ import {ProcedureApply} from "@entities/procedure-apply";
 
 @Component({
   templateUrl: 'procedure-apply-unlock.html',
-  selector: 'ProcedureApplyUnlock',
+  selector: 'ProcedureApplyDone',
   host: {
     class: 'dialog-width-small'
   },

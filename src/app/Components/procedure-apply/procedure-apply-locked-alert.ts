@@ -7,28 +7,39 @@ import {MemberHttpClient, ProcedureApplyService} from "@app/services";
 import {DIALOG_DATA, DialogRef} from "@angular/cdk/dialog";
 import {Button} from "@app/ui";
 import {ProcedureApply} from "@entities/procedure-apply";
+import {CircleAlertIcon, LucideAngularModule} from "lucide-angular";
 
 @Component({
-  templateUrl: `
-    <div class="borderRadius-8 padding-24 fontSize-24 d-flex flex-column-gap-24"
-       style="background-color: var(--my-color-errorContainer); color: var(--my-color-onErrorContainer)">
+  template: `
+    <div class="padding-24">
+      <div class="d-flex flex-column-gap-24"
+           style="background-color: var(--my-color-errorContainer); color: var(--my-color-onErrorContainer)">
 
-    <lucide-icon [img]="icons.CircleAlertIcon" size="48"></lucide-icon>
-    <div class="flex-grow-1">Cette procédure est bloquée. Aucune opération n'est donc autorisée sur elle.</div>
-    <div class="marginTop-24 align-end">
-        <button MyButton color="error">D'accord</button>
+        <lucide-icon [img]="icons.CircleAlertIcon" size="48"></lucide-icon>
+        <div class="flex-grow-1">
+          <div class="fontSize-20 fontWeight-semibold">Procédure bloquée</div>
+          <div class="marginTop-12">
+            Cette procédure est bloquée. Aucune opération n'est donc autorisée sur elle.
+          </div>
+        </div>
+      </div>
+
+      <div class="marginTop-24 align-end">
+        <button MyButton color="error" (click)="dialogRef.close()">D'accord</button>
+      </div>
     </div>
-  </div>
   `,
-  selector: 'ProcedureApplyUnlock',
+  selector: 'ProcedureApplyDone',
   host: {
     class: 'dialog-width-small'
   },
   imports: [
-    Button
+    Button,
+    LucideAngularModule
   ],
   standalone: true
 })
 export class ProcedureApplyLockedAlert {
+  icons = { CircleAlertIcon }
   constructor(public dialogRef: DialogRef<void, ProcedureApplyLockedAlert>) {}
 }

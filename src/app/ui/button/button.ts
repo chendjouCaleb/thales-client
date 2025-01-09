@@ -14,10 +14,12 @@ import {ChangeDetectionStrategy, Component, Input, ViewEncapsulation} from "@ang
     class: 'my-button',
     role: 'menu',
     '[class.primary]' : "color == 'primary'",
-    '[class.warn]' : "color == 'warn'"
+    '[class.warn]' : "color == 'warn'",
+    '[class.error]' : "color == 'error'",
+    '[class.success]' : "color == 'success'",
   }
 })
 export class Button {
   @Input()
-  color: 'primary' | 'warn'
+  color: 'primary' | 'warn' | 'success' | 'error'
 }

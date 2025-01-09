@@ -1,0 +1,15 @@
+<div class="p-4">
+  <div class="fontWeight-semiBold fontSize-20">Bloquer la procédure</div>
+
+
+  <div class="mt-3">
+    <div class="opacity-8">
+      Jusqu'à ce qu'elle ne soit débloquée, aucune opération ne sera autorisée sur cette procédure
+    </div>
+  </div>
+
+  <div class="marginTop-24 align-end">
+    <button MyButton (click)="dialogRef.close()" class="me-4">Annuler</button>
+    <button MyButton color="error" (click)="lock()">Bloquer</button>
+  </div>
+</div>

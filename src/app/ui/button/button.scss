@@ -105,7 +105,7 @@ lucide-icon.fill svg {
 }
 
 
-.my-button.primary {
+.my-button.primary, .my-icon-button.primary {
   background-color: rgb(10, 120, 213);
   color: #FFFFFF;
 
@@ -114,7 +114,7 @@ lucide-icon.fill svg {
   }
 }
 
-.my-button.warn {
+.my-button.warn, .my-icon-button.warn  {
   background-color: var(--my-warnColor);
   color: #FFFFFF;
 
@@ -123,6 +123,23 @@ lucide-icon.fill svg {
   }
 }
 
+.my-button.error, .my-icon-button.error  {
+  background-color: var(--my-warnColor);
+  color: #FFFFFF;
+
+  &:hover {
+    background-color: var(--my-warnColor__hover);
+  }
+}
+
+.my-button.success, .my-icon-button.success  {
+  background-color: var(--my-successColor);
+  color: #FFFFFF;
+
+  &:hover {
+    background-color: var(--my-successColor__hover);
+  }
+}
 
 lucide-angular.primary-fill {
   svg {

@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, ElementRef, ViewEncapsulation} from "@angular/core";
+import {ChangeDetectionStrategy, Component, ElementRef, Input, ViewEncapsulation} from "@angular/core";
 
 @Component({
   template: `
@@ -12,10 +12,18 @@ import {ChangeDetectionStrategy, Component, ElementRef, ViewEncapsulation} from 
   standalone: true,
   host: {
     class: 'my-icon-button',
-    role: 'button'
+    role: 'button',
+    '[class.primary]' : "color == 'primary'",
+    '[class.warn]' : "color == 'warn'",
+    '[class.error]' : "color == 'error'",
+    '[class.success]' : "color == 'success'",
   }
 })
 export class IconButton {
+
+  @Input()
+  color: 'primary' | 'warn' | 'success' | 'error'
+
   constructor(private elementRef: ElementRef<HTMLElement>) {
   }
 

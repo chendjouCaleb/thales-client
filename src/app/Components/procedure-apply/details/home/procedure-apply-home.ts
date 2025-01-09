@@ -8,6 +8,7 @@ import {DecimalPipe, NgForOf, NgIf} from "@angular/common";
 import {PaymentsList} from "@app/Components/payments/list/payments-list";
 import {MyBadge} from "@app/NeoUI";
 import {ProcedureApplyProgressBar} from "@app/Components/procedure-apply/progress-bar/procedure-apply-progress-bar";
+import {CircleAlertIcon, LucideAngularModule} from "lucide-angular";
 
 @Component({
   templateUrl: 'procedure-apply-home.html',
@@ -19,11 +20,13 @@ import {ProcedureApplyProgressBar} from "@app/Components/procedure-apply/progres
     PaymentsList,
     DecimalPipe,
     MyBadge,
-    ProcedureApplyProgressBar
+    ProcedureApplyProgressBar,
+    LucideAngularModule
   ],
   standalone: true
 })
 export class ProcedureApplyHome implements OnInit {
+  icons = { CircleAlertIcon }
   @Input()
   procedureApply: ProcedureApply;
 

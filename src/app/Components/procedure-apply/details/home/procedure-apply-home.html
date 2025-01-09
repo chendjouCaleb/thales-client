@@ -1,3 +1,12 @@
+@if(procedureApply.isLocked) {
+  <div class="marginVertical-16 borderRadius-8 padding-16 fontSize-16 d-flex flex-column-gap-16"
+       style="background-color: var(--my-color-errorContainer); color: var(--my-color-onErrorContainer)">
+
+    <lucide-icon [img]="icons.CircleAlertIcon"></lucide-icon>
+    <div class="flex-grow-1">Cette procédure est bloquée. Aucune opération n'est donc autorisée sur elle.</div>
+  </div>
+}
+
 <dl class="description-list">
 
   <dt>Code</dt>

@@ -4,6 +4,7 @@ import {PaymentsList} from "@app/Components/payments/list/payments-list";
 import {ProcedureApply} from "@entities/procedure-apply";
 import {TraceModule} from "@app/trace";
 import {ProcedureApplyHome} from "@app/Components/procedure-apply/details/home/procedure-apply-home";
+import {ProcedureApplyFinance} from "@app/Components/procedure-apply/details/finance/procedure-apply-finance";
 
 @Component({
   templateUrl: 'procedure-apply-pager.html',
@@ -17,7 +18,8 @@ import {ProcedureApplyHome} from "@app/Components/procedure-apply/details/home/p
     PageContentDef,
     PaymentsList,
     TraceModule,
-    ProcedureApplyHome
+    ProcedureApplyHome,
+    ProcedureApplyFinance
   ]
 })
 export class ProcedureApplyPager implements OnInit {

@@ -27,6 +27,7 @@
       <div class="marginStart-24">
         <MyBadge *ngIf="apply.isLocked" color="error" class="margin-start32">Bloquée</MyBadge>
         <MyBadge *ngIf="apply.isDone" color="success" class="margin-start32">Clôturée</MyBadge>
+        <MyBadge *ngIf="!apply.isDone" color="neutral">En cours</MyBadge>
       </div>
     </div>
 

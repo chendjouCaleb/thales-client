@@ -7,21 +7,30 @@
             [active] = "tabRow.selectedIndex == 0"
     >Vue d'ensemble
     </button>
+
     <button TabRowItem
             (click)="tabRow.selectIndex(1, true); pager.selectIndex(1)"
             (mouseenter)="tabRow.activateHover(1)"
             (mouseleave)="tabRow.deactivateHover()"
             [active] = "tabRow.selectedIndex == 1"
-    >Paiements
+    >Finance
     </button>
-
-
 
     <button TabRowItem
             (click)="tabRow.selectIndex(2, true); pager.selectIndex(2)"
             (mouseenter)="tabRow.activateHover(2)"
             (mouseleave)="tabRow.deactivateHover()"
             [active] = "tabRow.selectedIndex == 2"
+    >Paiements
+    </button>
+
+
+
+    <button TabRowItem
+            (click)="tabRow.selectIndex(3, true); pager.selectIndex(3)"
+            (mouseenter)="tabRow.activateHover(3)"
+            (mouseleave)="tabRow.deactivateHover()"
+            [active] = "tabRow.selectedIndex == 3"
     >Historique
     </button>
   </TabRow>
@@ -31,6 +40,12 @@
   <div *PageDef>
     <div ProcedureApplyHome [procedureApply]="procedureApply" class="p-3"></div>
   </div>
+
+  <div *PageDef class="p-3">
+    <div ProcedureApplyFinance [procedureApply]="procedureApply"></div>
+  </div>
+
+
   <div *PageDef class="p-3">
     <PaymentList class="d-block w-100"  [params]="{procedureApplyId: procedureApply.id}"
                  [displayedColumns]="[ 'code',  'amount',  'employee', 'createdAt', 'action']">

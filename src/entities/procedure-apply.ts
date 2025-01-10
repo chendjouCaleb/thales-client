@@ -8,6 +8,7 @@ import { Space } from "./space";
 import {Money} from "@entities/money";
 import {Member} from "@entities/member";
 import {DateTime} from "luxon";
+import {Debt, Expense, Income} from "@entities/finance";
 
 export class ProcedureApply extends BaseEntity<number> {
   customer: Customer;
@@ -86,7 +87,10 @@ export class ProcedureApplyStep extends BaseEntity<number> {
   paymentAmount: number = 0;
   totalPayment: Money
 
-  payments: Payment[] = []
+  payments: Payment[] = [];
+  incomes: Income[] = [];
+  debts: Debt[] = [];
+  expenses: Expense[] = [];
 
   constructor(value: any = {}) {
     super(value);

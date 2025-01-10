@@ -1,9 +1,24 @@
 import {Injectable} from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import {Agency, Customer, Payment, Procedure, ProcedureApply, ProcedureApplyStep, ProcedureStep} from "../../entities";
+import {
+  Agency,
+  Customer, Debt, Expense,
+  Income,
+  Payment,
+  Procedure,
+  ProcedureApply,
+  ProcedureApplyStep,
+  ProcedureStep
+} from "../../entities";
 import {SERVER_URL} from "@app/http";
 import {firstValueFrom} from "rxjs";
-import {ProcedureApplyStepValidateModel, ProcedureStepFormModel} from "../models";
+import {
+  DebtAddModel,
+  ExpenseAddModel,
+  IncomeAddModel,
+  ProcedureApplyStepValidateModel,
+  ProcedureStepFormModel
+} from "../models";
 import {ProcedureApplyRangeViewModel} from "@entities/view-models/ProcedureApplyRangeViewModel";
 import {DateTime} from "luxon";
 
@@ -124,5 +139,27 @@ export class ProcedureApplyService {
     const procedureStepId = procedureStep.id;
     const call = this._httpClient.delete(`${this.url}/steps/${procedureStepId}/index`);
     await firstValueFrom(call);
+  }
+
+  async addIncomeAsync(procedureApplyStep: ProcedureApplyStep, model: IncomeAddModel): Promise<Income> {
+    const call = this._httpClient.post<Income>(`${this.stepUrl}/${procedureApplyStep.id}/incomes`,
+      model);
+    const income = new Income(await firstValueFrom(call));
+    procedureApplyStep.incomes.unshift(income);
+    return income;
+  }
+
+  async addDebtAsync(procedureApplyStep: ProcedureApplyStep, model: DebtAddModel): Promise<Debt> {
+    const call = this._httpClient.post<Debt>(`${this.stepUrl}/${procedureApplyStep.id}/debts`, model);
+    const debt = new Debt(await firstValueFrom(call));
+    procedureApplyStep.debts.unshift(debt);
+    return debt;
+  }
+
+  async addExpenseAsync(procedureApplyStep: ProcedureApplyStep, model: ExpenseAddModel): Promise<Expense> {
+    const call = this._httpClient.post<Expense>(`${this.stepUrl}/${procedureApplyStep.id}/expenses`, model);
+    const expense = new Expense(await firstValueFrom(call));
+    procedureApplyStep.expenses.unshift(expense);
+    return expense;
   }
 }

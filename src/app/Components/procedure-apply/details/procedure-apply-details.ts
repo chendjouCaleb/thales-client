@@ -9,11 +9,11 @@ import {ProcedureApplyPager} from "@app/Components/procedure-apply/details/proce
 import {ProcedureApplyController} from "@app/Components";
 import {
   ArrowLeftIcon,
-  CircleCheckBigIcon,
+  CircleCheckBigIcon, DollarSignIcon, HandCoinsIcon,
   LockIcon,
   LockOpenIcon,
   LucideAngularModule,
-  Trash2Icon, UndoIcon
+  Trash2Icon, UndoIcon, WalletIcon
 } from "lucide-angular";
 import {Button, IconButton} from "@app/ui";
 
@@ -33,7 +33,8 @@ import {Button, IconButton} from "@app/ui";
   encapsulation: ViewEncapsulation.None
 })
 export class ProcedureApplyDetails implements OnInit {
-  icons = { ArrowLeftIcon, Trash2Icon, UndoIcon, CircleCheckBigIcon, LockOpenIcon, LockIcon }
+  icons = { ArrowLeftIcon, Trash2Icon, UndoIcon, CircleCheckBigIcon,
+    LockOpenIcon, LockIcon }
 
   @Input()
   procedureApplyId: number;
@@ -43,6 +44,7 @@ export class ProcedureApplyDetails implements OnInit {
   getProcedureApply = new Task(async () => {
     this.procedureApply = await this._service.getByIdAsync(this.procedureApplyId);
     this.procedureApply.steps = await this._service.getApplyStepsAsync(this.procedureApply);
+    this.procedureApply.steps.forEach(pa => pa.procedureApply = this.procedureApply)
   });
 
   constructor(private _service: ProcedureApplyService,

@@ -11,14 +11,22 @@ import {Dialog, DIALOG_DATA, DialogRef} from "@angular/cdk/dialog";
 import {NgIf} from "@angular/common";
 import {MatIcon} from "@angular/material/icon";
 import {Button, IconButton} from "@app/ui";
-import {BanIcon, CheckIcon, CircleCheckBig, DollarSignIcon, LucideAngularModule, XIcon} from "lucide-angular";
+import {
+  BanIcon,
+  CheckIcon,
+  CircleCheckBig,
+  DollarSignIcon, HandCoinsIcon,
+  LucideAngularModule,
+  WalletIcon,
+  XIcon
+} from "lucide-angular";
 import {MyBadge} from "@app/NeoUI";
 
 @Component({
   templateUrl: 'procedure-apply-step-home.html',
   selector: 'ProcedureApplyStepHome',
   standalone: true,
-  styles: [ `:host {display: block; width: 616px}`],
+  styles: [ `:host {display: block; width: 816px}`],
   imports: [
     NgIf,
     MatIcon,
@@ -30,12 +38,13 @@ import {MyBadge} from "@app/NeoUI";
   ]
 })
 export class ProcedureApplyStepHome implements OnInit {
-  icons = { CheckIcon, XIcon, BanIcon, DollarSignIcon, CircleCheckBig }
-  applyStep: ProcedureApplyStep;
+  icons = { CheckIcon, XIcon, BanIcon, DollarSignIcon, CircleCheckBig,
+   WalletIcon, HandCoinsIcon }
+  procedureApplyStep: ProcedureApplyStep;
   procedureApplyId: number;
 
   get apply(): ProcedureApply {
-    return this.applyStep.procedureApply;
+    return this.procedureApplyStep.procedureApply;
 }
 
   @ViewChild(PaymentsList)
@@ -48,7 +57,7 @@ export class ProcedureApplyStepHome implements OnInit {
   // }
 
   get remaining(): Money{
-    return this.applyStep.procedureStep.price.subtract(this.applyStep.totalPayment);
+    return this.procedureApplyStep.procedureStep.price.subtract(this.procedureApplyStep.totalPayment);
   }
 
   constructor(private _service: ProcedureApplyService,
@@ -56,29 +65,32 @@ export class ProcedureApplyStepHome implements OnInit {
               public _dialogRef: DialogRef<any>,
               public _dialog: Dialog,
               private _controller: ProcedureApplyController) {
-    const applyStep = data.applyStep
-    this.procedureApplyId = applyStep.id;
+    this.procedureApplyStep = data.procedureApplyStep;
   }
 
   async ngOnInit() {
-    this.applyStep = await this._service.getApplyStepByIdAsync(this.procedureApplyId);
+
   }
 
   addPayment() {
-    const modalRef = this._controller.addPayment(this.applyStep).subscribe(payment => {
+    const modalRef = this._controller.addPayment(this.procedureApplyStep).subscribe(payment => {
       if (payment) {
-        this.applyStep.totalPayment = this.applyStep.totalPayment.add(payment.amount);
+        this.procedureApplyStep.totalPayment = this.procedureApplyStep.totalPayment.add(payment.amount);
         this.paymentList.unshift(payment);
       }
     });
   }
 
+  addIncome() {
+    this._controller.addIncome(this.procedureApplyStep)
+  }
+
   validateStep() {
-    const modalRef = this._controller.validate(this.applyStep);
+    const modalRef = this._controller.validate(this.procedureApplyStep);
   }
 
   invalidateStep() {
-    this._controller.invalidate(this.applyStep);
+    this._controller.invalidate(this.procedureApplyStep);
   }
 
 }

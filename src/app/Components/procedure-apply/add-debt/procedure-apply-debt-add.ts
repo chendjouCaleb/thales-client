@@ -16,9 +16,11 @@ import {MatProgressSpinner} from "@angular/material/progress-spinner";
 import {DebtService} from "@app/services/debt.service";
 import {DebtAddModel} from "@app/models";
 import {Space} from "@entities/space";
+import {ProcedureApplyStep} from "@entities/procedure-apply";
+import {ProcedureApplyService} from "@app/services";
 
 @Component({
-  templateUrl: 'debt-add.html',
+  templateUrl: 'procedure-apply-debt-add.html',
   selector: 'ProcedureApplyDebtAdd',
   imports: [
     LucideAngularModule,
@@ -34,14 +36,11 @@ import {Space} from "@entities/space";
   standalone: true,
   providers: [ CustomerPickerDialog ]
 })
-export class DebtAdd {
+export class ProcedureApplyDebtAdd {
   icons = { ChevronDownIcon }
-  customer: Customer;
-  space: Space;
-  agency?: Agency;
+  procedureApplyStep : ProcedureApplyStep
 
   formGroup = new FormGroup({
-    customer: new FormControl<number>(null),
     amount: new FormControl<number>(null),
     reason: new FormControl<string>(''),
     details: new FormControl<string>(''),
@@ -49,29 +48,14 @@ export class DebtAdd {
   })
 
   constructor(@Inject(DIALOG_DATA) data: any,
-              private _picker: CustomerPickerDialog,
-              public _dialogRef: DialogRef<Debt, DebtAdd>,
-              private _service: DebtService,
+              public _dialogRef: DialogRef<Debt, ProcedureApplyDebtAdd>,
+              private _service: ProcedureApplyService,
               private _snackbar: MatSnackBar) {
-    this.customer = data.customer;
-    this.space = data.space;
-    this.agency = data.agency;
+    this.procedureApplyStep = data.procedureApplyStep;
   }
 
-  selectCustomer(event) {
-    event?.preventDefault();
-    event.stopPropagation();
-    this._picker.open(this.space.id).subscribe(customer => {
 
-      if(customer) {
-        this.customer = customer;
-        this.formGroup.controls.customer.setValue(customer.id)
-        console.log(this.formGroup.controls.customer.value)
-      }
-    })
-  }
-
-  async validate() {
+  async add() {
     await this.addTask.launch()
     if(this.addTask.success) {
       const debt = this.addTask.result;
@@ -82,7 +66,7 @@ export class DebtAdd {
 
   addTask = new Task(async () => {
     const model = new DebtAddModel(this.formGroup.value);
-    return await this._service.addAsync(this.space, this.agency, this.customer, model);
+    return await this._service.addDebtAsync(this.procedureApplyStep, model);
   })
 }
 

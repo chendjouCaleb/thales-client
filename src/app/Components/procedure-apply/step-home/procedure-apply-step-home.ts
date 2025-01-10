@@ -89,6 +89,10 @@ export class ProcedureApplyStepHome implements OnInit {
     this._controller.addExpense(this.procedureApplyStep)
   }
 
+  addDebt() {
+    this._controller.addDebt(this.procedureApplyStep)
+  }
+
   validateStep() {
     const modalRef = this._controller.validate(this.procedureApplyStep);
   }

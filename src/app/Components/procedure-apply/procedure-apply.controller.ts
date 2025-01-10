@@ -23,6 +23,7 @@ import {Expense, Income} from "@entities/finance";
 import {IncomeAdd} from "@app/Components/incomes";
 import {ProcedureApplyExpenseAdd} from "@app/Components/procedure-apply/add-income";
 import {ProcedureApplyIncomeAdd} from "@app/Components/procedure-apply/add-expense";
+import {ProcedureApplyDebtAdd} from "@app/Components/procedure-apply/add-debt";
 
 @Injectable({
   providedIn: 'root'
@@ -121,6 +122,15 @@ export class ProcedureApplyController {
 
   addExpense(procedureApplyStep: ProcedureApplyStep): Observable<Expense> {
     const dialogRef = this._dialog.open<Expense>(ProcedureApplyExpenseAdd,
+      {
+        data: {procedureApplyStep},
+        autoFocus: true
+      });
+    return dialogRef.closed;
+  }
+
+  addDebt(procedureApplyStep: ProcedureApplyStep): Observable<Expense> {
+    const dialogRef = this._dialog.open<Expense>(ProcedureApplyDebtAdd,
       {
         data: {procedureApplyStep},
         autoFocus: true

@@ -59,6 +59,8 @@ export class DebtList implements OnInit, AfterViewInit, OnDestroy {
   @Input()
   filter: (debt: Debt) => boolean = () => false
 
+  @Input()
+  mode: 'card' | 'table' = 'card'
 
   @ViewChild('rangeObserverThumb')
   rangeObserverThumbRef: ElementRef<HTMLElement>

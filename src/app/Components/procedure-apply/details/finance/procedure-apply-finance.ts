@@ -11,6 +11,7 @@ import {ProcedureApplyProgressBar} from "@app/Components/procedure-apply/progres
 import {CircleAlertIcon, LucideAngularModule} from "lucide-angular";
 import {ExpensesList} from "@app/Components/expenses/list/expenses-list";
 import {IncomesList} from "@app/Components/incomes";
+import {DebtList} from "@app/Components/debts";
 
 @Component({
   templateUrl: 'procedure-apply-finance.html',
@@ -24,7 +25,8 @@ import {IncomesList} from "@app/Components/incomes";
     ProcedureApplyProgressBar,
     LucideAngularModule,
     ExpensesList,
-    IncomesList
+    IncomesList,
+    DebtList
   ],
   standalone: true
 })

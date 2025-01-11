@@ -16,7 +16,10 @@ export class TabRowItem {
   innerBox: ElementRef<HTMLElement> | undefined
 
   @Input()
-  active: boolean = false
+  active: boolean = false;
+
+  @Input()
+  name: string = ''
 
   constructor(private elementRef: ElementRef<HTMLElement>) {
   }

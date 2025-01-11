@@ -23,7 +23,9 @@
   bottom: 0;
   left: 0;
 
-  transition: left 200ms ease-in-out, width 200ms ease-in-out;
+  &.animate {
+    transition: left 200ms ease-in-out, width 200ms ease-in-out;
+  }
 }
 
 .tab-row-item {

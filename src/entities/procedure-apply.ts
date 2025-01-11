@@ -11,6 +11,8 @@ import {DateTime} from "luxon";
 import {Debt, Expense, Income} from "@entities/finance";
 
 export class ProcedureApply extends BaseEntity<number> {
+  elementId: string;
+
   customer: Customer;
   customerId: number;
 
@@ -39,6 +41,7 @@ export class ProcedureApply extends BaseEntity<number> {
   constructor(value: any = {}) {
     super(value);
     if (value) {
+      this.elementId = value.elementId;
       this.isLocked = value.isLocked;
       this.doneAt = value.doneAt ? DateTime.fromISO(value.doneAt) : null;
       this.doneByMember = value.doneByMember ? new Member(value.doneByMember) : undefined;

@@ -48,7 +48,13 @@ export class ExpensesList implements OnInit, AfterViewInit, OnDestroy {
   displayedColumns: string [] = [];
 
   @Input()
-  filter: (expense: Expense) => boolean = () => false
+  filter: (expense: Expense) => boolean = () => false;
+
+  @Input()
+  loadMoreMode: 'manual' | 'scroll' = 'scroll';
+
+  @Input()
+  mode: 'card' | 'table' = 'table'
 
 
   @ViewChild('rangeObserverThumb')
@@ -93,7 +99,6 @@ export class ExpensesList implements OnInit, AfterViewInit, OnDestroy {
 
 
   constructor(private _service: ExpenseService,
-              private _router: Router,
               public readonly detailsLauncher: ExpenseDetailsLauncher,
               @Inject(DOCUMENT) private _document: Document) {
   }

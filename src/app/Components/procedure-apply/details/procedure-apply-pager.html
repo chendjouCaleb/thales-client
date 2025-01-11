@@ -1,6 +1,7 @@
 <div>
-  <TabRow #tabRow [selectedIndex]="0">
+  <TabRow #tabRow [selectedName]="currentTab" (change)="onTabChange($event)">
     <button TabRowItem
+            name="overview"
             (click)="tabRow.selectIndex(0, true); pager.selectIndex(0)"
             (mouseenter)="tabRow.activateHover(0)"
             (mouseleave)="tabRow.deactivateHover()"
@@ -9,6 +10,7 @@
     </button>
 
     <button TabRowItem
+            name="finance"
             (click)="tabRow.selectIndex(1, true); pager.selectIndex(1)"
             (mouseenter)="tabRow.activateHover(1)"
             (mouseleave)="tabRow.deactivateHover()"
@@ -17,6 +19,7 @@
     </button>
 
     <button TabRowItem
+            name="payments"
             (click)="tabRow.selectIndex(2, true); pager.selectIndex(2)"
             (mouseenter)="tabRow.activateHover(2)"
             (mouseleave)="tabRow.deactivateHover()"
@@ -27,6 +30,7 @@
 
 
     <button TabRowItem
+            name="history"
             (click)="tabRow.selectIndex(3, true); pager.selectIndex(3)"
             (mouseenter)="tabRow.activateHover(3)"
             (mouseleave)="tabRow.deactivateHover()"

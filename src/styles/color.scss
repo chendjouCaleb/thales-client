@@ -127,12 +127,40 @@ $ms-color-pinkRed-20: #750b1c;
   --my-warnColor__hover: #750b1c;
   --my-onWarnColor:  #faf9f8;
 
+  --my-successForegroundColor: #54b054;
+  --my-successForegroundColor1: #54b054;
+  --my-successForegroundColor2: #9fd89f;
+  --my-successForegroundColor3: #9fd89f;
+  --my-successBackgroundColor: #052505;
+  --my-successBackgroundColor1: #052505;
+  --my-successBackgroundColor2: #094509;
+  --my-successBackgroundColor3: #107c10;
+
+
   --my-successColor: #107c10;
   --my-successColor__hover: #066406;
   --my-successColor-alpha2: rgba(16, 124, 16, 0.2);
 
   --my-warningColor: #da6410;
   --my-warningColor-alpha2: rgba(218, 100, 16, 0.2);
+
+  --my-errorForegroundColor: #dc626d;
+  --my-errorForegroundColor1: #dc626d;
+  --my-errorForegroundColor2: #eeacb2;
+  --my-errorForegroundColor3: #eeacb2;
+  --my-errorForegroundInverted: #b10e1c;
+  --my-errorBackgroundColor1: #3b0509;
+  --my-errorBackgroundColor2: #6e0811;
+  --my-errorBackgroundColor3: #c50f1f;
+
+  --my-warningForegroundColor: #faa06b;
+  --my-warningForegroundColor1: #faa06b;
+  --my-warningForegroundColor2: #fdcfb4;
+  --my-warningForegroundColor3: #f98845;
+  --my-warningForegroundInverted: #bc4b09;
+  --my-warningBackgroundColor1: #4a1e04;
+  --my-warningBackgroundColor2: #8a3707;
+  --my-warningBackgroundColor3: #f7630c;
 
 }
 
@@ -157,5 +185,18 @@ $ms-color-pinkRed-20: #750b1c;
 }
 
 .warn-text {
-  color: var(--my-warnColor);
+  color: var(--my-errorForegroundColor1);
 }
+
+
+.success-color-1 { color: var(--my-successForegroundColor1); }
+.success-color-2 { color: var(--my-successForegroundColor2); }
+.success-color-3 { color: var(--my-successForegroundColor3); }
+
+.error-color-1 { color: var(--my-errorForegroundColor1); }
+.error-color-2 { color: var(--my-errorForegroundColor2); }
+.error-color-3 { color: var(--my-errorForegroundColor3); }
+
+.warn-color-1 { color: var(--my-warningForegroundColor1); }
+.warn-color-2 { color: var(--my-warningForegroundColor2); }
+.warn-color-3 { color: var(--my-warningForegroundColor3); }

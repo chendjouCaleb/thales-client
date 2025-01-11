@@ -18,8 +18,8 @@
   }
 
   &.error {
-    color: var(--my-warnColor);
-    background-color: var(--my-warnColor-alpha2);
+    color: var(--my-errorForegroundColor);
+    background-color: var(--my-errorBackgroundColor1);
   }
 
   &.neutral {
@@ -28,13 +28,13 @@
   }
 
   &.success {
-    color: var(--my-successColor);
-    background-color: var(--my-successColor-alpha2);
+    background-color: var(--my-successBackgroundColor2);
+    color: var(--my-successForegroundColor2);
   }
 
   &.warn {
     color: var(--my-warningColor);
-    background-color: var(--my-warningColor-alpha2);
+    background-color: var(--my-warningBackgroundColor1);
   }
 }
 

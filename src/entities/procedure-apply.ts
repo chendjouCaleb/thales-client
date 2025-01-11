@@ -36,7 +36,12 @@ export class ProcedureApply extends BaseEntity<number> {
 
   steps: ProcedureApplyStep[] = [];
 
-  totalPayment: Money
+  totalPayment: Money;
+
+  debtAmount: Money
+  debtRemainingAmount: Money
+  incomeAmount: Money
+  expenseAmount: Money
 
   constructor(value: any = {}) {
     super(value);
@@ -64,6 +69,10 @@ export class ProcedureApply extends BaseEntity<number> {
       this.steps?.sort((a, b) => a.procedureStep?.index)
 
       this.totalPayment = value.totalPayment ? Money.parse(value.totalPayment) : undefined;
+      this.debtAmount = value.debtAmount ? Money.parse(value.debtAmount) : undefined;
+      this.debtRemainingAmount = value.debtRemainingAmount ? Money.parse(value.debtRemainingAmount) : undefined;
+      this.incomeAmount = value.incomeAmount ? Money.parse(value.incomeAmount) : undefined;
+      this.expenseAmount = value.expenseAmount ? Money.parse(value.expenseAmount) : undefined;
     }
   }
 }

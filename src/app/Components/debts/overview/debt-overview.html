@@ -26,14 +26,13 @@
        }
      </div>
 
-      <button MyButton (click)="settingsLauncher.launch(debt)" matTooltip="Modifier les informations de cette dépense">
+      <button MyIconButton (click)="settingsLauncher.launch(debt)"
+              matTooltip="Modifier les informations de cette dette">
         <lucide-icon [img]="icons.SettingsIcon"></lucide-icon>
-        Paramètres
       </button>
 
-      <button MyButton (click)="delete()" matTooltip="Supprimer cette dette">
+      <button MyIconButton (click)="delete()" matTooltip="Supprimer cette dette">
         <lucide-icon [img]="icons.Trash2Icon"></lucide-icon>
-        Supprimer
       </button>
     </div>
 

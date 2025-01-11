@@ -128,9 +128,17 @@
            (click)="details(debt)">
 
         <div class="flex-grow-1">
-          <div class="fontSize-18 fontWeight-semibold">
-            {{ debt.amount.format() }}
+          <div class="d-flex align-items-center">
+            <div class="fontSize-18 fontWeight-semibold flex-grow-1">
+              {{ debt.amount.format() }}
+            </div>
+            <div>
+              @if (debt.isPay){  <MyBadge color="success">Réglée</MyBadge> }
+              @if (!debt.isPay && !debt.isLate){  <MyBadge color="warn">Non réglée</MyBadge> }
+              @if (!debt.isPay && debt.isLate){  <MyBadge color="error">En retard</MyBadge> }
+            </div>
           </div>
+
 
           <div class="marginHorizontal-2 opacity-8">
             {{debt.reason}}

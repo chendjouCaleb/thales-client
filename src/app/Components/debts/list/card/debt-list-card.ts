@@ -8,7 +8,7 @@ import {DebtOverviewLauncher} from "@app/Components/debts";
 
 @Component({
   templateUrl: 'debt-list-card.html',
-  selector: 'DebtListCard',
+  selector: 'DebtListCard, [DebtListCard]',
   encapsulation: ViewEncapsulation.None,
   imports: [
     Dropdown,
@@ -20,6 +20,7 @@ import {DebtOverviewLauncher} from "@app/Components/debts";
     NgForOf
   ],
   standalone: true,
+  providers: [ DebtOverviewLauncher ],
   host: {
     'class' : 'surface hover paddingHorizontal-16 paddingVertical-8 borderRadius-8 cursor-pointer d-flex'
   }

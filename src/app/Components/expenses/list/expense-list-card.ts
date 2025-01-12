@@ -21,7 +21,7 @@ import {IconButton, Menu, MenuItem} from "@app/ui";
 
         <div class="fontSize-12 opacity-6">
 
-          {{ expense.member.user?.fullName }}
+          {{ expense.member?.user?.fullName }}
           &bull;
           {{ expense.createdAt.moment() }}
 
@@ -56,6 +56,7 @@ import {IconButton, Menu, MenuItem} from "@app/ui";
     MenuItem
   ],
   standalone: true,
+  providers: [ ExpenseDetailsLauncher ],
   selector: 'ExpenseListCard, [ExpenseListCard]'
 })
 export class ExpenseListCard {

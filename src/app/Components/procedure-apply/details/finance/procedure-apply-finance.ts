@@ -12,6 +12,8 @@ import {CircleAlertIcon, LucideAngularModule} from "lucide-angular";
 import {ExpensesList} from "@app/Components/expenses/list/expenses-list";
 import {IncomeListCard, IncomesList} from "@app/Components/incomes";
 import {DebtList} from "@app/Components/debts";
+import {ExpenseListCard} from "@app/Components/expenses";
+import {DebtListCard} from "@app/Components/debts/list/card/debt-list-card";
 
 @Component({
   templateUrl: 'procedure-apply-finance.html',
@@ -27,7 +29,9 @@ import {DebtList} from "@app/Components/debts";
     ExpensesList,
     IncomesList,
     DebtList,
-    IncomeListCard
+    IncomeListCard,
+    ExpenseListCard,
+    DebtListCard
   ],
   standalone: true
 })

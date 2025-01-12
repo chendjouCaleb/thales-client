@@ -65,7 +65,7 @@ export class IncomeListCard {
   @Input()
   income: Income
 
-  constructor(public readonly detailsLauncher: IncomeDetailsLauncher,) {
+  constructor(public readonly detailsLauncher: IncomeDetailsLauncher) {
   }
 
   details(income: Income) {

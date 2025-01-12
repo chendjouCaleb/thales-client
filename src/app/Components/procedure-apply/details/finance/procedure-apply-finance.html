@@ -31,22 +31,16 @@
 
 <div class="marginTop-16">
   <div class="fontWeight-semibold fontSize-18 opacity-8">Dépenses</div>
-  <div ExpenseList
-    class="marginTop-8"
-    mode="card"
-    [params]="{elementId:procedureApply.elementId, ownerId: procedureApply.space.ownerId}">
-
-  </div>
+  @for(expense of procedureApply.expenses; track expense.id) {
+    <div ExpenseListCard [expense]="expense" class="marginTop-8"></div>
+  }
 </div>
 
 
 <div class="marginTop-16">
   <div class="fontWeight-semibold fontSize-18 opacity-8">Dettes</div>
-  <div DebtList
-       class="marginTop-8"
-       mode="card"
-       [params]="{elementId:procedureApply.elementId, ownerId: procedureApply.space.ownerId}">
-
-  </div>
+  @for(debt of procedureApply.debts; track debt.id) {
+    <div DebtListCard [debt]="debt" class="marginTop-8"></div>
+  }
 </div>
 

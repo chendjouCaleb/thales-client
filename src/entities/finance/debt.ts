@@ -10,6 +10,7 @@ import {Procedure} from "@entities/procedure";
 import {User} from "@app/identity";
 import {Space} from "@entities/space";
 import {DateTime, Duration} from "luxon";
+import {Income} from "@entities/finance/income";
 
 export class Debt extends BaseEntity<string> {
   amount: Money;
@@ -49,6 +50,8 @@ export class Debt extends BaseEntity<string> {
   debtOwners: DebtOwner[]
   debtElements: DebtElement[]
   debtPersons: DebtPerson[];
+
+  debtIncomes: DebtIncome[];
 
   amountPaid: Money;
 
@@ -121,8 +124,14 @@ export class Debt extends BaseEntity<string> {
       this.debtOwners = value.debtOwners?.map(eo => new DebtOwner(eo));
       this.debtElements = value.debtElements?.map(eo => new DebtElement(eo));
       this.debtPersons = value.debtPersons?.map(eo => new DebtPerson(eo));
-
+      this.debtIncomes = value.debtIncomes?.map(eo => new DebtIncome(eo));
     }
+  }
+
+  _hydrateIncomes(incomes: Income[]) {
+    this.debtIncomes.forEach(di => {
+      di.income = incomes.find(i => i.id == di.incomeId)
+    })
   }
 }
 
@@ -175,6 +184,30 @@ export class DebtPerson {
       this.createdAt = value.createdAt;
       this.personId = value.personId;
       this.debtId = value.debtId;
+    }
+  }
+}
+
+
+export class DebtIncome {
+  id: string;
+  createdAt: Date;
+
+  debtId: string;
+  debt: Debt;
+
+  income: Income
+  incomeId: string
+
+  constructor(value: any = {}) {
+    if (value) {
+      this.id = value.id;
+      this.createdAt = value.createdAt;
+      this.incomeId = value.incomeId;
+      this.debtId = value.debtId;
+
+      this.debt = value.debt ? new Debt(value.debt) : undefined;
+      this.income = value.income ? new Income(value.income) : undefined;
     }
   }
 }

@@ -1,0 +1,56 @@
+<div class="marginTop-16 d-flex flex-column-gap-48">
+
+  <div>
+    <div class="fontSize-14 opacity-6">Revenu</div>
+    <div class="fontSize-18 fontWeight-semiBold success-color-1">
+      {{procedureApplyStep.incomeAmount.format()}}</div>
+  </div>
+
+  <div>
+    <div class="fontSize-14 opacity-6">Dépense</div>
+    <div class="fontSize-18 fontWeight-semiBold warn-color-1" >
+      {{procedureApplyStep.expenseAmount.format()}}</div>
+  </div>
+
+
+  <div>
+    <div class="fontSize-14 opacity-6">Dette à payer</div>
+    <div class="fontSize-18 fontWeight-semiBold error-color-1" >
+      {{procedureApplyStep.debtRemainingAmount.format()}}</div>
+  </div>
+
+</div>
+
+<div class="divider marginVertical-16"></div>
+
+@if(params) {
+  <div class="marginTop-24">
+    <div class="fontWeight-semibold fontSize-18 opacity-8">Revenus</div>
+    <div IncomeList
+         class="marginTop-8"
+         mode="card"
+         [params]="params"></div>
+  </div>
+
+  <div class="marginTop-16">
+    <div class="fontWeight-semibold fontSize-18 opacity-8">Dépenses</div>
+    <div ExpenseList
+         class="marginTop-8"
+         mode="card"
+         [params]="params">
+
+    </div>
+  </div>
+
+
+  <div class="marginTop-16">
+    <div class="fontWeight-semibold fontSize-18 opacity-8">Dettes</div>
+    <div DebtList
+         class="marginTop-8"
+         mode="card"
+         [params]="params">
+
+    </div>
+  </div>
+}
+

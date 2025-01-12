@@ -73,12 +73,8 @@
 
   <div class="divider my-3"></div>
 
-  <div *ngIf="procedureApplyStep.payments" class="mt-5">
-    <div class="fontSize-16 fontWeight-semiBold mb-3">Paiements</div>
 
-    <PaymentList [params]="{procedureApplyStepId:procedureApplyStep.id}"
-                 [displayedColumns]="[ 'code',  'amount', 'employee', 'createdAt', 'action']"></PaymentList>
+  <div ProcedureApplyStepFinance [procedureApplyStep]="procedureApplyStep"></div>
 
-  </div>
 
 </div>

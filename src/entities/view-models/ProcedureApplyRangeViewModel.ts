@@ -40,7 +40,8 @@ export class ProcedureApplyRangeViewModel {
       apply.agency = this.agencies.find(c => c.id == apply.agencyId);
       apply.procedure = this.procedures.find(c => c.id == apply.procedureId);
 
-      apply.steps.forEach(applyStep => {
+
+      apply.procedureApplySteps?.forEach(applyStep => {
         applyStep.procedureStep = this.procedureSteps.find(ps => ps.id == applyStep.procedureStepId)
       })
     });

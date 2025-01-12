@@ -34,7 +34,7 @@ export class ProcedureApply extends BaseEntity<number> {
   doneByMember?: Member
   doneByMemberId?: number
 
-  steps: ProcedureApplyStep[] = [];
+  procedureApplySteps: ProcedureApplyStep[] = [];
 
   totalPayment: Money;
 
@@ -42,6 +42,10 @@ export class ProcedureApply extends BaseEntity<number> {
   debtRemainingAmount: Money
   incomeAmount: Money
   expenseAmount: Money
+
+  debts: Debt[];
+  incomes: Income[];
+  expenses: Expense[];
 
   constructor(value: any = {}) {
     super(value);
@@ -65,20 +69,28 @@ export class ProcedureApply extends BaseEntity<number> {
       this.spaceId = value.spaceId;
       this.space = value.space ? new Space(value.space) : undefined;
 
-      this.steps = value.steps ? value.steps.map(s => new ProcedureApplyStep(s)) : undefined;
-      this.steps?.sort((a, b) => a.procedureStep?.index)
+      this.procedureApplySteps = value.procedureApplySteps ? value.procedureApplySteps.map(s => new ProcedureApplyStep(s)) : undefined;
+      this.procedureApplySteps?.sort((a, b) => a.procedureStep?.index)
 
       this.totalPayment = value.totalPayment ? Money.parse(value.totalPayment) : undefined;
       this.debtAmount = value.debtAmount ? Money.parse(value.debtAmount) : undefined;
       this.debtRemainingAmount = value.debtRemainingAmount ? Money.parse(value.debtRemainingAmount) : undefined;
       this.incomeAmount = value.incomeAmount ? Money.parse(value.incomeAmount) : undefined;
       this.expenseAmount = value.expenseAmount ? Money.parse(value.expenseAmount) : undefined;
+
+
+      this.debts = value.debts ? value.debts.map(s => new Debt(s)) : undefined;
+      this.incomes = value.incomes ? value.incomes.map(s => new Income(s)) : undefined;
+      this.expenses = value.expenses ? value.expenses.map(s => new Expense(s)) : undefined;
+
+      this.debts?.forEach(debt => debt._hydrateIncomes(this.incomes));
     }
   }
 }
 
 
 export class ProcedureApplyStep extends BaseEntity<number> {
+  elementId: string
   procedureApply: ProcedureApply;
   procedureApplyId: number;
 
@@ -103,11 +115,16 @@ export class ProcedureApplyStep extends BaseEntity<number> {
   incomes: Income[] = [];
   debts: Debt[] = [];
   expenses: Expense[] = [];
+  debtAmount: Money
+  debtRemainingAmount: Money
+  incomeAmount: Money
+  expenseAmount: Money
+
 
   constructor(value: any = {}) {
     super(value);
     if (value) {
-
+      this.elementId = value.elementId;
       this.procedureApplyId = value.procedureApplyId;
       this.procedureStepId = value.procedureStepId;
 
@@ -129,6 +146,11 @@ export class ProcedureApplyStep extends BaseEntity<number> {
 
       this.agencyId = value.agencyId;
       this.agency = value.agency ? new Agency(value.agency) : null;
+
+      this.debtAmount = value.debtAmount ? Money.parse(value.debtAmount) : undefined;
+      this.debtRemainingAmount = value.debtRemainingAmount ? Money.parse(value.debtRemainingAmount) : undefined;
+      this.incomeAmount = value.incomeAmount ? Money.parse(value.incomeAmount) : undefined;
+      this.expenseAmount = value.expenseAmount ? Money.parse(value.expenseAmount) : undefined;
 
     }
   }

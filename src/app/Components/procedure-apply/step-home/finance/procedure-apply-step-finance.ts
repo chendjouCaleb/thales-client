@@ -10,12 +10,12 @@ import {MyBadge} from "@app/NeoUI";
 import {ProcedureApplyProgressBar} from "@app/Components/procedure-apply/progress-bar/procedure-apply-progress-bar";
 import {CircleAlertIcon, LucideAngularModule} from "lucide-angular";
 import {ExpensesList} from "@app/Components/expenses/list/expenses-list";
-import {IncomeListCard, IncomesList} from "@app/Components/incomes";
+import {IncomesList} from "@app/Components/incomes";
 import {DebtList} from "@app/Components/debts";
 
 @Component({
-  templateUrl: 'procedure-apply-finance.html',
-  selector: 'ProcedureApplyFinance, [ProcedureApplyFinance]',
+  templateUrl: 'procedure-apply-step-finance.html',
+  selector: 'ProcedureApplyStepFinance, [ProcedureApplyStepFinance]',
   imports: [
     RouterLink,
     NgIf,
@@ -26,21 +26,25 @@ import {DebtList} from "@app/Components/debts";
     LucideAngularModule,
     ExpensesList,
     IncomesList,
-    DebtList,
-    IncomeListCard
+    DebtList
   ],
   standalone: true
 })
-export class ProcedureApplyFinance implements OnInit {
+export class ProcedureApplyStepFinance implements OnInit {
   icons = { CircleAlertIcon }
   @Input()
-  procedureApply: ProcedureApply;
+  procedureApplyStep: ProcedureApplyStep;
 
-  constructor(private _service: ProcedureApplyService,
-              private _controller: ProcedureApplyController) {}
+  params: any
+
+
+  constructor() {}
 
   async ngOnInit() {
-
+    this.params = {
+      elementId: this.procedureApplyStep.elementId,
+      ownerId: this.procedureApplyStep.procedureApply.space.ownerId
+    }
   }
 
 

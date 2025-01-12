@@ -21,6 +21,9 @@ import {
   XIcon
 } from "lucide-angular";
 import {MyBadge} from "@app/NeoUI";
+import {
+  ProcedureApplyStepFinance
+} from "@app/Components/procedure-apply/step-home/finance/procedure-apply-step-finance";
 
 @Component({
   templateUrl: 'procedure-apply-step-home.html',
@@ -34,7 +37,8 @@ import {MyBadge} from "@app/NeoUI";
     PaymentsList,
     IconButton,
     LucideAngularModule,
-    MyBadge
+    MyBadge,
+    ProcedureApplyStepFinance
   ]
 })
 export class ProcedureApplyStepHome implements OnInit {

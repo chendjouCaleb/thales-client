@@ -5,3 +5,4 @@ export * from './change-reason';
 export * from './delete';
 export * from './details';
 export * from './list/incomes-list';
+export * from './list/income-list-card';

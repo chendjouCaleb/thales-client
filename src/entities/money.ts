@@ -8,6 +8,11 @@ export class Money {
     this.currency = currency;
   }
 
+  static of(amount: number, currency: string = 'XAF'):Money
+  {
+    return new Money(amount, currency)
+  }
+
   static parse(text: string): Money {
     const tokens = text.split(' ');
     return new Money(+tokens[0], tokens[1]);

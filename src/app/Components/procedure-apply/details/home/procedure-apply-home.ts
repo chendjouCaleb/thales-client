@@ -30,6 +30,7 @@ export class ProcedureApplyHome implements OnInit {
   @Input()
   procedureApply: ProcedureApply;
 
+
   constructor(private _service: ProcedureApplyService,
               private _controller: ProcedureApplyController) {}
 

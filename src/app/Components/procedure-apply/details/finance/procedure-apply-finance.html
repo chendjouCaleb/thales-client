@@ -2,18 +2,19 @@
 
   <div>
     <div class="fontSize-14 opacity-6">Revenu</div>
-    <div class="fontSize-18 fontWeight-semiBold success-color-1">{{procedureApply.incomeAmount.format()}}</div>
+    <div class="fontSize-18 fontWeight-semiBold success-color-1">
+      {{financeOverview.incomeAmount.format()}}</div>
   </div>
 
   <div>
     <div class="fontSize-14 opacity-6">Dépense</div>
-    <div class="fontSize-18 fontWeight-semiBold warn-color-1" >{{procedureApply.expenseAmount.format()}}</div>
+    <div class="fontSize-18 fontWeight-semiBold warn-color-1" >{{financeOverview.expenseAmount.format()}}</div>
   </div>
 
 
   <div>
     <div class="fontSize-14 opacity-6">Dette à payer</div>
-    <div class="fontSize-18 fontWeight-semiBold error-color-1" >{{procedureApply.debtRemainingAmount.format()}}</div>
+    <div class="fontSize-18 fontWeight-semiBold error-color-1" >{{financeOverview.debtRemainingAmount.format()}}</div>
   </div>
 
 </div>

@@ -14,6 +14,7 @@ import {IncomeListCard, IncomesList} from "@app/Components/incomes";
 import {DebtList} from "@app/Components/debts";
 import {ExpenseListCard} from "@app/Components/expenses";
 import {DebtListCard} from "@app/Components/debts/list/card/debt-list-card";
+import {FinanceOverview} from "@entities/finance/finance-overview";
 
 @Component({
   templateUrl: 'procedure-apply-finance.html',
@@ -40,11 +41,17 @@ export class ProcedureApplyFinance implements OnInit {
   @Input()
   procedureApply: ProcedureApply;
 
+  financeOverview: FinanceOverview
+
   constructor(private _service: ProcedureApplyService,
               private _controller: ProcedureApplyController) {}
 
   async ngOnInit() {
-
+    this.financeOverview = new FinanceOverview(
+      this.procedureApply.incomes,
+      this.procedureApply.debts,
+      this.procedureApply.expenses
+    )
   }
 
 

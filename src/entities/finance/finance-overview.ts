@@ -4,9 +4,9 @@ import {Expense} from "@entities/finance/expense";
 import {Money} from "@entities/money";
 
 export class FinanceOverview {
-  constructor(public readonly incomes: Income[],
-              public readonly debts: Debt[],
-              public readonly expenses: Expense[]
+  constructor(public incomes: Income[],
+              public debts: Debt[],
+              public expenses: Expense[]
   ) {
   }
 
@@ -34,4 +34,22 @@ export class FinanceOverview {
   get debtRemainingAmount(): Money {
       return this.debtAmount.subtract(this.debtIncomeAmount)
   }
+
+
+  addDebt(debt: Debt) {
+    if(!this.debts.some(d => d.id == debt.id)) {
+      this.debts.push(debt);
+    }
+  }
+
+  containsDebt(debt: Debt): boolean { return this.debts.some(d => d.id == debt.id)}
+
+
+  addIncome(income: Income) {
+    if(!this.incomes.some(d => d.id == income.id)) {
+      this.incomes.push(income);
+    }
+  }
+
+  containsIncome(income: Income): boolean { return this.incomes.some(d => d.id == income.id)}
 }

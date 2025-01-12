@@ -25,6 +25,9 @@ import {
   ProcedureApplyStepFinance
 } from "@app/Components/procedure-apply/step-home/finance/procedure-apply-step-finance";
 import {FinanceOverview} from "@entities/finance/finance-overview";
+import {ExpenseService} from "@app/services/expense.service";
+import {IncomeService} from "@app/services/income.service";
+import {DebtService} from "@app/services/debt.service";
 
 @Component({
   templateUrl: 'procedure-apply-step-home.html',
@@ -75,6 +78,9 @@ export class ProcedureApplyStepHome implements OnInit {
   }
 
   constructor(private _service: ProcedureApplyService,
+              private _expenseService: ExpenseService,
+              private _incomeService: IncomeService,
+              private _debtService: DebtService,
               @Inject(DIALOG_DATA) private data: any,
               public _dialogRef: DialogRef<any>,
               public _dialog: Dialog,
@@ -87,7 +93,27 @@ export class ProcedureApplyStepHome implements OnInit {
       this.procedureApplyStep.incomes,
       this.procedureApplyStep.debts,
       this.procedureApplyStep.expenses
-    )
+    );
+
+    this._expenseService.expenseAdd.subscribe(expense => {
+      if(expense.expenseElements.some(ee => ee.elementId == this.procedureApplyStep.elementId)) {
+        this.procedureApplyStep.expenses.unshift(expense);
+      }
+    });
+
+    this._incomeService.incomeAdd.subscribe(income => {
+      if(income.incomeElements.some(ee => ee.elementId == this.procedureApplyStep.elementId)) {
+        this.procedureApplyStep.incomes.unshift(income);
+        this.procedureApplyStep.financeOverview.addIncome(income);
+      }
+    });
+
+    this._debtService.debtAdd.subscribe(debt => {
+      if(debt.debtElements.some(ee => ee.elementId == this.procedureApplyStep.elementId)) {
+        this.procedureApplyStep.debts.unshift(debt);
+        this.procedureApplyStep.financeOverview.debts.unshift(debt);
+      }
+    });
   }
 
   addPayment() {

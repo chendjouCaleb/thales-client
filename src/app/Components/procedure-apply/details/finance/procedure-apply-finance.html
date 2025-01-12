@@ -24,6 +24,15 @@
 <div class="marginTop-24">
   <div class="fontWeight-semibold fontSize-18 opacity-8">Revenus</div>
 
+  @if(procedureApply.incomes.length == 0) {
+    <div class="d-flex padding-16 surface borderRadius-8 flex-column-gap-16">
+      <lucide-icon [img]="icons.InfoIcon"></lucide-icon>
+      <div class="flex-grow-column-1 opacity-8">
+        Aucun revenu enregistré pour cette procédure.
+      </div>
+    </div>
+  }
+
   @for(income of procedureApply.incomes; track income.id) {
     <div IncomeListCard [income]="income" class="marginTop-8"></div>
   }
@@ -32,6 +41,14 @@
 
 <div class="marginTop-16">
   <div class="fontWeight-semibold fontSize-18 opacity-8">Dépenses</div>
+  @if(procedureApply.expenses.length == 0) {
+    <div class="d-flex padding-16 surface borderRadius-8 flex-column-gap-16">
+      <lucide-icon [img]="icons.InfoIcon"></lucide-icon>
+      <div class="flex-grow-column-1 opacity-8">
+        Aucune dépense enregistrée pour cette procédure.
+      </div>
+    </div>
+  }
   @for(expense of procedureApply.expenses; track expense.id) {
     <div ExpenseListCard [expense]="expense" class="marginTop-8"></div>
   }
@@ -40,6 +57,16 @@
 
 <div class="marginTop-16">
   <div class="fontWeight-semibold fontSize-18 opacity-8">Dettes</div>
+
+  @if(procedureApply.debts.length == 0) {
+    <div class="d-flex padding-16 surface borderRadius-8 flex-column-gap-16">
+      <lucide-icon [img]="icons.InfoIcon"></lucide-icon>
+      <div class="flex-grow-column-1 opacity-8">
+        Aucune dette enregistrée pour cette procédure.
+      </div>
+    </div>
+  }
+
   @for(debt of procedureApply.debts; track debt.id) {
     <div DebtListCard [debt]="debt" class="marginTop-8"></div>
   }

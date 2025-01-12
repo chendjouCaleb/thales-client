@@ -43,6 +43,6 @@ export class ProcedureApplyPager implements OnInit {
 
   onTabChange(payload: TabRowChangePayload) {
     console.log(payload)
-    this._router.navigate([], {queryParams: {tab: payload.name}})
+    this._router.navigate([], {queryParams: {tab: payload.name}, replaceUrl: true})
   }
 }

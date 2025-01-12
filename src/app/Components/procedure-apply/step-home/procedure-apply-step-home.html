@@ -49,30 +49,7 @@
     </div>
     <div class="divider my-3"></div>
 
-    <div class="d-flex justify-content-between">
-      <div>
-        <div class="opacity-8">Montant versé</div>
-        <div class="fontWeight-semiBold">
-          {{procedureApplyStep.totalPayment.format()}} sur {{procedureApplyStep.procedureStep.price.format() }}
-        </div>
-      </div>
-      <button MyButton class="primary" (click)="addPayment()" *ngIf="procedureApplyStep.validated">
-        <lucide-icon [img]="icons.DollarSignIcon"></lucide-icon>
-        Ajouter un paiement
-      </button>
-    </div>
   </div>
-  <div class="divider my-3"></div>
-  <div>
-    <div class="opacity-8">Montant restant</div>
-    <div class="fontWeight-semiBold">
-      <span>{{ remaining.format() }}
-      </span>
-    </div>
-  </div>
-
-  <div class="divider my-3"></div>
-
 
   <div ProcedureApplyStepFinance [procedureApplyStep]="procedureApplyStep"></div>
 

@@ -26,31 +26,50 @@
 @if(params) {
   <div class="marginTop-24">
     <div class="fontWeight-semibold fontSize-18 opacity-8">Revenus</div>
-    <div IncomeList
-         class="marginTop-8"
-         mode="card"
-         [params]="params"></div>
+    @if(procedureApplyStep.incomes.length == 0) {
+      <div class="d-flex padding-16 surface borderRadius-8 flex-column-gap-16">
+        <lucide-icon [img]="icons.InfoIcon"></lucide-icon>
+        <div class="flex-grow-column-1 opacity-8">
+          Aucun revenu enregistré pour cette étape.
+        </div>
+      </div>
+    }
+    @for(income of procedureApplyStep.incomes; track income.id) {
+      <div IncomeListCard [income]="income" class="marginTop-8"></div>
+    }
   </div>
 
   <div class="marginTop-16">
     <div class="fontWeight-semibold fontSize-18 opacity-8">Dépenses</div>
-    <div ExpenseList
-         class="marginTop-8"
-         mode="card"
-         [params]="params">
-
-    </div>
+    @if(procedureApplyStep.expenses.length == 0) {
+      <div class="d-flex padding-16 surface borderRadius-8 flex-column-gap-16">
+        <lucide-icon [img]="icons.InfoIcon"></lucide-icon>
+        <div class="flex-grow-column-1 opacity-8">
+          Aucune dépense enregistrée pour cette étape.
+        </div>
+      </div>
+    }
+    @for(expense of procedureApplyStep.expenses; track expense.id) {
+      <div ExpenseListCard [expense]="expense" class="marginTop-8"></div>
+    }
   </div>
 
 
   <div class="marginTop-16">
     <div class="fontWeight-semibold fontSize-18 opacity-8">Dettes</div>
-    <div DebtList
-         class="marginTop-8"
-         mode="card"
-         [params]="params">
+    @if(procedureApplyStep.debts.length == 0) {
+      <div class="d-flex padding-16 surface borderRadius-8 flex-column-gap-16">
+        <lucide-icon [img]="icons.InfoIcon"></lucide-icon>
+        <div class="flex-grow-column-1 opacity-8">
+          Aucune dette enregistrée pour cette étape.
+        </div>
+      </div>
+    }
 
-    </div>
+    @for(debt of procedureApplyStep.debts; track debt.id) {
+      <div DebtListCard [debt]="debt" class="marginTop-8"></div>
+    }
+
   </div>
 }
 

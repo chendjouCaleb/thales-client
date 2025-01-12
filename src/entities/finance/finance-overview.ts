@@ -37,12 +37,18 @@ export class FinanceOverview {
 
 
   addDebt(debt: Debt) {
-    if(!this.debts.some(d => d.id == debt.id)) {
+    if(!this.containsDebt(debt)) {
       this.debts.push(debt);
     }
   }
 
   containsDebt(debt: Debt): boolean { return this.debts.some(d => d.id == debt.id)}
+
+  removeDebt(debt: Debt) {
+    if(this.containsDebt(debt)) {
+      this.debts = this.debts.filter(e => e.id !== debt.id)
+    }
+  }
 
 
   addIncome(income: Income) {
@@ -51,5 +57,29 @@ export class FinanceOverview {
     }
   }
 
+  removeIncome(income: Income) {
+    if(this.containsIncome(income)) {
+      this.incomes = this.incomes.filter(e => e.id !== income.id)
+    }
+  }
+
   containsIncome(income: Income): boolean { return this.incomes.some(d => d.id == income.id)}
+
+
+  addExpense(expense: Expense) {
+    if(!this.containsExpense(expense)) {
+      this.expenses.push(expense);
+    }
+  }
+
+  removeExpense(expense: Expense) {
+    if(this.containsExpense(expense)) {
+      this.expenses = this.expenses.filter(e => e.id !== expense.id)
+    }
+  }
+
+  containsExpense(expense: Expense): boolean { return this.expenses.some(d => d.id == expense.id)}
+
+
+
 }

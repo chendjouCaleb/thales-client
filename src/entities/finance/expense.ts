@@ -138,6 +138,7 @@ export class ExpensePerson {
   personId: string;
 
   expenseId: string;
+  kind: string;
 
   constructor(value: any = {}) {
     if (value) {
@@ -145,6 +146,7 @@ export class ExpensePerson {
       this.createdAt = value.createdAt;
       this.personId = value.personId;
       this.expenseId = value.expenseId;
+      this.kind = value.kind;
     }
   }
 }

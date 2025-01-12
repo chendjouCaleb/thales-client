@@ -48,6 +48,9 @@ export class ProcedureApply extends BaseEntity<number> {
   incomes: Income[];
   expenses: Expense[];
 
+  employees: Employee[];
+  members: Member[];
+
   financeOverview: FinanceOverview
 
   constructor(value: any = {}) {
@@ -86,6 +89,9 @@ export class ProcedureApply extends BaseEntity<number> {
       this.incomes = value.incomes ? value.incomes.map(s => new Income(s)) : undefined;
       this.expenses = value.expenses ? value.expenses.map(s => new Expense(s)) : undefined;
 
+      this.employees = value.employees ? value.employees.map(s => new Employee(s)) : undefined;
+      this.members = value.members ? value.members.map(s => new Member(s)) : undefined;
+
       this.debts?.forEach(debt => debt._hydrateIncomes(this.incomes));
     }
   }
@@ -107,6 +113,21 @@ export class ProcedureApply extends BaseEntity<number> {
 
     this.debts.flatMap(d => d.debtIncomes).forEach(di => {
       di.income = this.incomes.find(income => income.id == di.incomeId);
+    });
+
+    this.debts.forEach(debt => {
+        const memberPersonId = debt.debtPersons.find(dp => dp.kind === 'MEMBER').personId;
+        debt.member = this.members.find(m => m.personId == memberPersonId)
+    });
+
+    this.incomes.forEach(income => {
+      const memberPersonId = income.incomePersons.find(dp => dp.kind === 'MEMBER').personId;
+      income.member = this.members.find(m => m.personId == memberPersonId)
+    });
+
+    this.expenses.forEach(expense => {
+      const memberPersonId = expense.expensePersons.find(dp => dp.kind === 'MEMBER').personId;
+      expense.member = this.members.find(m => m.personId == memberPersonId)
     })
   }
 }

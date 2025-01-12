@@ -22,7 +22,8 @@ import {DebtOverviewLauncher} from "@app/Components/debts";
   standalone: true,
   providers: [ DebtOverviewLauncher ],
   host: {
-    'class' : 'surface hover paddingHorizontal-16 paddingVertical-8 borderRadius-8 cursor-pointer d-flex'
+    'class' : 'surface hover paddingHorizontal-16 paddingVertical-8 borderRadius-8 cursor-pointer d-flex',
+    '(click)' : 'details(debt)'
   }
 })
 export class DebtListCard {

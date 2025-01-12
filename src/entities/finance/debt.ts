@@ -175,6 +175,7 @@ export class DebtPerson {
   id: string;
   createdAt: Date;
   personId: string;
+  kind: string;
 
   debtId: string;
 
@@ -184,6 +185,7 @@ export class DebtPerson {
       this.createdAt = value.createdAt;
       this.personId = value.personId;
       this.debtId = value.debtId;
+      this.kind = value.kind;
     }
   }
 }

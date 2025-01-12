@@ -96,22 +96,47 @@ export class ProcedureApplyStepHome implements OnInit {
     );
 
     this._expenseService.expenseAdd.subscribe(expense => {
-      if(expense.expenseElements.some(ee => ee.elementId == this.procedureApplyStep.elementId)) {
+      if (expense.expenseElements.some(ee => ee.elementId == this.procedureApplyStep.elementId)) {
         this.procedureApplyStep.expenses.unshift(expense);
+        this.procedureApplyStep.financeOverview.addExpense(expense);
+      }
+    });
+
+    this._expenseService.expenseDelete.subscribe(expense => {
+      const index = expense.expenseElements.findIndex(ee => ee.elementId == this.procedureApplyStep.elementId)
+      if (index) {
+        this.procedureApplyStep.expenses = this.procedureApplyStep.expenses.filter(e => e.id !== expense.id)
+        this.procedureApplyStep.financeOverview.removeExpense(expense);
       }
     });
 
     this._incomeService.incomeAdd.subscribe(income => {
-      if(income.incomeElements.some(ee => ee.elementId == this.procedureApplyStep.elementId)) {
+      if (income.incomeElements.some(ee => ee.elementId == this.procedureApplyStep.elementId)) {
         this.procedureApplyStep.incomes.unshift(income);
         this.procedureApplyStep.financeOverview.addIncome(income);
       }
     });
 
+    this._incomeService.incomeDelete.subscribe(income => {
+      const index = income.incomeElements.findIndex(ee => ee.elementId == this.procedureApplyStep.elementId)
+      if (index) {
+        this.procedureApplyStep.incomes = this.procedureApplyStep.incomes.filter(e => e.id !== income.id)
+        this.procedureApplyStep.financeOverview.removeIncome(income);
+      }
+    });
+
     this._debtService.debtAdd.subscribe(debt => {
-      if(debt.debtElements.some(ee => ee.elementId == this.procedureApplyStep.elementId)) {
+      if (debt.debtElements.some(ee => ee.elementId == this.procedureApplyStep.elementId)) {
         this.procedureApplyStep.debts.unshift(debt);
         this.procedureApplyStep.financeOverview.debts.unshift(debt);
+      }
+    });
+
+    this._debtService.debtDelete.subscribe(debt => {
+      const index = debt.debtElements.findIndex(ee => ee.elementId == this.procedureApplyStep.elementId)
+      if (index) {
+        this.procedureApplyStep.debts = this.procedureApplyStep.debts.filter(e => e.id !== debt.id)
+        this.procedureApplyStep.financeOverview.removeDebt(debt);
       }
     });
   }

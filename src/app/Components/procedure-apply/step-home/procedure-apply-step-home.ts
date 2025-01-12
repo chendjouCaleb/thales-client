@@ -24,12 +24,16 @@ import {MyBadge} from "@app/NeoUI";
 import {
   ProcedureApplyStepFinance
 } from "@app/Components/procedure-apply/step-home/finance/procedure-apply-step-finance";
+import {FinanceOverview} from "@entities/finance/finance-overview";
 
 @Component({
   templateUrl: 'procedure-apply-step-home.html',
   selector: 'ProcedureApplyStepHome',
   standalone: true,
-  styles: [ `:host {display: block; width: 816px}`],
+  styles: [`:host {
+    display: block;
+    width: 816px
+  }`],
   imports: [
     NgIf,
     MatIcon,
@@ -42,14 +46,20 @@ import {
   ]
 })
 export class ProcedureApplyStepHome implements OnInit {
-  icons = { CheckIcon, XIcon, BanIcon, DollarSignIcon, CircleCheckBig,
-   WalletIcon, HandCoinsIcon }
+  icons = {
+    CheckIcon, XIcon, BanIcon, DollarSignIcon, CircleCheckBig,
+    WalletIcon, HandCoinsIcon
+  }
   procedureApplyStep: ProcedureApplyStep;
   procedureApplyId: number;
 
   get apply(): ProcedureApply {
     return this.procedureApplyStep.procedureApply;
-}
+  }
+
+  get financeOverview(): FinanceOverview {
+    return this.procedureApplyStep.financeOverview
+  }
 
   @ViewChild(PaymentsList)
   paymentList: PaymentsList;
@@ -60,7 +70,7 @@ export class ProcedureApplyStepHome implements OnInit {
   //   return new Money(0, 'XAF').add(...this.paymentList._payments.map(p => p.amount));
   // }
 
-  get remaining(): Money{
+  get remaining(): Money {
     return this.procedureApplyStep.procedureStep.price.subtract(this.procedureApplyStep.totalPayment);
   }
 
@@ -73,7 +83,11 @@ export class ProcedureApplyStepHome implements OnInit {
   }
 
   async ngOnInit() {
-
+    this.procedureApplyStep.financeOverview = new FinanceOverview(
+      this.procedureApplyStep.incomes,
+      this.procedureApplyStep.debts,
+      this.procedureApplyStep.expenses
+    )
   }
 
   addPayment() {

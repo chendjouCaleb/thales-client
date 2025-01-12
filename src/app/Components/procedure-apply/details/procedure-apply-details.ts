@@ -16,6 +16,7 @@ import {
   Trash2Icon, UndoIcon, WalletIcon
 } from "lucide-angular";
 import {Button, IconButton} from "@app/ui";
+import {FinanceOverview} from "@entities/finance/finance-overview";
 
 @Component({
   templateUrl: 'procedure-apply-details.html',
@@ -43,7 +44,13 @@ export class ProcedureApplyDetails implements OnInit {
 
   getProcedureApply = new Task(async () => {
     this.procedureApply = await this._service.getByIdAsync(this.procedureApplyId);
-    this.procedureApply.procedureApplySteps.forEach(pa => pa.procedureApply = this.procedureApply)
+    this.procedureApply.procedureApplySteps.forEach(pa => pa.procedureApply = this.procedureApply);
+
+    this.procedureApply.financeOverview = new FinanceOverview(
+      this.procedureApply.incomes,
+      this.procedureApply.debts,
+      this.procedureApply.expenses
+    )
   });
 
   constructor(private _service: ProcedureApplyService,

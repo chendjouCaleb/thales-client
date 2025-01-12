@@ -42,7 +42,10 @@ export class ProcedureApplyService {
   async getByIdAsync(id: number): Promise<ProcedureApply> {
     const call = this._httpClient.get<ProcedureApply>(`${this.url}/${id}`);
     const value = await firstValueFrom(call);
-    return new ProcedureApply(value);
+    const procedureApply = new ProcedureApply(value);
+    procedureApply._hydrate()
+
+    return procedureApply;
   }
 
   async addAsync(agency: Agency, customer: Customer, procedure: Procedure): Promise<ProcedureApply> {

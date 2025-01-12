@@ -12,6 +12,7 @@ import {CircleAlertIcon, LucideAngularModule} from "lucide-angular";
 import {ExpensesList} from "@app/Components/expenses/list/expenses-list";
 import {IncomesList} from "@app/Components/incomes";
 import {DebtList} from "@app/Components/debts";
+import {FinanceOverview} from "@entities/finance/finance-overview";
 
 @Component({
   templateUrl: 'procedure-apply-step-finance.html',
@@ -37,6 +38,9 @@ export class ProcedureApplyStepFinance implements OnInit {
 
   params: any
 
+  get financeOverview(): FinanceOverview {
+    return this.procedureApplyStep.financeOverview
+  }
 
   constructor() {}
 

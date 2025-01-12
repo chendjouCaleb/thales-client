@@ -47,11 +47,7 @@ export class ProcedureApplyFinance implements OnInit {
               private _controller: ProcedureApplyController) {}
 
   async ngOnInit() {
-    this.financeOverview = new FinanceOverview(
-      this.procedureApply.incomes,
-      this.procedureApply.debts,
-      this.procedureApply.expenses
-    )
+    this.financeOverview = this.procedureApply.financeOverview
   }
 
 

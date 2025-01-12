@@ -9,6 +9,7 @@ import {Money} from "@entities/money";
 import {Member} from "@entities/member";
 import {DateTime} from "luxon";
 import {Debt, Expense, Income} from "@entities/finance";
+import {FinanceOverview} from "@entities/finance/finance-overview";
 
 export class ProcedureApply extends BaseEntity<number> {
   elementId: string;
@@ -46,6 +47,8 @@ export class ProcedureApply extends BaseEntity<number> {
   debts: Debt[];
   incomes: Income[];
   expenses: Expense[];
+
+  financeOverview: FinanceOverview
 
   constructor(value: any = {}) {
     super(value);
@@ -86,6 +89,26 @@ export class ProcedureApply extends BaseEntity<number> {
       this.debts?.forEach(debt => debt._hydrateIncomes(this.incomes));
     }
   }
+
+  _hydrate() {
+    this.procedureApplySteps.forEach(step => {
+      step.debts = this.debts.filter(debt =>
+        debt.debtElements.some(de => de.elementId == step.elementId)
+      );
+
+      step.incomes = this.incomes.filter(income =>
+        income.incomeElements.some(de => de.elementId == step.elementId)
+      );
+
+      step.expenses = this.expenses.filter(expense =>
+        expense.expenseElements.some(de => de.elementId == step.elementId)
+      );
+    });
+
+    this.debts.flatMap(d => d.debtIncomes).forEach(di => {
+      di.income = this.incomes.find(income => income.id == di.incomeId);
+    })
+  }
 }
 
 
@@ -119,6 +142,8 @@ export class ProcedureApplyStep extends BaseEntity<number> {
   debtRemainingAmount: Money
   incomeAmount: Money
   expenseAmount: Money
+
+  financeOverview: FinanceOverview
 
 
   constructor(value: any = {}) {

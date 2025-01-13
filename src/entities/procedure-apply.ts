@@ -4,7 +4,7 @@ import {Procedure, ProcedureStep} from "./procedure";
 import {Payment} from "./payment";
 import {Agency} from "./agency";
 import {Employee} from "@entities/employee";
-import { Space } from "./space";
+import {Space} from "./space";
 import {Money} from "@entities/money";
 import {Member} from "@entities/member";
 import {DateTime} from "luxon";
@@ -31,7 +31,11 @@ export class ProcedureApply extends BaseEntity<number> {
 
   isLocked: boolean
   doneAt?: DateTime
-  get isDone(): boolean { return this.doneAt != null }
+
+  get isDone(): boolean {
+    return this.doneAt != null
+  }
+
   doneByMember?: Member
   doneByMemberId?: number
 
@@ -109,15 +113,26 @@ export class ProcedureApply extends BaseEntity<number> {
       step.expenses = this.expenses.filter(expense =>
         expense.expenseElements.some(de => de.elementId == step.elementId)
       );
+      step.financeOverview = new FinanceOverview(
+        step.incomes,
+        step.debts,
+        step.expenses
+      )
     });
+
+    this.financeOverview = new FinanceOverview(
+      this.incomes,
+      this.debts,
+      this.expenses
+    )
 
     this.debts.flatMap(d => d.debtIncomes).forEach(di => {
       di.income = this.incomes.find(income => income.id == di.incomeId);
     });
 
     this.debts.forEach(debt => {
-        const memberPersonId = debt.debtPersons.find(dp => dp.kind === 'MEMBER').personId;
-        debt.member = this.members.find(m => m.personId == memberPersonId)
+      const memberPersonId = debt.debtPersons.find(dp => dp.kind === 'MEMBER').personId;
+      debt.member = this.members.find(m => m.personId == memberPersonId)
     });
 
     this.incomes.forEach(income => {
@@ -128,7 +143,95 @@ export class ProcedureApply extends BaseEntity<number> {
     this.expenses.forEach(expense => {
       const memberPersonId = expense.expensePersons.find(dp => dp.kind === 'MEMBER').personId;
       expense.member = this.members.find(m => m.personId == memberPersonId)
-    })
+    });
+  }
+
+
+  addIncome(income: Income): boolean {
+    if (this.shouldContainsIncome(income) && !this.containsIncome(income)) {
+      this.incomes.unshift(income);
+      this.financeOverview.addIncome(income);
+      console.log('new income')
+      return true;
+    }
+    return false;
+  }
+
+  removeIncome(income: Income): boolean {
+    if (this.containsIncome(income)) {
+      this.incomes = this.incomes.filter(e => e.id !== income.id)
+      this.financeOverview.removeIncome(income);
+      return true;
+    }
+    return false;
+  }
+
+
+  shouldContainsIncome(income: Income): boolean {
+    return income.incomeElements.some(ee => ee.elementId == this.elementId);
+  }
+
+  containsIncome(income: Income): boolean {
+    return this.incomes.some(ee => ee.id == income.id);
+  }
+
+
+
+  addExpense(expense: Expense): boolean {
+    if (this.shouldContainsExpense(expense) && !this.containsExpense(expense)) {
+      this.expenses.unshift(expense);
+      this.financeOverview.addExpense(expense);
+      console.log('new expense')
+      return true;
+    }
+    return false;
+  }
+
+  removeExpense(expense: Expense): boolean {
+    if (this.containsExpense(expense)) {
+      this.expenses = this.expenses.filter(e => e.id !== expense.id)
+      this.financeOverview.removeExpense(expense);
+      return true;
+    }
+    return false;
+  }
+
+
+  shouldContainsExpense(expense: Expense): boolean {
+    return expense.expenseElements.some(ee => ee.elementId == this.elementId);
+  }
+
+  containsExpense(expense: Expense): boolean {
+    return this.expenses.some(ee => ee.id == expense.id);
+  }
+
+
+
+  addDebt(debt: Debt): boolean {
+    if (this.containsDebt(debt) && !this.containsDebt(debt)) {
+      this.debts.unshift(debt);
+      this.financeOverview.addDebt(debt);
+      return true;
+    }
+    return false;
+  }
+
+  removeDebt(debt: Debt): boolean {
+    if (this.containsDebt(debt)) {
+      this.debts = this.debts.filter(e => e.id !== debt.id)
+      this.financeOverview.removeDebt(debt);
+      return true;
+    }
+    return false;
+  }
+
+
+  shouldContainsDebt(debt: Debt): boolean {
+    return debt.debtElements.some(ee => ee.elementId == this.elementId);
+  }
+
+  containsDebt(debt: Debt): boolean {
+    return this.debts.some(ee => ee.id == debt.id);
   }
 }
 
@@ -154,6 +257,8 @@ export class ProcedureApplyStep extends BaseEntity<number> {
 
   paymentAmount: number = 0;
   totalPayment: Money
+
+  price: Money = Money.of(0)
 
   payments: Payment[] = [];
   incomes: Income[] = [];
@@ -197,7 +302,87 @@ export class ProcedureApplyStep extends BaseEntity<number> {
       this.debtRemainingAmount = value.debtRemainingAmount ? Money.parse(value.debtRemainingAmount) : undefined;
       this.incomeAmount = value.incomeAmount ? Money.parse(value.incomeAmount) : undefined;
       this.expenseAmount = value.expenseAmount ? Money.parse(value.expenseAmount) : undefined;
-
     }
+  }
+
+  addExpense(expense: Expense): boolean {
+    if (this.shouldContainsExpense(expense) && !this.containsExpense(expense)) {
+      this.expenses.unshift(expense);
+      this.financeOverview.addExpense(expense);
+      return true;
+    }
+    return false;
+  }
+
+  removeExpense(expense: Expense): boolean {
+    if (this.containsExpense(expense)) {
+      this.expenses = this.expenses.filter(e => e.id !== expense.id)
+      this.financeOverview.removeExpense(expense);
+      return true;
+    }
+    return false;
+  }
+
+  shouldContainsExpense(expense: Expense): boolean {
+    return expense.expenseElements.some(ee => ee.elementId == this.elementId);
+  }
+
+  containsExpense(expense: Expense): boolean {
+    return this.expenses.some(ee => ee.id == expense.id);
+  }
+
+
+
+  addIncome(income: Income): boolean {
+    if (this.shouldContainsIncome(income) && !this.containsIncome(income)) {
+      this.incomes.unshift(income);
+      this.financeOverview.addIncome(income);
+      return true;
+    }
+    return false;
+  }
+
+  removeIncome(income: Income): boolean {
+    if (this.containsIncome(income)) {
+      this.incomes = this.incomes.filter(e => e.id !== income.id)
+      this.financeOverview.removeIncome(income);
+      return true;
+    }
+    return false;
+  }
+
+  shouldContainsIncome(income: Income): boolean {
+    return income.incomeElements.some(ee => ee.elementId == this.elementId);
+  }
+
+  containsIncome(income: Income): boolean {
+    return this.incomes.some(ee => ee.id == income.id);
+  }
+
+
+  addDebt(debt: Debt): boolean {
+    if (this.shouldContainsDebt(debt) && !this.containsDebt(debt)) {
+      this.debts.unshift(debt);
+      this.financeOverview.addDebt(debt);
+      return true;
+    }
+    return false;
+  }
+
+  removeDebt(debt: Debt): boolean {
+    if (this.containsDebt(debt)) {
+      this.debts = this.debts.filter(e => e.id !== debt.id)
+      this.financeOverview.removeDebt(debt);
+      return true;
+    }
+    return false;
+  }
+
+  shouldContainsDebt(debt: Debt): boolean {
+    return debt.debtElements.some(ee => ee.elementId == this.elementId);
+  }
+
+  containsDebt(debt: Debt): boolean {
+    return this.debts.some(ee => ee.id == debt.id);
   }
 }

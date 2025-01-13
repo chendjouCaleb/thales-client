@@ -87,8 +87,6 @@ export class Expense extends BaseEntity<string> {
         this.employee.user = this.user;
       }
 
-
-      console.log('Persons: ', value.expensePersons)
       this.expenseOwners = value.expenseOwners?.map(eo => new ExpenseOwner(eo));
       this.expenseElements = value.expenseElements?.map(eo => new ExpenseElement(eo));
       this.expensePersons = value.expensePersons?.map(eo => new ExpensePerson(eo));

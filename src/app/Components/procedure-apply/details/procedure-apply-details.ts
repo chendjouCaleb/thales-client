@@ -17,6 +17,7 @@ import {
 } from "lucide-angular";
 import {Button, IconButton} from "@app/ui";
 import {FinanceOverview} from "@entities/finance/finance-overview";
+import {ExpenseService} from "@app/services/expense.service";
 
 @Component({
   templateUrl: 'procedure-apply-details.html',
@@ -34,8 +35,10 @@ import {FinanceOverview} from "@entities/finance/finance-overview";
   encapsulation: ViewEncapsulation.None
 })
 export class ProcedureApplyDetails implements OnInit {
-  icons = { ArrowLeftIcon, Trash2Icon, UndoIcon, CircleCheckBigIcon,
-    LockOpenIcon, LockIcon }
+  icons = {
+    ArrowLeftIcon, Trash2Icon, UndoIcon, CircleCheckBigIcon,
+    LockOpenIcon, LockIcon
+  }
 
   @Input()
   procedureApplyId: number;
@@ -45,21 +48,31 @@ export class ProcedureApplyDetails implements OnInit {
   getProcedureApply = new Task(async () => {
     this.procedureApply = await this._service.getByIdAsync(this.procedureApplyId);
     this.procedureApply.procedureApplySteps.forEach(pa => pa.procedureApply = this.procedureApply);
-
-    this.procedureApply.financeOverview = new FinanceOverview(
-      this.procedureApply.incomes,
-      this.procedureApply.debts,
-      this.procedureApply.expenses
-    )
   });
 
   constructor(private _service: ProcedureApplyService,
+              private _expenseService: ExpenseService,
               private _controller: ProcedureApplyController,
-              public readonly location: Location) {}
+              public readonly location: Location) {
+  }
 
   async ngOnInit() {
-    this.getProcedureApply.launch()
+    await this.getProcedureApply.launch()
 
+    this._expenseService.expenseAdd.subscribe(expense => {
+      console.log('expense: ' + expense)
+      if (this.procedureApply.shouldContainsExpense(expense)) {
+        this.procedureApply.addExpense(expense);
+        //this.procedureApply.procedureApplySteps.forEach(step => step.addExpense(expense))
+      }
+    });
+
+    this._expenseService.expenseDelete.subscribe(expense => {
+      if (this.procedureApply.containsExpense(expense)) {
+        this.procedureApply.removeExpense(expense)
+        this.procedureApply.procedureApplySteps.forEach(step => step.removeExpense(expense))
+      }
+    });
   }
 
   openDetails(step: ProcedureApplyStep) {

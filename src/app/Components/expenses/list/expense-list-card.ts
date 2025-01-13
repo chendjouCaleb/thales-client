@@ -11,7 +11,7 @@ import {IconButton, Menu, MenuItem} from "@app/ui";
          (click)="details(expense)">
 
       <div class="flex-grow-1">
-        <div class="fontSize-18 fontWeight-bold">
+        <div class="fontSize-16 fontWeight-semiBold">
           {{ expense.amount.format() }}
         </div>
 

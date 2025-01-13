@@ -13,7 +13,7 @@ import {IncomeDetailsLauncher} from "@app/Components/incomes";
       (click)="details(income)">
 
       <div class="flex-grow-1">
-        <div class="fontSize-16 fontWeight-bold">
+        <div class="fontSize-16 fontWeight-semiBold">
           {{ income.amount.format() }}
         </div>
 

@@ -2,7 +2,7 @@ import {Injectable} from "@angular/core";
 import {SERVER_URL} from "../http";
 import {Agency, Customer, Expense, Space} from "../../entities";
 import { HttpClient } from "@angular/common/http";
-import {firstValueFrom, Observable, Subject} from "rxjs";
+import {firstValueFrom, Observable, ReplaySubject, Subject} from "rxjs";
 import {ExpenseAddModel} from "@app/models";
 import {ExpenseRangeViewModel} from "@entities/view-models/ExpenseRangeViewModel";
 import {Money} from "@entities/money";
@@ -13,7 +13,7 @@ import {Money} from "@entities/money";
 export class ExpenseService {
   private url = `${SERVER_URL}/finance/expenses`;
 
-  private _expenseAdd = new Subject<Expense>();
+  private _expenseAdd = new ReplaySubject<Expense>();
   get expenseAdd(): Observable<Expense> { return this._expenseAdd.asObservable() }
 
   private _expenseDelete = new Subject<Expense>();

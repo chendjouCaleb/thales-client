@@ -148,7 +148,8 @@ export class ProcedureApplyService {
     const call = this._httpClient.post<Income>(`${this.stepUrl}/${procedureApplyStep.id}/incomes`,
       model);
     const income = new Income(await firstValueFrom(call));
-    procedureApplyStep.incomes.unshift(income);
+    procedureApplyStep.addIncome(income);
+    procedureApplyStep.procedureApply?.addIncome(income)
     return income;
   }
 
@@ -156,6 +157,7 @@ export class ProcedureApplyService {
     const call = this._httpClient.post<Debt>(`${this.stepUrl}/${procedureApplyStep.id}/debts`, model);
     const debt = new Debt(await firstValueFrom(call));
     procedureApplyStep.debts.unshift(debt);
+    procedureApplyStep?.procedureApply.addDebt(debt);
     return debt;
   }
 
@@ -163,6 +165,7 @@ export class ProcedureApplyService {
     const call = this._httpClient.post<Expense>(`${this.stepUrl}/${procedureApplyStep.id}/expenses`, model);
     const expense = new Expense(await firstValueFrom(call));
     procedureApplyStep.expenses.unshift(expense);
+    procedureApplyStep?.procedureApply.addExpense(expense)
     return expense;
   }
 }

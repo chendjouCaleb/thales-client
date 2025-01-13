@@ -119,8 +119,6 @@ export class Debt extends BaseEntity<string> {
         this.employee.user = this.user;
       }
 
-
-      console.log('Persons: ', value.debtPersons)
       this.debtOwners = value.debtOwners?.map(eo => new DebtOwner(eo));
       this.debtElements = value.debtElements?.map(eo => new DebtElement(eo));
       this.debtPersons = value.debtPersons?.map(eo => new DebtPerson(eo));

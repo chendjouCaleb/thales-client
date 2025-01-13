@@ -13,7 +13,7 @@ import {MatDialogModule} from "@angular/material/dialog";
 import {MatInputModule} from "@angular/material/input";
 import {ProcedureApplyStepValidate} from "./validate/procedure-apply-step-validate";
 import {CleaveModule} from "@app/cleave";
-import {ProcedureApplyStepPaymentAdd} from "./add-payment/procedure-apply-step-payment-add";
+import {ProcedureApplyStepChangePrice} from "@app/Components/procedure-apply/change-price/procedure-apply-step-change-price";
 import {Button} from "@app/ui";
 import {TextField, TextFieldInput, TextFieldLabel} from "@app/NeoUI";
 

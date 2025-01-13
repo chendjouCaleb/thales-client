@@ -291,6 +291,7 @@ export class ProcedureApplyStep extends BaseEntity<number> {
       this.paymentAmount = value.paymentAmount;
 
       this.totalPayment = value.totalPayment ? Money.parse(value.totalPayment) : undefined;
+      this.price = value.price ? Money.parse(value.price) : undefined;
 
       this.employeeId = value.employeeId;
       this.employee = value.employee ? new Employee(value.employee) : null;

@@ -1,0 +1,14 @@
+<div class="fontWeight-semiBold fontSize-20 p-4">Changer le prix l'étape</div>
+
+
+<div class="px-4">
+    <TextField style="width: 100%">
+      <label for="amount-field" TextFieldLabel>Montant à payer</label>
+      <input CleaveNumberInput TextFieldInput [formControl]="formControl" id="amount-field">
+    </TextField>
+</div>
+
+<div class="p-4 align-end">
+  <button MyButton (click)="dialogRef.close()" class="me-4">Annuler</button>
+  <button MyButton class="primary" (click)="changeAmount()">Modifier</button>
+</div>

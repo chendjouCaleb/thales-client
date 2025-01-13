@@ -21,6 +21,7 @@ import {
 } from "../models";
 import {ProcedureApplyRangeViewModel} from "@entities/view-models/ProcedureApplyRangeViewModel";
 import {DateTime} from "luxon";
+import {Money} from "@entities/money";
 
 @Injectable({
   providedIn: 'root'
@@ -122,6 +123,13 @@ export class ProcedureApplyService {
     applyStep.validated = false;
     applyStep.validatedAt = null;
     return firstValueFrom(call);
+  }
+
+  async changePriceAsync(procedureApplyStep: ProcedureApplyStep, price: Money): Promise<void> {
+    const call = this._httpClient.put<string>(`${this.stepUrl}/${procedureApplyStep.id}/price`,
+      {}, {params: {price: price.toString()}});
+    await firstValueFrom(call)
+    procedureApplyStep.price = price;
   }
 
   async addPaymentAsync(procedureApplyStep: ProcedureApplyStep, amount: number): Promise<Payment> {

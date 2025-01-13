@@ -7,8 +7,8 @@ import {ProcedureApply, ProcedureApplyStep} from "@entities/procedure-apply";
 import {Payment} from "@entities/payment";
 import {ProcedureApplyStepValidate} from "@app/Components/procedure-apply/validate/procedure-apply-step-validate";
 import {
-  ProcedureApplyStepPaymentAdd
-} from "@app/Components/procedure-apply/add-payment/procedure-apply-step-payment-add";
+  ProcedureApplyStepChangePrice
+} from "@app/Components/procedure-apply/change-price/procedure-apply-step-change-price";
 import {Dialog} from "@angular/cdk/dialog";
 import {ProcedureApplyStepHome} from "@app/Components/procedure-apply/step-home/procedure-apply-step-home";
 import {ProcedureApplyStepInvalidate} from "@app/Components/procedure-apply/invalidate/procedure-apply-step-invalidate";
@@ -24,6 +24,9 @@ import {IncomeAdd} from "@app/Components/incomes";
 import {ProcedureApplyExpenseAdd} from "@app/Components/procedure-apply/add-income";
 import {ProcedureApplyIncomeAdd} from "@app/Components/procedure-apply/add-expense";
 import {ProcedureApplyDebtAdd} from "@app/Components/procedure-apply/add-debt";
+import {
+  ProcedureApplyStepPaymentAdd
+} from "@app/Components/procedure-apply/add-payment-1/procedure-apply-step-payment-add";
 
 @Injectable({
   providedIn: 'root'
@@ -34,7 +37,7 @@ export class ProcedureApplyController {
 
   addProcedureApply(agency: Agency): Observable<ProcedureApply> {
     const dialogRef = this._dialog.open<ProcedureApply>(ProcedureApplyAdd, {
-      autoFocus: false, data: {agency}
+      autoFocus: true, data: {agency}
     });
     return dialogRef.closed;
   }
@@ -52,7 +55,7 @@ export class ProcedureApplyController {
       return new Observable((subscriber) => subscriber.next());
     }
     const dialogRef = this._dialog.open<void>(ProcedureApplyDone, {
-      autoFocus: false, data: {procedureApply}
+      autoFocus: true, data: {procedureApply}
     });
     return dialogRef.closed;
   }
@@ -62,35 +65,35 @@ export class ProcedureApplyController {
       return new Observable((subscriber) => subscriber.next());
     }
     const dialogRef = this._dialog.open<void>(ProcedureApplyUndone, {
-      autoFocus: false, data: {procedureApply}
+      autoFocus: true, data: {procedureApply}
     });
     return dialogRef.closed;
   }
 
   lock(procedureApply: ProcedureApply): Observable<void> {
     const dialogRef = this._dialog.open<void>(ProcedureApplyLock, {
-      autoFocus: false, data: {procedureApply}
+      autoFocus: true, data: {procedureApply}
     });
     return dialogRef.closed;
   }
 
   unlock(procedureApply: ProcedureApply): Observable<void> {
     const dialogRef = this._dialog.open<void>(ProcedureApplyUnlock, {
-      autoFocus: false, data: {procedureApply}
+      autoFocus: true, data: {procedureApply}
     });
     return dialogRef.closed;
   }
 
   validate(applyStep: ProcedureApplyStep): Observable<Payment> {
     const dialogRef = this._dialog.open<Payment>(ProcedureApplyStepValidate, {
-      autoFocus: false, data: {applyStep}
+      autoFocus: true, data: {applyStep}
     });
     return dialogRef.closed;
   }
 
   invalidate(applyStep: ProcedureApplyStep): Observable<Payment> {
     const dialogRef = this._dialog.open<Payment>(ProcedureApplyStepInvalidate, {
-      autoFocus: false, data: {applyStep}
+      autoFocus: true, data: {applyStep}
     });
     return dialogRef.closed;
   }
@@ -98,7 +101,14 @@ export class ProcedureApplyController {
 
   openStep(procedureApplyStep: ProcedureApplyStep): Observable<Payment> {
     const dialogRef = this._dialog.open<Payment>(ProcedureApplyStepHome, {
-      autoFocus: false, data: {procedureApplyStep}
+      autoFocus: true, data: {procedureApplyStep}
+    });
+    return dialogRef.closed;
+  }
+
+  changeStepPrice(procedureApplyStep: ProcedureApplyStep): Observable<Payment> {
+    const dialogRef = this._dialog.open<Payment>(ProcedureApplyStepChangePrice, {
+      autoFocus: true, data: {procedureApplyStep}
     });
     return dialogRef.closed;
   }

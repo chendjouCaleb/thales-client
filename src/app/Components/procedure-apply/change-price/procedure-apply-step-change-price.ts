@@ -8,10 +8,11 @@ import {DIALOG_DATA, DialogRef} from "@angular/cdk/dialog";
 import {TextField, TextFieldInput, TextFieldLabel} from "@app/NeoUI";
 import {CleaveModule} from "@app/cleave";
 import {Button} from "@app/ui";
+import {Money} from "@entities/money";
 
 @Component({
-  templateUrl: 'procedure-apply-step-payment-add.html',
-  selector: 'ProcedureApplyStepPaymentAdd',
+  templateUrl: 'procedure-apply-step-change-price.html',
+  selector: 'ProcedureApplyStepChangePrice',
   imports: [
     TextFieldLabel,
     CleaveModule,
@@ -22,23 +23,23 @@ import {Button} from "@app/ui";
   ],
   standalone: true
 })
-export class ProcedureApplyStepPaymentAdd {
-  applyStep: ProcedureApplyStep;
+export class ProcedureApplyStepChangePrice {
+  procedureApplyStep: ProcedureApplyStep;
 
   formControl = new FormControl<number>(null);
 
   constructor(@Inject(DIALOG_DATA) data: any,
-              public dialogRef: DialogRef<Payment, ProcedureApplyStepPaymentAdd>,
+              public dialogRef: DialogRef<void, ProcedureApplyStepChangePrice>,
               private _service: ProcedureApplyService,
               private _snackbar: MatSnackBar) {
-    this.applyStep = data.applyStep;
+    this.procedureApplyStep = data.procedureApplyStep;
   }
 
-  async addPayment() {
-    const amount = this.formControl.value;
-    const payment = await this._service.addPaymentAsync(this.applyStep, amount);
+  async changeAmount() {
+    const amount = Money.of(this.formControl.value);
+    await this._service.changePriceAsync(this.procedureApplyStep, amount);
 
-    this.dialogRef.close(payment);
-    this._snackbar.open(`Le paiement a été ajouté.`, '', {duration: 5000})
+    this.dialogRef.close();
+    this._snackbar.open(`Le prix de l'étape a été changé.`, '', {duration: 5000})
   }
 }

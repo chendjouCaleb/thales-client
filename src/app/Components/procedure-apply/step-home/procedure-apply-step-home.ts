@@ -17,6 +17,7 @@ import {
   CircleCheckBig,
   DollarSignIcon, HandCoinsIcon,
   LucideAngularModule,
+  PencilIcon,
   WalletIcon,
   XIcon
 } from "lucide-angular";
@@ -51,7 +52,7 @@ import {DebtService} from "@app/services/debt.service";
 export class ProcedureApplyStepHome implements OnInit {
   icons = {
     CheckIcon, XIcon, BanIcon, DollarSignIcon, CircleCheckBig,
-    WalletIcon, HandCoinsIcon
+    WalletIcon, HandCoinsIcon, PencilIcon
   }
   procedureApplyStep: ProcedureApplyStep;
   procedureApplyId: number;
@@ -158,4 +159,7 @@ export class ProcedureApplyStepHome implements OnInit {
     this._controller.invalidate(this.procedureApplyStep);
   }
 
+  changePrice() {
+    this._controller.changeStepPrice(this.procedureApplyStep);
+  }
 }

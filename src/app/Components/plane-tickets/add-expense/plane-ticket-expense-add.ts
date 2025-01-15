@@ -11,12 +11,13 @@ import {NgIf} from "@angular/common";
 import {Task} from "@app/utils";
 import {MatProgressSpinner} from "@angular/material/progress-spinner";
 import {ExpenseAddModel} from "@app/models";
-import {ProcedureApplyService} from "@app/services";
+import {PlaneTicketService, ProcedureApplyService} from "@app/services";
 import {ProcedureApplyStep} from "@entities/procedure-apply";
 import {Expense} from "@entities/finance";
+import {PlaneTicket} from "@entities/plane-ticket";
 
 @Component({
-  templateUrl: 'procedure-apply-expense-add.html',
+  templateUrl: 'plane-ticket-expense-add.html',
   selector: 'PlaneTicketExpenseAdd',
   imports: [
     LucideAngularModule,
@@ -31,9 +32,9 @@ import {Expense} from "@entities/finance";
   standalone: true,
   providers: [ CustomerPickerDialog ]
 })
-export class ProcedureApplyExpenseAdd {
+export class PlaneTicketExpenseAdd {
   icons = { ChevronDownIcon }
-  procedureApplyStep: ProcedureApplyStep;
+  planeTicket: PlaneTicket;
 
   formGroup = new FormGroup({
     amount: new FormControl<number>(null),
@@ -42,13 +43,13 @@ export class ProcedureApplyExpenseAdd {
   })
 
   constructor(@Inject(DIALOG_DATA) data: any,
-              public _dialogRef: DialogRef<Expense, ProcedureApplyExpenseAdd>,
-              private _service: ProcedureApplyService,
+              public _dialogRef: DialogRef<Expense, PlaneTicketExpenseAdd>,
+              private _service: PlaneTicketService,
               private _snackbar: MatSnackBar) {
-    this.procedureApplyStep = data.procedureApplyStep;
+    this.planeTicket = data.planeTicket;
 
-    if(!this.procedureApplyStep) {
-      throw new Error('this.procedureApplyStep should not be null')
+    if(!this.planeTicket) {
+      throw new Error('this.planeTicket should not be null')
     }
   }
 
@@ -64,7 +65,7 @@ export class ProcedureApplyExpenseAdd {
 
   addTask = new Task(async () => {
     const model = new ExpenseAddModel(this.formGroup.value);
-    return await this._service.addExpenseAsync(this.procedureApplyStep, model);
+    return await this._service.addExpenseAsync(this.planeTicket, model);
   });
 
 }

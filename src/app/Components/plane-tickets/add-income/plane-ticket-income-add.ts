@@ -1,22 +1,27 @@
 import {Component, Inject} from "@angular/core";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {FormControl, FormGroup, ReactiveFormsModule} from "@angular/forms";
+import {Customer} from "@entities/customer";
 import {CustomerPickerDialog} from "@app/Components";
+import {Agency} from "@entities/agency";
 import {ChevronDownIcon, LucideAngularModule} from "lucide-angular";
 import {DIALOG_DATA, DialogRef} from "@angular/cdk/dialog";
+import {Income} from "@entities/finance/income";
 import {TextField, TextFieldInput} from "@app/NeoUI";
 import {CleaveModule} from "@app/cleave";
 import {Button} from "@app/ui";
 import {NgIf} from "@angular/common";
 import {Task} from "@app/utils";
 import {MatProgressSpinner} from "@angular/material/progress-spinner";
-import {ExpenseAddModel} from "@app/models";
-import {ProcedureApplyService} from "@app/services";
+import {IncomeAddModel} from "@app/models";
+import {Space} from "@entities/space";
+import {IncomeService} from "@app/services/income.service";
+import {PlaneTicketService, ProcedureApplyService} from "@app/services";
 import {ProcedureApplyStep} from "@entities/procedure-apply";
-import {Expense} from "@entities/finance";
+import {PlaneTicket} from "@entities/plane-ticket";
 
 @Component({
-  templateUrl: 'procedure-apply-expense-add.html',
+  templateUrl: 'plane-ticket-income-add.html',
   selector: 'PlaneTicketExpenseAdd',
   imports: [
     LucideAngularModule,
@@ -28,27 +33,26 @@ import {Expense} from "@entities/finance";
     NgIf,
     MatProgressSpinner
   ],
-  standalone: true,
-  providers: [ CustomerPickerDialog ]
+  standalone: true
 })
-export class ProcedureApplyExpenseAdd {
+export class PlaneTicketIncomeAdd {
   icons = { ChevronDownIcon }
-  procedureApplyStep: ProcedureApplyStep;
+  planeTicket: PlaneTicket;
 
   formGroup = new FormGroup({
     amount: new FormControl<number>(null),
-    reason: new FormControl<string>(''),
+    reason: new FormControl<string>(this.getDefaultReason()),
     details: new FormControl<string>(''),
   })
 
   constructor(@Inject(DIALOG_DATA) data: any,
-              public _dialogRef: DialogRef<Expense, ProcedureApplyExpenseAdd>,
-              private _service: ProcedureApplyService,
+              public _dialogRef: DialogRef<Income, PlaneTicketIncomeAdd>,
+              private _service: PlaneTicketService,
               private _snackbar: MatSnackBar) {
-    this.procedureApplyStep = data.procedureApplyStep;
+    this.planeTicket = data.planeTicket;
 
-    if(!this.procedureApplyStep) {
-      throw new Error('this.procedureApplyStep should not be null')
+    if(!this.planeTicket) {
+      throw new Error('this.planeTicket should not be null')
     }
   }
 
@@ -56,16 +60,19 @@ export class ProcedureApplyExpenseAdd {
   async add() {
     await this.addTask.launch()
     if(this.addTask.success) {
-      const expense = this.addTask.result;
-      this._dialogRef.close(expense);
-      this._snackbar.open(`La dépense a été ajoutée.`, '', {duration: 3000});
+      const income = this.addTask.result;
+      this._dialogRef.close(income);
+      this._snackbar.open(`La revenue a été ajouté.`, '', {duration: 3000});
     }
   }
 
   addTask = new Task(async () => {
-    const model = new ExpenseAddModel(this.formGroup.value);
-    return await this._service.addExpenseAsync(this.procedureApplyStep, model);
-  });
+    const model = new IncomeAddModel(this.formGroup.value);
+    return await this._service.addIncomeAsync(this.planeTicket, model);
+  })
 
+  getDefaultReason() {
+    return `Paiement pour le billet d'avion n° ${this.planeTicket.code}.`
+  }
 }
 

@@ -21,7 +21,7 @@ import {ProcedureApplyStep} from "@entities/procedure-apply";
 
 @Component({
   templateUrl: 'procedure-apply-income-add.html',
-  selector: 'ProcedureApplyExpenseAdd',
+  selector: 'PlaneTicketExpenseAdd',
   imports: [
     LucideAngularModule,
     TextField,
@@ -72,7 +72,7 @@ export class ProcedureApplyIncomeAdd {
   })
 
   getDefaultReason() {
-    return `Paiement pour l'ouverture de dossier de la procédure n° ${this.procedureApplyStep?.procedureApply?.code}.`
+    return `Paiement pour ${this.procedureApplyStep.name} de la procédure n° ${this.procedureApplyStep?.procedureApply?.code}.`
   }
 }
 

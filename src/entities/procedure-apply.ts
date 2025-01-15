@@ -262,7 +262,8 @@ export class ProcedureApplyStep extends BaseEntity<number> {
   paymentAmount: number = 0;
   totalPayment: Money
 
-  price: Money = Money.of(0)
+  price: Money = Money.of(0);
+  name: string = ''
 
   payments: Payment[] = [];
   incomes: Income[] = [];
@@ -296,6 +297,7 @@ export class ProcedureApplyStep extends BaseEntity<number> {
 
       this.totalPayment = value.totalPayment ? Money.parse(value.totalPayment) : undefined;
       this.price = value.price ? Money.parse(value.price) : undefined;
+      this.name = value.name;
 
       this.employeeId = value.employeeId;
       this.employee = value.employee ? new Employee(value.employee) : null;

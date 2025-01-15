@@ -16,9 +16,12 @@ import {MatProgressSpinner} from "@angular/material/progress-spinner";
 import {DebtService} from "@app/services/debt.service";
 import {DebtAddModel} from "@app/models";
 import {Space} from "@entities/space";
+import {ProcedureApplyStep} from "@entities/procedure-apply";
+import {PlaneTicketService, ProcedureApplyService} from "@app/services";
+import {PlaneTicket} from "@entities/plane-ticket";
 
 @Component({
-  templateUrl: 'debt-add.html',
+  templateUrl: 'plane-ticket-debt-add.html',
   selector: 'PlaneTicketDebtAdd',
   imports: [
     LucideAngularModule,
@@ -31,17 +34,13 @@ import {Space} from "@entities/space";
     MatProgressSpinner,
     TextFieldLabel
   ],
-  standalone: true,
-  providers: [ CustomerPickerDialog ]
+  standalone: true
 })
-export class DebtAdd {
+export class PlaneTicketDebtAdd {
   icons = { ChevronDownIcon }
-  customer: Customer;
-  space: Space;
-  agency?: Agency;
+  planeTicket : PlaneTicket
 
   formGroup = new FormGroup({
-    customer: new FormControl<number>(null),
     amount: new FormControl<number>(null),
     reason: new FormControl<string>(''),
     details: new FormControl<string>(''),
@@ -49,40 +48,26 @@ export class DebtAdd {
   })
 
   constructor(@Inject(DIALOG_DATA) data: any,
-              private _picker: CustomerPickerDialog,
-              public _dialogRef: DialogRef<Debt, DebtAdd>,
-              private _service: DebtService,
+              public _dialogRef: DialogRef<Debt, PlaneTicketDebtAdd>,
+              private _service: PlaneTicketService,
               private _snackbar: MatSnackBar) {
-    this.customer = data.customer;
-    this.space = data.space;
-    this.agency = data.agency;
+    this.planeTicket = data.planeTicket;
+    this.formGroup.controls.amount.setValue(data.amount?.amount)
   }
 
-  selectCustomer(event) {
-    event?.preventDefault();
-    event.stopPropagation();
-    this._picker.open(this.space.id).subscribe(customer => {
 
-      if(customer) {
-        this.customer = customer;
-        this.formGroup.controls.customer.setValue(customer.id)
-        console.log(this.formGroup.controls.customer.value)
-      }
-    })
-  }
-
-  async validate() {
+  async add() {
     await this.addTask.launch()
     if(this.addTask.success) {
       const debt = this.addTask.result;
       this._dialogRef.close(debt);
-      this._snackbar.open(`La dette a été ajoutée.`, '', {duration: 3000});
+      this._snackbar.open(`La dette a été ajoutée au billet d'avion.`, '', {duration: 3000});
     }
   }
 
   addTask = new Task(async () => {
     const model = new DebtAddModel(this.formGroup.value);
-    return await this._service.addAsync(this.space, this.agency, this.customer, model);
+    return await this._service.addDebtAsync(this.planeTicket, model);
   })
 }
 

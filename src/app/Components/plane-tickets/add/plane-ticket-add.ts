@@ -23,7 +23,7 @@ import {PlaneTicket} from "@entities/plane-ticket";
 
 @Component({
   templateUrl: 'plane-ticket-add.html',
-  selector: 'PlaneTicketAdd',
+  selector: 'PlaneTicketExpenseAdd',
   standalone: true,
   imports: [
     TextField,

@@ -154,6 +154,16 @@ $button-typography: mat.m2-define-typography-config(
   font-weight: 500;
 }
 
+.link {
+  color: var(--my-linkColor);
+  cursor: pointer;
+  font-weight: 500;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
 .divLink {
   color: inherit !important;
   text-decoration: none;

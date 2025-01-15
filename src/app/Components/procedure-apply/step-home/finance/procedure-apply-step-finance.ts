@@ -15,6 +15,7 @@ import {DebtList} from "@app/Components/debts";
 import {FinanceOverview} from "@entities/finance/finance-overview";
 import {DebtListCard} from "@app/Components/debts/list/card/debt-list-card";
 import {ExpenseListCard} from "@app/Components/expenses";
+import {Money} from "@entities/money";
 
 @Component({
   templateUrl: 'procedure-apply-step-finance.html',
@@ -37,7 +38,7 @@ import {ExpenseListCard} from "@app/Components/expenses";
   standalone: true
 })
 export class ProcedureApplyStepFinance implements OnInit {
-  icons = { CircleAlertIcon, InfoIcon }
+  icons = {CircleAlertIcon, InfoIcon}
   @Input()
   procedureApplyStep: ProcedureApplyStep;
 
@@ -47,7 +48,12 @@ export class ProcedureApplyStepFinance implements OnInit {
     return this.procedureApplyStep.financeOverview
   }
 
-  constructor() {}
+  get possibleDebtAmount(): Money {
+    return this.procedureApplyStep.price.subtract(this.financeOverview.incomeAmount)
+  }
+
+  constructor(private _controller: ProcedureApplyController) {
+  }
 
   async ngOnInit() {
     this.params = {
@@ -56,5 +62,8 @@ export class ProcedureApplyStepFinance implements OnInit {
     }
   }
 
+  addPossibleDebt() {
+    this._controller.addDebt(this.procedureApplyStep, {amount:this.possibleDebtAmount})
+  }
 
 }

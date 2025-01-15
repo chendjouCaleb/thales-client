@@ -1,4 +1,9 @@
 <div class="marginTop-16 d-flex flex-column-gap-48">
+  <div>
+    <div class="fontSize-14 opacity-6">Prix à payer</div>
+    <div class="fontSize-18 fontWeight-semiBold ">
+      {{procedureApplyStep.price.format()}}</div>
+  </div>
 
   <div>
     <div class="fontSize-14 opacity-6">Revenu</div>
@@ -21,9 +26,24 @@
 
 </div>
 
+
+@if(possibleDebtAmount.amount > 0) {
+  <div class="padding-16 borderRadius-8 surface marginTop-16 d-flex flex-column-gap-24">
+    <lucide-icon [img]="icons.InfoIcon"></lucide-icon>
+    <div class="flex-grow-1">
+      <div>
+        Le montant versé par ce client ne correspond pas au prix à payer. Vous pouvez enregistrer une dette pour cette étape.
+      </div>
+
+      <span class="link" (click)="addPossibleDebt()">Enregister une dette de {{possibleDebtAmount.format()}}</span>
+    </div>
+
+  </div>
+}
+
 <div class="divider marginVertical-16"></div>
 
-@if(params) {
+
   <div class="marginTop-24">
     <div class="fontWeight-semibold fontSize-16 opacity-8">Revenus</div>
     @if(procedureApplyStep.incomes.length == 0) {
@@ -71,5 +91,3 @@
     }
 
   </div>
-}
-

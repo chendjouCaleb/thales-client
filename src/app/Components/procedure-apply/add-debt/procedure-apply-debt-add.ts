@@ -52,6 +52,7 @@ export class ProcedureApplyDebtAdd {
               private _service: ProcedureApplyService,
               private _snackbar: MatSnackBar) {
     this.procedureApplyStep = data.procedureApplyStep;
+    this.formGroup.controls.amount.setValue(data.amount?.amount)
   }
 
 

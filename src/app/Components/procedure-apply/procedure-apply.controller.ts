@@ -139,10 +139,10 @@ export class ProcedureApplyController {
     return dialogRef.closed;
   }
 
-  addDebt(procedureApplyStep: ProcedureApplyStep): Observable<Expense> {
+  addDebt(procedureApplyStep: ProcedureApplyStep, data: any = {}): Observable<Expense> {
     const dialogRef = this._dialog.open<Expense>(ProcedureApplyDebtAdd,
       {
-        data: {procedureApplyStep},
+        data: {procedureApplyStep, ...data},
         autoFocus: true
       });
     return dialogRef.closed;

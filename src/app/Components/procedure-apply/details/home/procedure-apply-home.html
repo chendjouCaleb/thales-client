@@ -59,6 +59,12 @@
   <div class="fontWeight-semibold fontSize-16">Finances </div>
   <div class="marginTop-8 d-flex flex-column-gap-48">
     <div>
+      <div class="fontSize-14 opacity-6">Prix à payer</div>
+      <div class="fontSize-18 fontWeight-semiBold">
+        {{procedureApply.totalPrice.format()}}</div>
+    </div>
+
+    <div>
       <div class="fontSize-14 opacity-6">Revenu</div>
       <div class="fontSize-18 fontWeight-semiBold success-color-1">
         {{procedureApply.financeOverview.incomeAmount.format()}}</div>

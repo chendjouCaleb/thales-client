@@ -57,6 +57,10 @@ export class ProcedureApply extends BaseEntity<number> {
 
   financeOverview: FinanceOverview
 
+  get totalPrice(): Money {
+    return Money.of(0).add(...this.procedureApplySteps.map(p => p.price))
+  }
+
   constructor(value: any = {}) {
     super(value);
     if (value) {

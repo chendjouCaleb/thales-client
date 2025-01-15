@@ -1,9 +1,17 @@
 import {Injectable} from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import {Agency, Customer, Payment, PlaneTicket, PlaneTicketRangeViewModel} from "../../entities";
+import {
+  Agency,
+  Customer, Debt, Expense,
+  Income,
+  Payment,
+  PlaneTicket,
+  PlaneTicketRangeViewModel,
+  ProcedureApplyStep
+} from "../../entities";
 import {SERVER_URL} from "@app/http";
 import {firstValueFrom} from "rxjs";
-import {PlaneTicketAddModel} from "../models";
+import {DebtAddModel, ExpenseAddModel, IncomeAddModel, PlaneTicketAddModel} from "../models";
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +33,10 @@ export class PlaneTicketService {
   async getByIdAsync(id: number): Promise<PlaneTicket> {
     const call = this._httpClient.get<PlaneTicket>(`${this.url}/${id}`);
     const value = await firstValueFrom(call);
-    return new PlaneTicket(value);
+    const planeTicket = new PlaneTicket(value);
+    planeTicket._hydrate()
+
+    return planeTicket;
   }
 
   async addAsync(agency: Agency, customer: Customer, model: PlaneTicketAddModel): Promise<PlaneTicket> {
@@ -58,5 +69,28 @@ export class PlaneTicketService {
   async deleteAsync(planeTicket: PlaneTicket): Promise<void> {
     const call = this._httpClient.delete(`${this.url}/${planeTicket.id}`);
     await firstValueFrom(call);
+  }
+
+
+  async addIncomeAsync(planeTicket: PlaneTicket, model: IncomeAddModel): Promise<Income> {
+    const call = this._httpClient.post<Income>(`${this.url}/${planeTicket.id}/incomes`,
+      model);
+    const income = new Income(await firstValueFrom(call));
+    planeTicket.addIncome(income);
+    return income;
+  }
+
+  async addDebtAsync(planeTicket: PlaneTicket, model: DebtAddModel): Promise<Debt> {
+    const call = this._httpClient.post<Debt>(`${this.url}/${planeTicket.id}/debts`, model);
+    const debt = new Debt(await firstValueFrom(call));
+    planeTicket.addDebt(debt);
+    return debt;
+  }
+
+  async addExpenseAsync(planeTicket: PlaneTicket, model: ExpenseAddModel): Promise<Expense> {
+    const call = this._httpClient.post<Expense>(`${this.url}/${planeTicket.id}/expenses`, model);
+    const expense = new Expense(await firstValueFrom(call));
+    planeTicket.addExpense(expense)
+    return expense;
   }
 }

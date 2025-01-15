@@ -100,3 +100,11 @@
 </div>
 
 
+<div class="divider my-3"></div>
+
+<div class="fontSize-18 fontWeight-semiBold mb-3">Paiements effectués</div>
+<PaymentList [params]="{planeTicketId: planeTicket.id}"
+             [displayedColumns]="[ 'code',  'amount',  'agency', 'employee', 'createdAt', 'action']"
+>
+
+</PaymentList>

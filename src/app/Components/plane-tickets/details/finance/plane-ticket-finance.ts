@@ -1,9 +1,11 @@
 import {Component, Input, OnInit} from "@angular/core";
 import {ProcedureApplyService} from "@app/services";
-import {RouterLink} from "@angular/router";
-import {ProcedureApply} from "@entities/index";
-import {ProcedureApplyController} from "@app/Components";
+import {ActivatedRoute, RouterLink} from "@angular/router";
+import {PlaneTicket, ProcedureApply, ProcedureApplyStep} from "@entities/index";
+import {BreadcrumbItem, ProcedureApplyController} from "@app/Components";
+import {AgencyPage} from "@app/pages/agency/agency.page";
 import {DecimalPipe, NgForOf, NgIf} from "@angular/common";
+import {PaymentsList} from "@app/Components/payments/list/payments-list";
 import {MyBadge} from "@app/NeoUI";
 import {ProcedureApplyProgressBar} from "@app/Components/procedure-apply/progress-bar/procedure-apply-progress-bar";
 import {CircleAlertIcon, InfoIcon, LucideAngularModule} from "lucide-angular";
@@ -15,8 +17,8 @@ import {DebtListCard} from "@app/Components/debts/list/card/debt-list-card";
 import {FinanceOverview} from "@entities/finance/finance-overview";
 
 @Component({
-  templateUrl: 'procedure-apply-finance.html',
-  selector: 'ProcedureApplyFinance, [ProcedureApplyFinance]',
+  templateUrl: 'plane-ticket-finance.html',
+  selector: 'PlaneTicketFinance, [PlaneTicketFinance]',
   imports: [
     RouterLink,
     NgIf,
@@ -34,10 +36,10 @@ import {FinanceOverview} from "@entities/finance/finance-overview";
   ],
   standalone: true
 })
-export class ProcedureApplyFinance implements OnInit {
+export class PlaneTicketFinance implements OnInit {
   icons = { CircleAlertIcon, InfoIcon }
   @Input()
-  procedureApply: ProcedureApply;
+  planeTicket: PlaneTicket;
 
   financeOverview: FinanceOverview
 
@@ -45,8 +47,6 @@ export class ProcedureApplyFinance implements OnInit {
               private _controller: ProcedureApplyController) {}
 
   async ngOnInit() {
-    this.financeOverview = this.procedureApply.financeOverview
+    this.financeOverview = this.planeTicket.financeOverview
   }
-
-
 }

@@ -1,0 +1,83 @@
+<div class="marginTop-16 d-flex flex-column-gap-48">
+  <div>
+    <div class="fontSize-14 opacity-6">Prix à payer</div>
+    <div class="fontSize-18 fontWeight-semiBold">
+      {{planeTicket.price.format()}}</div>
+  </div>
+
+  <div>
+    <div class="fontSize-14 opacity-6">Revenu</div>
+    <div class="fontSize-18 fontWeight-semiBold success-color-1  marginTop-4">
+      {{financeOverview.incomeAmount.format()}}</div>
+  </div>
+
+  <div>
+    <div class="fontSize-14 opacity-6">Dépense</div>
+    <div class="fontSize-18 fontWeight-semiBold warn-color-1" >
+      {{financeOverview.expenseAmount.format()}}
+    </div>
+  </div>
+
+
+  <div>
+    <div class="fontSize-14 opacity-6">Dette à payer</div>
+    <div class="fontSize-18 fontWeight-semiBold error-color-1  marginTop-4" >
+      {{financeOverview.debtRemainingAmount.format()}}
+    </div>
+  </div>
+
+</div>
+
+<div class="divider marginVertical-16"></div>
+
+<div class="marginTop-24">
+  <div class="fontWeight-semibold fontSize-18 opacity-8">Revenus</div>
+
+  @if(planeTicket.incomes.length == 0) {
+    <div class="d-flex padding-16 surface borderRadius-8 flex-column-gap-16 marginTop-8">
+      <lucide-icon [img]="icons.InfoIcon"></lucide-icon>
+      <div class="flex-grow-column-1 opacity-8">
+        Aucun revenu enregistré ce billet d'avion.
+      </div>
+    </div>
+  }
+
+  @for(income of planeTicket.incomes; track income.id) {
+    <div IncomeListCard [income]="income" class="marginTop-8"></div>
+  }
+
+</div>
+
+<div class="marginTop-16">
+  <div class="fontWeight-semibold fontSize-18 opacity-8">Dépenses</div>
+  @if(planeTicket.expenses.length == 0) {
+    <div class="d-flex padding-16 surface borderRadius-8 flex-column-gap-16 marginTop-8">
+      <lucide-icon [img]="icons.InfoIcon"></lucide-icon>
+      <div class="flex-grow-column-1 opacity-8">
+        Aucune dépense enregistrée pour ce billet d'avion.
+      </div>
+    </div>
+  }
+  @for(expense of planeTicket.expenses; track expense.id) {
+    <div ExpenseListCard [expense]="expense" class="marginTop-8"></div>
+  }
+</div>
+
+
+<div class="marginTop-16">
+  <div class="fontWeight-semibold fontSize-18 opacity-8">Dettes</div>
+
+  @if(planeTicket.debts.length == 0) {
+    <div class="d-flex padding-16 surface borderRadius-8 flex-column-gap-16 marginTop-8">
+      <lucide-icon [img]="icons.InfoIcon"></lucide-icon>
+      <div class="flex-grow-column-1 opacity-8">
+        Aucune dette enregistrée pour ce billet d'avion.
+      </div>
+    </div>
+  }
+
+  @for(debt of planeTicket.debts; track debt.id) {
+    <div DebtListCard [debt]="debt" class="marginTop-8"></div>
+  }
+</div>
+

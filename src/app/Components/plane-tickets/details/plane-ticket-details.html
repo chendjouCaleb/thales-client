@@ -3,36 +3,40 @@
 </div>
 
 @if(getPlaneTicketTask.success) {
-  <div class="fontSize-24">Billet d'avion</div>
 
-  <div class="my-2">
-    <button MyButton (click)="edit()" >
-      <lucide-angular [img]="icons.PencilIcon" ></lucide-angular>
-      Modifier
-    </button>
 
-    <button (click)="delete()" MyButton class="ml-3">
-      <lucide-angular [img]="icons.Trash2Icon"  ></lucide-angular>
-      Supprimer
-    </button>
-
-    <div class="vertical-divider mx-3"></div>
+  <div class="my-2 d-flex">
+    <div class="flex-grow-1">
+      <button MyIconButton (click)="location.back()">
+        <lucide-icon [img]="icons.ArrowLeftIcon"></lucide-icon>
+      </button>
+    </div>
 
     <button (click)="addPayment()" MyButton class="primary">
       <lucide-angular [img]="icons.DollarSignIcon"  ></lucide-angular>
       Ajouter un paiement
     </button>
 
+    <div class="vertical-divider mx-3"></div>
+
+    <button MyButton (click)="edit()" >
+      <lucide-angular [img]="icons.PencilIcon" ></lucide-angular>
+      Modifier
+    </button>
+
+    <button (click)="delete()" MyButton color="error" class="ml-3">
+      <lucide-angular [img]="icons.Trash2Icon"  ></lucide-angular>
+      Supprimer
+    </button>
+
+
+
+
   </div>
 
-  <PlaneTicketHome [planeTicket]="planeTicket"></PlaneTicketHome>
+  <div class="fontSize-22 marginStart-12 marginTop-8">Billet d'avion</div>
 
-  <div class="divider my-3"></div>
+  <div class="marginTop-8" PlaneTicketPager [planeTicket]="planeTicket"></div>
 
-  <div class="fontSize-18 fontWeight-semiBold mb-3">Paiements effectués</div>
-  <PaymentList [params]="{planeTicketId: planeTicket.id}"
-               [displayedColumns]="[ 'code',  'amount',  'agency', 'employee', 'createdAt', 'action']"
-  >
 
-  </PaymentList>
 }

@@ -1,0 +1,45 @@
+<div>
+  <TabRow #tabRow [selectedName]="currentTab" (change)="onTabChange($event)">
+    <button TabRowItem
+            name="overview"
+            (click)="tabRow.selectIndex(0, true); pager.selectIndex(0)"
+            (mouseenter)="tabRow.activateHover(0)"
+            (mouseleave)="tabRow.deactivateHover()"
+            [active] = "tabRow.selectedIndex == 0"
+    >Vue d'ensemble
+    </button>
+
+    <button TabRowItem
+            name="finance"
+            (click)="tabRow.selectIndex(1, true); pager.selectIndex(1)"
+            (mouseenter)="tabRow.activateHover(1)"
+            (mouseleave)="tabRow.deactivateHover()"
+            [active] = "tabRow.selectedIndex == 1"
+    >Finance
+    </button>
+
+
+    <button TabRowItem
+            name="history"
+            (click)="tabRow.selectIndex(2, true); pager.selectIndex(2)"
+            (mouseenter)="tabRow.activateHover(2)"
+            (mouseleave)="tabRow.deactivateHover()"
+            [active] = "tabRow.selectedIndex == 2"
+    >Historique
+    </button>
+  </TabRow>
+</div>
+
+<HorizontalPager #pager [selectedIndex]="tabRow.selectedIndex">
+  <div *PageDef>
+    <div PlaneTicketOverview [planeTicket]="planeTicket" class="padding-16"></div>
+  </div>
+
+  <div *PageDef class="padding-16">
+    <div PlaneTicketFinance [planeTicket]="planeTicket"></div>
+  </div>
+
+  <div *PageDef class="padding-16">
+    <event-list [params]="{publisherId: planeTicket.publisherId}"></event-list>
+  </div>
+</HorizontalPager>

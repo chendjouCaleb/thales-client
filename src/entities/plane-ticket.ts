@@ -91,7 +91,7 @@ export class PlaneTicket extends BaseEntity<number> {
       this.employees = value.employees ? value.employees.map(s => new Employee(s)) : [];
       this.members = value.members ? value.members.map(s => new Member(s)) : [];
 
-      this.debts?.forEach(debt => debt._hydrateIncomes(this.incomes));
+      //this.debts?.forEach(debt => debt._hydrateIncomes(this.incomes));
     }
   }
 
@@ -103,7 +103,7 @@ export class PlaneTicket extends BaseEntity<number> {
     )
 
     this.debts.flatMap(d => d.debtIncomes).forEach(di => {
-      di.income = this.incomes.find(income => income.id == di.incomeId);
+      //di.income = this.incomes.find(income => income.id == di.incomeId);
     });
 
     this.debts.forEach(debt => {
@@ -120,6 +120,7 @@ export class PlaneTicket extends BaseEntity<number> {
       const memberPersonId = expense.expensePersons.find(dp => dp.kind === 'MEMBER').personId;
       expense.member = this.members.find(m => m.personId == memberPersonId)
     });
+
   }
 
 

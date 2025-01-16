@@ -129,9 +129,7 @@ export class Debt extends BaseEntity<string> {
   }
 
   _hydrateIncomes(incomes: Income[]) {
-    this.debtIncomes.forEach(di => {
-      di.income = incomes.find(i => i.id == di.incomeId)
-    })
+
   }
 
   addIncome(debtIncome: DebtIncome) {
@@ -228,6 +226,12 @@ export class DebtCollection {
     }
     this._items.push(debt);
     return true;
+  }
+
+  addDebts(debts: Debt[]) {
+    for (const debt of debts) {
+      this.addDebt(debt)
+    }
   }
 
   removeDebt(debt: Debt): boolean {

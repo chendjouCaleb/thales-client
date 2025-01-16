@@ -21,6 +21,7 @@ export class DebtIncome {
 
       this.debt = value.debt ? new Debt(value.debt) : undefined;
       this.income = value.income ? new Income(value.income) : undefined;
+      console.log(this.income)
     }
   }
 }

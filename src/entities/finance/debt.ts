@@ -133,6 +133,21 @@ export class Debt extends BaseEntity<string> {
       di.income = incomes.find(i => i.id == di.incomeId)
     })
   }
+
+  addIncome(debtIncome: DebtIncome) {
+    if(this.shouldContainsIncome(debtIncome) && !this.containsIncome(debtIncome)) {
+      this.debtIncomes.push(debtIncome);
+    }
+  }
+
+  shouldContainsIncome(debtIncome: DebtIncome): boolean {
+    if(!debtIncome) return false;
+    return debtIncome.debtId == this.id;
+  }
+  containsIncome(debtIncome: DebtIncome): boolean {
+    if(!debtIncome) return false;
+    return this.debtIncomes.some(di => di.id == debtIncome.id)
+  }
 }
 
 export class DebtOwner {
@@ -192,3 +207,35 @@ export class DebtPerson {
 
 
 
+export class DebtCollection {
+  private _items: Debt[]
+  get items(): Debt[] {
+    return this._items;
+  }
+
+  constructor(debts: Debt[] = []) {
+    this._items = [...debts]
+  }
+
+  contains(debt: Debt): boolean {
+    if(!debt) return false;
+    return this._items.some(d => d.id === debt.id)
+  }
+
+  addDebt(debt: Debt): boolean {
+    if(this.contains(debt)) {
+      return false;
+    }
+    this._items.push(debt);
+    return true;
+  }
+
+  removeDebt(debt: Debt): boolean {
+    if(!this.contains(debt)) {
+      return false;
+    }
+    const index = this._items.findIndex(d => d.id == debt.id);
+    delete this._items[index];
+    return true;
+  }
+}

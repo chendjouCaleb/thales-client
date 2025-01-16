@@ -5,6 +5,7 @@ import {DomSanitizer} from "@angular/platform-browser";
 import {RouterLink, RouterLinkActive, RouterOutlet} from "@angular/router";
 import {CommonModule} from "@angular/common";
 import {MatProgressSpinner} from "@angular/material/progress-spinner";
+import {DebtStateStore} from "@app/services/debt-state-store";
 
 const PDF_SVG = `<?xml version="1.0" encoding="iso-8859-1"?>
 <!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
@@ -39,7 +40,8 @@ export class AppComponent {
   isAuthLoading = true;
 
   constructor( iconRegistry: MatIconRegistry, sanitizer: DomSanitizer,
-               private _authService: AuthenticationService) {
+               private _authService: AuthenticationService,
+               private debtStateStore: DebtStateStore) {
 
     const pdf_url = 'assets/icons/pdf-svgrepo-com.svg'
     iconRegistry.addSvgIconLiteral('pdf-svg-repos', sanitizer.bypassSecurityTrustHtml(PDF_SVG));
@@ -47,6 +49,8 @@ export class AppComponent {
     this._authService.init().then();
     _authService.stateChange.subscribe(state => {
       this.isAuthLoading = false;
-    })
+    });
+
+    this.debtStateStore.observeDebt()
   }
 }

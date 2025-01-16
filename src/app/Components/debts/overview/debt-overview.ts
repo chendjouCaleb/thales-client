@@ -23,6 +23,7 @@ import {Subscription} from "rxjs";
 import {DebtPager} from "@app/Components/debts/overview/debt.pager";
 import {DebtSettingsLauncher} from "@app/Components/debts/settings";
 import {DebtIncomeAddLauncher} from "@app/Components/debts/income-add/debt-income-add.launcher";
+import {DebtStateStore} from "@app/services/debt-state-store";
 
 @Component({
   templateUrl: 'debt-overview.html',
@@ -59,7 +60,8 @@ export class DebtOverview implements OnInit, OnDestroy {
               public settingsLauncher: DebtSettingsLauncher,
               private _changeDeleteLauncher: DebtDeleteLauncher,
               private _debtIncomeAddLauncher: DebtIncomeAddLauncher,
-              private _debtService: DebtService) {
+              private _debtService: DebtService,
+              private _debtStateStore: DebtStateStore) {
     this.debtId = data.debtId
   }
 
@@ -79,6 +81,7 @@ export class DebtOverview implements OnInit, OnDestroy {
 
   getDebtTask = new Task(async () => {
     this.debt = await this._debtService.getAsync(this.debtId);
+    this._debtStateStore.debts.addDebt(this.debt);
   });
 
   addIncome() {

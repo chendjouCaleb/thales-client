@@ -8,11 +8,13 @@ import {DebtRangeViewModel} from "@entities/view-models/DebtRangeViewModel";
 import {Money} from "@entities/money";
 import {DebtIncome} from "@entities/finance/debt-income";
 import {DateTime} from "luxon";
+import {DebtStateStore} from "@app/services/debt-state-store";
 
 @Injectable({
   providedIn: 'root'
 })
 export class DebtService {
+
   private url = `${SERVER_URL}/finance/debts`;
 
   private _debtAdd = new Subject<Debt>();
@@ -24,10 +26,8 @@ export class DebtService {
   private _debtUpdate = new Subject<Debt>();
   get debtUpdate(): Observable<Debt> { return this._debtUpdate.asObservable() }
 
-  private _debtIncomeDelete = new Subject<DebtIncome>();
-  get debtIncomeDelete(): Observable<DebtIncome> { return this._debtIncomeDelete.asObservable() }
 
-  constructor(private _httpClient: HttpClient) {}
+  constructor(private _httpClient: HttpClient, private debtStateStore: DebtStateStore) {}
 
   async addAsync(space: Space, agency: Agency, customer: Customer, model: DebtAddModel): Promise<Debt> {
     const params = {
@@ -48,14 +48,14 @@ export class DebtService {
   async addIncomeAsync(debt: Debt, model: DebtIncomeAddModel) {
     const call = this._httpClient.post<DebtIncome>(`${this.url}/${debt.id}/incomes`, model, {});
     let debtIncome = new DebtIncome(await firstValueFrom(call));
-
+    this.debtStateStore.emitDebtIncomeAdd(debtIncome)
     return debtIncome;
   }
 
   async deleteIncomeAsync(debtIncome: DebtIncome) {
     const call = this._httpClient.delete<void>(`${this.url}/incomes/${debtIncome.id}`);
     await firstValueFrom(call);
-    this._debtIncomeDelete.next(debtIncome);
+    this.debtStateStore.emitDebtIncomeDelete(debtIncome);
   }
 
 

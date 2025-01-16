@@ -41,7 +41,7 @@ export class PlaneTicketIncomeAdd {
 
   formGroup = new FormGroup({
     amount: new FormControl<number>(null),
-    reason: new FormControl<string>(this.getDefaultReason()),
+    reason: new FormControl<string>(''),
     details: new FormControl<string>(''),
   })
 
@@ -54,6 +54,8 @@ export class PlaneTicketIncomeAdd {
     if(!this.planeTicket) {
       throw new Error('this.planeTicket should not be null')
     }
+
+    this.formGroup.controls.reason.setValue(this.getDefaultReason())
   }
 
 
@@ -72,7 +74,7 @@ export class PlaneTicketIncomeAdd {
   })
 
   getDefaultReason() {
-    return `Paiement pour le billet d'avion n° ${this.planeTicket.code}.`
+    return `Paiement pour le billet d'avion #${this.planeTicket.code}.`
   }
 }
 

@@ -155,6 +155,7 @@ export class PlaneTicket extends BaseEntity<number> {
     if (this.shouldContainsIncome(income) && !this.containsIncome(income)) {
       this.incomes.unshift(income);
       this.financeOverview.addIncome(income);
+      console.log(`New income on planeTicket #${this.code}`)
       return true;
     }
     return false;

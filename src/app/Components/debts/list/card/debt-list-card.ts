@@ -2,7 +2,7 @@ import {Component, Input, ViewEncapsulation} from "@angular/core";
 import {Dropdown, MyBadge} from "@app/NeoUI";
 import {IconButton, Menu, MenuItem} from "@app/ui";
 import {EllipsisVerticalIcon, LucideAngularModule, Trash2Icon} from "lucide-angular";
-import {NgForOf} from "@angular/common";
+import {NgForOf, NgIf} from "@angular/common";
 import {Debt} from "@entities/finance";
 import {DebtOverviewLauncher} from "@app/Components/debts";
 
@@ -17,7 +17,8 @@ import {DebtOverviewLauncher} from "@app/Components/debts";
     Menu,
     MenuItem,
     MyBadge,
-    NgForOf
+    NgForOf,
+    NgIf
   ],
   standalone: true,
   providers: [ DebtOverviewLauncher ],

@@ -21,12 +21,20 @@
     {{ debt.reason }}
   </div>
 
-  <div class="fontSize-12 opacity-6">
+  <div class="d-flex align-items-center">
+    <div class="fontSize-12 opacity-6 flex-grow-1">
 
-    {{ debt.member?.user?.fullName }}
-    &bull;
-    {{ debt.createdAt.moment() }}
+      @if (debt.member?.user) {
+        {{ debt.member?.user?.fullName }}
+        &bull;
+      }
+      {{ debt.createdAt.moment() }}
 
+    </div>
+
+    <div *ngIf="!debt.isPay" class="error-color-1 fontSize-12">
+      -{{debt.remaining.format()}}
+    </div>
   </div>
 </div>
 

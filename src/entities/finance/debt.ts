@@ -1,7 +1,7 @@
 import {BaseEntity} from "../base-entity";
 import {Customer} from "../customer";
 import {PlaneTicket} from "../plane-ticket";
-import {ProcedureApply, ProcedureApplyStep} from "../procedure-apply";
+import {ProcedureApply} from "../procedure-apply";
 import {Agency} from "@entities/agency";
 import {Employee} from "@entities/employee";
 import {Money} from "@entities/money";
@@ -11,6 +11,7 @@ import {User} from "@app/identity";
 import {Space} from "@entities/space";
 import {DateTime, Duration} from "luxon";
 import {Income} from "@entities/finance/income";
+import {DebtIncome} from "@entities/finance/debt-income";
 
 export class Debt extends BaseEntity<string> {
   amount: Money;
@@ -190,25 +191,4 @@ export class DebtPerson {
 }
 
 
-export class DebtIncome {
-  id: string;
-  createdAt: Date;
 
-  debtId: string;
-  debt: Debt;
-
-  income: Income
-  incomeId: string
-
-  constructor(value: any = {}) {
-    if (value) {
-      this.id = value.id;
-      this.createdAt = value.createdAt;
-      this.incomeId = value.incomeId;
-      this.debtId = value.debtId;
-
-      this.debt = value.debt ? new Debt(value.debt) : undefined;
-      this.income = value.income ? new Income(value.income) : undefined;
-    }
-  }
-}

@@ -24,6 +24,9 @@ export class DebtService {
   private _debtUpdate = new Subject<Debt>();
   get debtUpdate(): Observable<Debt> { return this._debtUpdate.asObservable() }
 
+  private _debtIncomeDelete = new Subject<DebtIncome>();
+  get debtIncomeDelete(): Observable<DebtIncome> { return this._debtIncomeDelete.asObservable() }
+
   constructor(private _httpClient: HttpClient) {}
 
   async addAsync(space: Space, agency: Agency, customer: Customer, model: DebtAddModel): Promise<Debt> {
@@ -47,6 +50,12 @@ export class DebtService {
     let debtIncome = new DebtIncome(await firstValueFrom(call));
 
     return debtIncome;
+  }
+
+  async deleteIncomeAsync(debtIncome: DebtIncome) {
+    const call = this._httpClient.delete<void>(`${this.url}/incomes/${debtIncome.id}`);
+    await firstValueFrom(call);
+    this._debtIncomeDelete.next(debtIncome);
   }
 
 

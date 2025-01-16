@@ -3,3 +3,4 @@ export * from './debt';
 export * from './credit';
 export * from './income'
 export * from './debt'
+export * from './debt-income';

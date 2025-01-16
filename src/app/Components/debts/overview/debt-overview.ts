@@ -22,7 +22,7 @@ import {DebtDeleteLauncher} from "@app/Components/debts/delete";
 import {Subscription} from "rxjs";
 import {DebtPager} from "@app/Components/debts/overview/debt.pager";
 import {DebtSettingsLauncher} from "@app/Components/debts/settings";
-import {DebtIncomeAddLauncher} from "@app/Components/debts/overview/income-add/debt-income-add.launcher";
+import {DebtIncomeAddLauncher} from "@app/Components/debts/income-add/debt-income-add.launcher";
 
 @Component({
   templateUrl: 'debt-overview.html',

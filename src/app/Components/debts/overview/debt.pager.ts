@@ -4,21 +4,23 @@ import {HorizontalPager, PageContentDef, TabRow, TabRowItem} from "@app/NeoUI";
 import {DebtDetails} from "@app/Components/debts/overview/details/debt-details";
 import {IncomeListCard, IncomesList} from "@app/Components/incomes";
 import {InfoIcon, LucideAngularModule} from "lucide-angular";
+import {DebtIncomeListCard} from "@app/Components/debts/debt-income-card";
 
 @Component({
   templateUrl: 'debt.pager.html',
   selector: 'DebtPager, [DebtPager]',
   standalone: true,
-    imports: [
-        PageContentDef,
-        HorizontalPager,
-        TabRowItem,
-        TabRow,
-        DebtDetails,
-        IncomesList,
-        IncomeListCard,
-        LucideAngularModule
-    ]
+  imports: [
+    PageContentDef,
+    HorizontalPager,
+    TabRowItem,
+    TabRow,
+    DebtDetails,
+    IncomesList,
+    IncomeListCard,
+    LucideAngularModule,
+    DebtIncomeListCard
+  ]
 })
 export class DebtPager implements OnInit {
   icons = { InfoIcon }

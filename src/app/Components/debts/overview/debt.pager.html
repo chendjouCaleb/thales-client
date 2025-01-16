@@ -40,7 +40,7 @@
     }
 
     @for(debtIncome of debt.debtIncomes; track debtIncome.id) {
-      <div IncomeListCard [income]="debtIncome.income" class="marginTop-8"></div>
+      <div DebtIncomeListCard [debtIncome]="debtIncome" class="marginTop-8"></div>
     }
   </div>
 

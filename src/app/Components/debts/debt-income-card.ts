@@ -5,6 +5,8 @@ import {EllipsisVerticalIcon, LucideAngularModule, Trash2Icon} from "lucide-angu
 import {NgForOf} from "@angular/common";
 import {DebtIncome, Income} from "@entities/finance";
 import {IncomeDetailsLauncher} from "@app/Components/incomes";
+import {DebtDeleteLauncher} from "@app/Components/debts/delete";
+import {DebtIncomeDeleteLauncher} from "@app/Components/debts/income-delete";
 
 @Component({
   template: `
@@ -59,9 +61,9 @@ import {IncomeDetailsLauncher} from "@app/Components/incomes";
     NgForOf
   ],
   standalone: true,
-  providers: [ IncomeDetailsLauncher ]
+  providers: [ IncomeDetailsLauncher, DebtIncomeDeleteLauncher ]
 })
-export class IncomeListCard {
+export class DebtIncomeListCard {
   icons = { EllipsisVerticalIcon, Trash2Icon }
 
   @Input()
@@ -71,12 +73,15 @@ export class IncomeListCard {
     return this.debtIncome.income
   }
 
-  constructor(public readonly detailsLauncher: IncomeDetailsLauncher) {
+  constructor(public readonly detailsLauncher: IncomeDetailsLauncher,
+              private deleteLauncher: DebtIncomeDeleteLauncher) {
   }
 
   details(income: Income) {
     this.detailsLauncher.launch(income)
   }
 
-  delete() { }
+  delete() {
+    this.deleteLauncher.launch(this.debtIncome)
+  }
 }

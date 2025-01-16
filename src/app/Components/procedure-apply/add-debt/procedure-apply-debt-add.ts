@@ -21,7 +21,7 @@ import {ProcedureApplyService} from "@app/services";
 
 @Component({
   templateUrl: 'procedure-apply-debt-add.html',
-  selector: 'PlaneTicketDebtAdd',
+  selector: 'ProcedureApplyDebtAdd',
   imports: [
     LucideAngularModule,
     TextField,

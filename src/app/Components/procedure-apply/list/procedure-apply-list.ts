@@ -21,6 +21,7 @@ import {sleep, Task} from "@app/utils";
 import {isVisibleElement} from "@app/utils/dom";
 import {ProcedureApplyProgressBar} from "@app/Components/procedure-apply/progress-bar/procedure-apply-progress-bar";
 import {MyBadge} from "@app/NeoUI";
+import {LucideAngularModule, SendHorizontalIcon} from "lucide-angular";
 
 
 const PROCEDURE_APPLIES_RANGE_SIZE = isDevMode() ? 5 : 30;
@@ -36,11 +37,13 @@ const PROCEDURE_APPLIES_RANGE_SIZE = isDevMode() ? 5 : 30;
     RouterLink,
     NgIf,
     ProcedureApplyProgressBar,
-    MyBadge
+    MyBadge,
+    LucideAngularModule
   ],
   standalone: true
 })
 export class ProcedureApplyList implements OnInit, AfterViewInit {
+  icons = { SendHorizontalIcon }
   @Input()
   params: any = {};
 

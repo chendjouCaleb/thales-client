@@ -21,8 +21,8 @@ import {Space} from "@entities/space";
 import {Customer} from "@entities/customer";
 import {Expense, Income} from "@entities/finance";
 import {IncomeAdd} from "@app/Components/incomes";
-import {ProcedureApplyExpenseAdd} from "@app/Components/procedure-apply/add-income";
-import {ProcedureApplyIncomeAdd} from "@app/Components/procedure-apply/add-expense";
+import {ProcedureApplyExpenseAdd} from "src/app/Components/procedure-apply/add-expense";
+import {ProcedureApplyIncomeAdd} from "src/app/Components/procedure-apply/add-income";
 import {ProcedureApplyDebtAdd} from "@app/Components/procedure-apply/add-debt";
 import {
   ProcedureApplyStepPaymentAdd

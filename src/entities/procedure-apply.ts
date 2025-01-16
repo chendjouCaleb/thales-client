@@ -117,6 +117,7 @@ export class ProcedureApply extends BaseEntity<number> {
       step.expenses = this.expenses.filter(expense =>
         expense.expenseElements.some(de => de.elementId == step.elementId)
       );
+      step.procedureApply = this
       step.financeOverview = new FinanceOverview(
         step.incomes,
         step.debts,

@@ -30,8 +30,18 @@
     <div DebtDetails [debt]="debt"></div>
   </div>
   <div *PageDef class="p-3">
+    @if(debt.debtIncomes.length == 0) {
+      <div class="d-flex padding-16 surface borderRadius-8 flex-column-gap-16 marginTop-8">
+        <lucide-icon [img]="icons.InfoIcon"></lucide-icon>
+        <div class="flex-grow-column-1 opacity-8">
+          Aucun remboursement enregistré cette dette.
+        </div>
+      </div>
+    }
 
-    <IncomeList [params]="{elementId: debt.elementId, ownerId : debt.debtOwners[0].ownerId}" mode="card"></IncomeList>
+    @for(debtIncome of debt.debtIncomes; track debtIncome.id) {
+      <div IncomeListCard [income]="debtIncome.income" class="marginTop-8"></div>
+    }
   </div>
 
 

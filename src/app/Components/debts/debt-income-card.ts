@@ -3,7 +3,7 @@ import {Dropdown} from "@app/NeoUI";
 import {IconButton, Menu, MenuItem} from "@app/ui";
 import {EllipsisVerticalIcon, LucideAngularModule, Trash2Icon} from "lucide-angular";
 import {NgForOf} from "@angular/common";
-import {Income} from "@entities/finance";
+import {DebtIncome, Income} from "@entities/finance";
 import {IncomeDetailsLauncher} from "@app/Components/incomes";
 
 @Component({
@@ -39,7 +39,7 @@ import {IncomeDetailsLauncher} from "@app/Components/incomes";
         <MyMenu>
 
 
-          <button MenuItem (click)="delete(income)">
+          <button MenuItem (click)="delete()">
             <lucide-icon [img]="icons.Trash2Icon" strokeWidth="1.5"></lucide-icon>
             Supprimer
           </button>
@@ -49,7 +49,7 @@ import {IncomeDetailsLauncher} from "@app/Components/incomes";
     </div>
   `,
   styles: [':host { display: block}'],
-  selector: 'IncomeListCard, [IncomeListCard]',
+  selector: 'DebtIncomeListCard, [DebtIncomeListCard]',
   imports: [
     Dropdown,
     IconButton,
@@ -65,7 +65,11 @@ export class IncomeListCard {
   icons = { EllipsisVerticalIcon, Trash2Icon }
 
   @Input()
-  income: Income
+  debtIncome: DebtIncome
+
+  get income(): Income {
+    return this.debtIncome.income
+  }
 
   constructor(public readonly detailsLauncher: IncomeDetailsLauncher) {
   }
@@ -74,5 +78,5 @@ export class IncomeListCard {
     this.detailsLauncher.launch(income)
   }
 
-  delete(income: Income) { }
+  delete() { }
 }

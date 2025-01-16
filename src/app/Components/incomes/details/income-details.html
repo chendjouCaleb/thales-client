@@ -8,14 +8,18 @@
   @if(getIncomeTask.success) {
 
     <div class="d-flex px-3 mt-4">
-      <button (click)="_dialogRef.close()" MyIconButton>
-        <lucide-icon [img]="icons.ArrowLeftIcon"></lucide-icon>
-      </button>
-      <div class="flex-grow-1"></div>
+      <div class="flex-grow-1 fontSize-18 fontWeight-semiBold">
+        Revenu
+      </div>
 
       <div>
-        <button MyButton color="warn" (click)="delete()" matTooltip="Supprimer cette dépense">
+        <button MyButton color="warn" (click)="delete()" matTooltip="Supprimer ce revenu"
+        [disabled]="!income.isIndependent">
           <lucide-icon [img]="icons.Trash2Icon"></lucide-icon> Supprimer
+        </button>
+
+        <button (click)="_dialogRef.close()" MyIconButton>
+          <lucide-icon [img]="icons.XIcon"></lucide-icon>
         </button>
       </div>
     </div>
@@ -35,6 +39,7 @@
         <div class="flex-grow-1">
           <div class="opacity-5 fontSize-12">Raison</div>
           <div>{{income.reason}}</div>
+          <div class="opacity-6" *ngIf="!income.reason">Non renseignée</div>
         </div>
 
         <button MyIconButton (click)="changeReason()">
@@ -46,6 +51,7 @@
         <div class="flex-grow-1">
           <div class="opacity-5 fontSize-12">Détails du paiement</div>
           <div>{{income.details}}</div>
+          <div class="opacity-6" *ngIf="!income.details">Non renseignée</div>
         </div>
         <button MyIconButton (click)="changeDetails()">
           <lucide-icon [img]="icons.PencilIcon"></lucide-icon>

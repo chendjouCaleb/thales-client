@@ -48,6 +48,13 @@ export class Income extends BaseEntity<string> {
   incomeElements: IncomeElement[]
   incomePersons: IncomePerson[]
 
+  get isIndependent(): boolean {
+    if(this.incomeElements.some(ie => ie.kind === 'DEBT')) {
+      return false
+    }
+    return true
+  }
+
   constructor(value: any = {}) {
     super(value);
     if (value) {

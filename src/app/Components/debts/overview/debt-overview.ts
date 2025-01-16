@@ -27,7 +27,7 @@ import {DebtIncomeAddLauncher} from "@app/Components/debts/overview/income-add/d
 @Component({
   templateUrl: 'debt-overview.html',
   selector: 'DebtOverview',
-  styles: [':host { display: block; width: 616px }'],
+  styles: [':host { display: block; width: 616px; height: 600px }'],
   imports: [
     MatProgressSpinner,
     LucideAngularModule,

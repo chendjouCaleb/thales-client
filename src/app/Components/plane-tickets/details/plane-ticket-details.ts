@@ -21,6 +21,9 @@ import {PaymentsList} from "@app/Components/payments/list/payments-list";
 import {Payment} from "@entities/payment";
 import {PlaneTicketPager} from "@app/Components/plane-tickets/details/plane-ticket-pager";
 import {Dropdown} from "@app/NeoUI";
+import {ExpenseService} from "@app/services/expense.service";
+import {IncomeService} from "@app/services/income.service";
+import {DebtService} from "@app/services/debt.service";
 
 @Component({
   templateUrl: 'plane-ticket-details.html',
@@ -59,16 +62,37 @@ export class PlaneTicketDetails implements OnInit {
 
   constructor(private planeTicketService: PlaneTicketService,
               public readonly location: Location,
+              private _expenseService: ExpenseService,
+              private _incomeService: IncomeService,
+              private _debtService: DebtService,
               private _dialog: Dialog,
               private _uiService: PlaneTicketUIService) {
   }
 
-  ngOnInit(): void {
+  async ngOnInit() {
     if (!this.planeTicketId) {
       throw new Error("A planeTicketId is required")
     }
 
-    this.getPlaneTicketTask.launch()
+    await this.getPlaneTicketTask.launch()
+
+    this._expenseService.expenseDelete.subscribe(expense => {
+      if (this.planeTicket.containsExpense(expense)) {
+        this.planeTicket.removeExpense(expense)
+      }
+    });
+
+    this._incomeService.incomeDelete.subscribe(income => {
+      if (this.planeTicket.containsIncome(income)) {
+        this.planeTicket.removeIncome(income)
+      }
+    });
+
+    this._debtService.debtDelete.subscribe(debt => {
+      if (this.planeTicket.containsDebt(debt)) {
+        this.planeTicket.removeDebt(debt)
+      }
+    });
   }
 
   delete() {

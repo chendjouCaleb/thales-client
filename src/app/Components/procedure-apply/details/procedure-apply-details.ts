@@ -18,6 +18,7 @@ import {
 } from "lucide-angular";
 import {Button, IconButton} from "@app/ui";
 import {ExpenseService} from "@app/services/expense.service";
+import {DebtEventStore} from "@app/services/debt-event-store";
 
 @Component({
   templateUrl: 'procedure-apply-details.html',
@@ -54,6 +55,7 @@ export class ProcedureApplyDetails implements OnInit {
   constructor(private _service: ProcedureApplyService,
               private _expenseService: ExpenseService,
               private _controller: ProcedureApplyController,
+              private _debtEventStore: DebtEventStore,
               public readonly location: Location) {
   }
 
@@ -73,6 +75,16 @@ export class ProcedureApplyDetails implements OnInit {
         this.procedureApply.removeExpense(expense)
         this.procedureApply.procedureApplySteps.forEach(step => step.removeExpense(expense))
       }
+    });
+
+    this._debtEventStore.debtIncomeAdd.subscribe(debtIncome => {
+      this.procedureApply.addIncome(debtIncome.income);
+      this.procedureApply.procedureApplySteps.forEach(step => step.addIncome(debtIncome.income));
+    });
+
+    this._debtEventStore.debtIncomeDelete.subscribe(debtIncome => {
+      this.procedureApply.removeIncome(debtIncome.income);
+      this.procedureApply.procedureApplySteps.forEach(step => step.removeIncome(debtIncome.income));
     });
   }
 

@@ -134,7 +134,7 @@ export class Debt extends BaseEntity<string> {
 
   addIncome(debtIncome: DebtIncome) {
     if (this.shouldContainsIncome(debtIncome) && !this.containsIncome(debtIncome)) {
-      this.debtIncomes.push(debtIncome);
+      this.debtIncomes.unshift(debtIncome);
     }
   }
 

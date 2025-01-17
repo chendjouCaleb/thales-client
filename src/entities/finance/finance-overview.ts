@@ -53,7 +53,7 @@ export class FinanceOverview {
 
   addIncome(income: Income) {
     if(!this.incomes.some(d => d.id == income.id)) {
-      this.incomes.push(income);
+      this.incomes.unshift(income);
     }
   }
 

@@ -1,4 +1,4 @@
-import {Component, Input} from "@angular/core";
+import {Component, Input, OnInit} from "@angular/core";
 import {Dropdown} from "@app/NeoUI";
 import {IconButton, Menu, MenuItem} from "@app/ui";
 import {EllipsisVerticalIcon, LucideAngularModule, Trash2Icon} from "lucide-angular";
@@ -7,6 +7,7 @@ import {DebtIncome, Income} from "@entities/finance";
 import {IncomeDetailsLauncher} from "@app/Components/incomes";
 import {DebtDeleteLauncher} from "@app/Components/debts/delete";
 import {DebtIncomeDeleteLauncher} from "@app/Components/debts/income-delete";
+import {DebtEventStore} from "@app/services/debt-event-store";
 
 @Component({
   template: `
@@ -63,7 +64,7 @@ import {DebtIncomeDeleteLauncher} from "@app/Components/debts/income-delete";
   standalone: true,
   providers: [ IncomeDetailsLauncher, DebtIncomeDeleteLauncher ]
 })
-export class DebtIncomeListCard {
+export class DebtIncomeListCard implements OnInit {
   icons = { EllipsisVerticalIcon, Trash2Icon }
 
   @Input()
@@ -74,7 +75,12 @@ export class DebtIncomeListCard {
   }
 
   constructor(public readonly detailsLauncher: IncomeDetailsLauncher,
+              private _debtEventStore: DebtEventStore,
               private deleteLauncher: DebtIncomeDeleteLauncher) {
+  }
+
+  ngOnInit() {
+
   }
 
   details(income: Income) {

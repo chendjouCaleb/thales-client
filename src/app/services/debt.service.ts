@@ -1,14 +1,14 @@
 import {Injectable} from "@angular/core";
 import {SERVER_URL} from "../http";
 import {Agency, Customer, Debt, Space} from "../../entities";
-import { HttpClient } from "@angular/common/http";
-import {firstValueFrom, Observable, Subject} from "rxjs";
+import {HttpClient} from "@angular/common/http";
+import {firstValueFrom} from "rxjs";
 import {DebtAddModel, DebtIncomeAddModel} from "@app/models";
 import {DebtRangeViewModel} from "@entities/view-models/DebtRangeViewModel";
 import {Money} from "@entities/money";
 import {DebtIncome} from "@entities/finance/debt-income";
 import {DateTime} from "luxon";
-import {DebtStateStore} from "@app/services/debt-state-store";
+import {DebtEventStore} from "@app/services/debt-event-store";
 
 @Injectable({
   providedIn: 'root'
@@ -17,17 +17,7 @@ export class DebtService {
 
   private url = `${SERVER_URL}/finance/debts`;
 
-  private _debtAdd = new Subject<Debt>();
-  get debtAdd(): Observable<Debt> { return this._debtAdd.asObservable() }
-
-  private _debtDelete = new Subject<Debt>();
-  get debtDelete(): Observable<Debt> { return this._debtDelete.asObservable() }
-
-  private _debtUpdate = new Subject<Debt>();
-  get debtUpdate(): Observable<Debt> { return this._debtUpdate.asObservable() }
-
-
-  constructor(private _httpClient: HttpClient, private debtStateStore: DebtStateStore) {}
+  constructor(private _httpClient: HttpClient, private _debtEventStore: DebtEventStore) {}
 
   async addAsync(space: Space, agency: Agency, customer: Customer, model: DebtAddModel): Promise<Debt> {
     const params = {
@@ -40,7 +30,7 @@ export class DebtService {
     let debt = new Debt(await firstValueFrom(call));
     debt = await this.getAsync(debt.id)
 
-    this._debtAdd.next(debt);
+    this._debtEventStore.emitDebtAdd(debt);
     return debt;
   }
 
@@ -48,14 +38,14 @@ export class DebtService {
   async addIncomeAsync(debt: Debt, model: DebtIncomeAddModel) {
     const call = this._httpClient.post<DebtIncome>(`${this.url}/${debt.id}/incomes`, model, {});
     let debtIncome = new DebtIncome(await firstValueFrom(call));
-    this.debtStateStore.emitDebtIncomeAdd(debtIncome)
+    this._debtEventStore.emitDebtIncomeAdd(debtIncome)
     return debtIncome;
   }
 
   async deleteIncomeAsync(debtIncome: DebtIncome) {
     const call = this._httpClient.delete<void>(`${this.url}/incomes/${debtIncome.id}`);
     await firstValueFrom(call);
-    this.debtStateStore.emitDebtIncomeDelete(debtIncome);
+    this._debtEventStore.emitDebtIncomeDelete(debtIncome);
   }
 
 
@@ -81,7 +71,7 @@ export class DebtService {
   async deleteAsync(debt: Debt): Promise<void> {
     const call = this._httpClient.delete<void>(`${this.url}/${debt.id}`);
     await firstValueFrom(call);
-    this._debtDelete.next(debt);
+    this._debtEventStore.emitDebtDelete(debt);
   }
 
 
@@ -90,7 +80,7 @@ export class DebtService {
     const call = this._httpClient.put<void>(`${this.url}/${debt.id}/amount`, {}, {params});
     await firstValueFrom(call);
     debt.amount = amount;
-    this._debtUpdate.next(debt);
+    this._debtEventStore.emitDebtUpdate(debt);
   }
 
   async changeDetailsAsync(debt: Debt, details: string): Promise<void> {
@@ -98,7 +88,7 @@ export class DebtService {
     const call = this._httpClient.put<void>(`${this.url}/${debt.id}/details`, {}, {params});
     await firstValueFrom(call);
     debt.details = details;
-    this._debtUpdate.next(debt);
+    this._debtEventStore.emitDebtUpdate(debt);
   }
 
   async changeReasonAsync(debt: Debt, reason: string): Promise<void> {
@@ -106,7 +96,7 @@ export class DebtService {
     const call = this._httpClient.put<void>(`${this.url}/${debt.id}/reason`, {}, {params});
     await firstValueFrom(call);
     debt.reason = reason;
-    this._debtUpdate.next(debt);
+    this._debtEventStore.emitDebtUpdate(debt);
   }
 
   async changeExpireAtAsync(debt: Debt, expireAt?: Date): Promise<void> {
@@ -119,7 +109,7 @@ export class DebtService {
       debt.expireAt = null
     }
 
-    this._debtUpdate.next(debt);
+    this._debtEventStore.emitDebtUpdate(debt);
   }
 
   async changeDoneAtAsync(debt: Debt, doneAt?: Date): Promise<void> {
@@ -132,6 +122,6 @@ export class DebtService {
       debt.doneAt = null
     }
 
-    this._debtUpdate.next(debt);
+    this._debtEventStore.emitDebtUpdate(debt);
   }
 }

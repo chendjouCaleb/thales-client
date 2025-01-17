@@ -10,6 +10,7 @@ import {IconButton} from "@app/ui";
 import {NgIf} from "@angular/common";
 import {DebtChangeDueAtLauncher} from "@app/Components/debts/change-due-at";
 import {DebtChangeDoneAtLauncher} from "@app/Components/debts/change-done-at";
+import {DebtEventStore} from "@app/services/debt-event-store";
 
 @Component({
   templateUrl: 'debt-settings.html',
@@ -43,7 +44,8 @@ export class DebtSettings {
               private _changeDeleteLauncher: DebtDeleteLauncher,
               private _changeExpireAtLauncher: DebtChangeDueAtLauncher,
               private _changeDoneAtLauncher: DebtChangeDoneAtLauncher,
-              private _debtService: DebtService) {
+              private _debtService: DebtService,
+              private _debtEventStore: DebtEventStore) {
     this.debtId = data.debtId;
     this.debt = data.debt;
   }
@@ -52,7 +54,7 @@ export class DebtSettings {
     if(!this.debt) {
       this.getDebtTask.launch();
     }
-    this.deleteSubscription = this._debtService.debtDelete.subscribe((deletedDebt) => {
+    this.deleteSubscription = this._debtEventStore.debtDelete.subscribe((deletedDebt) => {
       if(deletedDebt.id === this.debt.id) {
         this._dialogRef.close()
       }

@@ -22,6 +22,7 @@ import {
 import {ProcedureApplyRangeViewModel} from "@entities/view-models/ProcedureApplyRangeViewModel";
 import {DateTime} from "luxon";
 import {Money} from "@entities/money";
+import {DebtEventStore} from "@app/services/debt-event-store";
 
 @Injectable({
   providedIn: 'root'
@@ -30,7 +31,8 @@ export class ProcedureApplyService {
   private url = `${SERVER_URL}/procedure-applies`;
   private stepUrl = `${SERVER_URL}/procedure-apply-steps`;
 
-  constructor(private _httpClient: HttpClient) {}
+  constructor(private _httpClient: HttpClient,
+              private _debtEventStore: DebtEventStore) {}
 
   async listAsync(params: any): Promise<ProcedureApplyRangeViewModel> {
     const call = this._httpClient.get<ProcedureApply[]>(`${this.url}`, {params});
@@ -166,6 +168,7 @@ export class ProcedureApplyService {
     const debt = new Debt(await firstValueFrom(call));
     procedureApplyStep.debts.unshift(debt);
     procedureApplyStep?.procedureApply.addDebt(debt);
+    this._debtEventStore.emitDebtAdd(debt)
     return debt;
   }
 

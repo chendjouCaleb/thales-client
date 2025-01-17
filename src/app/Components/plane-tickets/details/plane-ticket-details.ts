@@ -24,7 +24,7 @@ import {Dropdown} from "@app/NeoUI";
 import {ExpenseService} from "@app/services/expense.service";
 import {IncomeService} from "@app/services/income.service";
 import {DebtService} from "@app/services/debt.service";
-import {DebtStateStore} from "@app/services/debt-state-store";
+import {DebtEventStore} from "@app/services/debt-event-store";
 
 @Component({
   templateUrl: 'plane-ticket-details.html',
@@ -59,7 +59,7 @@ export class PlaneTicketDetails implements OnInit {
 
   getPlaneTicketTask = new Task(async () => {
     this.planeTicket = await this.planeTicketService.getByIdAsync(this.planeTicketId);
-    this._debtStore.debts.addDebts(this.planeTicket.debts)
+    this._debtStore.debts.addDebts(this.planeTicket.debts);
   })
 
   constructor(private planeTicketService: PlaneTicketService,
@@ -69,7 +69,7 @@ export class PlaneTicketDetails implements OnInit {
               private _debtService: DebtService,
               private _dialog: Dialog,
               private _uiService: PlaneTicketUIService,
-              private _debtStore: DebtStateStore) {
+              private _debtStore: DebtEventStore) {
   }
 
   async ngOnInit() {
@@ -91,7 +91,7 @@ export class PlaneTicketDetails implements OnInit {
       }
     });
 
-    this._debtService.debtDelete.subscribe(debt => {
+    this._debtStore.debtDelete.subscribe(debt => {
       if (this.planeTicket.containsDebt(debt)) {
         this.planeTicket.removeDebt(debt)
       }

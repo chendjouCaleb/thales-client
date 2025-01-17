@@ -12,6 +12,7 @@ import {
 import {SERVER_URL} from "@app/http";
 import {firstValueFrom} from "rxjs";
 import {DebtAddModel, ExpenseAddModel, IncomeAddModel, PlaneTicketAddModel} from "../models";
+import {DebtEventStore} from "@app/services/debt-event-store";
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,8 @@ import {DebtAddModel, ExpenseAddModel, IncomeAddModel, PlaneTicketAddModel} from
 export class PlaneTicketService {
   private url = `${SERVER_URL}/plane-tickets`;
 
-  constructor(private _httpClient: HttpClient) {}
+  constructor(private _httpClient: HttpClient,
+              private _debtEventStore: DebtEventStore) {}
 
   async listAsync(params: any): Promise<PlaneTicketRangeViewModel> {
     const call = this._httpClient.get(`${this.url}`, {params});
@@ -84,6 +86,7 @@ export class PlaneTicketService {
     const call = this._httpClient.post<Debt>(`${this.url}/${planeTicket.id}/debts`, model);
     const debt = new Debt(await firstValueFrom(call));
     planeTicket.addDebt(debt);
+    this._debtEventStore.emitDebtAdd(debt);
     return debt;
   }
 

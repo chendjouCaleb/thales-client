@@ -23,7 +23,7 @@ import {Subscription} from "rxjs";
 import {DebtPager} from "@app/Components/debts/overview/debt.pager";
 import {DebtSettingsLauncher} from "@app/Components/debts/settings";
 import {DebtIncomeAddLauncher} from "@app/Components/debts/income-add/debt-income-add.launcher";
-import {DebtStateStore} from "@app/services/debt-state-store";
+import {DebtEventStore} from "@app/services/debt-event-store";
 
 @Component({
   templateUrl: 'debt-overview.html',
@@ -61,13 +61,13 @@ export class DebtOverview implements OnInit, OnDestroy {
               private _changeDeleteLauncher: DebtDeleteLauncher,
               private _debtIncomeAddLauncher: DebtIncomeAddLauncher,
               private _debtService: DebtService,
-              private _debtStateStore: DebtStateStore) {
+              private _debtStateStore: DebtEventStore) {
     this.debtId = data.debtId
   }
 
   ngOnInit() {
     this.getDebtTask.launch();
-    this.deleteSubscription = this._debtService.debtDelete.subscribe((deletedDebt) => {
+    this.deleteSubscription = this._debtStateStore.debtDelete.subscribe((deletedDebt) => {
       if (deletedDebt.id === this.debt.id) {
         this._dialogRef.close()
       }

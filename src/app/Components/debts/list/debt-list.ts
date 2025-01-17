@@ -31,6 +31,7 @@ import {Dropdown, MyBadge} from "@app/NeoUI";
 import {DebtService} from "@app/services/debt.service";
 import {Subscription} from "rxjs";
 import {DebtOverviewLauncher} from "src/app/Components/debts/overview";
+import {DebtEventStore} from "@app/services/debt-event-store";
 
 
 const DEBT_RANGE_SIZE = isDevMode() ? 10 : 30;
@@ -105,17 +106,18 @@ export class DebtList implements OnInit, AfterViewInit, OnDestroy {
 
   constructor(private _service: DebtService,
               private _router: Router,
+              private _debtEventStore: DebtEventStore,
               public readonly detailsLauncher: DebtOverviewLauncher,
               @Inject(DOCUMENT) private _document: Document) {
   }
 
   async ngOnInit() {
     await this.loadFirstRange()
-    this.deleteSubscription = this._service.debtDelete.subscribe(deleted => {
+    this.deleteSubscription = this._debtEventStore.debtDelete.subscribe(deleted => {
       this.debts = this._debts.filter(e => e.id !== deleted.id)
     });
 
-    this.addSubscription = this._service.debtAdd.subscribe(newDebt => {
+    this.addSubscription = this._debtEventStore.debtAdd.subscribe(newDebt => {
       if(this.filter(newDebt) && !this._debts.find(e => e.id === newDebt.id)) {
         this._debts.unshift(newDebt);
       }

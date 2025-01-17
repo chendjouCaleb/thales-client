@@ -217,7 +217,8 @@ export class DebtCollection {
 
   contains(debt: Debt): boolean {
     if(!debt) return false;
-    return this._items.some(d => d.id === debt.id)
+    return this._items.some(d => d === debt)
+    //return this._items.some(d => d.id === debt.id)
   }
 
   addDebt(debt: Debt): boolean {

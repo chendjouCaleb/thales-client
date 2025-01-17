@@ -9,14 +9,14 @@ import {ProcedureApplyPager} from "@app/Components/procedure-apply/details/proce
 import {ProcedureApplyController} from "@app/Components";
 import {
   ArrowLeftIcon,
-  CircleCheckBigIcon, DollarSignIcon, HandCoinsIcon,
+  CircleCheckBigIcon,
   LockIcon,
   LockOpenIcon,
   LucideAngularModule,
-  Trash2Icon, UndoIcon, WalletIcon
+  Trash2Icon,
+  UndoIcon
 } from "lucide-angular";
 import {Button, IconButton} from "@app/ui";
-import {FinanceOverview} from "@entities/finance/finance-overview";
 import {ExpenseService} from "@app/services/expense.service";
 
 @Component({
@@ -48,6 +48,7 @@ export class ProcedureApplyDetails implements OnInit {
   getProcedureApply = new Task(async () => {
     this.procedureApply = await this._service.getByIdAsync(this.procedureApplyId);
     this.procedureApply.procedureApplySteps.forEach(pa => pa.procedureApply = this.procedureApply);
+
   });
 
   constructor(private _service: ProcedureApplyService,

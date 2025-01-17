@@ -29,6 +29,7 @@ import {FinanceOverview} from "@entities/finance/finance-overview";
 import {ExpenseService} from "@app/services/expense.service";
 import {IncomeService} from "@app/services/income.service";
 import {DebtService} from "@app/services/debt.service";
+import {DebtEventStore} from "@app/services/debt-event-store";
 
 @Component({
   templateUrl: 'procedure-apply-step-home.html',
@@ -85,6 +86,7 @@ export class ProcedureApplyStepHome implements OnInit {
               @Inject(DIALOG_DATA) private data: any,
               public _dialogRef: DialogRef<any>,
               public _dialog: Dialog,
+              private _debtEventStore: DebtEventStore,
               private _controller: ProcedureApplyController) {
     this.procedureApplyStep = data.procedureApplyStep;
   }
@@ -114,14 +116,14 @@ export class ProcedureApplyStepHome implements OnInit {
       }
     });
 
-    this._debtService.debtAdd.subscribe(debt => {
+    this._debtEventStore.debtAdd.subscribe(debt => {
       if (debt.debtElements.some(ee => ee.elementId == this.procedureApplyStep.elementId)) {
         this.procedureApplyStep.debts.unshift(debt);
         this.procedureApplyStep.financeOverview.debts.unshift(debt);
       }
     });
 
-    this._debtService.debtDelete.subscribe(debt => {
+    this._debtEventStore.debtDelete.subscribe(debt => {
       const index = debt.debtElements.findIndex(ee => ee.elementId == this.procedureApplyStep.elementId)
       if (index) {
         this.procedureApplyStep.debts = this.procedureApplyStep.debts.filter(e => e.id !== debt.id)

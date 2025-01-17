@@ -48,6 +48,12 @@ export class DebtEventStore {
       this.debts.items.forEach(debt => {
         debt.addIncome(debtIncome);
       })
-    })
+    });
+
+    this._debtIncomeDelete.subscribe(debtIncome => {
+      this.debts.items.forEach(debt => {
+        debt.removeIncome(debtIncome);
+      })
+    });
   }
 }

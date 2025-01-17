@@ -33,7 +33,7 @@ export class Debt extends BaseEntity<string> {
   procedure: Procedure;
   procedureId: number;
 
-  agency:Agency;
+  agency: Agency;
   agencyId: number;
 
   space: Space
@@ -73,7 +73,7 @@ export class Debt extends BaseEntity<string> {
   }
 
   get late(): Duration | null {
-    if(!this.expireAt) {
+    if (!this.expireAt) {
       return null;
     }
     return DateTime.now().diff(this.expireAt, ['months', 'days'])
@@ -114,10 +114,10 @@ export class Debt extends BaseEntity<string> {
       //this.memberId = value.memberId;
       this.member = value.member ? new Member(value.member) : undefined;
       this.employee = value.employee ? new Employee(value.employee) : undefined;
-      if(this.user) {
+      if (this.user) {
         this.member.user = this.user;
       }
-      if(this.employee && this.user) {
+      if (this.employee && this.user) {
         this.employee.user = this.user;
       }
 
@@ -133,17 +133,26 @@ export class Debt extends BaseEntity<string> {
   }
 
   addIncome(debtIncome: DebtIncome) {
-    if(this.shouldContainsIncome(debtIncome) && !this.containsIncome(debtIncome)) {
+    if (this.shouldContainsIncome(debtIncome) && !this.containsIncome(debtIncome)) {
       this.debtIncomes.push(debtIncome);
     }
   }
 
+  removeIncome(debtIncome: DebtIncome) {
+    const index = this.debtIncomes.findIndex(di => di.id === debtIncome.id);
+    if (index >= 0) {
+      //delete this.debtIncomes[index];
+    }
+    this.debtIncomes = this.debtIncomes.filter(di => di.id !== debtIncome.id);
+  }
+
   shouldContainsIncome(debtIncome: DebtIncome): boolean {
-    if(!debtIncome) return false;
+    if (!debtIncome) return false;
     return debtIncome.debtId == this.id;
   }
+
   containsIncome(debtIncome: DebtIncome): boolean {
-    if(!debtIncome) return false;
+    if (!debtIncome) return false;
     return this.debtIncomes.some(di => di.id == debtIncome.id)
   }
 }
@@ -204,7 +213,6 @@ export class DebtPerson {
 }
 
 
-
 export class DebtCollection {
   private _items: Debt[]
   get items(): Debt[] {
@@ -216,13 +224,13 @@ export class DebtCollection {
   }
 
   contains(debt: Debt): boolean {
-    if(!debt) return false;
+    if (!debt) return false;
     return this._items.some(d => d === debt)
     //return this._items.some(d => d.id === debt.id)
   }
 
   addDebt(debt: Debt): boolean {
-    if(this.contains(debt)) {
+    if (this.contains(debt)) {
       return false;
     }
     this._items.push(debt);
@@ -236,7 +244,7 @@ export class DebtCollection {
   }
 
   removeDebt(debt: Debt): boolean {
-    if(!this.contains(debt)) {
+    if (!this.contains(debt)) {
       return false;
     }
     const index = this._items.findIndex(d => d.id == debt.id);

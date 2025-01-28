@@ -4,3 +4,4 @@ export * from './date.utils';
 export * from './phone-number-formatter';
 export * from './task';
 export * from './timer';
+export * from './cookie.helper'

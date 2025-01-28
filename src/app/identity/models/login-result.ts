@@ -12,4 +12,17 @@ export class LoginResult {
   session: Session;
   jwtToken: string = '';
 
+  data(): AuthData {
+    return {
+      accessToken: this.jwtToken,
+
+      sessionId: this.session.id
+    }
+  }
+}
+
+export interface AuthData {
+  accessToken: string,
+  refreshToken?: string,
+  sessionId: string
 }

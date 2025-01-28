@@ -10,7 +10,6 @@ import {ApplicationHttpModule} from "./http";
 import {ApplicationServiceModule} from "./services";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {IdentityModule} from "./identity";
-import {CustomerPickerModule} from "@app/Components";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {registerLocaleData} from "@angular/common";
 import localeFr from '@angular/common/locales/fr'
@@ -32,7 +31,6 @@ registerLocaleData(localeFr, 'fr');
     ApplicationHttpModule,
     ApplicationServiceModule,
     MatSnackBarModule,
-    CustomerPickerModule,
     MatProgressSpinnerModule, IdentityModule, AppComponent
   ],
   providers: [
@@ -44,6 +42,6 @@ registerLocaleData(localeFr, 'fr');
       multi: true
     }
   ],
-  bootstrap: [AppComponent]
+  bootstrap: []
 })
 export class AppModule {}

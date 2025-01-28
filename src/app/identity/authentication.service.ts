@@ -1,8 +1,9 @@
 import {Injectable} from "@angular/core";
 import {SERVER_URL} from "../http";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import {LoginModel, LoginResult, Session} from "./models";
+import {AuthData, LoginModel, LoginResult, Session} from "./models";
 import {firstValueFrom, Observable, ReplaySubject, Subject} from "rxjs";
+import {deleteCookie, getCookie, setCookie} from "@app/utils";
 
 @Injectable({
   providedIn: 'root'
@@ -31,7 +32,7 @@ export class AuthenticationService {
   constructor(private _httpClient: HttpClient) {}
 
   public async init() {
-    const accessToken = localStorage.getItem("AUTH_ACCESS_TOKEN");
+    const accessToken = this.getAuthData().accessToken
 
     if(!accessToken) {
       this._stateChange.next(false);
@@ -73,8 +74,7 @@ export class AuthenticationService {
     this._session = result.session;
     this._accessToken = result.jwtToken;
     this._stateChange.next(this.isLogged);
-    localStorage.setItem("AUTH_ACCESS_TOKEN", result.jwtToken);
-    localStorage.setItem("AUTH_SESSION_ID", result.session.id);
+    this.saveAuthData(result.data())
 
 
     return result.session;
@@ -95,10 +95,46 @@ export class AuthenticationService {
   }
 
   private clearData() {
-    localStorage.removeItem("AUTH_ACCESS_TOKEN");
-    localStorage.removeItem("AUTH_SESSION_ID");
-
+    this.clearAuthData();
     this._session = null;
     this._accessToken = null
+  }
+
+  private saveAuthData1(data: AuthData) {
+    localStorage.setItem("AUTH_ACCESS_TOKEN", data.accessToken);
+    localStorage.setItem("AUTH_SESSION_ID", data.sessionId);
+  }
+
+  private saveAuthData(data: AuthData) {
+    setCookie("AUTH_ACCESS_TOKEN", data.accessToken, {path: '/', domain: 'thales.localhost'});
+    setCookie("AUTH_SESSION_ID", data.sessionId, {path: '/', domain: 'thales.localhost'});
+  }
+
+  private getAuthData1(): AuthData {
+    const accessToken = localStorage.getItem("AUTH_ACCESS_TOKEN");
+    return {
+      accessToken,
+      sessionId: '',
+      refreshToken: ''
+    }
+  }
+  private getAuthData(): AuthData {
+    const accessToken = getCookie("AUTH_ACCESS_TOKEN");
+    return {
+      accessToken,
+      sessionId: '',
+      refreshToken: ''
+    }
+  }
+
+
+  private clearAuthData1() {
+    localStorage.removeItem("AUTH_ACCESS_TOKEN");
+    localStorage.removeItem("AUTH_SESSION_ID");
+  }
+
+  private clearAuthData() {
+    deleteCookie("AUTH_ACCESS_TOKEN");
+    deleteCookie("AUTH_SESSION_ID");
   }
 }

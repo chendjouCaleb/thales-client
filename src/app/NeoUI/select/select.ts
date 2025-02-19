@@ -2,14 +2,11 @@ import {
   AfterContentInit,
   ChangeDetectionStrategy,
   Component,
-  ContentChild, EventEmitter,
+  ContentChild,
   forwardRef,
-  Input,
-  Output,
   ViewEncapsulation
 } from "@angular/core";
-import {SelectDropdown} from './select-dropdown';
-import {SelectField} from './select-field';
+import {SelectDropdown, SelectField} from '@app/NeoUI';
 
 @Component({
   selector: 'MySelect',

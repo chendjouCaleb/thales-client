@@ -1,17 +1,15 @@
 import {
-  ChangeDetectionStrategy,
   Component,
-  ContentChild, ElementRef, EventEmitter,
+  ContentChild,
+  ElementRef,
+  EventEmitter,
   forwardRef,
   Input,
   Output,
   ViewEncapsulation
 } from "@angular/core";
-import {TextFieldLabel} from '../textField';
-import {
-  LucideAngularModule,
-  ChevronDownIcon
-} from 'lucide-angular';
+import {TextFieldLabel} from '@app/NeoUI';
+import {ChevronDownIcon, LucideAngularModule} from 'lucide-angular';
 
 @Component({
   selector: 'SelectField',

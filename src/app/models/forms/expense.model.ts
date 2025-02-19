@@ -1,9 +1,8 @@
-import {Money} from "@entities/money";
-
 export class ExpenseAddModel {
   reason: string = '';
   details: string = '';
   amount: string;
+  region: string;
 
   constructor(value: any = {}) {
     if (value) {

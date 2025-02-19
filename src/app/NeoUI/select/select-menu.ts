@@ -1,15 +1,4 @@
-import {
-  AfterContentInit,
-  ChangeDetectionStrategy,
-  Component, ContentChildren,
-  EventEmitter, forwardRef,
-  Input,
-  Output, QueryList,
-  ViewEncapsulation
-} from "@angular/core";
-import {SelectionModel} from '@angular/cdk/collections';
-import {Observable} from 'rxjs';
-import {SelectMenuItem} from './select-menu-item';
+import {ChangeDetectionStrategy, Component, ViewEncapsulation} from "@angular/core";
 
 @Component({
   templateUrl: 'select-menu.html',

@@ -1,12 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  EventEmitter,
-  Input,
-  Output,
-  ViewChild,
-  ViewEncapsulation
-} from "@angular/core";
+import {ChangeDetectionStrategy, Component, Input, ViewChild, ViewEncapsulation} from "@angular/core";
 import {Overlay, OverlayConfig, OverlayRef} from '@angular/cdk/overlay';
 import {CdkPortal} from '@angular/cdk/portal';
 

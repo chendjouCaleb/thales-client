@@ -5,7 +5,7 @@ import {SpaceEditProfileLauncher} from "./space-edit-profile.launcher";
 import {FormControl, FormGroup, ReactiveFormsModule} from "@angular/forms";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {ActivatedRoute, Router} from "@angular/router";
-import {PlaneTicketService} from "@app/services";
+import {PlaneTicketService, SpaceHttpClient} from "@app/services";
 import {CustomerPickerDialog} from "@app/Components";
 import {Customer} from "@entities/customer";
 import {AgencyHttpClient} from "@app/services/agency.http-client";
@@ -20,10 +20,15 @@ import {Button, IconButton} from "@app/ui";
 import {ChevronDown, ChevronDownIcon, LucideAngularModule, XIcon} from "lucide-angular";
 import {DIALOG_DATA, DialogRef} from "@angular/cdk/dialog";
 import {PlaneTicket} from "@entities/plane-ticket";
+import {Space} from "@entities/space";
+import {SpaceProfileFormGroup} from "@app/pages/admin/settings/edit-profile/space-profile-form-group";
+import {SpaceEditProfileFormAddress} from "@app/pages/admin/settings/edit-profile/space-edit-profile-form-address";
+import {SpaceEditProfileFormPhone} from "@app/pages/admin/settings/edit-profile/space-edit-profile-form-phone";
+import {SpaceEditProfileFormEmail} from "@app/pages/admin/settings/edit-profile/space-edit-profile-form-email";
 
 @Component({
   templateUrl: 'space-edit-profile.html',
-  selector: 'PlaneTicketExpenseAdd',
+  selector: 'SpaceEditProfile',
   standalone: true,
   imports: [
     TextField,
@@ -37,43 +42,27 @@ import {PlaneTicket} from "@entities/plane-ticket";
     CleaveModule,
     Button,
     LucideAngularModule,
-    IconButton
-  ],
-  providers: [ CustomerPickerDialog ]
+    IconButton,
+    SpaceEditProfileFormAddress,
+    SpaceEditProfileFormPhone,
+    SpaceEditProfileFormEmail
+  ]
 })
 export class SpaceEditProfile implements OnInit {
   icons = {ChevronDownIcon, XIcon}
   model = new ProcedureFormModel();
-  remember: SpaceEditProfileLauncher;
-  formGroup: FormGroup;
+  formGroup: SpaceProfileFormGroup;
 
-  customer: Customer;
-  agency: Agency;
+  space: Space;
 
   constructor(public _dialogRef: DialogRef<PlaneTicket>,
               @Inject(DIALOG_DATA) private data: any,
               private _snackbar: MatSnackBar,
-              private _customerPicker: CustomerPickerDialog,
-              private _service: PlaneTicketService) {
-    this.agency = data.agency;
-    this.remember = new SpaceEditProfileLauncher();
+              private _service: SpaceHttpClient ) {
+    this.space = data.space;
 
-    this.formGroup = new FormGroup({
-      placeCount: new FormControl(this.remember.placeCount),
-      price: new FormControl(this.remember.price),
-      backAndForth: new FormControl(this.remember.backAndForth),
-      travelClass: new FormControl(this.remember.travelClass),
-      departureCountry: new FormControl(this.remember.departureCountry),
-      departureCity: new FormControl(this.remember.departureCity),
-      departureDate: new FormControl(this.remember.departureDate),
-      arrivalCountry: new FormControl(this.remember.arrivalCountry),
-      arrivalCity: new FormControl(this.remember.arrivalCity),
-      returnDate: new FormControl(this.remember.returnDate),
-    });
+    this.formGroup = new SpaceProfileFormGroup(this.space)
 
-    this.formGroup.valueChanges.subscribe(value => {
-      this.remember.value = value
-    });
   }
 
   async ngOnInit() {
@@ -81,23 +70,12 @@ export class SpaceEditProfile implements OnInit {
 
   }
 
-  openCustomerPicker() {
-    this._customerPicker.open(this.agency.spaceId).subscribe(customer => {
-      if (customer) {
-        this.customer = customer;
-      }
-    })
-  }
+  async editProfile() {
+    const model = this.formGroup.getModel();
+    const planeTicket = await this._service.editProfileAsync(this.space, model)
 
-  async addPlaneTicket() {
-    const model = this.formGroup.value;
-    const planeTicket = await this._service.addAsync(this.agency, this.customer, model);
-    this.remember.clear()
-    this._snackbar.open(`La commande de billet d'avion a été ajoutée.`, 'VOIR', {duration: 3000})
-      .onAction().subscribe(() => {
-
-    });
-    this._dialogRef.close(planeTicket);
+    this._snackbar.open(`Le profil de l'espace a été modifié`, '', {duration: 3000});
+    this._dialogRef.close();
   }
 
 }

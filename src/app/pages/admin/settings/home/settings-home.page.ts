@@ -10,6 +10,7 @@ import {Space} from "@entities/space";
 import {AdminPage} from "@app/pages/admin/admin.page";
 import {Task} from "@app/utils";
 import {MatProgressSpinner} from "@angular/material/progress-spinner";
+import {SpaceEditProfileLauncher} from "@app/pages/admin/settings/edit-profile/space-edit-profile.launcher";
 
 @Component({
   templateUrl: 'settings-home.page.html',
@@ -22,7 +23,8 @@ import {MatProgressSpinner} from "@angular/material/progress-spinner";
     RouterLink,
     MatProgressSpinner
   ],
-  standalone: true
+  standalone: true,
+  providers: [ SpaceEditProfileLauncher ]
 })
 export class SettingsHomePage implements OnInit {
   icons = { PlusIcon, BuildingIcon }
@@ -31,6 +33,7 @@ export class SettingsHomePage implements OnInit {
 
   constructor(private agencyService: AgencyService,
               private agencyHttpClient: AgencyHttpClient,
+              private editProfileLauncher: SpaceEditProfileLauncher,
               private parentPage: AdminPage) {
     this.space = parentPage.space;
   }
@@ -57,5 +60,9 @@ export class SettingsHomePage implements OnInit {
 
   onClick(row) {
     console.log(row)
+  }
+
+  editProfile() {
+    this.editProfileLauncher.launch(this.space)
   }
 }

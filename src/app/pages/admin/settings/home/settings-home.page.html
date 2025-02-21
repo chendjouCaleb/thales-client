@@ -9,7 +9,7 @@
     <div class="display-flex">
       <div class="textStyle-subtitle1 flexGrow-1">Profile</div>
       <div>
-        <button MyButton>Modifier le profil</button>
+        <button MyButton (click)="editProfile()">Modifier le profil</button>
       </div>
     </div>
 
@@ -26,9 +26,15 @@
     </div>
 
     <div class="marginVertical-16">
+      <div class="textStyle-caption1 opacity-8">Identifiant national</div>
+      <div class="textStyle-body1">{{space.nationalId}}</div>
+      <div class="textStyle-body1 opacity-6" *ngIf="!space.nationalId">Non renseigné</div>
+    </div>
+
+    <div class="marginVertical-16">
       <div class="textStyle-caption1 opacity-8">Adresse e-mail</div>
       <div class="textStyle-body1" *ngIf="space.emails.length > 0">
-        <div *ngFor="let email of space.emails">{{email}}</div>
+        <div *ngFor="let email of space.emails">{{email.value}}</div>
       </div>
       <div class="textStyle-body1 opacity-6" *ngIf="space.phones.length == 0">Aucune adresse e-mail</div>
     </div>

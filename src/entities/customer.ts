@@ -1,6 +1,7 @@
 import {BaseEntity} from "./base-entity";
 import {DateTime} from "luxon";
 import {formatPhoneNumber} from "@app/utils";
+import {getCountry} from "../countries";
 
 export class Customer extends BaseEntity<number> {
 
@@ -254,7 +255,7 @@ export class Address {
   street: string = ''
 
   toString(): string {
-    return `${this.postalCode} ${this.street}, ${this.city}-${this.country}`
+    return `${this.postalCode} ${this.street}, ${this.city}-${getCountry(this.country).name}`
   }
 }
 

@@ -3,7 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import {SERVER_URL} from "@app/http";
 import {Space} from "@entities/space";
 import {firstValueFrom} from "rxjs";
-import {SpaceAddModel} from "@app/models";
+import {SpaceAddModel, SpaceProfileModel} from "@app/models";
 
 @Injectable({
   providedIn: 'root'
@@ -53,6 +53,17 @@ export class SpaceHttpClient {
     return firstValueFrom(call);
   }
 
+  async editProfileAsync(space: Space, model: SpaceProfileModel): Promise<void> {
+    const call = this._httpClient.put<void>(`${this.url}/${space.id}/profile`, model);
+    await firstValueFrom(call);
+
+    space.nationalId = model.nationalId;
+    space.name = model.name;
+    space.description = model.description;
+    space.address = model.address;
+    space.phones = model.phones;
+    space.emails = model.emails;
+  }
 
   async deleteAsync(Space: Space): Promise<void> {
     const call = this._httpClient.delete(`${this.url}/${Space.id}`);

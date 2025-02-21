@@ -1,101 +1,46 @@
-<div class="p-4" style="box-sizing: border-box; width: 616px">
-  <div [formGroup]="formGroup">
-    <div class="d-flex align-items-center mb-3">
-      <div class="title-20 flex-grow-1">Achat de billet d'avion</div>
-      <button MyIconButton (click)="_dialogRef.close()">
-        <lucide-icon [img]="icons.XIcon" ></lucide-icon>
-      </button>
+<div style="box-sizing: border-box; width: 616px">
+
+    <div class="padding-32 display-flex alignItems-center">
+      <div class="textStyle-subtitle1 flexGrow-1">Profile de l'entreprise</div>
+
+      <div >
+        <button MyButton class="primary" (click)="editProfile()">Modifier</button>
+        <button MyIconButton (click)="_dialogRef.close()" class="marginStart-8">
+          <lucide-icon [img]="icons.XIcon" ></lucide-icon>
+        </button>
+      </div>
     </div>
 
-    <div class="mt-4">
-      <div class="label opacity-8">Client</div>
+    <div class="paddingHorizontal-32">
 
-      <div style="background-color: var(--my-SurfaceColor); padding: 8px; border-radius: 8px;
-      display: flex; align-items: center; cursor: pointer" tabindex="1" (click)="openCustomerPicker()">
-        <div class="flex-grow-1">
-          <div *ngIf="customer"  >{{ customer.fullName }}</div>
-          <div *ngIf="!customer" class="opacity-5">Choisir un client</div>
-        </div>
+      <TextField class="flexGrow-1 width-100 ">
+        <label for="name" TextFieldLabel>Nom de l'espace</label>
+        <input type="text" TextFieldInput id="name"
+               [formControl]="formGroup.name"
+        >
+      </TextField>
 
-        <lucide-angular class="opacity-5" [img]="icons.ChevronDownIcon"></lucide-angular>
-      </div>
+      <TextField class="flexGrow-1 width-100 marginTop-16">
+        <label for="description" TextFieldLabel>Description</label>
+        <input type="text" TextFieldInput id="description"
+               [formControl]="formGroup.description"
+        >
+      </TextField>
 
-    </div>
-    <div class="mt-4">
-      <div>
-        <mat-checkbox formControlName="backAndForth" color="primary">
-          <span style="color: var(--my-OnBackgroundColor)">Aller & retour</span>
-        </mat-checkbox>
-      </div>
+      <TextField class="flexGrow-1 width-100 marginTop-16">
+        <label for="nationalId" TextFieldLabel>Identifiant national</label>
+        <input type="text" TextFieldInput id="nationalId"
+               [formControl]="formGroup.nationalId"
+        >
+      </TextField>
 
-      <div class="mt-3">
-        <mat-radio-group color="primary" formControlName="travelClass">
-          <mat-radio-button value="economic">
-            <span style="color: var(--my-OnBackgroundColor)">Classe économique</span>
-          </mat-radio-button>
-          <mat-radio-button value="business" class="ms-3">
-            <span style="color: var(--my-OnBackgroundColor)"> Classe affaire</span>
-          </mat-radio-button>
-        </mat-radio-group>
-      </div>
+      <div class="marginTop-24" SpaceEditProfileFormPhone></div>
+      <div class="marginTop-24" SpaceEditProfileFormEmail></div>
 
-
-      <div class="d-flex mt-3" style="gap: 16px">
-        <TextField class="flex-grow-1">
-          <label TextFieldLabel for="place-count-field">Nombre de place</label>
-          <input TextFieldInput type="number" formControlName="placeCount" id="place-count-field">
-        </TextField>
-
-        <TextField class="flex-grow-1">
-          <label TextFieldLabel for="price-field">Prix à payer (En FCFA)</label>
-          <input TextFieldInput CleaveNumberInput type="text" formControlName="price" id="price-field">
-        </TextField>
-      </div>
-
-      <div class="d-flex mt-3" style="gap: 16px">
-        <TextField class="flex-grow-1">
-          <label TextFieldLabel for="departure-country-field">Pays de départ</label>
-          <input TextFieldInput type="text" formControlName="departureCountry" id="departure-country-field">
-        </TextField>
-
-        <TextField class="flex-grow-1">
-          <label TextFieldLabel for="departure-city-field">Ville de départ</label>
-          <input TextFieldInput type="text" formControlName="departureCity" id="departure-city-field">
-        </TextField>
-      </div>
-
-      <div class="d-flex mt-3" style="gap: 16px">
-        <TextField class="flex-grow-1">
-          <label TextFieldLabel for="arrival-country-field">Pays d'arrivée</label>
-          <input TextFieldInput type="text" formControlName="arrivalCountry" id="arrival-country-field">
-        </TextField>
-
-        <TextField class="flex-grow-1">
-          <label TextFieldLabel for="arrival-city-field">Ville d'arrivée</label>
-          <input TextFieldInput type="text" formControlName="arrivalCity" id="arrival-city-field">
-        </TextField>
-      </div>
-
-      <div class="d-flex mt-3" style="gap: 16px">
-        <TextField class="flex-grow-1">
-          <label TextFieldLabel for="departure-date-field">Date de départ</label>
-          <input TextFieldInput CleaveDateInput placeholder="JJ/MM/AAAA" formControlName="departureDate"
-                 id="departure-date-field">
-        </TextField>
-
-        <TextField class="flex-grow-1">
-          <label TextFieldLabel for="return-date-field">Date de retour</label>
-          <input TextFieldInput CleaveDateInput placeholder="JJ/MM/AAAA" formControlName="returnDate"
-                 id="return-date-field">
-        </TextField>
-      </div>
+      <div SpaceEditProfileFormAddress class="marginTop-24"></div>
 
     </div>
 
 
-    <div class="pt-4 mt-3 align-end" >
-      <button MyButton class="primary" (click)="addPlaneTicket()">Ajouter le billet d'avion</button>
-    </div>
+  <div class="padding-32"></div>
   </div>
-
-</div>

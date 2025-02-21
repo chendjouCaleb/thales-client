@@ -1,8 +1,53 @@
 <div class="p-4">
   <div class="d-flex align-items-center">
     <div class="page-title flex-grow-1">Paramètres de l'espace</div>
+
   </div>
 
+
+  <div class="paddingVertical-24">
+    <div class="display-flex">
+      <div class="textStyle-subtitle1 flexGrow-1">Profile</div>
+      <div>
+        <button MyButton>Modifier le profil</button>
+      </div>
+    </div>
+
+
+    <div class="marginVertical-16">
+      <div class="textStyle-caption1 opacity-8">Nom de l'espace</div>
+      <div class="textStyle-body1">{{space.name}}</div>
+    </div>
+
+    <div class="marginVertical-16">
+      <div class="textStyle-caption1 opacity-8">Description</div>
+      <div class="textStyle-body1">{{space.description}}</div>
+      <div class="textStyle-body1 opacity-6" *ngIf="!space.description">Non renseigné</div>
+    </div>
+
+    <div class="marginVertical-16">
+      <div class="textStyle-caption1 opacity-8">Adresse e-mail</div>
+      <div class="textStyle-body1" *ngIf="space.emails.length > 0">
+        <div *ngFor="let email of space.emails">{{email}}</div>
+      </div>
+      <div class="textStyle-body1 opacity-6" *ngIf="space.phones.length == 0">Aucune adresse e-mail</div>
+    </div>
+
+    <div class="marginVertical-16">
+      <div class="textStyle-caption1 opacity-8">Numéro de téléphone</div>
+      <div class="textStyle-body1" *ngIf="space.phones.length > 0">
+        <div *ngFor="let phone of space.phones">{{phone.formatted}}</div>
+      </div>
+      <div class="textStyle-body1 opacity-6" *ngIf="space.phones.length == 0">Aucun numéro de téléphone</div>
+    </div>
+
+    <div class="marginVertical-16">
+      <div class="textStyle-caption1 opacity-8">Adresse</div>
+      <div class="textStyle-body1">{{space.address?.toString()}}</div>
+      <div class="textStyle-body1 opacity-6" *ngIf="!space.address">Non renseigné</div>
+    </div>
+
+  </div>
 
   <div class="mt-3">
     <div class="d-flex align-items-center justify-content-between">

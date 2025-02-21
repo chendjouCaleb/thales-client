@@ -252,6 +252,10 @@ export class Address {
   postalCode: string = ''
   city: string = ''
   street: string = ''
+
+  toString(): string {
+    return `${this.postalCode} ${this.street}, ${this.city}-${this.country}`
+  }
 }
 
 export class Email {

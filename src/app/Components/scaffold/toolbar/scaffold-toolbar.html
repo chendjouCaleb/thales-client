@@ -33,15 +33,22 @@
 
        <Dropdown #dropdown [trigger]="menuTrigger"
                  (onBackdropClick)="dropdown.close()">
-         <MyMenu>
 
-           <a MenuItem routerLink="/identity/profile">
-             <lucide-icon [img]="icons.UserCogIcon"  strokeWidth="1.5"></lucide-icon>
-             Profile</a>
-           <a  MenuItem routerLink="/identity/logout">
-             <lucide-icon [img]="icons.LogOutIcon"  strokeWidth="1.5"></lucide-icon>  Se déconnecter
-           </a>
-         </MyMenu>
+        <div style="background-color: #323130">
+          <div class="display-flex columnGap-16 padding-16 ">
+            <photo-edit-trigger ></photo-edit-trigger>
+            <div class="textStyle-body1">{{session.user.fullName}}</div>
+          </div>
+          <MyMenu>
+
+            <a MenuItem routerLink="/identity/profile">
+              <lucide-icon [img]="icons.UserCogIcon"  strokeWidth="1.5"></lucide-icon>
+              Profile</a>
+            <a  MenuItem routerLink="/identity/logout">
+              <lucide-icon [img]="icons.LogOutIcon"  strokeWidth="1.5"></lucide-icon>  Se déconnecter
+            </a>
+          </MyMenu>
+        </div>
        </Dropdown>
      </div>
     }

@@ -17,7 +17,7 @@ import {NavRouteContext, NavRouteDef} from "./route";
 import {NavHistory} from "./nav-history";
 
 @Component({
-  selector: 'nav-host',
+  selector: 'nav-host, [nav-host], [NavHost]',
   standalone: true,
   template: `
     <ng-container #container></ng-container>

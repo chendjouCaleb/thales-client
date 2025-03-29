@@ -1,0 +1,34 @@
+﻿<div class="padding-24 display-flex alignItems-center">
+  <button MyIconButton (click)="back()">
+    <lucide-icon [img]="icons.ArrowLeftIcon"></lucide-icon>
+  </button>
+  <div class="textStyle-title3 flexGrow-1">Changer la photo de profil</div>
+  <button MyIconButton (click)="parent.close()">
+    <lucide-icon [img]="icons.XIcon"></lucide-icon>
+  </button>
+</div>
+
+<div class="paddingHorizontal-24 "
+     (drop)="drop($event)"
+
+     (dragenter)="dragenter($event)"
+     (dragover)="dragover($event)">
+
+  <div class="display-flex justifyContent-center paddingTop-32">
+    <img ngSrc="assets/user_icon.png" style="width: 180px; height: 180px" alt="silhouette" width="576" height="576">
+
+    <img *ngIf="uploadFileUrl" [src]="uploadFileUrl" alt="">
+  </div>
+
+  <div class="display-flex alignItems-center marginVertical-32" style="flex-direction: column">
+    <div class="textStyle-subtitle2">Faire glisser la photo ici</div>
+    <div class="textStyle-body1 marginVertical-8 opacity-6">ou</div>
+
+    <input type="file" accept="image/*" style="display: none" #fileInput (change)="onUpload($event, fileInput)">
+    <button MyButton appearance="tonal" class="color-primary" (click)="fileInput.click()">
+      <lucide-icon [img]="icons.LaptopIcon"></lucide-icon>
+      Importer depuis votre ordinateur
+    </button>
+  </div>
+
+</div>

@@ -9,5 +9,5 @@ export function formatPhoneNumber(phoneNumber: string) {
     index += group;
   });
 
-  return valueGroups.join(' ')
+  return '+237 ' + valueGroups.join(' ')
 }

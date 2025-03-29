@@ -1,20 +1,19 @@
 import {Component, Input, ViewEncapsulation} from "@angular/core";
-import {AuthenticationService, Session} from "@app/identity";
+import {AuthenticationService, PhotoEditTrigger, Session} from "@app/identity";
 import {
+  CircleUserIcon,
   LogOutIcon,
   LucideAngularModule,
   MenuIcon,
-  UserIcon,
-  CircleUserIcon,
+  PlusIcon,
   UserCogIcon,
-  PlusIcon
+  UserIcon
 } from "lucide-angular";
 import {NgIf} from "@angular/common";
 import {Button, IconButton, Menu, MenuItem} from "@app/ui";
 import {RouterLink} from "@angular/router";
 import {MatTooltip} from "@angular/material/tooltip";
 import {Dropdown} from "@app/NeoUI";
-import {Scaffold} from "../scaffold";
 import {SpaceAddLauncher} from "@app/Components/space/add/space-add-launcher";
 
 @Component({
@@ -22,7 +21,7 @@ import {SpaceAddLauncher} from "@app/Components/space/add/space-add-launcher";
   selector: 'scaffold-toolbar',
   styleUrls: [ 'scaffold-toolbar.scss' ],
   standalone: true,
-  imports: [LucideAngularModule, NgIf, IconButton, RouterLink, MatTooltip, Button, Dropdown, Menu, MenuItem],
+  imports: [LucideAngularModule, NgIf, IconButton, RouterLink, MatTooltip, Button, Dropdown, Menu, MenuItem, PhotoEditTrigger],
   encapsulation: ViewEncapsulation.None
 })
 export class ScaffoldToolbar {
@@ -36,6 +35,7 @@ export class ScaffoldToolbar {
               public readonly spaceAddLauncher: SpaceAddLauncher) {
 
   }
+
 
   get session(): Session {
     return this._authenticationService.session;

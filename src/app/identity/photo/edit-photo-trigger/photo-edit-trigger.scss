@@ -1,0 +1,20 @@
+﻿.photo-edit-trigger {
+  display: block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+
+
+  .user-avatar {
+    overflow: hidden;
+    border-radius: 80px;
+  }
+
+  .edit-button {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+  }
+}
+
+

@@ -46,7 +46,7 @@
         <tbody>
         <tr *ngFor="let income of incomes; let i=index; trackBy: trackById" class="row-hover cursor-pointer"
             (click)="details(income)">
-          <td>{{ i + 1 }}</td>
+          <td>{{ income.code }}</td>
 
           <td class="align-end">
             {{ income.amount.format() }}
@@ -80,7 +80,10 @@
             <Dropdown #dropdown [trigger]="menuTrigger.host"
                       (onBackdropClick)="dropdown.close()">
               <MyMenu>
-
+                <button MenuItem (click)="printPDF(income)">
+                  <img src="/assets/icons/pdf-svgrepo-com.svg" alt="PdfIcon" height="24">
+                  Imprimer
+                </button>
 
                 <button MenuItem (click)="delete(income)">
                   <lucide-icon [img]="icons.Trash2Icon" strokeWidth="1.5"></lucide-icon>

@@ -1,0 +1,28 @@
+﻿<div class="padding-24 display-flex">
+  <div class="textStyle-title3 flexGrow-1">Photo de profil</div>
+  <button MyIconButton (click)="parent.close()">
+    <lucide-icon [img]="icons.XIcon"></lucide-icon>
+  </button>
+</div>
+
+<div class="paddingHorizontal-24">
+  <div class="textStyle-body1">
+    Votre photo de profil aide les autres utilisateurs à
+    vous reconnaître et vous permet de savoir quand vous êtes connecté à votre compte
+  </div>
+
+
+  <div class="display-flex justifyContent-center padding-32">
+    <MyPersona class="size128">
+      <span MyPersonaText>CC</span>
+    </MyPersona>
+  </div>
+
+</div>
+<div class="padding-24">
+
+  <button  MyButton appearance="tonal" class="color-primary" style="width: 100%" (click)="next()">
+    <lucide-icon [img]="icons.ImagePlus"></lucide-icon>
+    Ajouter une photo de profil
+  </button>
+</div>

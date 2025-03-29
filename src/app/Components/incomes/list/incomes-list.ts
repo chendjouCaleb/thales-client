@@ -23,6 +23,7 @@ import {Dropdown} from "@app/NeoUI";
 import {IncomeService} from "@app/services/income.service";
 import {IncomeDetailsLauncher} from "@app/Components/incomes/details/income-details.launcher";
 import {Subscription} from "rxjs";
+import {Payment} from "@entities/payment";
 
 
 const INCOME_RANGE_SIZE = isDevMode() ? 10 : 30;
@@ -203,5 +204,10 @@ export class IncomesList implements OnInit, AfterViewInit, OnDestroy {
 
   display(name: string) {
     return this.displayedColumns.indexOf(name) > -1
+  }
+
+
+  printPDF(income: Income) {
+    this._document.defaultView.open(`${environment.serverUrl}/finance/incomes/${income.id}/pdf`, '_blank')
   }
 }

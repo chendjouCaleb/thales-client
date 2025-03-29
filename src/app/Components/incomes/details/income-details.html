@@ -24,11 +24,16 @@
       </div>
     </div>
 
-    <div class="p-4">
+    <div class="padding-24">
+      <div class="marginVertical-16">
+        <div class="opacity-6 textStyle-caption1">Code</div>
+        <div class="textStyle-body1">{{income.code}}</div>
+      </div>
+
       <div class="d-flex flex-column-gap-24">
-        <div class="flex-grow-1">
-          <div class="opacity-5 fontSize-12">Montant</div>
-          <div>{{income.amount.format()}}</div>
+        <div class="flexGrow-1">
+          <div class="opacity-6 textStyle-caption1">Montant</div>
+          <div class="textStyle-body1">{{income.amount.format()}}</div>
         </div>
         <button MyIconButton (click)="changeAmount()">
           <lucide-icon [img]="icons.PencilIcon"></lucide-icon>

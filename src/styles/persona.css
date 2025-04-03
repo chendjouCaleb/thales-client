@@ -1,0 +1,349 @@
+﻿.my-persona.colorRed .my-persona-text {
+  color: var(--colorPaletteRedForeground2);
+}
+.my-persona.colorRed .my-persona-icon svg {
+  stroke: var(--colorPaletteRedForeground2);
+}
+.my-persona.colorRed .my-persona-content {
+  background-color: var(--colorPaletteRedBackground2);
+}
+
+.my-persona.colorGreen .my-persona-text {
+  color: var(--colorPaletteGreenForeground2);
+}
+.my-persona.colorGreen .my-persona-icon svg {
+  stroke: var(--colorPaletteGreenForeground2);
+}
+.my-persona.colorGreen .my-persona-content {
+  background-color: var(--colorPaletteGreenBackground2);
+}
+
+.my-persona.colorDarkOrange .my-persona-text {
+  color: var(--colorPaletteDarkOrangeForeground2);
+}
+.my-persona.colorDarkOrange .my-persona-icon svg {
+  stroke: var(--colorPaletteDarkOrangeForeground2);
+}
+.my-persona.colorDarkOrange .my-persona-content {
+  background-color: var(--colorPaletteDarkOrangeBackground2);
+}
+
+.my-persona.colorYellow .my-persona-text {
+  color: var(--colorPaletteYellowForeground2);
+}
+.my-persona.colorYellow .my-persona-icon svg {
+  stroke: var(--colorPaletteYellowForeground2);
+}
+.my-persona.colorYellow .my-persona-content {
+  background-color: var(--colorPaletteYellowBackground2);
+}
+
+.my-persona.colorBerry .my-persona-text {
+  color: var(--colorPaletteBerryForeground2);
+}
+.my-persona.colorBerry .my-persona-icon svg {
+  stroke: var(--colorPaletteBerryForeground2);
+}
+.my-persona.colorBerry .my-persona-content {
+  background-color: var(--colorPaletteBerryBackground2);
+}
+
+.my-persona.colorLightGreen .my-persona-text {
+  color: var(--colorPaletteLightGreenForeground2);
+}
+.my-persona.colorLightGreen .my-persona-icon svg {
+  stroke: var(--colorPaletteLightGreenForeground2);
+}
+.my-persona.colorLightGreen .my-persona-content {
+  background-color: var(--colorPaletteLightGreenBackground2);
+}
+
+.my-persona.colorMarigold .my-persona-text {
+  color: var(--colorPaletteMarigoldForeground2);
+}
+.my-persona.colorMarigold .my-persona-icon svg {
+  stroke: var(--colorPaletteMarigoldForeground2);
+}
+.my-persona.colorMarigold .my-persona-content {
+  background-color: var(--colorPaletteMarigoldBackground2);
+}
+
+.my-persona.colorDarkRed .my-persona-text {
+  color: var(--colorPaletteDarkRedForeground2);
+}
+.my-persona.colorDarkRed .my-persona-icon svg {
+  stroke: var(--colorPaletteDarkRedForeground2);
+}
+.my-persona.colorDarkRed .my-persona-content {
+  background-color: var(--colorPaletteDarkRedBackground2);
+}
+
+.my-persona.colorCranberry .my-persona-text {
+  color: var(--colorPaletteCranberryForeground2);
+}
+.my-persona.colorCranberry .my-persona-icon svg {
+  stroke: var(--colorPaletteCranberryForeground2);
+}
+.my-persona.colorCranberry .my-persona-content {
+  background-color: var(--colorPaletteCranberryBackground2);
+}
+
+.my-persona.colorPumpkin .my-persona-text {
+  color: var(--colorPalettePumpkinForeground2);
+}
+.my-persona.colorPumpkin .my-persona-icon svg {
+  stroke: var(--colorPalettePumpkinForeground2);
+}
+.my-persona.colorPumpkin .my-persona-content {
+  background-color: var(--colorPalettePumpkinBackground2);
+}
+
+.my-persona.colorPeach .my-persona-text {
+  color: var(--colorPalettePeachForeground2);
+}
+.my-persona.colorPeach .my-persona-icon svg {
+  stroke: var(--colorPalettePeachForeground2);
+}
+.my-persona.colorPeach .my-persona-content {
+  background-color: var(--colorPalettePeachBackground2);
+}
+
+.my-persona.colorGold .my-persona-text {
+  color: var(--colorPaletteGoldForeground2);
+}
+.my-persona.colorGold .my-persona-icon svg {
+  stroke: var(--colorPaletteGoldForeground2);
+}
+.my-persona.colorGold .my-persona-content {
+  background-color: var(--colorPaletteGoldBackground2);
+}
+
+.my-persona.colorBrass .my-persona-text {
+  color: var(--colorPaletteBrassForeground2);
+}
+.my-persona.colorBrass .my-persona-icon svg {
+  stroke: var(--colorPaletteBrassForeground2);
+}
+.my-persona.colorBrass .my-persona-content {
+  background-color: var(--colorPaletteBrassBackground2);
+}
+
+.my-persona.colorBrown .my-persona-text {
+  color: var(--colorPaletteBrownForeground2);
+}
+.my-persona.colorBrown .my-persona-icon svg {
+  stroke: var(--colorPaletteBrownForeground2);
+}
+.my-persona.colorBrown .my-persona-content {
+  background-color: var(--colorPaletteBrownBackground2);
+}
+
+.my-persona.colorForest .my-persona-text {
+  color: var(--colorPaletteForestForeground2);
+}
+.my-persona.colorForest .my-persona-icon svg {
+  stroke: var(--colorPaletteForestForeground2);
+}
+.my-persona.colorForest .my-persona-content {
+  background-color: var(--colorPaletteForestBackground2);
+}
+
+.my-persona.colorSeafoam .my-persona-text {
+  color: var(--colorPaletteSeafoamForeground2);
+}
+.my-persona.colorSeafoam .my-persona-icon svg {
+  stroke: var(--colorPaletteSeafoamForeground2);
+}
+.my-persona.colorSeafoam .my-persona-content {
+  background-color: var(--colorPaletteSeafoamBackground2);
+}
+
+.my-persona.colorDarkGreen .my-persona-text {
+  color: var(--colorPaletteDarkGreenForeground2);
+}
+.my-persona.colorDarkGreen .my-persona-icon svg {
+  stroke: var(--colorPaletteDarkGreenForeground2);
+}
+.my-persona.colorDarkGreen .my-persona-content {
+  background-color: var(--colorPaletteDarkGreenBackground2);
+}
+
+.my-persona.colorLightTeal .my-persona-text {
+  color: var(--colorPaletteLightTealForeground2);
+}
+.my-persona.colorLightTeal .my-persona-icon svg {
+  stroke: var(--colorPaletteLightTealForeground2);
+}
+.my-persona.colorLightTeal .my-persona-content {
+  background-color: var(--colorPaletteLightTealBackground2);
+}
+
+.my-persona.colorTeal .my-persona-text {
+  color: var(--colorPaletteTealForeground2);
+}
+.my-persona.colorTeal .my-persona-icon svg {
+  stroke: var(--colorPaletteTealForeground2);
+}
+.my-persona.colorTeal .my-persona-content {
+  background-color: var(--colorPaletteTealBackground2);
+}
+
+.my-persona.colorSteel .my-persona-text {
+  color: var(--colorPaletteSteelForeground2);
+}
+.my-persona.colorSteel .my-persona-icon svg {
+  stroke: var(--colorPaletteSteelForeground2);
+}
+.my-persona.colorSteel .my-persona-content {
+  background-color: var(--colorPaletteSteelBackground2);
+}
+
+.my-persona.colorBlue .my-persona-text {
+  color: var(--colorPaletteBlueForeground2);
+}
+.my-persona.colorBlue .my-persona-icon svg {
+  stroke: var(--colorPaletteBlueForeground2);
+}
+.my-persona.colorBlue .my-persona-content {
+  background-color: var(--colorPaletteBlueBackground2);
+}
+
+.my-persona.colorRoyalBlue .my-persona-text {
+  color: var(--colorPaletteRoyalBlueForeground2);
+}
+.my-persona.colorRoyalBlue .my-persona-icon svg {
+  stroke: var(--colorPaletteRoyalBlueForeground2);
+}
+.my-persona.colorRoyalBlue .my-persona-content {
+  background-color: var(--colorPaletteRoyalBlueBackground2);
+}
+
+.my-persona.colorCornflower .my-persona-text {
+  color: var(--colorPaletteCornflowerForeground2);
+}
+.my-persona.colorCornflower .my-persona-icon svg {
+  stroke: var(--colorPaletteCornflowerForeground2);
+}
+.my-persona.colorCornflower .my-persona-content {
+  background-color: var(--colorPaletteCornflowerBackground2);
+}
+
+.my-persona.colorNavy .my-persona-text {
+  color: var(--colorPaletteNavyForeground2);
+}
+.my-persona.colorNavy .my-persona-icon svg {
+  stroke: var(--colorPaletteNavyForeground2);
+}
+.my-persona.colorNavy .my-persona-content {
+  background-color: var(--colorPaletteNavyBackground2);
+}
+
+.my-persona.colorLavender .my-persona-text {
+  color: var(--colorPaletteLavenderForeground2);
+}
+.my-persona.colorLavender .my-persona-icon svg {
+  stroke: var(--colorPaletteLavenderForeground2);
+}
+.my-persona.colorLavender .my-persona-content {
+  background-color: var(--colorPaletteLavenderBackground2);
+}
+
+.my-persona.colorPurple .my-persona-text {
+  color: var(--colorPalettePurpleForeground2);
+}
+.my-persona.colorPurple .my-persona-icon svg {
+  stroke: var(--colorPalettePurpleForeground2);
+}
+.my-persona.colorPurple .my-persona-content {
+  background-color: var(--colorPalettePurpleBackground2);
+}
+
+.my-persona.colorGrape .my-persona-text {
+  color: var(--colorPaletteGrapeForeground2);
+}
+.my-persona.colorGrape .my-persona-icon svg {
+  stroke: var(--colorPaletteGrapeForeground2);
+}
+.my-persona.colorGrape .my-persona-content {
+  background-color: var(--colorPaletteGrapeBackground2);
+}
+
+.my-persona.colorLilac .my-persona-text {
+  color: var(--colorPaletteLilacForeground2);
+}
+.my-persona.colorLilac .my-persona-icon svg {
+  stroke: var(--colorPaletteLilacForeground2);
+}
+.my-persona.colorLilac .my-persona-content {
+  background-color: var(--colorPaletteLilacBackground2);
+}
+
+.my-persona.colorPink .my-persona-text {
+  color: var(--colorPalettePinkForeground2);
+}
+.my-persona.colorPink .my-persona-icon svg {
+  stroke: var(--colorPalettePinkForeground2);
+}
+.my-persona.colorPink .my-persona-content {
+  background-color: var(--colorPalettePinkBackground2);
+}
+
+.my-persona.colorMagenta .my-persona-text {
+  color: var(--colorPaletteMagentaForeground2);
+}
+.my-persona.colorMagenta .my-persona-icon svg {
+  stroke: var(--colorPaletteMagentaForeground2);
+}
+.my-persona.colorMagenta .my-persona-content {
+  background-color: var(--colorPaletteMagentaBackground2);
+}
+
+.my-persona.colorPlum .my-persona-text {
+  color: var(--colorPalettePlumForeground2);
+}
+.my-persona.colorPlum .my-persona-icon svg {
+  stroke: var(--colorPalettePlumForeground2);
+}
+.my-persona.colorPlum .my-persona-content {
+  background-color: var(--colorPalettePlumBackground2);
+}
+
+.my-persona.colorBeige .my-persona-text {
+  color: var(--colorPaletteBeigeForeground2);
+}
+.my-persona.colorBeige .my-persona-icon svg {
+  stroke: var(--colorPaletteBeigeForeground2);
+}
+.my-persona.colorBeige .my-persona-content {
+  background-color: var(--colorPaletteBeigeBackground2);
+}
+
+.my-persona.colorMink .my-persona-text {
+  color: var(--colorPaletteMinkForeground2);
+}
+.my-persona.colorMink .my-persona-icon svg {
+  stroke: var(--colorPaletteMinkForeground2);
+}
+.my-persona.colorMink .my-persona-content {
+  background-color: var(--colorPaletteMinkBackground2);
+}
+
+.my-persona.colorPlatinum .my-persona-text {
+  color: var(--colorPalettePlatinumForeground2);
+}
+.my-persona.colorPlatinum .my-persona-icon svg {
+  stroke: var(--colorPalettePlatinumForeground2);
+}
+.my-persona.colorPlatinum .my-persona-content {
+  background-color: var(--colorPalettePlatinumBackground2);
+}
+
+.my-persona.colorAnchor .my-persona-text {
+  color: var(--colorPaletteAnchorForeground2);
+}
+.my-persona.colorAnchor .my-persona-icon svg {
+  stroke: var(--colorPaletteAnchorForeground2);
+}
+.my-persona.colorAnchor .my-persona-content {
+  background-color: var(--colorPaletteAnchorBackground2);
+}

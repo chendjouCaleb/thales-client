@@ -1,8 +1,9 @@
-﻿import {Component, ViewEncapsulation} from "@angular/core";
+﻿import {Component, Input, ViewEncapsulation} from "@angular/core";
 import {LucideAngularModule, PencilIcon} from "lucide-angular";
 import {IconButton} from "@app/ui";
 import {MyPersonaText, Persona} from "neo-ui";
 import {UserPhotoEditLauncher} from "../edit/user-photo-edit.launcher";
+import {User} from "@app/identity";
 
 @Component({
   templateUrl: 'photo-edit-trigger.html',
@@ -23,6 +24,9 @@ import {UserPhotoEditLauncher} from "../edit/user-photo-edit.launcher";
 })
 export class PhotoEditTrigger {
   icons = { PencilIcon }
+
+  @Input()
+  user: User
 
   constructor(public readonly photoEditLauncher: UserPhotoEditLauncher) {
   }

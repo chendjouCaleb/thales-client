@@ -1,0 +1,22 @@
+﻿<div class="padding-24 display-flex alignItems-center">
+  <div class="textStyle-title3 flexGrow-1">Recarder et faire pivoter</div>
+  <button MyIconButton (click)="close()">
+    <lucide-icon [img]="icons.XIcon"></lucide-icon>
+  </button>
+</div>
+
+<div class="paddingHorizontal-24 ">
+
+  <div class="display-flex justifyContent-center paddingTop-32" >
+    <img *ngIf="imageUrl" [src]="imageUrl" alt="" #imageElement >
+  </div>
+
+  <div class="display-flex alignItems-center marginVertical-32" style="flex-direction: column">
+
+
+    <button MyButton appearance="filled" class="color-primary" (click)="crop()">
+     Terminer
+    </button>
+  </div>
+
+</div>

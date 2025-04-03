@@ -5,12 +5,14 @@ import {UserPhotoEdit} from "@app/identity";
 import {Button, MyPersonaText, Persona} from "neo-ui";
 import {NavHost} from "@app/navigation";
 import {NgIf, NgOptimizedImage} from "@angular/common";
+import {UserPhotoEditCropperLauncher} from "@app/identity/photo/edit/cropper";
 
 @Component({
   templateUrl: 'user-photo-edit-upload.html',
   selector: '[user-photo-edit-upload]',
   standalone: true,
   encapsulation: ViewEncapsulation.None,
+  providers: [ UserPhotoEditCropperLauncher ],
   imports: [
     IconButton,
     LucideAngularModule,
@@ -29,9 +31,10 @@ import {NgIf, NgOptimizedImage} from "@angular/common";
 export class UserPhotoEditUpload {
   icons = {XIcon, ArrowLeftIcon, LaptopIcon};
 
-  uploadFileUrl: string = ''
+  get sourceImageUrl(): string { return this.parent._sourceImageUrl }
 
   constructor(public readonly parent: UserPhotoEdit,
+              public readonly cropper: UserPhotoEditCropperLauncher,
               private _navHost: NavHost,) {
   }
 
@@ -47,7 +50,14 @@ export class UserPhotoEditUpload {
     const reader = new FileReader();
     reader.onload = e => {
       console.log('Finished')
-      this.uploadFileUrl = reader.result as string
+      this.parent._sourceImageUrl = reader.result as string
+      this.cropper.launch(this.sourceImageUrl).subscribe(blob => {
+        if(blob) {
+          this.parent._imageBlob = blob
+          this.parent._imageUrl = URL.createObjectURL(blob)
+          this._navHost.navigateByUrl('confirm')
+        }
+      })
     }
     reader.readAsDataURL(file)
   }

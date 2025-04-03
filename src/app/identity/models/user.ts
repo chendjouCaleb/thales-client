@@ -15,6 +15,11 @@ export class User {
       this.actorId = value.actorId;
       this.publisherId = value.publisherId;
       this.subjectId = value.subjectId;
+
+      this.photoId = value.photoId;
+      this.thumbnailId = value.thumbnailId;
+      this.color = value.color;
+
     }
   }
 
@@ -31,4 +36,8 @@ export class User {
   actorId: string = '';
   publisherId: string = '';
   subjectId: string = '';
+
+  photoId: string;
+  thumbnailId: string;
+  color: string
 }

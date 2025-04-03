@@ -22,13 +22,15 @@
        }
 
        <button style="border-radius: 50%; border: none;
-      display: flex; align-items: center; justify-content: center;
+      display: flex; align-items: center; justify-content: center; padding: 0;
       cursor: pointer;
-        overflow: hidden; height: 36px; width: 36px; margin-left: 8px"
+        overflow: hidden; height: 40px; width: 40px; "
                #menuTrigger
                (click)="dropdown.open(); $event.stopPropagation()"
-               [matTooltip]="session.user.fullName" >
-         <img src="/assets/user.png" alt="profile image" height="36" width="36">
+               [MyTooltip]="session.user.fullName" >
+         <MyPersona class="color{{session.user.color}} size40">
+           <span MyPersonaText>CC</span>
+         </MyPersona>
        </button>
 
        <Dropdown #dropdown [trigger]="menuTrigger"
@@ -36,7 +38,7 @@
 
         <div style="background-color: #323130">
           <div class="display-flex columnGap-16 padding-16 ">
-            <photo-edit-trigger ></photo-edit-trigger>
+            <photo-edit-trigger [user]="session.user"></photo-edit-trigger>
             <div class="textStyle-body1">{{session.user.fullName}}</div>
           </div>
           <MyMenu>

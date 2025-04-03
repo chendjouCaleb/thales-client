@@ -21,6 +21,12 @@
 @import "styles/padding";
 @import "styles/_font.scss";
 @import "styles/_layout.scss";
+
+
+@import "../node_modules/neo-ui/src/NeoUI/styles/css/fluent-color.css";
+@import "../node_modules/neo-ui/src/NeoUI/styles/css/margin.css";
+
+@import "styles/persona.css";
 /* You can add global styles to this file, and also import other style files */
 
 

@@ -15,13 +15,14 @@ import {RouterLink} from "@angular/router";
 import {MatTooltip} from "@angular/material/tooltip";
 import {Dropdown} from "@app/NeoUI";
 import {SpaceAddLauncher} from "@app/Components/space/add/space-add-launcher";
+import {MyPersonaText, Persona, Tooltip} from "neo-ui";
 
 @Component({
   templateUrl: 'scaffold-toolbar.html',
   selector: 'scaffold-toolbar',
   styleUrls: [ 'scaffold-toolbar.scss' ],
   standalone: true,
-  imports: [LucideAngularModule, NgIf, IconButton, RouterLink, MatTooltip, Button, Dropdown, Menu, MenuItem, PhotoEditTrigger],
+  imports: [LucideAngularModule, NgIf, IconButton, RouterLink, MatTooltip, Button, Dropdown, Menu, MenuItem, PhotoEditTrigger, Persona, MyPersonaText, Tooltip],
   encapsulation: ViewEncapsulation.None
 })
 export class ScaffoldToolbar {

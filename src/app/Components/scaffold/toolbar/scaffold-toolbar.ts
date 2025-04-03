@@ -1,5 +1,5 @@
 import {Component, Input, ViewEncapsulation} from "@angular/core";
-import {AuthenticationService, PhotoEditTrigger, Session} from "@app/identity";
+import {AuthenticationService, PhotoEditTrigger, Session, UserPersona} from "@app/identity";
 import {
   CircleUserIcon,
   LogOutIcon,
@@ -22,7 +22,7 @@ import {MyPersonaText, Persona, Tooltip} from "neo-ui";
   selector: 'scaffold-toolbar',
   styleUrls: [ 'scaffold-toolbar.scss' ],
   standalone: true,
-  imports: [LucideAngularModule, NgIf, IconButton, RouterLink, MatTooltip, Button, Dropdown, Menu, MenuItem, PhotoEditTrigger, Persona, MyPersonaText, Tooltip],
+  imports: [LucideAngularModule, NgIf, IconButton, RouterLink, MatTooltip, Button, Dropdown, Menu, MenuItem, PhotoEditTrigger, Persona, MyPersonaText, Tooltip, UserPersona],
   encapsulation: ViewEncapsulation.None
 })
 export class ScaffoldToolbar {

@@ -28,9 +28,7 @@
                #menuTrigger
                (click)="dropdown.open(); $event.stopPropagation()"
                [MyTooltip]="session.user.fullName" >
-         <MyPersona class="color{{session.user.color}} size40">
-           <span MyPersonaText>CC</span>
-         </MyPersona>
+         <UserPersona [user]="session.user"></UserPersona>
        </button>
 
        <Dropdown #dropdown [trigger]="menuTrigger"

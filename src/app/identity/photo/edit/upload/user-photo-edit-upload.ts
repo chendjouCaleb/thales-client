@@ -53,6 +53,7 @@ export class UserPhotoEditUpload {
       this.parent._sourceImageUrl = reader.result as string
       this.cropper.launch(this.sourceImageUrl).subscribe(blob => {
         if(blob) {
+          this.parent._sourceImageFile = file
           this.parent._imageBlob = blob
           this.parent._imageUrl = URL.createObjectURL(blob)
           this._navHost.navigateByUrl('confirm')

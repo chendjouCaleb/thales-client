@@ -3,7 +3,7 @@ import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {FormControl} from "@angular/forms";
 import {CustomerPickerDialog} from "@app/Components";
-import {ProfileService, User, UserService} from "@app/identity";
+import {UserProfileService, User, UserService} from "@app/identity";
 
 @Component({
   templateUrl: 'profile-change-name.html'
@@ -15,7 +15,7 @@ export class ProfileChangeName {
 
   constructor(@Inject(MAT_DIALOG_DATA) data,
               private _dialogRef: MatDialogRef<ProfileChangeName>,
-              private _service: ProfileService,
+              private _service: UserProfileService,
               private _snackbar: MatSnackBar) {
     this.user = data.user;
     this.formControl = new FormControl<any>(this.user.fullName)

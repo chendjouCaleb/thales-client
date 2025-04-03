@@ -44,7 +44,7 @@ export class UserPhotoEditConfirm {
   }
 
   changePhoto() {
-
+    this.parent.upload()
   }
 
 

@@ -1,0 +1,9 @@
+﻿<MyPersona class="color{{user.color}} size40">
+  @if(user.thumbnailId) {
+    <img MyPersonaImage [ngSrc]="user.getThumbnailUrl()" alt="" fill>
+  }@else {
+    <span MyPersonaText>{{getPersonaText()}}</span>
+  }
+
+
+</MyPersona>

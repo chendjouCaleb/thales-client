@@ -1,4 +1,5 @@
 import {DateTime} from "luxon";
+import {SERVER_URL} from "@app/http";
 
 export class User {
   constructor(value: any = null) {
@@ -40,4 +41,9 @@ export class User {
   photoId: string;
   thumbnailId: string;
   color: string
+
+
+  getThumbnailUrl(): string {
+    return `${SERVER_URL}/photos/download?photoId=${this.thumbnailId}`
+  }
 }

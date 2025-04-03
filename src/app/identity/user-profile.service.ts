@@ -5,7 +5,7 @@ import {firstValueFrom} from "rxjs";
 import {ChangeInfoModel, UserChangePasswordModel} from "./models";
 
 @Injectable({providedIn: 'root'})
-export class ProfileService {
+export class UserProfileService {
   private url = `${SERVER_URL}/profile`;
 
   constructor(private _httpClient: HttpClient) {}
@@ -27,6 +27,13 @@ export class ProfileService {
 
   public async changeNameAsync(name: string): Promise<void> {
     const call = this._httpClient.post<void>(`${this.url}/name`, {name});
+    return firstValueFrom(call)
+  }
+
+  public async changePictureAsync(blob: Blob, fileName: string): Promise<void> {
+    const formData = new FormData()
+    formData.append("photo", blob, fileName)
+    const call = this._httpClient.put<void>(`${this.url}/photo`, formData);
     return firstValueFrom(call)
   }
 }

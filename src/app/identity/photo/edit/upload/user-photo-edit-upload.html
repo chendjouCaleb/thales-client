@@ -23,11 +23,13 @@
     <div class="textStyle-subtitle2">Faire glisser la photo ici</div>
     <div class="textStyle-body1 marginVertical-8 opacity-6">ou</div>
 
-    <input type="file" accept="image/*" style="display: none" #fileInput (change)="onUpload($event, fileInput)">
-    <button MyButton appearance="tonal" class="color-primary" (click)="fileInput.click()">
+    <button MyButton appearance="tonal" class="color-primary marginTop-4" (click)="fileInput.click()">
       <lucide-icon [img]="icons.LaptopIcon"></lucide-icon>
       Importer depuis votre ordinateur
     </button>
   </div>
 
 </div>
+
+
+<input type="file" accept="image/*" style="display: none" #fileInput (change)="onUpload($event, fileInput)">

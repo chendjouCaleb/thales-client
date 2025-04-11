@@ -1,9 +1,11 @@
-﻿<MyPersona class="color{{user.color}} size40">
-  @if(user.thumbnailId) {
-    <img MyPersonaImage [ngSrc]="user.getThumbnailUrl()" alt="" fill>
-  }@else {
-    <span MyPersonaText>{{getPersonaText()}}</span>
-  }
+﻿@if(user) {
+  <MyPersona class="color{{user.color}} size{{size}}">
+    @if(photoUrl) {
+      <img MyPersonaImage [ngSrc]="getPhotoUrl()" alt="" fill>
+    } @else {
+      <span MyPersonaText>{{getPersonaText()}}</span>
+    }
 
 
-</MyPersona>
+  </MyPersona>
+}

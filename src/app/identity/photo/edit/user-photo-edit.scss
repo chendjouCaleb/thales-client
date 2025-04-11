@@ -1,7 +1,13 @@
-﻿.user-photo-edit {
-  width: 640px;
+﻿:host {
+  display: block;
+  transition: width ease-in-out 200ms;
+}
+
+.user-photo-edit {
+  display: block;
+  transition: width ease-in-out 200ms;
 }
 
 .user-photo-edit-upload {
-  width: 640px;
+
 }

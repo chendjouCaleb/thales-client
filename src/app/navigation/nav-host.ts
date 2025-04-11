@@ -26,6 +26,11 @@ import {NavHistory} from "./nav-history";
 export class NavHost implements AfterViewInit{
   private readonly _history = new NavHistory();
 
+  private _activeRoute: NavRouteDef
+  get activeRoute(): NavRouteDef {
+    return this._activeRoute;
+  }
+
   @Input()
   startUrl: string = null;
 
@@ -44,7 +49,6 @@ export class NavHost implements AfterViewInit{
   }
 
   ngAfterViewInit() {
-    console.log(this._routes.length)
     this.navigateByUrl(this.startUrl);
   }
 
@@ -62,6 +66,7 @@ export class NavHost implements AfterViewInit{
     //}
     route._viewRef.context = context;
     route._viewRef.detectChanges();
+    this._activeRoute = route
 
 
     this.container.insert(route._viewRef);

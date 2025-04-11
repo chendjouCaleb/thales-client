@@ -13,16 +13,33 @@
 
 
   <div class="display-flex justifyContent-center padding-32">
-    <MyPersona class="size128">
-      <span MyPersonaText>CC</span>
-    </MyPersona>
+    @if (user){
+      <UserPersona [user]="user" size="180"></UserPersona>
+    }
+
   </div>
 
 </div>
-<div class="padding-24">
+@if (!user.hasPhoto()) {
+  <div class="padding-24">
+    <button MyButton appearance="tonal" class="color-primary" style="width: 100%" (click)="next()">
+      <lucide-icon [img]="icons.ImagePlus"></lucide-icon>
+      Ajouter une photo de profil
+    </button>
+  </div>
+}
 
-  <button  MyButton appearance="tonal" class="color-primary" style="width: 100%" (click)="next()">
-    <lucide-icon [img]="icons.ImagePlus"></lucide-icon>
-    Ajouter une photo de profil
-  </button>
-</div>
+@if (user.hasPhoto()) {
+  <div class="padding-24 display-flex columnGap-24">
+    <button MyButton appearance="tonal" class="color-primary" style="width: 100%"   (click)="next()">
+      <lucide-icon [img]="icons.PencilIcon"></lucide-icon>
+      Modifier
+    </button>
+
+    <button MyButton appearance="tonal" class="color-primary" style="width: 100%"  (click)="next()">
+      <lucide-icon [img]="icons.Trash2Icon"></lucide-icon>
+      Supprimer
+    </button>
+
+  </div>
+}

@@ -4,7 +4,7 @@ import {ArrowLeftIcon, LaptopIcon, LucideAngularModule, XIcon} from "lucide-angu
 import {Button, MyPersonaText, Persona} from "neo-ui";
 import {NgIf, NgOptimizedImage} from "@angular/common";
 import {DIALOG_DATA, DialogRef} from "@angular/cdk/dialog";
-import Cropper, {CropperOptions} from "cropperjs";
+import {Cropper} from "cropper";
 
 @Component({
   templateUrl: 'user-photo-edit-cropper.html',
@@ -31,8 +31,8 @@ export class UserPhotoEditCropper implements AfterViewInit {
   icons = {XIcon, ArrowLeftIcon, LaptopIcon};
   cropper: Cropper
 
-  @ViewChild('imageElement')
-  imageElementRef: ElementRef<HTMLImageElement>
+  @ViewChild('cropperContainer')
+  cropperContainerRef: ElementRef<HTMLElement>
 
   imageUrl: string = ''
 
@@ -47,16 +47,14 @@ export class UserPhotoEditCropper implements AfterViewInit {
 
   ngAfterViewInit() {
 
-    this.cropper = new Cropper(this.imageElementRef.nativeElement)
-    this.cropper.getCropperSelection().aspectRatio = 1
-    // this.cropper.getCropperSelection().
-    this.cropper.getCropperImage().initialCenterSize = 'cover'
-    this.cropper.getCropperImage().$addStyles(`:host {height: 256px; width: 600px}`)
-    //this.cropper.getCropperCanvas().$addStyles(`:host {height: 256px; width: 600px}`)
+    this.cropper = new Cropper(this.cropperContainerRef.nativeElement, this.imageUrl, {
+      selectionAspectRatio: 1
+    })
+    //this.cropper.centering()
   }
 
   async crop() {
-    const canvas = await this.cropper.getCropperSelection().$toCanvas();
+    const canvas = this.cropper.toCanvas()
     canvas.toBlob(blob => {
       this._dialogRef.close(blob)
     })

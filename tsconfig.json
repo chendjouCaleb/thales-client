@@ -28,7 +28,8 @@
     "paths": {
       "@app/*":["./src/app/*"],
       "@app/cleave/*":["./src/app/cleave/*"],
-      "@entities/*":["./src/entities/*"]
+      "@entities/*":["./src/entities/*"],
+      "cropper":["./src/cropper/index"]
     }
   },
   "angularCompilerOptions": {

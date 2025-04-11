@@ -43,6 +43,9 @@ export class User {
   color: string
 
 
+  hasPhoto(): boolean {
+    return !!this.photoId
+  }
   getThumbnailUrl(): string {
     return `${SERVER_URL}/photos/download?photoId=${this.thumbnailId}`
   }

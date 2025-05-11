@@ -11,6 +11,7 @@ export type PersonaSize = '24' | '32' | '40' | '48' | '56' | '72' | '100' | '120
   templateUrl: 'user-persona.html',
   selector: 'UserPersona',
   standalone: true,
+  styles: ':host {display: block}',
   imports: [
     Persona,
     MyPersonaText,

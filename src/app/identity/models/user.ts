@@ -44,7 +44,7 @@ export class User {
 
 
   hasPhoto(): boolean {
-    return !!this.photoId
+    return this.photoId !== '00000000-0000-0000-0000-000000000000'
   }
   getThumbnailUrl(): string {
     return `${SERVER_URL}/photos/download?photoId=${this.thumbnailId}`

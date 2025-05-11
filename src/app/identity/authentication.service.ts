@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import {AuthData, LoginModel, LoginResult, Session} from "./models";
 import {firstValueFrom, Observable, ReplaySubject, Subject} from "rxjs";
 import {deleteCookie, getCookie, setCookie} from "@app/utils";
+import {environment} from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
@@ -106,8 +107,8 @@ export class AuthenticationService {
   }
 
   private saveAuthData(data: AuthData) {
-    setCookie("AUTH_ACCESS_TOKEN", data.accessToken, {path: '/', domain: 'thales.localhost'});
-    setCookie("AUTH_SESSION_ID", data.sessionId, {path: '/', domain: 'thales.localhost'});
+    setCookie("AUTH_ACCESS_TOKEN", data.accessToken, {path: '/', domain: environment.cookieDomain });
+    setCookie("AUTH_SESSION_ID", data.sessionId, {path: '/', domain: environment.cookieDomain });
   }
 
   private getAuthData1(): AuthData {

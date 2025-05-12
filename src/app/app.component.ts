@@ -25,10 +25,13 @@ export class AppComponent {
   constructor( iconRegistry: MatIconRegistry, sanitizer: DomSanitizer,
                private _authService: AuthenticationService,
                private debtStateStore: DebtEventStore,
-               @Inject(DOCUMENT) private document: Document
+               @Inject(DOCUMENT) private document
                ) {
 
-    this.document.title = this.title
+    this.document.title = this.title;
+
+
+    this._authService.init().then();
     _authService.stateChange.subscribe(state => {
       this.isAuthLoading = false;
     });

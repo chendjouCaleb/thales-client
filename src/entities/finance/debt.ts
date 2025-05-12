@@ -54,7 +54,6 @@ export class Debt extends BaseEntity<string> {
 
   debtIncomes: DebtIncome[];
 
-  elementId: string;
 
   get amountPaid(): Money {
     return Money.of(0).add(...this.debtIncomes.map(di => di.income.amount))
@@ -90,7 +89,6 @@ export class Debt extends BaseEntity<string> {
 
       this.reason = value.reason;
       this.details = value.details;
-      this.elementId = value.elementId;
 
       this.customerId = value.customerId;
       this.planeTicketId = value.planeTicketId;

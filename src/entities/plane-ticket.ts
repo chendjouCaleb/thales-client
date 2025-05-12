@@ -11,7 +11,7 @@ import {FinanceOverview} from "@entities/finance/finance-overview";
 import {Member} from "@entities/member";
 
 export class PlaneTicket extends BaseEntity<number> {
-  elementId: string
+
   placeCount: number = 0;
   backAndForth: boolean;
   travelClass: string = '';

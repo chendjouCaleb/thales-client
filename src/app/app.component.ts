@@ -18,22 +18,17 @@ import {getCookie, setCookie} from "@app/utils";
   imports: [CommonModule, RouterOutlet, RouterLink, RouterLinkActive, MatProgressSpinner],
 })
 export class AppComponent {
-  title = 'thales';
+  title = 'Thales 360';
 
   isAuthLoading = true;
 
   constructor( iconRegistry: MatIconRegistry, sanitizer: DomSanitizer,
                private _authService: AuthenticationService,
                private debtStateStore: DebtEventStore,
-               @Inject(DOCUMENT) private document
+               @Inject(DOCUMENT) private document: Document
                ) {
 
-    this.document.cookie = "user=Johnny; domain=thales.localhost; path=/";
-    setCookie("auth", "Welcome", {path: '/', domain: 'thales.localhost'})
-    console.log(`cookie writed1: ${getCookie('auth')}`)
-
-
-    this._authService.init().then();
+    this.document.title = this.title
     _authService.stateChange.subscribe(state => {
       this.isAuthLoading = false;
     });

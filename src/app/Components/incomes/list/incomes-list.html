@@ -68,8 +68,10 @@
           <td *ngIf="display('createdAt')">
             <span class="fontSize-12">{{ income.createdAt.moment() }}</span>
           </td>
-          <td *ngIf="display('updatedAt')">
-            <span class="fontSize-12 opacity-6">{{ income.updatedAt.moment() }}</span>
+          <td *ngIf="display('updatedAt')" class="align-end">
+            <span class="fontSize-12 opacity-6 ">
+              {{ income.updatedAt.moment() }}
+            </span>
           </td>
           <td class="align-end">
             <button MyIconButton style="margin-right: 16px" #menuTrigger

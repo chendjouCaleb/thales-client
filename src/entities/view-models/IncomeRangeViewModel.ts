@@ -58,7 +58,7 @@ export class IncomeRangeViewModel {
         }
       });
 
-      console.log(this.employees)
+
       income.incomePersons.forEach(ep => {
         const employee = this.employees.find(m => m.personId == ep.personId)
         if (employee != null) {
@@ -76,6 +76,12 @@ export class IncomeRangeViewModel {
 
       if (income.planeTicketId) {
         income.planeTicket = this.planeTickets?.find(p => p.id == income.planeTicketId);
+      }
+
+      const customerElement = income.incomeElements.find(ie => ie.kind === 'CUSTOMER');
+      if(customerElement) {
+        income.customer = this.customers.find(c => c.elementId === customerElement.elementId);
+
       }
 
     });

@@ -8,6 +8,7 @@ export class BaseEntity<TID> {
 
   publisherId: string;
   subjectId: string;
+  elementId: string
 
   constructor(value: any = {}) {
     if(value){
@@ -17,6 +18,7 @@ export class BaseEntity<TID> {
       this.code = value.code;
       this.publisherId = value.publisherId;
       this.subjectId = value.subjectId;
+      this.elementId = value.elementId;
     }
   }
 

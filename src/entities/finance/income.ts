@@ -64,6 +64,7 @@ export class Income extends BaseEntity<string> {
 
       this.reason = value.reason;
       this.details = value.details;
+      this.code = value.code;
 
       this.customerId = value.customerId;
       this.planeTicketId = value.planeTicketId;

@@ -26,7 +26,7 @@
 
     <div class="padding-24">
       <div class="marginVertical-16">
-        <div class="opacity-6 textStyle-caption1">Code</div>
+        <div class="opacity-6 textStyle-caption1">Numéro</div>
         <div class="textStyle-body1">{{income.code}}</div>
       </div>
 
@@ -59,6 +59,17 @@
           <div class="opacity-6" *ngIf="!income.details">Non renseignée</div>
         </div>
         <button MyIconButton (click)="changeDetails()">
+          <lucide-icon [img]="icons.PencilIcon"></lucide-icon>
+        </button>
+      </div>
+
+      <div class="mt-3 d-flex flex-column-gap-24">
+        <div class="flex-grow-1">
+          <div class="opacity-5 fontSize-12">Client</div>
+          <div *ngIf="income.customer">{{income.customer.fullName}}</div>
+          <div class="opacity-6" *ngIf="!income.customer">Non renseignée</div>
+        </div>
+        <button MyIconButton >
           <lucide-icon [img]="icons.PencilIcon"></lucide-icon>
         </button>
       </div>

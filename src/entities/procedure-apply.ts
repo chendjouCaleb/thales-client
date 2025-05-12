@@ -12,7 +12,7 @@ import {Debt, Expense, Income} from "@entities/finance";
 import {FinanceOverview} from "@entities/finance/finance-overview";
 
 export class ProcedureApply extends BaseEntity<number> {
-  elementId: string;
+
 
   customer: Customer;
   customerId: number;
@@ -242,7 +242,7 @@ export class ProcedureApply extends BaseEntity<number> {
 
 
 export class ProcedureApplyStep extends BaseEntity<number> {
-  elementId: string
+
   procedureApply: ProcedureApply;
   procedureApplyId: number;
 

@@ -141,8 +141,8 @@ $button-typography: mat.m2-define-typography-config(
   width: 400px;
   padding: 32px;
   box-sizing: border-box;
-  border: 1px solid $ms-color-gray40;
-  border-radius: 4px;
+  background-color: var(--colorNeutralBackground3);
+  border-radius: 8px;
 }
 
 .align-end {

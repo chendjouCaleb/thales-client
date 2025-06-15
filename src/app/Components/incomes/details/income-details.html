@@ -7,8 +7,22 @@
 
   @if(getIncomeTask.success) {
 
+    <div class="display-flex marginVertical-16">
+      <div class="flexGrow-1">
+        <button (click)="_dialogRef.close()" MyIconButton>
+          <lucide-icon [img]="icons.XIcon"></lucide-icon>
+        </button>
+      </div>
+
+      <div >
+        <button [disabled]="!income.isIndependent" (click)="delete()" MyIconButton MyTooltip="Supprimer ce revenu">
+          <lucide-icon [img]="icons.Trash2Icon"></lucide-icon>
+        </button>
+      </div>
+    </div>
+
     <div class="d-flex px-3 mt-4">
-      <div class="flex-grow-1 fontSize-18 fontWeight-semiBold">
+      <div class="flexGrow-1 textStyle-title3">
         Revenu
       </div>
 
@@ -27,7 +41,7 @@
     <div class="padding-24">
       <div class="marginVertical-16">
         <div class="opacity-6 textStyle-caption1">Numéro</div>
-        <div class="textStyle-body1">{{income.code}}</div>
+        <div class="textStyle-body1">#{{income.code}}</div>
       </div>
 
       <div class="d-flex flex-column-gap-24">

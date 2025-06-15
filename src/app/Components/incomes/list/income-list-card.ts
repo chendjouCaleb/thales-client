@@ -18,7 +18,8 @@ import {IncomeDetailsLauncher} from "@app/Components/incomes";
         </div>
 
         <div class="fontSize-12 opacity-6">
-
+          #{{income.code}}
+          &bull;
           @if(income.member?.user) {
             {{ income.member?.user?.fullName }}
             &bull;

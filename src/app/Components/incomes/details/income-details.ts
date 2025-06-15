@@ -13,6 +13,7 @@ import {IncomeChangeReasonLauncher} from "@app/Components/incomes/change-reason"
 import {MatTooltip} from "@angular/material/tooltip";
 import {IncomeDeleteLauncher} from "@app/Components/incomes/delete";
 import {Subscription} from "rxjs";
+import {Tooltip} from "neo-ui";
 
 @Component({
   templateUrl: 'income-details.html',
@@ -24,7 +25,8 @@ import {Subscription} from "rxjs";
     IconButton,
     NgIf,
     Button,
-    MatTooltip
+    MatTooltip,
+    Tooltip
   ],
   providers: [ IncomeChangeAmountLauncher,
     IncomeChangeReasonLauncher,

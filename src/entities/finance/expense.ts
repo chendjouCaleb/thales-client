@@ -52,6 +52,7 @@ export class Expense extends BaseEntity<string> {
     super(value);
     if (value) {
 
+      this.code = value.code;
       this.updatedAt = value.updatedAt ? DateTime.fromISO(value.updatedAt) : null;
       this.amount = Money.parse(value.amount);
 

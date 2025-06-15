@@ -9,7 +9,7 @@
       <table class="my-table">
         <thead>
         <tr>
-          <th>#</th>
+          <th>N°</th>
           <th>
             <button class="th-button-1">
               Montant
@@ -48,7 +48,7 @@
         <tbody>
         <tr *ngFor="let expense of expenses; let i=index; trackBy: trackById" class="row-hover cursor-pointer"
             (click)="details(expense)">
-          <td>{{ i + 1 }}</td>
+          <td>#{{ expense.code }}</td>
 
           <td class="align-end">
             {{ expense.amount.format() }}

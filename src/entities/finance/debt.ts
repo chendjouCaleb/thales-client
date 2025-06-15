@@ -82,6 +82,7 @@ export class Debt extends BaseEntity<string> {
     super(value);
     if (value) {
 
+      this.code = value.code;
       this.updatedAt = value.updatedAt ? DateTime.fromISO(value.updatedAt) : null;
       this.expireAt = value.expireAt ? DateTime.fromISO(value.expireAt) : null;
       this.doneAt = value.doneAt ? DateTime.fromISO(value.doneAt) : null;

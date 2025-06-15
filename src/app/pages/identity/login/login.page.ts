@@ -1,10 +1,11 @@
-import {Component} from "@angular/core";
+import {Component, Inject, OnInit} from "@angular/core";
 import {FormControl, FormGroup, ReactiveFormsModule} from "@angular/forms";
 import {AuthenticationService, LoginModel, UserService} from "@app/identity";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {Router, RouterLink} from "@angular/router";
+import {ActivatedRoute, Router, RouterLink} from "@angular/router";
 import {TextField, TextFieldInput} from "@app/NeoUI";
 import {Button} from "@app/ui";
+import {DOCUMENT} from "@angular/common";
 
 @Component({
   templateUrl: 'login.page.html',
@@ -18,16 +19,24 @@ import {Button} from "@app/ui";
   ],
   standalone: true
 })
-export class LoginPage {
+export class LoginPage implements OnInit {
   formGroup = new FormGroup({
     userId: new FormControl('', ),
     password: new FormControl('')
   })
 
+  returnUrl: string
   constructor(private userService: UserService,
               private authenticationService: AuthenticationService,
               private _snackbar: MatSnackBar,
-              private _router: Router) {
+              private _route: ActivatedRoute,
+              private _router: Router,
+              @Inject(DOCUMENT) private _document: Document
+              ) {
+  }
+
+  ngOnInit() {
+    this.returnUrl = this._route.snapshot.queryParams['returnUrl'];
   }
 
   async login() {
@@ -43,8 +52,11 @@ export class LoginPage {
 
     const user = await this.authenticationService.loginAsync(model);
     this._snackbar.open(`Vous êtes maintenant connecté.`, '', {duration: 5000});
-    this._router.navigateByUrl(``).then()
-
+    if(this.returnUrl) {
+      this._document.location = this.returnUrl
+    }else {
+      this._router.navigateByUrl(``).then()
+    }
   }
 
   async accountExists(): Promise<boolean> {

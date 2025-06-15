@@ -20,7 +20,8 @@ import {IconButton, Menu, MenuItem} from "@app/ui";
         </div>
 
         <div class="fontSize-12 opacity-6">
-
+            {{expense.code}}
+          &bull;
           {{ expense.member?.user?.fullName }}
           &bull;
           {{ expense.createdAt.moment() }}

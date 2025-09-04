@@ -5,12 +5,7 @@
     <div class="flex-grow-1">
       <div class="fontSize-24">Paiements</div>
     </div>
-    <div>
-      <button MyButton class="primary" (click)="addPayment()">
-        <lucide-icon [img]="icons.PlusIcon"></lucide-icon>
-        Ajouter un paiement
-      </button>
-    </div>
+
   </div>
 
   <PaymentList class="mt-3" [params]="{agencyId:agency.id}"

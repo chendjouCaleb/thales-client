@@ -1,18 +1,7 @@
 <div class="p-4" *ngIf="procedureApplyStep">
 
   <div class="d-flex">
-    <div>
-      <button MyButton (click)="addIncome()" >
-        <lucide-icon [img]="icons.DollarSignIcon"></lucide-icon> Ajouter un revenu
-      </button>
-      <button MyButton (click)="addExpense()">
-        <lucide-icon [img]="icons.WalletIcon"></lucide-icon> Ajouter une dépense
-      </button>
 
-      <button MyButton (click)="addDebt()">
-        <lucide-icon [img]="icons.HandCoinsIcon"></lucide-icon> Ajouter une dette
-      </button>
-    </div>
 
     <button MyButton class="warn ms-3" *ngIf="procedureApplyStep.validated" (click)="invalidateStep()">
       <lucide-icon [img]="icons.BanIcon"></lucide-icon>
@@ -64,8 +53,5 @@
     <div class="divider my-3"></div>
 
   </div>
-
-  <div ProcedureApplyStepFinance [procedureApplyStep]="procedureApplyStep"></div>
-
 
 </div>

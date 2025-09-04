@@ -50,6 +50,15 @@ export class PlaneTicket extends BaseEntity<number> {
   financeOverview: FinanceOverview
 
 
+  amountDue: Money
+  amountPaid: Money
+  remainingAmount: Money
+  invoiceAmount: Money
+  debtAmount: Money
+  expenseAmount: Money
+  settledAt: DateTime;
+
+
   constructor(value: any = {}) {
     super(value);
     if (value) {
@@ -90,6 +99,15 @@ export class PlaneTicket extends BaseEntity<number> {
 
       this.employees = value.employees ? value.employees.map(s => new Employee(s)) : [];
       this.members = value.members ? value.members.map(s => new Member(s)) : [];
+
+
+      this.amountDue = value.amountDue ? Money.parse(value.amountDue) : undefined;
+      this.amountPaid = value.amountPaid ? Money.parse(value.amountPaid) : undefined;
+      this.remainingAmount = value.remainingAmount ? Money.parse(value.remainingAmount) : undefined;
+      this.invoiceAmount = value.invoiceAmount ? Money.parse(value.invoiceAmount) : undefined;
+      this.debtAmount = value.debtAmount ? Money.parse(value.debtAmount) : undefined;
+      this.expenseAmount = value.expenseAmount ? Money.parse(value.expenseAmount) : undefined;
+      this.settledAt = value.returnDate ? DateTime.fromISO(value.returnDate) : null;
 
       //this.debts?.forEach(debt => debt._hydrateIncomes(this.incomes));
     }

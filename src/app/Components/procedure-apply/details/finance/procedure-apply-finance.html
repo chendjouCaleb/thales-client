@@ -1,25 +1,30 @@
 <div class="marginTop-16 d-flex flex-column-gap-48">
   <div>
-    <div class="fontSize-14 opacity-6">Prix à payer</div>
-    <div class="fontSize-18 fontWeight-semiBold">
+    <div class="textStyle-body1 opacity-6">Prix à payer</div>
+    <div class="textStyle-subtitle2">
       {{procedureApply.totalPrice.format()}}</div>
   </div>
 
   <div>
-    <div class="fontSize-14 opacity-6">Revenu</div>
-    <div class="fontSize-18 fontWeight-semiBold success-color-1">
-      {{financeOverview.incomeAmount.format()}}</div>
+    <div class="textStyle-body1 opacity-6">Revenu</div>
+    <div class="textStyle-subtitle2 success-color-1">
+      {{procedureApply.amountPaid.format()}}</div>
   </div>
 
   <div>
-    <div class="fontSize-14 opacity-6">Dépense</div>
-    <div class="fontSize-18 fontWeight-semiBold warn-color-1" >{{financeOverview.expenseAmount.format()}}</div>
+    <div class="textStyle-body1 opacity-6">Dépense</div>
+    <div class="textStyle-subtitle2 warn-color-1" >{{financeOverview.expenseAmount.format()}}</div>
   </div>
 
 
   <div>
-    <div class="fontSize-14 opacity-6">Dette à payer</div>
-    <div class="fontSize-18 fontWeight-semiBold error-color-1" >{{financeOverview.debtRemainingAmount.format()}}</div>
+    <div class="textStyle-body1 opacity-6">Facture à payer</div>
+    <div class="textStyle-subtitle2 error-color-1" >{{procedureApply.invoiceAmount.format()}}</div>
+  </div>
+
+  <div>
+    <div class="textStyle-body1 opacity-6">Dette à payer</div>
+    <div class="textStyle-subtitle2 error-color-1" >{{procedureApply.debtAmount.format()}}</div>
   </div>
 
 </div>

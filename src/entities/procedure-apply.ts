@@ -42,11 +42,8 @@ export class ProcedureApply extends BaseEntity<number> {
   procedureApplySteps: ProcedureApplyStep[] = [];
 
   totalPayment: Money;
-
-  debtAmount: Money
   debtRemainingAmount: Money
   incomeAmount: Money
-  expenseAmount: Money
 
   debts: Debt[];
   incomes: Income[];
@@ -54,6 +51,14 @@ export class ProcedureApply extends BaseEntity<number> {
 
   employees: Employee[];
   members: Member[];
+
+  amountDue: Money
+  amountPaid: Money
+  remainingAmount: Money
+  invoiceAmount: Money
+  debtAmount: Money
+  expenseAmount: Money
+  settledAt: DateTime;
 
   financeOverview: FinanceOverview
 
@@ -90,7 +95,15 @@ export class ProcedureApply extends BaseEntity<number> {
       this.debtAmount = value.debtAmount ? Money.parse(value.debtAmount) : undefined;
       this.debtRemainingAmount = value.debtRemainingAmount ? Money.parse(value.debtRemainingAmount) : undefined;
       this.incomeAmount = value.incomeAmount ? Money.parse(value.incomeAmount) : undefined;
+
+
+      this.amountDue = value.amountDue ? Money.parse(value.amountDue) : undefined;
+      this.amountPaid = value.amountPaid ? Money.parse(value.amountPaid) : undefined;
+      this.remainingAmount = value.remainingAmount ? Money.parse(value.remainingAmount) : undefined;
+      this.invoiceAmount = value.invoiceAmount ? Money.parse(value.invoiceAmount) : undefined;
+      this.debtAmount = value.debtAmount ? Money.parse(value.debtAmount) : undefined;
       this.expenseAmount = value.expenseAmount ? Money.parse(value.expenseAmount) : undefined;
+      this.settledAt = value.returnDate ? DateTime.fromISO(value.returnDate) : null;
 
 
       this.debts = value.debts ? value.debts.map(s => new Debt(s)) : undefined;

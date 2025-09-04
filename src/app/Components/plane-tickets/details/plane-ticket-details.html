@@ -12,29 +12,6 @@
       </button>
     </div>
 
-    <button #menuTrigger  MyButton class="alpha-primary"
-             (click)="dropdown.open(); $event.stopPropagation()">
-      <lucide-angular [img]="icons.DollarSignIcon"  ></lucide-angular>
-      Ajouter
-      <lucide-angular [img]="icons.ChevronDownIcon"  ></lucide-angular>
-    </button>
-
-    <Dropdown #dropdown [trigger]="menuTrigger.host"
-              (onBackdropClick)="dropdown.close()">
-      <MyMenu>
-        <button MenuItem (click)="addIncome()" >
-          <lucide-icon [img]="icons.DollarSignIcon"></lucide-icon> Ajouter un revenu
-        </button>
-        <button MenuItem (click)="addExpense()">
-          <lucide-icon [img]="icons.WalletIcon"></lucide-icon> Ajouter une dépense
-        </button>
-
-        <button MenuItem (click)="addDebt()">
-          <lucide-icon [img]="icons.HandCoinsIcon"></lucide-icon> Ajouter une dette
-        </button>
-
-      </MyMenu>
-    </Dropdown>
 
     <div class="vertical-divider mx-3"></div>
 

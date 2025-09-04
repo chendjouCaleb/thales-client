@@ -49,7 +49,6 @@ export class ProcedureApplyDetails implements OnInit {
   getProcedureApply = new Task(async () => {
     this.procedureApply = await this._service.getByIdAsync(this.procedureApplyId);
     this.procedureApply.procedureApplySteps.forEach(pa => pa.procedureApply = this.procedureApply);
-
   });
 
   constructor(private _service: ProcedureApplyService,

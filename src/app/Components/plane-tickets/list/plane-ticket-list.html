@@ -8,6 +8,7 @@
     <thead>
     <tr>
       <th>#</th>
+      <th>Code</th>
       <th>Pays & ville de Départ</th>
       <th>Destination</th>
       <th>Prix</th>
@@ -33,10 +34,11 @@
         (click)="rowClick.emit(planeTicket)"
     >
       <td>{{ i + 1 }}</td>
+      <td>#{{ planeTicket.code }}</td>
       <td>{{ planeTicket.departureCountry }}, {{ planeTicket.departureCity }}</td>
       <td>{{ planeTicket.arrivalCountry }}, {{ planeTicket.arrivalCity }}</td>
-      <td>{{ planeTicket.paymentAmount | currency: 'XAF' : 'symbol' : '1.0-0' : 'fr' }}</td>
-      <td>{{ planeTicket.price.amount | currency: 'XAF' : 'symbol' : '1.0-0' : 'fr' }}</td>
+      <td>{{ planeTicket.price.format()  }}</td>
+      <td> </td>
 
       <td *ngIf="display('customer')">{{ planeTicket.customer?.fullName }}</td>
 

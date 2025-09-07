@@ -255,7 +255,7 @@ export class Address {
   street: string = ''
 
   toString(): string {
-    return `${this.postalCode} ${this.street}, ${this.city}-${getCountry(this.country).name}`
+    return `${this.postalCode} ${this.street}, ${this.city}-${getCountry(this.country)?.name}`
   }
 }
 
